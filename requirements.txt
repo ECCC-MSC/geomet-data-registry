@@ -1,3 +1,5 @@
 click
+elasticsearch
 mappyfile
 pyyaml
+redis

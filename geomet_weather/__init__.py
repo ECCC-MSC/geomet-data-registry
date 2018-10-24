@@ -21,6 +21,7 @@ __version__ = '2.1-dev'
 
 import click
 
+from geomet_weather.tileindex import tileindex
 from geomet_weather.yml_writer import expand_yml
 
 
@@ -31,3 +32,4 @@ def cli():
 
 
 cli.add_command(expand_yml)
+cli.add_command(tileindex)

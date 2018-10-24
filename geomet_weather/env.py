@@ -29,13 +29,15 @@ BASEDIR = os.environ.get('GEOMET_WEATHER_BASEDIR', None)
 DATADIR = os.environ.get('GEOMET_WEATHER_DATADIR', None)
 CONFIG = os.environ.get('GEOMET_WEATHER_CONFIG', None)
 URL = os.environ.get('GEOMET_WEATHER_URL', None)
+TILEINDEX = os.environ.get('GEOMET_WEATHER_TILEINDEX', None)
 
 LOGGER.debug(BASEDIR)
 LOGGER.debug(DATADIR)
 LOGGER.debug(CONFIG)
 LOGGER.debug(URL)
+LOGGER.debug(TILEINDEX)
 
-if None in [BASEDIR, DATADIR, CONFIG, URL]:
+if None in [BASEDIR, DATADIR, CONFIG, URL, TILEINDEX]:
     msg = 'Environment variables not set!'
     LOGGER.exception(msg)
     raise EnvironmentError(msg)
