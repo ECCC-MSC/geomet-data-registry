@@ -1,0 +1,324 @@
+%YAML 1.1
+---
+
+forecast_models:
+    gdps: &id_gdps
+        mcf: nwp-models/msc_nwp_gdps.yml
+        projection: mapserv/proj/gdps.inc
+        extent: -180 -90.24 180 90
+        basepath: model_gem_global/25km/grib2/lat_lon
+        sourcepath: http://dd.weather.gc.ca/model_gem_global/25km/grib2/lat_lon
+        variable_intermediate_path: '{model_run_path}/{forecast_hour_path}'
+        filename_pattern: CMC_glb_{wx_variable}_latlon.24x.24_{YYYYMMDD}{model_run}_P{forecast_hour}.grib2
+        label_en: Global Deterministic Prediction System (GDPS)/GDPS (25 km)
+        label_fr: Système Global de Prévision Déterministe (SGPD)/SGPD (25 km)
+        dimensions: [1500, 751]
+        model_runs: [0, 12]
+        forecast_hours: [240, 240]
+        forecast_hour_interval: 3
+        first_forecast_hour_future: 3
+        members: None
+        processing: [SCALE_BUCKETS=1000]
+        metadata:
+            - 'wcs_enable_request=*'
+
+    gdps_uu: &id_gdps_uu
+        <<: *id_gdps
+        extent: 180 -90.24 540 90
+        is_vrt: True
+
+    gdps_pres: &id_gdps_pres
+        <<: *id_gdps
+        label_en: Global Deterministic Prediction System (GDPS)/GDPS at pressure levels (25 km)
+        label_fr: Système Global de Prévision Déterministe (SGPD)/SGPD en niveaux de pression (25 km)
+
+    gdps_pres_3h: &id_gdps_pres_3h
+        <<: *id_gdps_pres
+        forecast_hours: [168, 168]
+
+    gdps_pres_6h: &id_gdps_pres_6h
+        <<: *id_gdps_pres
+        forecast_hour_interval: 6
+        first_forecast_hour_future: 6
+
+    gdps_pres_uu: &id_gdps_pres_uu
+        <<: *id_gdps_pres
+        extent: 180 -90.24 540 90
+        is_vrt: True
+
+    gdps_pres_uu_3h: &id_gdps_pres_uu_3h
+        <<: *id_gdps_pres_3h
+        extent: 180 -90.24 540 90
+        is_vrt: True
+
+    gdps_pres_uu_6h: &id_gdps_pres_uu_6h
+        <<: *id_gdps_pres_6h
+        extent: 180 -90.24 540 90
+        is_vrt: True
+
+layer_templates:
+    base_mcf: ./template.yml
+
+layers:
+    GDPS.ETA_ES:
+        <<: *template_es
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Dew point depression
+        label_fr: GDPS.ETA - Écart du point de rosée
+        name: DEPR_TGL_2
+
+    GDPS.ETA_NT:
+        <<: *template_nt
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Total cloud cover [%]
+        label_fr: GDPS.ETA - Couverture nuageuse totale [%]
+        name: TCDC_SFC_0
+
+    GDPS.ETA_TD:
+        <<: *template_td
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Dew point temperature [°C]
+        label_fr: GDPS.ETA - Température du point de rosée [°C]
+        name: DPT_TGL_2
+
+    GDPS.ETA_RT:
+        <<: *template_rt
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Instantaneous precipitation rate [kg/(m^2 s)]
+        label_fr: GDPS.ETA - Taux de précipitation instantané [kg/(m^2 s)]
+        name: PRATE_SFC_0
+
+    GDPS.ETA_GZ:
+        <<: *template_gz_eta
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Geopotential Height [gpm]
+        label_fr: GDPS.ETA - Hauteur géopotentielle [gpm]
+        name: HGT_SFC_0
+
+    GDPS.ETA_GZ-CONTOUR:
+    #New variable name for contour layers
+        <<: *template_gz_eta_contour
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Geopotential Height (contour) [gpm]
+        label_fr: GDPS.ETA - Hauteur géopotentielle (contour) [gpm]
+        name: HGT_SFC_0
+
+    GDPS.ETA_HU:
+        <<: *template_hu
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Specific Humidity [kg/kg]
+        label_fr: GDPS.ETA - Humidité spécifique [kg/kg]
+        name: SPFH_SFC_0
+
+    GDPS.ETA_FR:
+        <<: *template_pr_fr_rn
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Freezing rain accumulation
+        label_fr: GDPS.ETA - Pluie verglaçante accumulée
+        name: WEAFR_SFC_0
+
+    GDPS.ETA_P0:
+        <<: *template_p0
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Surface pressure [Pa]
+        label_fr: GDPS.ETA - Pression à la surface [Pa]
+        name: PRES_SFC_0
+
+    GDPS.ETA_PR:
+        <<: *template_pr_fr_rn
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Precipitation accumulation [kg/(m^2)]
+        label_fr: GDPS.ETA - Précipitations accumulées [kg/(m^2)]
+        name: APCP_SFC_0
+
+    GDPS.ETA_RN:
+        <<: *template_pr_fr_rn
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Rain accumulation
+        label_fr: GDPS.ETA - Pluie accumulée
+        name: WEARN_SFC_0
+
+    GDPS.ETA_SN:
+        <<: *template_sn
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Snow accumulation
+        label_fr: GDPS.ETA - Neige accumulée
+        name: WEASN_SFC_0
+
+    GDPS.ETA_I0:
+        <<: *template_i0
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Surface and soil temperatures (Deep/Mean) [K]
+        label_fr: GDPS.ETA - Température de la surface et du sol (Profondeur/moyenne) [K]
+        name: TSOIL_SFC_0
+
+    GDPS.ETA_I1:
+        <<: *template_i1
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Soil volumetric water content (0-0.1m) [m³/m³]
+        label_fr: GDPS.ETA - Contenu volumétrique en eau du sol (0-0.1m) [m³/m³]
+        name: SOILW_DBLL_100
+
+    GDPS.ETA_I2:
+        <<: *template_i2
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Soil volumetric ice content at surface [m³/m³]
+        label_fr: GDPS.ETA - Contenu volumétrique en glace du sol à la surface [m³/m³]
+        name: SOILVIC_SFC_0
+
+    GDPS.ETA_AL:
+        <<: *template_al
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Surface albedo [%]
+        label_fr: GDPS.ETA - Albédo à la surface [%]
+        name: ALBDO_SFC_0
+
+#Not ready because not properly masked
+#    GDPS.ETA_DN:
+#        <<: *template_dn
+#        forecast_model: *id_gdps
+#        label_en: GDPS.ETA - Snow density [kg/m³]
+#        label_fr: GDPS.ETA - Densité de la neige [kg/m³]
+#        name: SDEN_SFC_0
+
+    GDPS.ETA_SD:
+        <<: *template_sd
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Snow depth [m]
+        label_fr: GDPS.ETA - Épaisseur de la neige [m]
+        name: SNOD_SFC_0
+
+    GDPS.ETA_NO:
+        <<: *template_no
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Water runoff accumulation [mm]
+        label_fr: GDPS.ETA - Accumulation de ruissellement [mm]
+        name: SFCWRO_SFC_0
+
+    GDPS.ETA_PN:
+        <<: *template_pn
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Sea level pressure (contour) [Pa]
+        label_fr: GDPS.ETA - Pression au niveau de la mer (contour) [Pa]
+        name: PRMSL_MSL_0
+
+    GDPS.ETA_PN-SLP:
+        <<: *template_pn-slp
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Sea level pressure [Pa]
+        label_fr: GDPS.ETA - Pression au niveau de la mer [Pa]
+        name: PRMSL_MSL_0
+
+    GDPS.ETA_TT:
+        <<: *template_tt
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Air temperature [°C]
+        label_fr: GDPS.ETA - Température de l'air [°C]
+        name: TMP_TGL_2
+
+    GDPS.ETA_UU:
+        <<: *template_uu
+        forecast_model: *id_gdps_uu
+        label_en: GDPS.ETA - Winds [m/s]
+        label_fr: GDPS.ETA - Vents [m/s]
+        names:
+            - UGRD_TGL_10
+            - VGRD_TGL_10
+
+    GDPS.ETA_WD:
+        <<: *template_wd
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Wind direction [°]
+        label_fr: GDPS.ETA - Direction du vent [°]
+        name: WDIR_TGL_10
+
+    GDPS.ETA_WGE:
+        <<: *template_wgust
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Wind gust estimate [m/s]
+        label_fr: GDPS.ETA - Estimation des rafales de vent [m/s]
+        name: GUST_SFC_0
+
+    GDPS.ETA_WGN:
+        <<: *template_wgust
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Wind gust minimum [m/s]
+        label_fr: GDPS.ETA - Minimum des rafales de vent [m/s]
+        name: GUST_MIN_SFC_0
+
+    GDPS.ETA_WGX:
+        <<: *template_wgust
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Wind gust maximum [m/s]
+        label_fr: GDPS.ETA - Maximum des rafales de vent [m/s]
+        name: GUST_MAX_SFC_0
+
+    GDPS.ETA_WSPD:
+        <<: *template_wspd
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Wind speed [m/s]
+        label_fr: GDPS.ETA - Vitesse du vent [m/s]
+        name: WIND_TGL_10
+
+    GDPS.ETA_HR:
+        <<: *template_hr
+        forecast_model: *id_gdps
+        label_en: GDPS.ETA - Relative humidity [%]
+        label_fr: GDPS.ETA - Humidité relative [%]
+        name: RH_TGL_2
+
+    GDPS.PRES_TT.{}.3h:
+        <<: *template_tt_250
+        forecast_model: *id_gdps_pres_3h
+        label_en: {}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [50, 100, 150, 175, 200, 225, 250]
+
+    GDPS.PRES_TT.{}.6h:
+        <<: *template_tt_250
+        forecast_model: *id_gdps_pres_6h
+        label_en: {}//GDPS.PRES - Air temperature at {} mb (6 hourly forecast) [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 6 heures) [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [50, 100, 150, 175, 200, 225, 250]
+
+    GDPS.PRES_TT.{}.3h:
+        <<: *template_tt_550_275
+        forecast_model: *id_gdps_pres_3h
+        label_en: {}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [275, 300, 350, 400, 450, 550]
+
+    GDPS.PRES_TT.{}.6h:
+        <<: *template_tt_550_275
+        forecast_model: *id_gdps_pres_6h
+        label_en: {}//GDPS.PRES - Air temperature at {} mb (6 hourly forecast) [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 6 heures) [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [300, 400]
+
+    GDPS.PRES_TT.{}:
+        <<: *template_tt_550_275
+        forecast_model: *id_gdps_pres
+        label_en: {}//GDPS.PRES - Air temperature at {} mb [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [500]
+
+    GDPS.PRES_TT.{}.3h:
+        <<: *template_tt_1015_600
+        forecast_model: *id_gdps_pres_3h
+        label_en: {}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [600, 650, 750, 800, 875, 900, 950, 970, 985, 1015]
+
+    GDPS.PRES_TT.{}:
+        <<: *template_tt_1015_600
+        forecast_model: *id_gdps_pres
+        label_en: {}//GDPS.PRES - Air temperature at {} mb [°C]
+        label_fr: {}//GDPS.PRES - Température de l'air à {} mb [°C]
+        name: TMP_ISBL_{}
+        pressure_levels: [700, 850, 925, 1000]

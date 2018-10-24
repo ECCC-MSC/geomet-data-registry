@@ -1,0 +1,11 @@
+%YAML 1.1
+---
+# amqp configuration
+
+amqp:
+    model_gem_global:
+        instances: 2
+        subtopic: model_gem_global.25km.#
+        mirror: True
+        report_back: False
+        accpet: .*
