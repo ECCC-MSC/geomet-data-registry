@@ -17,17 +17,25 @@
 #
 ###############################################################################
 
-__version__ = '2.1-dev'
-
-import click
-
-from geomet_weather.yml_writer import expand_yml
+import logging
+import os
 
 
-@click.group()
-@click.version_option(version=__version__)
-def cli():
-    pass
+LOGGER = logging.getLogger(__name__)
 
+LOGGER.info('Fetching environment variables')
 
-cli.add_command(expand_yml)
+BASEDIR = os.environ.get('GEOMET_WEATHER_BASEDIR', None)
+DATADIR = os.environ.get('GEOMET_WEATHER_DATADIR', None)
+CONFIG = os.environ.get('GEOMET_WEATHER_CONFIG', None)
+URL = os.environ.get('GEOMET_WEATHER_URL', None)
+
+LOGGER.debug(BASEDIR)
+LOGGER.debug(DATADIR)
+LOGGER.debug(CONFIG)
+LOGGER.debug(URL)
+
+if None in [BASEDIR, DATADIR, CONFIG, URL]:
+    msg = 'Environment variables not set!'
+    LOGGER.exception(msg)
+    raise EnvironmentError(msg)
