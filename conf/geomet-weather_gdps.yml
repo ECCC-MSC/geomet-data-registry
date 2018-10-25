@@ -1,6 +1,3 @@
-%YAML 1.1
----
-
 forecast_models:
     gdps: &id_gdps
         mcf: nwp-models/msc_nwp_gdps.yml
@@ -23,41 +20,38 @@ forecast_models:
             - 'wcs_enable_request=*'
 
     gdps_uu: &id_gdps_uu
-        <<: *id_gdps
+        ref: id_gdps
         extent: 180 -90.24 540 90
         is_vrt: True
 
     gdps_pres: &id_gdps_pres
-        <<: *id_gdps
+        ref: id_gdps
         label_en: Global Deterministic Prediction System (GDPS)/GDPS at pressure levels (25 km)
         label_fr: Système Global de Prévision Déterministe (SGPD)/SGPD en niveaux de pression (25 km)
 
     gdps_pres_3h: &id_gdps_pres_3h
-        <<: *id_gdps_pres
+        ref: id_gdps_pres
         forecast_hours: [168, 168]
 
     gdps_pres_6h: &id_gdps_pres_6h
-        <<: *id_gdps_pres
+        ref: id_gdps_pres
         forecast_hour_interval: 6
         first_forecast_hour_future: 6
 
     gdps_pres_uu: &id_gdps_pres_uu
-        <<: *id_gdps_pres
+        ref: id_gdps_pres
         extent: 180 -90.24 540 90
         is_vrt: True
 
     gdps_pres_uu_3h: &id_gdps_pres_uu_3h
-        <<: *id_gdps_pres_3h
+        ref: id_gdps_pres_3h
         extent: 180 -90.24 540 90
         is_vrt: True
 
     gdps_pres_uu_6h: &id_gdps_pres_uu_6h
-        <<: *id_gdps_pres_6h
+        ref: id_gdps_pres_6h
         extent: 180 -90.24 540 90
         is_vrt: True
-
-layer_templates:
-    base_mcf: ./template.yml
 
 layers:
     GDPS.ETA_ES:
@@ -267,58 +261,58 @@ layers:
         label_fr: GDPS.ETA - Humidité relative [%]
         name: RH_TGL_2
 
-    GDPS.PRES_TT.{}.3h:
+    GDPS.PRES_TT.{250}.3h:
         <<: *template_tt_250
         forecast_model: *id_gdps_pres_3h
-        label_en: {}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [50, 100, 150, 175, 200, 225, 250]
 
-    GDPS.PRES_TT.{}.6h:
+    GDPS.PRES_TT.{250}.6h:
         <<: *template_tt_250
         forecast_model: *id_gdps_pres_6h
-        label_en: {}//GDPS.PRES - Air temperature at {} mb (6 hourly forecast) [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 6 heures) [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb (6 hourly forecast) [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb (prévision aux 6 heures) [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [50, 100, 150, 175, 200, 225, 250]
 
-    GDPS.PRES_TT.{}.3h:
+    GDPS.PRES_TT.{550_275}.3h:
         <<: *template_tt_550_275
         forecast_model: *id_gdps_pres_3h
-        label_en: {}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [275, 300, 350, 400, 450, 550]
 
-    GDPS.PRES_TT.{}.6h:
+    GDPS.PRES_TT.{550_275}.6h:
         <<: *template_tt_550_275
         forecast_model: *id_gdps_pres_6h
-        label_en: {}//GDPS.PRES - Air temperature at {} mb (6 hourly forecast) [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 6 heures) [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb (6 hourly forecast) [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb (prévision aux 6 heures) [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [300, 400]
 
-    GDPS.PRES_TT.{}:
+    GDPS.PRES_TT.{550_275}:
         <<: *template_tt_550_275
         forecast_model: *id_gdps_pres
-        label_en: {}//GDPS.PRES - Air temperature at {} mb [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [500]
 
-    GDPS.PRES_TT.{}.3h:
+    GDPS.PRES_TT.{1015_600}.3h:
         <<: *template_tt_1015_600
         forecast_model: *id_gdps_pres_3h
-        label_en: {}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb (3 hourly forecast) [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb (prévision aux 3 heures) [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [600, 650, 750, 800, 875, 900, 950, 970, 985, 1015]
 
-    GDPS.PRES_TT.{}:
+    GDPS.PRES_TT.{1015_600}:
         <<: *template_tt_1015_600
         forecast_model: *id_gdps_pres
-        label_en: {}//GDPS.PRES - Air temperature at {} mb [°C]
-        label_fr: {}//GDPS.PRES - Température de l'air à {} mb [°C]
+        label_en: "{}//GDPS.PRES - Air temperature at {} mb [°C]"
+        label_fr: "{}//GDPS.PRES - Température de l'air à {} mb [°C]"
         name: TMP_ISBL_{}
         pressure_levels: [700, 850, 925, 1000]
