@@ -22,6 +22,7 @@ import logging
 
 import click
 
+from geomet_weather.env import TILEINDEX_TYPE, TILEINDEX_BASEURL
 from geomet_weather.tileindex.base import TileIndexError
 
 LOGGER = logging.getLogger(__name__)
@@ -31,11 +32,13 @@ PROVIDERS = {
 }
 
 
-def load_tileindex(provider_name):
+def load_tileindex(provider_name, provider_url, provider_group):
     """
     loads tileindex by provider name
 
     :param provider_name: provider name
+    :param provider_url: provider url
+    :param provider_group: provider group
 
     :returns: geomet_weather.tileindex.base.BaseTileIndex object
     """
@@ -44,12 +47,12 @@ def load_tileindex(provider_name):
 
     if provider_name is None:
         msg = 'provider name is required'
-        LOGGER.exception(msg)
+        LOGGER.error(msg)
         raise TileIndexError(msg)
 
     if '.' not in provider_name and provider_name not in PROVIDERS.keys():
         msg = 'Tile index provider {} not found'.format(provider_name)
-        LOGGER.exception(msg)
+        LOGGER.error(msg)
         raise TileIndexError(msg)
 
     if '.' in provider_name:  # dotted path
@@ -62,7 +65,7 @@ def load_tileindex(provider_name):
 
     module = importlib.import_module(packagename)
     class_ = getattr(module, classname)
-    provider = class_(provider_name)
+    provider = class_(provider_name, provider_url, provider_group)
     return provider
 
 
@@ -79,19 +82,31 @@ def tileindex():
 def create(ctx, provider=None, group=None):
     """create tileindex"""
 
-    click.echo('Creating tileindex')
-
-#    if provider is None:
-#        raise click.UsageError('Provider is required: {}'.format(
-#                               list(PROVIDERS.keys())))
-
-    ti = load_tileindex(provider)
+    ti = load_tileindex(TILEINDEX_TYPE, TILEINDEX_BASEURL, group)
 
     try:
-        ti.create(group)
+        click.echo('Creating tileindex {}'.format(ti.fullpath))
+        ti.create()
     except TileIndexError as err:
-        raise click.Exception(err)
+        raise click.ClickException(err)
+    click.echo('Done')
+
+
+@click.command()
+@click.pass_context
+@click.option('--group', '-g', help='group')
+def delete(ctx, group=None):
+    """delete tileindex"""
+
+    ti = load_tileindex(TILEINDEX_TYPE, TILEINDEX_BASEURL, group)
+
+    try:
+        click.echo('Deleting tileindex {}'.format(ti.fullpath))
+        ti.delete()
+    except TileIndexError as err:
+        raise click.ClickException(err)
     click.echo('Done')
 
 
 tileindex.add_command(create)
+tileindex.add_command(delete)

@@ -18,6 +18,7 @@
 ###############################################################################
 
 import logging
+import os
 
 LOGGER = logging.getLogger(__name__)
 
@@ -25,16 +26,26 @@ LOGGER = logging.getLogger(__name__)
 class BaseTileIndex(object):
     """generic Tile Index ABC"""
 
-    def __init__(self, provider):
+    def __init__(self, provider, url, group=None):
         """
         Initialize object
 
-        :param type: provider type
+        :param provider: provider type
+        :param url: url/path of tile index
+        :param group: provider group
 
         :returns: geomet_weather.tileindex.base.BaseTileIndex
         """
 
         self.type = provider
+        self.url = url
+        self.group = group
+        self.name = 'geomet-weather-tileindex'
+
+        if self.group is not None:
+            self.name = '{}-{}'.format(self.name, self.group)
+
+        self.fullpath = os.path.join(self.url, self.name)
 
     def create(self, group=None):
         """
@@ -80,7 +91,7 @@ class BaseTileIndex(object):
         """
         Add an item to the tileindex
 
-        :param identifier: tileindex item id
+        :param identifier: tileindex item identifier
         :param data: GeoJSON dict
 
         :returns: boolean of process status
@@ -92,7 +103,7 @@ class BaseTileIndex(object):
         """
         Remove an item from the tileindex
 
-        :param identifier: identifier
+        :param identifier: tileindex item identifier
 
         :returns: boolean of process status
         """
@@ -100,7 +111,7 @@ class BaseTileIndex(object):
         raise NotImplementedError()
 
     def __repr__(self):
-        return '<TileIndex> {}'.format(self.type)
+        return '<BaseTileIndex> {}'.format(self.type)
 
 
 class TileIndexError(Exception):
