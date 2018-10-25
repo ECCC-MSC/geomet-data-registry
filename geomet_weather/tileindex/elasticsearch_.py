@@ -54,7 +54,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param provider_url: provider url
         :param group: provider group
 
-        :returns: pygeoapi.providers.elasticsearch_.ElasticsearchProvider
+        :returns: geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex  # noqa
         """
 
         BaseTileIndex.__init__(self, provider_name, url, group)
