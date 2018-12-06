@@ -9,3 +9,12 @@ amqp:
         mirror: True
         report_back: False
         accpet: .*
+        on_file:
+
+local:
+    radar_4km:
+        source:
+        on_file:
+    radar_1km:
+        source:
+        on_file:
