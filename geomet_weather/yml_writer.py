@@ -59,7 +59,6 @@ def write_yml(cfg, output_dir, group):
 
     with open(yaml_file_out, 'w', encoding='utf-8') as outfile:
         yaml.dump(cfg, outfile, default_flow_style=False, allow_unicode=True)
-    print("hello world")
 
 
 @click.command('expand-yml')

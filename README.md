@@ -52,6 +52,12 @@ geomet-weather --help
 # get version
 geomet-weather --version
 
+# Expand yaml for all groups
+geomet-weather expand-yml
+
+# Expand yaml for single group
+geomet-weather expand-yml --group=GDPS
+
 # generate VRTs for all layers
 geomet-weather vrt generate
 
@@ -68,7 +74,7 @@ geomet-weather tileindex generate --group=GDPS
 geomet-weather mapfile generate --language=en --service=WMS
 
 # generate mapfile for WMS (English) with specific configuration for single layer
-geomet-weather mapfile generate --language=en --service=WMS --layer=CMIP5.SND.RCP26.FALL.ANO_PCTL50
+geomet-weather mapfile generate --language=en --service=WMS --layer=GDPS.ETA_TT
 
 # generate mapfile for WMS (English) with specific configuration for single group
 geomet-weather mapfile generate --language=en --service=WMS --group=GDPS

@@ -1,0 +1,199 @@
+forecast_models:
+    radar: &id_radar
+        mcf: observations/msc_radar.mcf
+        projection: mapserv/proj/radar
+        extent: 0 0 6600000 6000000
+        basepath: local/RADAR
+        sourcepath: SCIENCE-NETWORK:/space/hall2/sitestore/eccc/cmod/prodoming/urp/NowCast/PRECIPET/GEOTIFF
+        filename_pattern: '{YYYYMMDDhh}_{mm}ref_4.0km.tif'
+        label_en: Weather Radar/North American radar mosaic (4 km)
+        label_fr: Radar météo/Mosaïque radar Nord-Américaine (4 km)
+        observations_retention_min: 180
+        observations_interval_min: 10
+
+    radar_1km_mmhr: &id_radar_1km_mmhr_composite
+        mcf: observations/msc_radar.mcf
+        projection: mapserv/proj/4326
+        extent: -170.11 11.38 146.94 67.11
+        basepath: local/RADAR/1KM/MMHR
+        sourcepath: http://ddi.cmc.ec.gc.ca/20180312/MSC-SCI-CMC-RADAR/GEOMET/GEOTIFF/COMPOSITE/MMHR
+        filename_pattern: '{YYYYMMDDhh}{mm}_RADAR_COMPOSITE_1KM_{precipitation_type}.tif'
+        label_en: Weather Radar/North American radar mosaic (1 km)
+        label_fr: Radar météo/Mosaïque radar Nord-Américaine (1 km)
+        observations_retention_min: 180
+        observations_interval_min: 10
+
+    radar_1km_dbz: &id_radar_1km_dbz_composite
+        mcf: observations/msc_radar.mcf
+        projection: mapserv/proj/4326
+        extent: -170.11 11.38 146.94 67.11
+        basepath: local/RADAR/1KM/DBZ
+        sourcepath: http://ddi.cmc.ec.gc.ca/20180312/MSC-SCI-CMC-RADAR/GEOMET/GEOTIFF/COMPOSITE/DBZ
+        filename_pattern: '{YYYYMMDDhh}{mm}_RADAR_COMPOSITE_1KM_{precipitation_type}.tif'
+        label_en: Weather Radar/North American radar mosaic (1 km)
+        label_fr: Radar météo/Mosaïque radar Nord-Américaine (1 km)
+        observations_retention_min: 180
+        observations_interval_min: 10
+
+    radar_other: &id_radar_other
+        mcf: observations/msc_radar.mcf
+        projection: mapserv/proj/4326
+        extent: -170.11 11.38 146.94 67.11
+        label_en: Weather Radar
+        label_fr: Radar météo
+
+layers:
+    RADAR_COVERAGE:
+        phase: beta
+        type: POLYGON
+        time_enabled: 'no'
+        is_local: true
+        forecast_model: *id_radar_other
+        label_en: Radar coverage [beta]
+        label_fr: Couverture radar [beta]
+        data: local/RadarCoverage.shp
+        metadata:
+            - wfs_featureid=ID
+        styles:
+            - RADAR_COVERAGE
+
+    RADAR_1KM_RRAI:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar_1km_mmhr_composite
+        label_en: RADAR - Radar precipitation rate (Rain) (1 km)
+        label_fr: RADAR - Taux de précipitation radar (Pluie) (1 km)
+        variable_type: MMHR
+        metadata:
+            - 'wcs_enable_request=!*'
+        styles:
+            - RADARURPPRECIPR8
+            - RADARURPPRECIPR8-LINEAR
+            - RADARURPPRECIPR
+            - RADARURPPRECIPR-LINEAR
+            - RADARURPPRECIPR14
+            - RADARURPPRECIPR14-LINEAR
+
+    RADAR_1KM_RSNO:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar_1km_dbz_composite
+        label_en: RADAR - Radar precipitation rate (Snow) (1 km) [experimental]
+        label_fr: RADAR - Taux de précipitation radar (Neige) (1 km) [expérimental]
+        variable_type: MMHR
+        metadata:
+            - 'wcs_enable_request=!*'
+        styles:
+            - RADARURPPRECIPS8-1KM
+            - RADARURPPRECIPS8-1KM-LINEAR
+            - RADARURPPRECIPS-1KM
+            - RADARURPPRECIPS-1KM-LINEAR
+            - RADARURPPRECIPS14-1KM
+            - RADARURPPRECIPS14-1KM-LINEAR
+
+    RADAR_1KM_RDBR:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar_1km_dbz_composite
+        label_en: RADAR - Radar reflectivity (Rain) (1 km)
+        label_fr: RADAR - Réflectivité radar (Pluie) (1 km)
+        variable_type: DBZ
+        metadata:
+            - 'wcs_enable_request=!*'
+        styles:
+            - RADARURPREFLECTR8
+            - RADARURPREFLECTR8-LINEAR
+            - RADARURPREFLECTR
+            - RADARURPREFLECTR-LINEAR
+            - RADARURPREFLECTR14
+            - RADARURPREFLECTR14-LINEAR
+
+    RADAR_1KM_RDBS:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar_1km_dbz_composite
+        label_en: RADAR - Radar reflectivity (Snow) (1 km) [experimental]
+        label_fr: RADAR - Réflectivité radar (Neige) (1 km) [expérimental]
+        variable_type: DBZ
+        metadata:
+            - 'wcs_enable_request=!*'
+        styles:
+            - RADARURPREFLECTS8-1KM
+            - RADARURPREFLECTS8-1KM-LINEAR
+            - RADARURPREFLECTS-1KM
+            - RADARURPREFLECTS-1KM-LINEAR
+            - RADARURPREFLECTS14-1KM
+            - RADARURPREFLECTS14-1KM-LINEAR
+
+    RADAR_RRAI:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar
+        label_en: RADAR - Radar precipitation rate (Rain) (4 km)
+        label_fr: RADAR - Taux de précipitation radar (Pluie) (4 km)
+        metadata:
+            - 'wcs_enable_request=!*'
+        processing:
+            - BANDS=3
+        styles:
+            - RADARURPPRECIPR8
+            - RADARURPPRECIPR8-LINEAR
+            - RADARURPPRECIPR
+            - RADARURPPRECIPR-LINEAR
+            - RADARURPPRECIPR14
+            - RADARURPPRECIPR14-LINEAR
+
+    RADAR_RSNO:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar
+        label_en: RADAR - Radar precipitation rate (Snow) (4 km)
+        label_fr: RADAR - Taux de précipitation radar (Neige) (4 km)
+        metadata:
+            - 'wcs_enable_request=!*'
+        processing:
+            - BANDS=5
+        styles:
+            - RADARURPPRECIPS8
+            - RADARURPPRECIPS8-LINEAR
+            - RADARURPPRECIPS
+            - RADARURPPRECIPS-LINEAR
+            - RADARURPPRECIPS14
+            - RADARURPPRECIPS14-LINEAR
+
+    RADAR_RDBR:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar
+        label_en: RADAR - Radar reflectivity (Rain) (4 km)
+        label_fr: RADAR - Réflectivité radar (Pluie) (4 km)
+        metadata:
+            - 'wcs_enable_request=!*'
+        processing:
+            - BANDS=2
+        styles:
+            - RADARURPREFLECTR8
+            - RADARURPREFLECTR8-LINEAR
+            - RADARURPREFLECTR
+            - RADARURPREFLECTR-LINEAR
+            - RADARURPREFLECTR14
+            - RADARURPREFLECTR14-LINEAR
+
+    RADAR_RDBS:
+        type: raster
+        time_enabled: 'yes'
+        forecast_model: *id_radar
+        label_en: RADAR - Radar reflectivity (Snow) (4 km)
+        label_fr: RADAR - Réflectivité radar (Neige) (4 km)
+        metadata:
+            - 'wcs_enable_request=!*'
+        processing:
+            - BANDS=4
+        styles:
+            - RADARURPREFLECTS8
+            - RADARURPREFLECTS8-LINEAR
+            - RADARURPREFLECTS
+            - RADARURPREFLECTS-LINEAR
+            - RADARURPREFLECTS14
+            - RADARURPREFLECTS14-LINEAR
+
