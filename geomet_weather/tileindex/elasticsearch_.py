@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ from geomet_weather.tileindex.base import BaseTileIndex, TileIndexError
 
 LOGGER = logging.getLogger(__name__)
 
-ES_MAPPINGS = {
+INDEX_SETTINGS = {
     'settings': {
         'number_of_shards': 1,
         'number_of_replicas': 0
@@ -34,6 +34,51 @@ ES_MAPPINGS = {
     'mappings': {
         'FeatureCollection': {
             'properties': {
+                'type': {
+                    'type': 'text'
+                },
+                'properties': {
+                    'properties': {
+                        'identifier': {
+                            'type': 'text',
+                            'fields': {
+                                'raw': {
+                                    'type': 'keyword'
+                                }
+                            }
+                        },
+                        'layer': {
+                            'type': 'text',
+                            'fields': {
+                                'raw': {
+                                    'type': 'keyword'
+                                }
+                            }
+                        },
+                        'filepath': {
+                            'type': 'text',
+                            'fields': {
+                                'raw': {
+                                    'type': 'keyword'
+                                }
+                            }
+                        },
+                        'datetime': {
+                            'type': 'date',
+                            'format': "YYYY-MM-DD'T'HH:mm:ssZ"
+                        },
+                        'reference_datetime': {
+                            'type': 'date',
+                            'format': "YYYY-MM-DD'T'HH:mm:ssZ"
+                        },
+                        'elevation': {
+                            'type': 'integer'
+                        },
+                        'members': {
+                            'type': 'integer'
+                        }
+                    }
+                },
                 'geometry': {
                     'type': 'geo_shape'
                 }
@@ -88,7 +133,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
             raise TileIndexError(msg)
 
         LOGGER.info('Creating index {}'.format(self.name))
-        self.es.indices.create(index=self.name, body=ES_MAPPINGS)
+        self.es.indices.create(index=self.name, body=INDEX_SETTINGS)
         return True
 
     def delete(self):
