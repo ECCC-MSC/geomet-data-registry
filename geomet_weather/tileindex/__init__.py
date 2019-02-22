@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,72 +17,38 @@
 #
 ###############################################################################
 
-import importlib
 import logging
 
 import click
 
 from geomet_weather.env import TILEINDEX_TYPE, TILEINDEX_BASEURL
+from geomet_weather.plugin import PLUGINS, load_plugin
 from geomet_weather.tileindex.base import TileIndexError
 
 LOGGER = logging.getLogger(__name__)
 
-PROVIDERS = {
-    'Elasticsearch': 'geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
-}
-
-
-def load_tileindex(provider_name, provider_url, provider_group):
-    """
-    loads tileindex by provider name
-
-    :param provider_name: provider name
-    :param provider_url: provider url
-    :param provider_group: provider group
-
-    :returns: geomet_weather.tileindex.base.BaseTileIndex object
-    """
-
-    LOGGER.debug('Providers: {}'.format(PROVIDERS))
-
-    if provider_name is None:
-        msg = 'provider name is required'
-        LOGGER.error(msg)
-        raise TileIndexError(msg)
-
-    if '.' not in provider_name and provider_name not in PROVIDERS.keys():
-        msg = 'Tile index provider {} not found'.format(provider_name)
-        LOGGER.error(msg)
-        raise TileIndexError(msg)
-
-    if '.' in provider_name:  # dotted path
-        packagename, classname = provider_name.rsplit('.', 1)
-    else:  # core provider
-        packagename, classname = PROVIDERS[provider_name].rsplit('.', 1)
-
-    LOGGER.debug('package name: {}'.format(packagename))
-    LOGGER.debug('class name: {}'.format(classname))
-
-    module = importlib.import_module(packagename)
-    class_ = getattr(module, classname)
-    provider = class_(provider_name, provider_url, provider_group)
-    return provider
-
 
 @click.group()
 def tileindex():
+    """Manage the geomet-weather tileindex"""
     pass
 
 
 @click.command()
 @click.pass_context
-@click.option('--provider', '-p', type=click.Choice(list(PROVIDERS.keys())),
+@click.option('--provider', '-p', type=click.Choice(list(PLUGINS.keys())),
               help='group')
 @click.option('--group', '-g', help='group')
 def create(ctx, provider=None, group=None):
     """create tileindex"""
 
-    ti = load_tileindex(TILEINDEX_TYPE, TILEINDEX_BASEURL, group)
+    provider_def = {
+        'type': TILEINDEX_TYPE,
+        'url': TILEINDEX_BASEURL,
+        'group': group
+    }
+
+    ti = load_plugin('tileindex', provider_def)
 
     try:
         click.echo('Creating tileindex {}'.format(ti.fullpath))
@@ -98,7 +64,13 @@ def create(ctx, provider=None, group=None):
 def delete(ctx, group=None):
     """delete tileindex"""
 
-    ti = load_tileindex(TILEINDEX_TYPE, TILEINDEX_BASEURL, group)
+    provider_def = {
+        'type': TILEINDEX_TYPE,
+        'url': TILEINDEX_BASEURL,
+        'group': group
+    }
+
+    ti = load_plugin('tileindex', provider_def)
 
     try:
         click.echo('Deleting tileindex {}'.format(ti.fullpath))

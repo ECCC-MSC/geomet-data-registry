@@ -91,18 +91,16 @@ INDEX_SETTINGS = {
 class ElasticsearchTileIndex(BaseTileIndex):
     """Elasticsearch TileIndex"""
 
-    def __init__(self, provider_name, url, group=None):
+    def __init__(self, provider_def):
         """
         Initialize object
 
-        :param provider_name: provider name
-        :param provider_url: provider url
-        :param group: provider group
+        :param provider_def: provider definition dict
 
-        :returns: geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex  # noqa
+        :returns: `geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex`  # noqa
         """
 
-        BaseTileIndex.__init__(self, provider_name, url, group)
+        BaseTileIndex.__init__(self, provider_def)
 
         self.url_parsed = urlparse(self.url)
         self.type_name = 'FeatureCollection'

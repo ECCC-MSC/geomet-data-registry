@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseKeyValueStore(object):
+class BaseStore(object):
     """generic key-value store ABC"""
 
     def __init__(self, provider, url):
@@ -32,7 +32,7 @@ class BaseKeyValueStore(object):
         :param provider: provider type
         :param url: url/path of tile index
 
-        :returns: geomet_weather.store.base.BaseKeyValueStore
+        :returns: `geomet_weather.store.base.BaseStore`
         """
 
         self.type = provider
@@ -75,9 +75,9 @@ class BaseKeyValueStore(object):
         raise NotImplementedError()
 
     def __repr__(self):
-        return '<BaseKeyValueStore> {}'.format(self.type)
+        return '<BaseStore> {}'.format(self.type)
 
 
-class KeyValueStoreError(Exception):
+class StoreError(Exception):
     """setup error"""
     pass

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,12 +22,12 @@ from urllib.parse import urlparse
 
 import redis
 
-from geomet_weather.store.base import BaseKeyValueStore
+from geomet_weather.store.base import BaseStore
 
 LOGGER = logging.getLogger(__name__)
 
 
-class RedisKeyValueStore(BaseKeyValueStore):
+class RedisStore(BaseStore):
     """Redis key-value store implementation"""
 
     def __init__(self, provider, url):
@@ -37,10 +37,10 @@ class RedisKeyValueStore(BaseKeyValueStore):
         :param provider: provider type
         :param url: url/path of tile index
 
-        :returns: geomet_weather.store.base.BaseKeyValueStore
+        :returns: `geomet_weather.store.redis_.RedisStore`
         """
 
-        BaseKeyValueStore.__init__(self, provider, url)
+        BaseStore.__init__(self, provider, url)
 
         self.url_parsed = urlparse(self.url)
 
@@ -84,9 +84,9 @@ class RedisKeyValueStore(BaseKeyValueStore):
         raise NotImplementedError()
 
     def __repr__(self):
-        return '<RedisKeyValueStore> {}'.format(self.type)
+        return '<RedisStore> {}'.format(self.type)
 
 
-class KeyValueStoreError(Exception):
+class StoreError(Exception):
     """setup error"""
     pass

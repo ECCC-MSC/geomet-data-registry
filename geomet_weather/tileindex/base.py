@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,20 +26,20 @@ LOGGER = logging.getLogger(__name__)
 class BaseTileIndex(object):
     """generic Tile Index ABC"""
 
-    def __init__(self, provider, url, group=None):
+    def __init__(self, provider_def):
         """
         Initialize object
 
-        :param provider: provider type
+        :param provider: provider definition dict
         :param url: url/path of tile index
         :param group: provider group
 
-        :returns: geomet_weather.tileindex.base.BaseTileIndex
+        :returns: `geomet_weather.tileindex.base.BaseTileIndex`
         """
 
-        self.type = provider
-        self.url = url
-        self.group = group
+        self.type = provider_def['type']
+        self.url = provider_def['url']
+        self.group = provider_def['group']
         self.name = 'geomet-weather-tileindex'
 
         if self.group is not None:
@@ -47,11 +47,9 @@ class BaseTileIndex(object):
 
         self.fullpath = os.path.join(self.url, self.name)
 
-    def create(self, group=None):
+    def create(self):
         """
         Create the tileindex
-
-        :param group: group name
 
         :returns: boolean of process status
         """
