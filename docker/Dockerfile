@@ -19,6 +19,7 @@
 
 FROM python:3.6-slim
 FROM elasticsearch:latest
+FROM redis:latest
 
 # install commonly used dependencies
 
@@ -32,8 +33,6 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && loca
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-
-RUN apt-get install -y redis-server
 
 RUN useradd -ms /bin/bash geoadm
 
@@ -49,4 +48,3 @@ RUN git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-weather.git
 WORKDIR geomet-weather
 RUN python setup.py install
 WORKDIR ..
-
