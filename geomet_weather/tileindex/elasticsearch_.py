@@ -162,8 +162,15 @@ class ElasticsearchTileIndex(BaseTileIndex):
         """
 
         identifier = data['identifier']
-        response = self.es.index(index=self.name, doc_type=self.type_name,
-                                 id=identifier, body=data)
+
+        LOGGER.info('Indexing {}'.format(identifier))
+        try:
+            self.es.index(index=self.name, doc_type=self.type_name,
+                          id=identifier, body=data)
+        except Exception as err:
+            LOGGER.exception('Error indexing {}: {}'.format(identifier, err))
+            return False
+
         return True
 
     def __repr__(self):
