@@ -16,3 +16,67 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+
+import logging
+
+import click
+
+from geomet_weather.env import STORE_TYPE, STORE_URL
+from geomet_weather.plugin import load_plugin
+from geomet_weather.store.base import StoreError
+
+LOGGER = logging.getLogger(__name__)
+
+
+@click.group()
+def store():
+    """Manage the geomet-weather store"""
+    pass
+
+
+@click.command()
+@click.pass_context
+@click.option('--group', '-g', help='group')
+def create(ctx, group=None):
+    """create store"""
+
+    provider_def = {
+        'type': STORE_TYPE,
+        'url': STORE_URL,
+        'group': group
+    }
+
+    st = load_plugin('store', provider_def)
+
+    try:
+        click.echo('Creating store {}'.format(st.url))
+        st.create()
+    except StoreError as err:
+        raise click.ClickException(err)
+    click.echo('Done')
+
+
+@click.command()
+@click.pass_context
+@click.option('--group', '-g', help='group')
+def delete(ctx, group=None):
+    """delete store"""
+
+    provider_def = {
+        'type': STORE_TYPE,
+        'url': STORE_URL,
+        'group': group
+    }
+
+    st = load_plugin('store', provider_def)
+
+    try:
+        click.echo('Deleting store {}'.format(st.url))
+        st.delete()
+    except StoreError as err:
+        raise click.ClickException(err)
+    click.echo('Done')
+
+
+store.add_command(create)
+store.add_command(delete)

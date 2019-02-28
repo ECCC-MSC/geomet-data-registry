@@ -48,3 +48,13 @@ if None in [BASEDIR, DATADIR, CONFIG, URL, TILEINDEX_TYPE, TILEINDEX_BASEURL,
     msg = 'Environment variables not set!'
     LOGGER.error(msg)
     raise EnvironmentError(msg)
+
+STORE_PROVIDER_DEF = {
+    'type': STORE_TYPE,
+    'url': STORE_URL
+}
+
+TILEINDEX_PROVIDER_DEF = {
+    'type': TILEINDEX_TYPE,
+    'url': TILEINDEX_BASEURL
+}

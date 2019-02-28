@@ -27,7 +27,10 @@ PLUGINS = {
         'Redis': 'geomet_weather.store.redis_.RedisStore'
     },
     'tileindex': {
-        'Elasticsearch': 'geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex',  # noqa
+        'Elasticsearch': 'geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
+    },
+    'layer': {
+        'GDPS': 'geomet_weather.layer.gdps.GDPSLayer'
     }
 }
 

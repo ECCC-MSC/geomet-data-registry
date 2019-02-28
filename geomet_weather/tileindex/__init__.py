@@ -22,7 +22,7 @@ import logging
 import click
 
 from geomet_weather.env import TILEINDEX_TYPE, TILEINDEX_BASEURL
-from geomet_weather.plugin import PLUGINS, load_plugin
+from geomet_weather.plugin import load_plugin
 from geomet_weather.tileindex.base import TileIndexError
 
 LOGGER = logging.getLogger(__name__)
@@ -36,10 +36,8 @@ def tileindex():
 
 @click.command()
 @click.pass_context
-@click.option('--provider', '-p', type=click.Choice(list(PLUGINS.keys())),
-              help='group')
 @click.option('--group', '-g', help='group')
-def create(ctx, provider=None, group=None):
+def create(ctx, group=None):
     """create tileindex"""
 
     provider_def = {

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,10 +17,12 @@
 #
 ###############################################################################
 
-__version__ = '2.1.dev0'
+__version__ = '2.3.dev0'
 
 import click
 
+from geomet_weather.layer import layer
+from geomet_weather.store import store
 from geomet_weather.tileindex import tileindex
 from geomet_weather.yml_writer import expand_yml
 
@@ -32,4 +34,6 @@ def cli():
 
 
 cli.add_command(expand_yml)
+cli.add_command(layer)
+cli.add_command(store)
 cli.add_command(tileindex)

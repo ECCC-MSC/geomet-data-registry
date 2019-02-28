@@ -18,11 +18,11 @@
 ###############################################################################
 
 import logging
-from urllib.parse import urlparse
 
 import redis
 
-from geomet_weather.store.base import BaseStore
+from geomet_weather import __version__
+from geomet_weather.store.base import BaseStore, StoreError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -30,63 +30,41 @@ LOGGER = logging.getLogger(__name__)
 class RedisStore(BaseStore):
     """Redis key-value store implementation"""
 
-    def __init__(self, provider, url):
+    def __init__(self, provider_def):
         """
         Initialize object
 
-        :param provider: provider type
-        :param url: url/path of tile index
+        :param provider_def: provider definition dict
 
         :returns: `geomet_weather.store.redis_.RedisStore`
         """
 
-        BaseStore.__init__(self, provider, url)
+        BaseStore.__init__(self, provider_def)
 
-        self.url_parsed = urlparse(self.url)
+        try:
+            self.redis = redis.Redis.from_url(self.url)
+        except redis.exceptions.ConnectionError as err:
+            msg = 'Cannot connect to Redis {}: {}'.format(self.url, err)
+            LOGGER.exception(msg)
+            raise StoreError(msg)
 
-        self.redis = redis.StrictRedis(host=self.url_parsed.hostname,
-                                       port=self.url_parsed.port)
-
-    def increment(self, group, layer):
+    def create(self):
         """
-        Increment group/layer/count
-
-        :param group: group name
-        :param layer: layer name
+        Create the store
 
         :returns: boolean of process status
         """
 
-        raise NotImplementedError()
+        return self.redis.set('geomet-weather-version', __version__)
 
-    def count(self, group, layer):
+    def delete(self):
         """
-        Get file count of a given group/layer
-
-        :param group: group name
-        :param layer: layer name
+        Delete the store
 
         :returns: boolean of process status
         """
 
-        raise NotImplementedError()
-
-    def reset(self, group, layer):
-        """
-        Reset group/layer count
-
-        :param group: group name
-        :param layer: layer name
-
-        :returns: boolean of process status
-        """
-
-        raise NotImplementedError()
+        return self.redis.delete('geomet-weather-version')
 
     def __repr__(self):
-        return '<RedisStore> {}'.format(self.type)
-
-
-class StoreError(Exception):
-    """setup error"""
-    pass
+        return '<BaseStore> {}'.format(self.type)

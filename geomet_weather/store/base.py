@@ -25,49 +25,30 @@ LOGGER = logging.getLogger(__name__)
 class BaseStore(object):
     """generic key-value store ABC"""
 
-    def __init__(self, provider, url):
+    def __init__(self, provider_def):
         """
         Initialize object
 
-        :param provider: provider type
-        :param url: url/path of tile index
+        :param provider_def: provider definition dict
 
         :returns: `geomet_weather.store.base.BaseStore`
         """
 
-        self.type = provider
-        self.url = url
+        self.type = provider_def['type']
+        self.url = provider_def['url']
 
-    def increment(self, group, layer):
+    def create(self):
         """
-        Increment group/layer/count
-
-        :param group: group name
-        :param layer: layer name
+        Create the store
 
         :returns: boolean of process status
         """
 
         raise NotImplementedError()
 
-    def count(self, group, layer):
+    def delete(self):
         """
-        Get count of a given group/layer
-
-        :param group: group name
-        :param layer: layer name
-
-        :returns: boolean of process status
-        """
-
-        raise NotImplementedError()
-
-    def reset(self, group, layer):
-        """
-        Reset group/layer count
-
-        :param group: group name
-        :param layer: layer name
+        Delete the store
 
         :returns: boolean of process status
         """
