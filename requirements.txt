@@ -3,3 +3,4 @@ elasticsearch
 mappyfile
 pyyaml
 redis
+metpx-sarracenia
