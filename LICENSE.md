@@ -1,5 +1,5 @@
-GeoMet - Terms and Conditions of Use
-====================================
+geomet-weather - Terms and Conditions of Use
+============================================
 
 
                     GNU GENERAL PUBLIC LICENSE
