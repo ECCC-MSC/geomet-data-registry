@@ -161,8 +161,6 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :returns: boolean of process status
         """
 
-        identifier = data['identifier']
-
         LOGGER.info('Indexing {}'.format(identifier))
         try:
             self.es.index(index=self.name, doc_type=self.type_name,
