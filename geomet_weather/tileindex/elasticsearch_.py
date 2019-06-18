@@ -72,7 +72,12 @@ INDEX_SETTINGS = {
                             'format': "YYYY-MM-DD'T'HH:mm:ssZ"
                         },
                         'elevation': {
-                            'type': 'integer'
+                            'type': 'text',
+                            'fields': {
+                                 'raw': {
+                                     'type': 'keyword'
+                                 }
+                             }
                         },
                         'members': {
                             'type': 'integer'
