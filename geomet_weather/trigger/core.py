@@ -25,7 +25,7 @@ from geomet_weather.trigger.base import BaseTriggerHandler
 LOGGER = logging.getLogger(__name__)
 
 DATASET_HANDLERS = {
-    'CMC_glb': 'geomet_weather.layer.model_gem_global.ModelGemGlobalLayer'
+    'CMC_glb': 'ModelGemGlobal'
 }
 
 
@@ -37,6 +37,8 @@ class CoreTriggerHandler(BaseTriggerHandler):
         initializer
 
         :param filepath: path to file
+
+        :returns: `geomet_weather.trigger.core.CoreTriggerHandler`
         """
 
         self.layer_plugin = None
@@ -46,16 +48,18 @@ class CoreTriggerHandler(BaseTriggerHandler):
     def handle(self):
         """handle incoming file"""
 
-        # detect filename pattern
-
+        LOGGER.debug('Detecting filename pattern')
         for key in DATASET_HANDLERS.keys():
             if key in self.filepath:
-                self.layer_plugin = load_plugin({}, self.filepath)
+                plugin_def = {
+                    'type': DATASET_HANDLERS[key],
+                }
+                self.layer_plugin = load_plugin('layer', plugin_def)
 
         if self.layer_plugin is None:
             raise RuntimeError('oops')
 
-        if self.layer_plugin.identify():
+        if self.layer_plugin.identify(self.filepath):
             self.layer_plugin.register()
 
     def __repr__(self):

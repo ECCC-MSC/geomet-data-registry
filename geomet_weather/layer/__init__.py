@@ -21,7 +21,6 @@ import logging
 
 import click
 
-from geomet_weather.env import (STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF)
 from geomet_weather.layer.base import LayerError
 from geomet_weather.plugin import load_plugin
 
@@ -45,7 +44,7 @@ def add_file(ctx, file_):
     if file_ is None:
         raise click.ClickException('Missing --file/-f option')
 
-    lyr = load_plugin('layer', {'name': 'GDPS', 'type': 'GDPS'})
+    lyr = load_plugin('layer', {'name': 'GDPS', 'type': 'ModelGemGlobal'})
 
     click.echo('Identifying {}'.format(file_))
     try:
@@ -54,6 +53,7 @@ def add_file(ctx, file_):
         msg = 'Could not identify file {}: {}'.format(file_, err)
         LOGGER.exception(msg)
         raise click.ClickException(msg)
+    click.echo('File properties: {}'.format(file_properties))
 
 
 layer.add_command(add_file)

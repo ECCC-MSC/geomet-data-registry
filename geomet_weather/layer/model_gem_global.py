@@ -22,15 +22,14 @@ import json
 import logging
 import parse
 import re
-import redis
 
 from geomet_weather.layer.base import BaseLayer
 
 LOGGER = logging.getLogger(__name__)
 
 
-class ModelGemGlobalLayer(object):
-    """generic layer ABC"""
+class ModelGemGlobalLayer(BaseLayer):
+    """GDPS layer"""
 
     def __init__(self, provider_def):
         """
@@ -38,7 +37,7 @@ class ModelGemGlobalLayer(object):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_weather.layer.base.BaseLayer`
+        :returns: `geomet_weather.layer.model_gem_global.ModelGemGlobalLayer`
         """
 
         self.elevation = None
@@ -50,15 +49,15 @@ class ModelGemGlobalLayer(object):
         self.model = None
         self.wx_variable = None
 
-        provider_def = {'name': 'model_gem_global'}
-
         BaseLayer.__init__(self, provider_def)
+
+        provider_def = {'name': 'model_gem_global'}
 
     def identify(self, filepath):
         """
         Identifies a file of the layer
 
-        :param filepath: fielpath from AMQP
+        :param filepath: filepath from AMQP
 
         :returns: `list` of file properties
         """
@@ -95,17 +94,13 @@ class ModelGemGlobalLayer(object):
         fh = date + timedelta(hours=int(file_pattern_info['fh']))
         self.iso_formatted_fh = str(fh.strftime('%Y-%m-%dT%H:%M:%SZ'))
 
-        self.layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']
-        self.member = file_dict[self.model]['variable'][self.wx_variable]['member']
-        self.elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']
-        self.id_ = self.layer_name + re.sub('[^0-9]', '', self.iso_formatted_mr) + re.sub('[^0-9]', '', self.iso_formatted_fh)
+        self.layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
+
+        self.member = file_dict[self.model]['variable'][self.wx_variable]['member']  # noqa
+        self.elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
+        self.id_ = self.layer_name + re.sub('[^0-9]', '', self.iso_formatted_mr) + re.sub('[^0-9]', '', self.iso_formatted_fh)  # noqa
 
         return True
 
     def __repr__(self):
-        return '<BaseLayer> {}'.format(self.name)
-
-
-class LayerError(Exception):
-    """setup error"""
-    pass
+        return '<ModelGemGlobalLayer> {}'.format(self.name)

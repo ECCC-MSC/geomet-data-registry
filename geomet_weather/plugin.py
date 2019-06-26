@@ -39,7 +39,7 @@ def load_plugin(plugin_type, plugin_def):
     """
     loads plugin by type
 
-    :param plugin_type: type of plugin (store, tileindex)
+    :param plugin_type: type of plugin (store, tileindex, etc.)
     :param plugin_def: plugin definition
 
     :returns: plugin object
