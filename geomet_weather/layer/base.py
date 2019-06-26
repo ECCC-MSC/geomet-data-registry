@@ -19,6 +19,9 @@
 
 import logging
 
+from geomet_weather.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
+from geomet_weather.plugin import load_plugin
+
 LOGGER = logging.getLogger(__name__)
 
 
@@ -36,6 +39,8 @@ class BaseLayer(object):
 
         self.name = provider_def['name']
         self.filepath = filepath
+        self.store = load_plugin('store', STORE_PROVIDER_DEF)
+        self.tileindex = load_plugin('tileindex', TILEINDEX_PROVIDER_DEF)
 
     def identify(self):
         """
