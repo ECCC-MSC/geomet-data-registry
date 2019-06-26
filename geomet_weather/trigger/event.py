@@ -17,8 +17,6 @@
 #
 ###############################################################################
 
-from msc_pygeoapi.trigger import BaseTriggerHandler
-
 
 class Event(object):
     """core event"""
@@ -36,6 +34,7 @@ class Event(object):
         :returns: `bool` of dispatch result
         """
         try:
+            from geomet_weather.trigger.base import BaseTriggerHandler
             filepath = parent.msg.local_file
             parent.logger.debug('Filepath: {}'.format(filepath))
             handler = BaseTriggerHandler(filepath)
@@ -50,5 +49,5 @@ class Event(object):
         return '<Event>'
 
 
-event = Event()
+event = Event(self)
 self.on_message = event.dispatch
