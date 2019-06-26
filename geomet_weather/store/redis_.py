@@ -60,6 +60,8 @@ class RedisStore(BaseStore):
     def get(self, key):
         """
         Get key from store
+        
+        :param key: key to fetch
 
         :returns: string of key value from Redis store
 
