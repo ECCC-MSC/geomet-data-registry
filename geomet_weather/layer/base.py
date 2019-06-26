@@ -18,8 +18,9 @@
 ###############################################################################
 
 import logging
-from geomet_weather.plugin import load_plugin
+
 from geomet_weather.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
+from geomet_weather.plugin import load_plugin
 
 LOGGER = logging.getLogger(__name__)
 
