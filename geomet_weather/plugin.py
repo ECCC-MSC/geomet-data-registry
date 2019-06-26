@@ -30,7 +30,7 @@ PLUGINS = {
         'Elasticsearch': 'geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
     },
     'layer': {
-        'GDPS': 'geomet_weather.layer.gdps.GDPSLayer'
+        'ModelGemGlobal': 'geomet_weather.layer.model_gem_global.ModelGemGlobalLayer'  # noqa
     }
 }
 

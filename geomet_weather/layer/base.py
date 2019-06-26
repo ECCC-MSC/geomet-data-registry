@@ -25,7 +25,7 @@ LOGGER = logging.getLogger(__name__)
 class BaseLayer(object):
     """generic layer ABC"""
 
-    def __init__(self, provider_def):
+    def __init__(self, provider_def, filepath):
         """
         Initialize object
 
@@ -35,15 +35,29 @@ class BaseLayer(object):
         """
 
         self.name = provider_def['name']
+        self.filepath = filepath
 
-    def identify(self, filepath):
+    def identify(self):
         """
         Identifies a file of the layer
 
-        :returns: dict of file properties
+        :returns: `list` of file properties
         """
 
         raise NotImplementedError()
+
+    def layer2dict(self):
+        return {
+            'type': 'Feature',
+            'ID': self.identifier,
+            'geometry': {
+                'type': 'Polygon',
+                'coordinates': []
+            },
+            'properties': {
+                'identifier': self.identifier,
+            }
+        }
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)

@@ -34,10 +34,11 @@ class Event(object):
         :returns: `bool` of dispatch result
         """
         try:
-            from geomet_weather.trigger.base import BaseTriggerHandler
+            from geomet_weather.trigger.core import CoreTriggerHandler
+
             filepath = parent.msg.local_file
             parent.logger.debug('Filepath: {}'.format(filepath))
-            handler = BaseTriggerHandler(filepath)
+            handler = CoreTriggerHandler(filepath)
             result = handler.handle()
             parent.logger.debug('Result: {}'.format(result))
             return True

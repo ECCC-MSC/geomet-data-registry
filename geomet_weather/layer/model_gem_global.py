@@ -24,7 +24,7 @@ from geomet_weather.layer.base import BaseLayer
 LOGGER = logging.getLogger(__name__)
 
 
-class GDPSLayer(object):
+class ModelGemGlobalLayer(object):
     """generic layer ABC"""
 
     def __init__(self, provider_def):
@@ -36,7 +36,7 @@ class GDPSLayer(object):
         :returns: `geomet_weather.layer.base.BaseLayer`
         """
 
-        provider_def = {'name': 'gdps'}
+        provider_def = {'name': 'model_gem_global'}
 
         BaseLayer.__init__(self, provider_def)
 
@@ -44,10 +44,10 @@ class GDPSLayer(object):
         """
         Identifies a file of the layer
 
-        :returns: dict of file properties
+        :returns: `list` of file properties
         """
 
-        self.model = 'gdps'
+        self.model = 'model_gem_global'
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)
