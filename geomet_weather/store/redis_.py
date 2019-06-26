@@ -57,6 +57,18 @@ class RedisStore(BaseStore):
 
         return self.redis.set('geomet-weather-version', __version__)
 
+    def get(self, key):
+        """
+        Get key from store
+        
+        :param key: key to fetch
+
+        :returns: string of key value from Redis store
+
+        """
+
+        return self.redis.get(key)
+
     def delete(self):
         """
         Delete the store
