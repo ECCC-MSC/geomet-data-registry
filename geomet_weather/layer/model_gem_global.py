@@ -20,7 +20,8 @@
 from datetime import datetime, timedelta
 import json
 import logging
-import parse
+import os
+from parse import parse
 import re
 
 from geomet_weather.layer.base import BaseLayer
@@ -64,24 +65,18 @@ class ModelGemGlobalLayer(BaseLayer):
 
         self.model = 'model_gem_global'
 
-        def parse_filename_wx_variable(filename_pattern):
-            result = None
-            while True:
-                n = (yield result)
-                tmp = parse.parse(filename_pattern, n)
-                result = {'wx_variable': tmp.named['wx_variable'],
-                          'time_': tmp.named['YYYYMMDD_self.model_run'],
-                          'fh': tmp.named['forecast_hour']}
-
         LOGGER.debug('Loading model information from store')
         file_dict = json.loads(self.store.get(self.model))
 
         filename_pattern = file_dict[self.model]['file_path_pattern']
-        p = parse_filename_wx_variable(filename_pattern)
-        next(p)
 
-        LOGGER.debug('Parsing filename from file path pattern')
-        file_pattern_info = p.send(filepath)
+        tmp = parse(filename_pattern, os.path.basename(filepath))
+
+        file_pattern_info = {
+            'wx_variable': tmp.named['wx_variable'],
+            'time_': tmp.named['YYYYMMDD_model_run'],
+            'fh': tmp.named['forecast_hour']
+        }
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']

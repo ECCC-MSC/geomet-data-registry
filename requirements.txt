@@ -1,6 +1,8 @@
 click
 elasticsearch
 mappyfile
+parse
 pyyaml
 redis
+requests
 metpx-sarracenia
