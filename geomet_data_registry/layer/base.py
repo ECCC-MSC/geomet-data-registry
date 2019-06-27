@@ -58,6 +58,19 @@ class BaseLayer(object):
         """
 
         self.filepath = filepath
+        
+    def register(self):
+        for item in self.items:
+            item_dict = self.layer2dict(item)
+            layer_count_key = '{}_{}_count'.format(item_dict['properties']['layer'], self.model_run)
+            current_layer_file_count = self.store.get(layer_count_key)
+
+            if current_layer_file_count is not None:
+                self.store.set(layer_count_key, int(current_layer_file_count) + 1)
+            else:
+                self.store.set(layer_count_key, 1)
+
+            self.tileindex.add(item_dict['properties']['identifier'], item_dict)
 
     def layer2dict(self, item):
         """
