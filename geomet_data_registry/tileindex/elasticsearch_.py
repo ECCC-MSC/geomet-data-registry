@@ -67,11 +67,24 @@ INDEX_SETTINGS = {
                         },
                         'forecast_hour_datetime': {
                             'type': 'date',
-                            'format': "YYYY-MM-DD'T'HH:mm:ssZ"
                         },
                         'reference_datetime': {
                             'type': 'date',
-                            'format': "YYYY-MM-DD'T'HH:mm:ssZ"
+                        },
+                        'file_creation_datetime': {
+                            'type': 'date',
+                        },
+                        'receive_datetime': {
+                            'type': 'date',
+                        },
+                        'identify_datetime': {
+                            'type': 'date',
+                        },
+                        'register_datetime': {
+                            'type': 'date',
+                        },
+                        'expiry_datetime': {
+                            'type': 'date',
                         },
                         'elevation': {
                             'type': 'text',
