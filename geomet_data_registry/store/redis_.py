@@ -57,6 +57,15 @@ class RedisStore(BaseStore):
 
         return self.redis.set('geomet-data-registry-version', __version__)
 
+    def delete(self):
+        """
+        Delete the store
+
+        :returns: boolean of process status
+        """
+
+        return self.redis.delete('geomet-data-registry-version')
+
     def get(self, key):
         """
         Get key from store
@@ -69,14 +78,19 @@ class RedisStore(BaseStore):
 
         return self.redis.get(key)
 
-    def delete(self):
+    def set(self, key, value):
         """
-        Delete the store
+        Set key value from
 
-        :returns: boolean of process status
+        :param key: key to set value
+
+        :param value: value to set
+
+        :returns: key, value pair
+
         """
 
-        return self.redis.delete('geomet-data-registry-version')
+        return self.redis.set(key, value)
 
     def __repr__(self):
         return '<BaseStore> {}'.format(self.type)
