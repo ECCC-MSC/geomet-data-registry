@@ -73,7 +73,6 @@ class RedisStore(BaseStore):
         :param key: key to fetch
 
         :returns: string of key value from Redis store
-
         """
 
         return self.redis.get(key)
@@ -86,7 +85,6 @@ class RedisStore(BaseStore):
         :param value: value to set
 
         :returns: `bool` of set success
-
         """
 
         return self.redis.set(key, value)

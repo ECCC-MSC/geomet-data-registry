@@ -28,6 +28,7 @@ LOGGER = logging.getLogger(__name__)
 class BaseLayer(object):
     """generic layer ABC"""
 
+    def __init__(self, provider_def):
         """
         Initialize object
 
@@ -58,19 +59,33 @@ class BaseLayer(object):
         """
 
         self.filepath = filepath
-        
+
     def register(self):
+        """
+        Registers a file into the system
+
+        :returns: `bool` of status result
+        """
+
         for item in self.items:
+            LOGGER.debug('Adding item {}'.format(item.identifier))
+
             item_dict = self.layer2dict(item)
-            layer_count_key = '{}_{}_count'.format(item_dict['properties']['layer'], self.model_run)
+            layer_count_key = '{}_{}_count'.format(
+                item_dict['properties']['layer'], self.model_run)
             current_layer_file_count = self.store.get(layer_count_key)
 
+            LOGGER.debug('Adding to store')
             if current_layer_file_count is not None:
-                self.store.set(layer_count_key, int(current_layer_file_count) + 1)
+                LOGGER.debug('Incrementing count')
+                self.store.set(layer_count_key,
+                               int(current_layer_file_count) + 1)
             else:
+                LOGGER.debug('Initializing count')
                 self.store.set(layer_count_key, 1)
 
-            self.tileindex.add(item_dict['properties']['identifier'], item_dict)
+            LOGGER.debug('Adding to tileindex')
+            self.tileindex.add(item.identifier, item_dict)
 
     def layer2dict(self, item):
         """
@@ -78,29 +93,30 @@ class BaseLayer(object):
 
         :param item: dictionary of layer property from the items list
 
-        :return: dictionary of file properties
+        :returns: dictionary of file properties
         """
 
-        feature_template = {'type': 'Feature',
-                            'geometry': {
-                                'type': 'Polygon',
-                                'coordinates': [
-                                    [[-180, -90], [-180, 90], [180, 90],
-                                     [180, -90], [-180, -90]]
-                                ]
-                            },
-                            'properties': {}
-                            }
+        feature_dict = {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Polygon',
+                'coordinates': [
+                    [[-180, -90], [-180, 90], [180, 90],
+                     [180, -90], [-180, -90]]
+                ]
+            },
+            'properties': {
+                 'identifier': item['identifier'],
+                 'layer': item['layer_name'],
+                 'filepath': item['filepath'],
+                 'elevation': item['elevation'],
+                 'forecast_hour_datetime': item['forecast_hour_datetime'],
+                 'reference_datetime': item['reference_datetime'],
+                 'member': item['member']
+            }
+        }
 
-        feature_template['properties']['identifier'] = item['identifier']
-        feature_template['properties']['layer'] = item['layer_name']
-        feature_template['properties']['filepath'] = item['filepath']
-        feature_template['properties']['datetime'] = item['iso_formatted_fh']
-        feature_template['properties']['reference_datetime'] = item['iso_formatted_mr'] # noqa
-        feature_template['properties']['elevation'] = item['elevation']
-        feature_template['properties']['member'] = item['member']
-
-        return feature_template
+        return feature_dict
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)

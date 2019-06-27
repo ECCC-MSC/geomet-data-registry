@@ -41,9 +41,9 @@ class ModelGemGlobalLayer(BaseLayer):
         :returns: `geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer`  # noqa
         """
 
-        BaseLayer.__init__(self, provider_def)
-
         provider_def = {'name': 'model_gem_global'}
+
+        BaseLayer.__init__(self, provider_def)
 
     def identify(self, filepath):
         """
@@ -75,10 +75,10 @@ class ModelGemGlobalLayer(BaseLayer):
         time_format = '%Y%m%d%H'
         date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        iso_formatted_mr = date_
+        reference_datetime = date_
         self.model_run = '{}Z'.format(date_.strftime("%H"))
 
-        iso_formatted_fh = date_ + \
+        forecast_hour_datetime = date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
         layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
@@ -87,21 +87,23 @@ class ModelGemGlobalLayer(BaseLayer):
         elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
         str_mr = re.sub('[^0-9]',
                         '',
-                        iso_formatted_mr.strftime('%Y-%m-%dT%H:%M:%SZ'))
+                        reference_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'))
         str_fh = re.sub('[^0-9]',
                         '',
-                        iso_formatted_fh.strftime('%Y-%m-%dT%H:%M:%SZ'))
+                        forecast_hour_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'))
         identifier = '{}{}{}'.format(layer_name, str_mr, str_fh)
         expected_count = file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected'] # noqa
 
-        feature_dict = {'layer_name': layer_name,
-                        'filepath': filepath,
-                        'identifier': identifier,
-                        'iso_formatted_mr': iso_formatted_mr,
-                        'iso_formatted_fh': iso_formatted_fh,
-                        'member': member,
-                        'elevation': elevation,
-                        'expected_count': expected_count}
+        feature_dict = {
+            'layer_name': layer_name,
+            'filepath': filepath,
+            'identifier': identifier,
+            'reference_datetime': reference_datetime,
+            'forecast_hour_datetime': forecast_hour_datetime,
+            'member': member,
+            'elevation': elevation,
+            'expected_count': expected_count
+        }
 
         self.items.append(feature_dict)
 

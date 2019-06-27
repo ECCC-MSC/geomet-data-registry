@@ -28,8 +28,10 @@ LOGGER = logging.getLogger(__name__)
 
 INDEX_SETTINGS = {
     'settings': {
-        'number_of_shards': 1,
-        'number_of_replicas': 0
+        'index': {
+            'number_of_shards': 1,
+            'number_of_replicas': 0
+        }
     },
     'mappings': {
         'FeatureCollection': {
@@ -63,7 +65,7 @@ INDEX_SETTINGS = {
                                 }
                             }
                         },
-                        'datetime': {
+                        'forecast_hour_datetime': {
                             'type': 'date',
                             'format': "YYYY-MM-DD'T'HH:mm:ssZ"
                         },

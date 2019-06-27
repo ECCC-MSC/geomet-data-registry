@@ -39,8 +39,12 @@ class BaseTileIndex(object):
 
         self.type = provider_def['type']
         self.url = provider_def['url']
-        self.group = provider_def['group']
         self.name = 'geomet-data-registry-tileindex'
+        self.group = None
+
+        LOGGER.debug('Detecting group tileindex')
+        if 'group' in provider_def:
+            self.group = provider_def['group']
 
         if self.group is not None:
             self.name = '{}-{}'.format(self.name, self.group)

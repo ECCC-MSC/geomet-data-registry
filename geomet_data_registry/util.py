@@ -17,23 +17,26 @@
 #
 ###############################################################################
 
-__version__ = '2.99.dev0'
+from datetime import datetime, date, time
+import logging
 
-import click
-
-from geomet_data_registry.layer import layer
-from geomet_data_registry.store import store
-from geomet_data_registry.tileindex import tileindex
-from geomet_data_registry.yml_writer import expand_yml
+LOGGER = logging.getLogger(__name__)
 
 
-@click.group()
-@click.version_option(version=__version__)
-def cli():
-    pass
+def json_serial(obj):
+    """
+    helper function to convert to JSON non-default
+    types (source: https://stackoverflow.com/a/22238613)
 
+    :param obj: `object` to be evaluate
 
-cli.add_command(expand_yml)
-cli.add_command(layer)
-cli.add_command(store)
-cli.add_command(tileindex)
+    :returns: JSON non-default type to `str`
+    """
+
+    if isinstance(obj, (datetime, date, time)):
+        serial = obj.isoformat()
+        return serial
+
+    msg = '{} type {} not serializable'.format(obj, type(obj))
+    LOGGER.error(msg)
+    raise TypeError(msg)
