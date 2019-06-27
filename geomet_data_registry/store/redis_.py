@@ -83,7 +83,6 @@ class RedisStore(BaseStore):
         Set key value from
 
         :param key: key to set value
-
         :param value: value to set
 
         :returns: `bool` of set success
