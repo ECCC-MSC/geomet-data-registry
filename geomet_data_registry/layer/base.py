@@ -93,13 +93,11 @@ class BaseLayer(object):
                         item_dict['properties']['layer'], mr)
                     self.store.set(layer_count_key_reset, 0)
             elif int(new_layer_file_count) == 1:
-                 for mr in self.model_run_list:
+                for mr in self.model_run_list:
                     layer_count_key_reset = '{}_{}_count'.format(
                         item_dict['properties']['layer'], mr)
                     if layer_count_key_reset != layer_count_key:
                         self.store.set(layer_count_key_reset, 0)
-
-
 
             LOGGER.debug('Adding to tileindex')
             self.tileindex.add(item['identifier'], item_dict)

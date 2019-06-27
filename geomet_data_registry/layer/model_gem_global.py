@@ -71,9 +71,9 @@ class ModelGemGlobalLayer(BaseLayer):
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
-        self.model_run_list = list(\
-            file_dict[self.model]['variable'][self.wx_variable]['model_run']\
-            .keys())
+
+        runs = file_dict[self.model]['variable'][self.wx_variable]['model_run']
+        self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%d%H'
         date_ = datetime.strptime(file_pattern_info['time_'], time_format)
