@@ -68,7 +68,7 @@ class BaseLayer(object):
         """
 
         for item in self.items:
-            LOGGER.debug('Adding item {}'.format(item.identifier))
+            LOGGER.debug('Adding item {}'.format(item['identifier']))
 
             item_dict = self.layer2dict(item)
             layer_count_key = '{}_{}_count'.format(
@@ -85,7 +85,7 @@ class BaseLayer(object):
                 self.store.set(layer_count_key, 1)
 
             LOGGER.debug('Adding to tileindex')
-            self.tileindex.add(item.identifier, item_dict)
+            self.tileindex.add(item['identifier'], item_dict)
 
     def layer2dict(self, item):
         """

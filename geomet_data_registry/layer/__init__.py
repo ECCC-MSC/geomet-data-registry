@@ -39,7 +39,8 @@ def layer():
 @click.option('--file', '-f', 'file_',
               type=click.Path(exists=True, resolve_path=True),
               help='Path to file')
-@click.option('--verify', '-v', is_flag=True, help='Verify only', default=False)
+@click.option('--verify', '-v', is_flag=True, help='Verify only',
+              default=False)
 def add_file(ctx, file_, verify=False):
     """add file to layer"""
 

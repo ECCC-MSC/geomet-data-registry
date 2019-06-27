@@ -76,7 +76,7 @@ class ModelGemGlobalLayer(BaseLayer):
         date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
         reference_datetime = date_
-        self.model_run = '{}Z'.format(date_.strftime("%H"))
+        self.model_run = '{}Z'.format(date_.strftime('%H'))
 
         forecast_hour_datetime = date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
@@ -91,7 +91,7 @@ class ModelGemGlobalLayer(BaseLayer):
         str_fh = re.sub('[^0-9]',
                         '',
                         forecast_hour_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'))
-        identifier = '{}{}{}'.format(layer_name, str_mr, str_fh)
+        identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
         expected_count = file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected'] # noqa
 
         feature_dict = {
