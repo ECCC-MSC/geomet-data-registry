@@ -57,5 +57,5 @@ STORE_PROVIDER_DEF = {
 TILEINDEX_PROVIDER_DEF = {
     'type': TILEINDEX_TYPE,
     'url': TILEINDEX_BASEURL,
-    'group': 'foo'
+    'group': None
 }
