@@ -28,7 +28,6 @@ LOGGER = logging.getLogger(__name__)
 class BaseLayer(object):
     """generic layer ABC"""
 
-    def __init__(self, provider_def):
         """
         Initialize object
 
@@ -36,6 +35,14 @@ class BaseLayer(object):
 
         :returns: `geomet_data_registry.layer.base.BaseLayer`
         """
+
+        # list of dictionaries
+        self.items = []
+
+        self.filepath = None
+        self.model = None
+        self.model_run = None
+        self.wx_variable = None
 
         self.name = provider_def['name']
         self.store = load_plugin('store', STORE_PROVIDER_DEF)
@@ -52,18 +59,35 @@ class BaseLayer(object):
 
         self.filepath = filepath
 
-    def layer2dict(self):
-        return {
-            'type': 'Feature',
-            'ID': self.identifier,
-            'geometry': {
-                'type': 'Polygon',
-                'coordinates': []
-            },
-            'properties': {
-                'identifier': self.identifier,
-            }
-        }
+    def layer2dict(self, item):
+        """
+        Uses one model item to create a dictionary
+
+        :param item: dictionary of layer property from the items list
+
+        :return: dictionary of file properties
+        """
+
+        feature_template = {'type': 'Feature',
+                            'geometry': {
+                                'type': 'Polygon',
+                                'coordinates': [
+                                    [[-180, -90], [-180, 90], [180, 90],
+                                     [180, -90], [-180, -90]]
+                                ]
+                            },
+                            'properties': {}
+                            }
+
+        feature_template['properties']['identifier'] = item['identifier']
+        feature_template['properties']['layer'] = item['layer_name']
+        feature_template['properties']['filepath'] = item['filepath']
+        feature_template['properties']['datetime'] = item['iso_formatted_fh']
+        feature_template['properties']['reference_datetime'] = item['iso_formatted_mr'] # noqa
+        feature_template['properties']['elevation'] = item['elevation']
+        feature_template['properties']['member'] = item['member']
+
+        return feature_template
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)

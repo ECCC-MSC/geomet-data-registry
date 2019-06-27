@@ -41,15 +41,6 @@ class ModelGemGlobalLayer(BaseLayer):
         :returns: `geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer`  # noqa
         """
 
-        self.elevation = None
-        self.id_ = None
-        self.iso_formatted_mr = None
-        self.iso_formatted_fh = None
-        self.layer_name = None
-        self.member = None
-        self.model = None
-        self.wx_variable = None
-
         BaseLayer.__init__(self, provider_def)
 
         provider_def = {'name': 'model_gem_global'}
@@ -82,18 +73,37 @@ class ModelGemGlobalLayer(BaseLayer):
         self.wx_variable = file_pattern_info['wx_variable']
 
         time_format = '%Y%m%d%H'
-        date = datetime.strptime(file_pattern_info['time_'], time_format)
+        date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        self.iso_formatted_mr = str(date.strftime('%Y-%m-%dT%H:%M:%SZ'))
+        iso_formatted_mr = date_
+        self.model_run = '{}Z'.format(date_.strftime("%H"))
 
-        fh = date + timedelta(hours=int(file_pattern_info['fh']))
-        self.iso_formatted_fh = str(fh.strftime('%Y-%m-%dT%H:%M:%SZ'))
+        iso_formatted_fh = date_ + \
+            timedelta(hours=int(file_pattern_info['fh']))
 
-        self.layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
+        layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
 
-        self.member = file_dict[self.model]['variable'][self.wx_variable]['member']  # noqa
-        self.elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
-        self.id_ = self.layer_name + re.sub('[^0-9]', '', self.iso_formatted_mr) + re.sub('[^0-9]', '', self.iso_formatted_fh)  # noqa
+        member = file_dict[self.model]['variable'][self.wx_variable]['member']  # noqa
+        elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
+        str_mr = re.sub('[^0-9]',
+                        '',
+                        iso_formatted_mr.strftime('%Y-%m-%dT%H:%M:%SZ'))
+        str_fh = re.sub('[^0-9]',
+                        '',
+                        iso_formatted_fh.strftime('%Y-%m-%dT%H:%M:%SZ'))
+        identifier = '{}{}{}'.format(layer_name, str_mr, str_fh)
+        expected_count = file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected'] # noqa
+
+        feature_dict = {'layer_name': layer_name,
+                        'filepath': filepath,
+                        'identifier': identifier,
+                        'iso_formatted_mr': iso_formatted_mr,
+                        'iso_formatted_fh': iso_formatted_fh,
+                        'member': member,
+                        'elevation': elevation,
+                        'expected_count': expected_count}
+
+        self.items.append(feature_dict)
 
         return True
 
