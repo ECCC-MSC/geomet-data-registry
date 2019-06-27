@@ -39,6 +39,7 @@ class BaseLayer(object):
 
         # list of dictionaries
         self.items = []
+        self.model_run_list = []
 
         self.filepath = None
         self.model = None
@@ -78,11 +79,27 @@ class BaseLayer(object):
             LOGGER.debug('Adding to store')
             if current_layer_file_count is not None:
                 LOGGER.debug('Incrementing count')
+                new_layer_file_count = int(current_layer_file_count) + 1
                 self.store.set(layer_count_key,
-                               int(current_layer_file_count) + 1)
+                               new_layer_file_count)
             else:
                 LOGGER.debug('Initializing count')
                 self.store.set(layer_count_key, 1)
+
+            LOGGER.debug('Look if we have a complete model run')
+            if int(new_layer_file_count) >= item['expected_count']:
+                for mr in self.model_run_list:
+                    layer_count_key_reset = '{}_{}_count'.format(
+                        item_dict['properties']['layer'], mr)
+                    self.store.set(layer_count_key_reset, 0)
+            elif int(new_layer_file_count) == 1:
+                 for mr in self.model_run_list:
+                    layer_count_key_reset = '{}_{}_count'.format(
+                        item_dict['properties']['layer'], mr)
+                    if layer_count_key_reset != layer_count_key:
+                        self.store.set(layer_count_key_reset, 0)
+
+
 
             LOGGER.debug('Adding to tileindex')
             self.tileindex.add(item['identifier'], item_dict)
