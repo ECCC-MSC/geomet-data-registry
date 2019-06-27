@@ -32,7 +32,7 @@ cd geomet-data-registry
 . bin/activate
 
 # clone codebase and install
-git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry.git
+git clone https://github.com/ECCC-MSC/geomet-data-registry.git
 cd geomet-data-registry
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
@@ -115,7 +115,7 @@ twine upload dist/*
 
 ### Bugs and Issues
 
-All bugs, enhancements and issues are managed on [GCcode](https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry).
+All bugs, enhancements and issues are managed on [GitHub](https://github.com/ECCC-MSC/geomet-data-registry).
 
 ## Contact
 

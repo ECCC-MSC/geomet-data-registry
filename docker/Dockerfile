@@ -44,7 +44,7 @@ EXPOSE 9200
 
 # setup geomet-data-registry
 
-RUN git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry.git
+RUN git clone https://github.com/ECCC-MSC/geomet-data-registry.git
 WORKDIR geomet-data-registry
 RUN python setup.py install
 WORKDIR ..

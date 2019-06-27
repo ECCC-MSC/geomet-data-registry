@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2018 Tom Kralidis
+# Copyright (C) 2019 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -118,12 +118,7 @@ def get_package_version():
     raise RuntimeError('Unable to find version string.')
 
 
-try:
-    import pypandoc
-    LONG_DESCRIPTION = pypandoc.convert('README.md', 'rst')
-except(IOError, ImportError, OSError):
-    print('Conversion to rST failed.  Using default (will look weird on PyPI)')
-    LONG_DESCRIPTION = read('README.md')
+LONG_DESCRIPTION = read('README.md')
 
 if os.path.exists('MANIFEST'):
     os.unlink('MANIFEST')
@@ -144,7 +139,7 @@ setup(
     author_email='tom.kralidis@canada.ca',
     maintainer='Meteorological Service of Canada',
     maintainer_email='tom.kralidis@canada.ca',
-    url='https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry',
+    url='https://github.com/ECCC-MSC/geomet-data-registry',
     install_requires=read('requirements.txt').splitlines(),
     packages=find_packages(exclude=['geomet_data_registry.tests']),
     include_package_data=True,

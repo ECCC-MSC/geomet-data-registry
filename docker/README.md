@@ -3,7 +3,7 @@
 Development environment using Docker
 
 ```bash
-git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry.git
+git clone https://github.com/ECCC-MSC/geomet-data-registry.git
 cd geomet-data-registry
 
 # build image

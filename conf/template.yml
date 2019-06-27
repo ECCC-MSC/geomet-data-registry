@@ -80,7 +80,6 @@ layer_templates:
             - WINDARROWKNOTS-NS
     
     WDIR: &template_wd
-        #  Style / Color validation from data steward required, see https://gccode.ssc-spc.gc.ca/ec-msc/geomet/issues/352#note_92972
         type: raster
         time_enabled: 'yes'
         processing:
@@ -93,7 +92,6 @@ layer_templates:
             - WDIR6-LINEAR
     
     WDIR_GULF: &template_wd_gulf
-        #  Style / Color validation from data steward required, see https://gccode.ssc-spc.gc.ca/ec-msc/geomet/issues/352#note_92972
         type: raster
         time_enabled: 'yes'
         processing:
@@ -106,7 +104,6 @@ layer_templates:
             - WDIR6-LINEAR_GULF
     
     WSPEED: &template_wspd
-        #  Style / Color validation from data steward required, see https://gccode.ssc-spc.gc.ca/ec-msc/geomet/issues/352#note_92972
         type: raster
         time_enabled: 'yes'
         processing:
