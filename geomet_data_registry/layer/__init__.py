@@ -17,12 +17,13 @@
 #
 ###############################################################################
 
+import json
 import logging
 
 import click
 
-from geomet_data_registry.layer.base import LayerError
 from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.util import json_serial
 
 LOGGER = logging.getLogger(__name__)
 
@@ -38,7 +39,8 @@ def layer():
 @click.option('--file', '-f', 'file_',
               type=click.Path(exists=True, resolve_path=True),
               help='Path to file')
-def add_file(ctx, file_):
+@click.option('--verify', '-v', is_flag=True, help='Verify only', default=True)
+def add_file(ctx, file_, verify=True):
     """add file to layer"""
 
     if file_ is None:
@@ -46,14 +48,21 @@ def add_file(ctx, file_):
 
     lyr = load_plugin('layer', {'name': 'GDPS', 'type': 'ModelGemGlobal'})
 
-    click.echo('Identifying {}'.format(file_))
-    try:
-        file_properties = lyr.identify(file_)
-    except LayerError as err:
-        msg = 'Could not identify file {}: {}'.format(file_, err)
+    click.echo('Adding {}'.format(file_))
+    click.echo('Identifying')
+    status = lyr.identify(file_)
+
+    if not status:
+        msg = 'Could not identify file {}: {}'.format(file_)
         LOGGER.exception(msg)
         raise click.ClickException(msg)
-    click.echo('File properties: {}'.format(file_properties))
+
+    click.echo('File properties: {}'.format(json.dumps(lyr.items, indent=4,
+                                            default=json_serial)))
+
+    if not verify:
+        click.echo('Registering')
+        lyr.register()
 
 
 layer.add_command(add_file)
