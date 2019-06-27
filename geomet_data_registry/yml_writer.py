@@ -24,7 +24,7 @@ import re
 import click
 import yaml
 
-from geomet_weather.env import BASEDIR
+from geomet_data_registry.env import BASEDIR
 
 LOGGER = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ def write_yml(cfg, output_dir, group):
     old_key = []
 
     yaml_file_out = os.path.join(output_dir,
-                                 'geomet-weather-{}.yml'.format(group))
+                                 'geomet-data-registry-{}.yml'.format(group))
 
     for key in cfg['layers']:
         if 'PRES' in key:
@@ -80,7 +80,7 @@ def expand_yml(ctx, group):
 
     yml_basedir = "{}/conf/".format(BASEDIR)
     if group is not None:
-        group_yml = 'geomet-weather_{}.yml'.format(group)
+        group_yml = 'geomet-data-registry_{}.yml'.format(group)
         yml_file = os.path.join(yml_basedir, group_yml)
         group_yml_file = os.path.join(tmp_output_dir, group_yml)
         template_file = os.path.join(yml_basedir, 'template.yml')
@@ -98,6 +98,6 @@ def expand_yml(ctx, group):
             write_yml(cfg, output_dir, group)
     else:
         for group_yml in os.walk(yml_basedir):
-            if group_yml.startswith('geomet-weather'):
+            if group_yml.startswith('geomet-data-registry'):
                 with open(group_yml) as fh:
                     cfg = yaml.load(fh)

@@ -21,16 +21,16 @@ import logging
 
 import click
 
-from geomet_weather.env import STORE_TYPE, STORE_URL
-from geomet_weather.plugin import load_plugin
-from geomet_weather.store.base import StoreError
+from geomet_data_registry.env import TILEINDEX_TYPE, TILEINDEX_BASEURL
+from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.tileindex.base import TileIndexError
 
 LOGGER = logging.getLogger(__name__)
 
 
 @click.group()
-def store():
-    """Manage the geomet-weather store"""
+def tileindex():
+    """Manage the geomet-data-registry tileindex"""
     pass
 
 
@@ -38,20 +38,20 @@ def store():
 @click.pass_context
 @click.option('--group', '-g', help='group')
 def create(ctx, group=None):
-    """create store"""
+    """create tileindex"""
 
     provider_def = {
-        'type': STORE_TYPE,
-        'url': STORE_URL,
+        'type': TILEINDEX_TYPE,
+        'url': TILEINDEX_BASEURL,
         'group': group
     }
 
-    st = load_plugin('store', provider_def)
+    ti = load_plugin('tileindex', provider_def)
 
     try:
-        click.echo('Creating store {}'.format(st.url))
-        st.create()
-    except StoreError as err:
+        click.echo('Creating tileindex {}'.format(ti.fullpath))
+        ti.create()
+    except TileIndexError as err:
         raise click.ClickException(err)
     click.echo('Done')
 
@@ -60,23 +60,23 @@ def create(ctx, group=None):
 @click.pass_context
 @click.option('--group', '-g', help='group')
 def delete(ctx, group=None):
-    """delete store"""
+    """delete tileindex"""
 
     provider_def = {
-        'type': STORE_TYPE,
-        'url': STORE_URL,
+        'type': TILEINDEX_TYPE,
+        'url': TILEINDEX_BASEURL,
         'group': group
     }
 
-    st = load_plugin('store', provider_def)
+    ti = load_plugin('tileindex', provider_def)
 
     try:
-        click.echo('Deleting store {}'.format(st.url))
-        st.delete()
-    except StoreError as err:
+        click.echo('Deleting tileindex {}'.format(ti.fullpath))
+        ti.delete()
+    except TileIndexError as err:
         raise click.ClickException(err)
     click.echo('Done')
 
 
-store.add_command(create)
-store.add_command(delete)
+tileindex.add_command(create)
+tileindex.add_command(delete)

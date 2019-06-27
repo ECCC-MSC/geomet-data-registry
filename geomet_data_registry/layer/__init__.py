@@ -21,15 +21,15 @@ import logging
 
 import click
 
-from geomet_weather.layer.base import LayerError
-from geomet_weather.plugin import load_plugin
+from geomet_data_registry.layer.base import LayerError
+from geomet_data_registry.plugin import load_plugin
 
 LOGGER = logging.getLogger(__name__)
 
 
 @click.group()
 def layer():
-    """Manage geomet-weather layers"""
+    """Manage geomet-data-registry layers"""
     pass
 
 

@@ -19,14 +19,11 @@
 
 import logging
 
-from geomet_weather.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
-from geomet_weather.plugin import load_plugin
-
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseLayer(object):
-    """generic layer ABC"""
+class BaseStore(object):
+    """generic key-value store ABC"""
 
     def __init__(self, provider_def):
         """
@@ -34,41 +31,34 @@ class BaseLayer(object):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_weather.layer.base.BaseLayer`
+        :returns: `geomet_data_registry.store.base.BaseStore`
         """
 
-        self.name = provider_def['name']
-        self.store = load_plugin('store', STORE_PROVIDER_DEF)
-        self.tileindex = load_plugin('tileindex', TILEINDEX_PROVIDER_DEF)
+        self.type = provider_def['type']
+        self.url = provider_def['url']
 
-    def identify(self, filepath):
+    def create(self):
         """
-        Identifies a file of the layer
+        Create the store
 
-        :param filepath: filepath on disk
-
-        :returns: `bool` of file properties
+        :returns: boolean of process status
         """
 
-        self.filepath = filepath
+        raise NotImplementedError()
 
-    def layer2dict(self):
-        return {
-            'type': 'Feature',
-            'ID': self.identifier,
-            'geometry': {
-                'type': 'Polygon',
-                'coordinates': []
-            },
-            'properties': {
-                'identifier': self.identifier,
-            }
-        }
+    def delete(self):
+        """
+        Delete the store
+
+        :returns: boolean of process status
+        """
+
+        raise NotImplementedError()
 
     def __repr__(self):
-        return '<BaseLayer> {}'.format(self.name)
+        return '<BaseStore> {}'.format(self.type)
 
 
-class LayerError(Exception):
+class StoreError(Exception):
     """setup error"""
     pass

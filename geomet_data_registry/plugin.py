@@ -24,13 +24,13 @@ LOGGER = logging.getLogger(__name__)
 
 PLUGINS = {
     'store': {
-        'Redis': 'geomet_weather.store.redis_.RedisStore'
+        'Redis': 'geomet_data_registry.store.redis_.RedisStore'
     },
     'tileindex': {
-        'Elasticsearch': 'geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
+        'Elasticsearch': 'geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
     },
     'layer': {
-        'ModelGemGlobal': 'geomet_weather.layer.model_gem_global.ModelGemGlobalLayer'  # noqa
+        'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer'  # noqa
     }
 }
 

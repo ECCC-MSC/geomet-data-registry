@@ -22,7 +22,7 @@ from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, exceptions
 
-from geomet_weather.tileindex.base import BaseTileIndex, TileIndexError
+from geomet_data_registry.tileindex.base import BaseTileIndex, TileIndexError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -102,7 +102,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_weather.tileindex.elasticsearch_.ElasticsearchTileIndex`  # noqa
+        :returns: `geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex`  # noqa
         """
 
         BaseTileIndex.__init__(self, provider_def)

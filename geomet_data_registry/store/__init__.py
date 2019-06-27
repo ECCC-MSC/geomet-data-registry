@@ -21,16 +21,16 @@ import logging
 
 import click
 
-from geomet_weather.env import TILEINDEX_TYPE, TILEINDEX_BASEURL
-from geomet_weather.plugin import load_plugin
-from geomet_weather.tileindex.base import TileIndexError
+from geomet_data_registry.env import STORE_TYPE, STORE_URL
+from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.store.base import StoreError
 
 LOGGER = logging.getLogger(__name__)
 
 
 @click.group()
-def tileindex():
-    """Manage the geomet-weather tileindex"""
+def store():
+    """Manage the geomet-data-registry store"""
     pass
 
 
@@ -38,20 +38,20 @@ def tileindex():
 @click.pass_context
 @click.option('--group', '-g', help='group')
 def create(ctx, group=None):
-    """create tileindex"""
+    """create store"""
 
     provider_def = {
-        'type': TILEINDEX_TYPE,
-        'url': TILEINDEX_BASEURL,
+        'type': STORE_TYPE,
+        'url': STORE_URL,
         'group': group
     }
 
-    ti = load_plugin('tileindex', provider_def)
+    st = load_plugin('store', provider_def)
 
     try:
-        click.echo('Creating tileindex {}'.format(ti.fullpath))
-        ti.create()
-    except TileIndexError as err:
+        click.echo('Creating store {}'.format(st.url))
+        st.create()
+    except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')
 
@@ -60,23 +60,23 @@ def create(ctx, group=None):
 @click.pass_context
 @click.option('--group', '-g', help='group')
 def delete(ctx, group=None):
-    """delete tileindex"""
+    """delete store"""
 
     provider_def = {
-        'type': TILEINDEX_TYPE,
-        'url': TILEINDEX_BASEURL,
+        'type': STORE_TYPE,
+        'url': STORE_URL,
         'group': group
     }
 
-    ti = load_plugin('tileindex', provider_def)
+    st = load_plugin('store', provider_def)
 
     try:
-        click.echo('Deleting tileindex {}'.format(ti.fullpath))
-        ti.delete()
-    except TileIndexError as err:
+        click.echo('Deleting store {}'.format(st.url))
+        st.delete()
+    except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')
 
 
-tileindex.add_command(create)
-tileindex.add_command(delete)
+store.add_command(create)
+store.add_command(delete)

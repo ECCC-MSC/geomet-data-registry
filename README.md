@@ -1,8 +1,8 @@
-# geomet-weather
+# geomet-data-registry
 
 ## Overview
 
-geomet-weather provides the MapServer setup and configuration for deployment
+geomet-data-registry provides the MapServer setup and configuration for deployment
 of MSC GeoMet weather service data OGC Web Services.
 
 ## Installation
@@ -20,80 +20,80 @@ of MSC GeoMet weather service data OGC Web Services.
 Dependencies are listed in [requirements.txt](requirements.txt). Dependencies
 are automatically installed during installation.
 
-### Installing geomet-weather
+### Installing geomet-data-registry
 ```bash
 
 # install system wide packages
 sudo apt-get install python-mapscript python-gdal
 
 # setup virtualenv
-python -m venv geomet-weather
-cd geomet-weather
+python -m venv geomet-data-registry
+cd geomet-data-registry
 . bin/activate
 
 # clone codebase and install
-git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-weather.git
-cd geomet-weather
+git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry.git
+cd geomet-data-registry
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 pip install -e .
 
 # configure environment
-vi geomet-weather.env  # edit paths accordingly
-. geomet-weather.env
+vi geomet-data-registry.env  # edit paths accordingly
+. geomet-data-registry.env
 ```
 
 ## Running
 
 ```bash
 # help
-geomet-weather --help
+geomet-data-registry --help
 
 # get version
-geomet-weather --version
+geomet-data-registry --version
 
 # Expand yaml for all groups
-geomet-weather expand-yml
+geomet-data-registry expand-yml
 
 # Expand yaml for single group
-geomet-weather expand-yml --group=GDPS
+geomet-data-registry expand-yml --group=GDPS
 
 # generate VRTs for all layers
-geomet-weather vrt generate
+geomet-data-registry vrt generate
 
 # generate VRTs for single group
-geomet-weather vrt generate --group=GDPS
+geomet-data-registry vrt generate --group=GDPS
 
 # generate tileindex for all layers/groups
-geomet-weather tileindex generate
+geomet-data-registry tileindex generate
 
 # generate tileindex for single group
-geomet-weather tileindex generate --group=GDPS
+geomet-data-registry tileindex generate --group=GDPS
 
 # generate mapfile for WMS (English)
-geomet-weather mapfile generate --language=en --service=WMS
+geomet-data-registry mapfile generate --language=en --service=WMS
 
 # generate mapfile for WMS (English) with specific configuration for single layer
-geomet-weather mapfile generate --language=en --service=WMS --layer=GDPS.ETA_TT
+geomet-data-registry mapfile generate --language=en --service=WMS --layer=GDPS.ETA_TT
 
 # generate mapfile for WMS (English) with specific configuration for single group
-geomet-weather mapfile generate --language=en --service=WMS --group=GDPS
+geomet-data-registry mapfile generate --language=en --service=WMS --group=GDPS
 
 # generate mapfile for WCS (French)
-geomet-weather mapfile generate --language=fr --service=WCS
+geomet-data-registry mapfile generate --language=fr --service=WCS
 
 # update mapfile
-geomet-weather mapfile update --layer=GDPS.ETA_TT
-geomet-weather mapfile update --group=GDPS --timedefault=YYYY-MM-DDTHH:MM:SSZ --timeextent=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ/interval
+geomet-data-registry mapfile update --layer=GDPS.ETA_TT
+geomet-data-registry mapfile update --group=GDPS --timedefault=YYYY-MM-DDTHH:MM:SSZ --timeextent=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ/interval
 
 # run server
-geomet-weather serve  # server runs on port 8099
+geomet-data-registry serve  # server runs on port 8099
 
 # run server on a different port
-geomet-weather serve  --port=8011
+geomet-data-registry serve  --port=8011
 
 # cache WMS and WCS Capabilities URLs
-geomet-weather cache-ows-urls
+geomet-data-registry cache-ows-urls
 ```
 
 ## Development
@@ -115,7 +115,7 @@ twine upload dist/*
 
 ### Bugs and Issues
 
-All bugs, enhancements and issues are managed on [GCcode](https://gccode.ssc-spc.gc.ca/ec-msc/geomet-weather).
+All bugs, enhancements and issues are managed on [GCcode](https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry).
 
 ## Contact
 

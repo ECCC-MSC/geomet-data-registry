@@ -17,8 +17,8 @@
 #
 ###############################################################################
 
-IMAGE=geomet-weather-image
-CONTAINER=geomet-weather-container
+IMAGE=geomet-data-registry-image
+CONTAINER=geomet-data-registry-container
 HOSTNAME=mandalor
 
 DATA_VOLUME=/data/geomet

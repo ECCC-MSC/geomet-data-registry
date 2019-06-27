@@ -42,9 +42,9 @@ WORKDIR /home/geoadm
 EXPOSE 6379
 EXPOSE 9200
 
-# setup geomet-weather
+# setup geomet-data-registry
 
-RUN git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-weather.git
-WORKDIR geomet-weather
+RUN git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry.git
+WORKDIR geomet-data-registry
 RUN python setup.py install
 WORKDIR ..

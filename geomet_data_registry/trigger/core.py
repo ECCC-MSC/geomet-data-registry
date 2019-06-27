@@ -19,8 +19,8 @@
 
 import logging
 
-from geomet_weather.plugin import load_plugin
-from geomet_weather.trigger.base import BaseTriggerHandler
+from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.trigger.base import BaseTriggerHandler
 
 LOGGER = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ class CoreTriggerHandler(BaseTriggerHandler):
 
         :param filepath: path to file
 
-        :returns: `geomet_weather.trigger.core.CoreTriggerHandler`
+        :returns: `geomet_data_registry.trigger.core.CoreTriggerHandler`
         """
 
         self.layer_plugin = None

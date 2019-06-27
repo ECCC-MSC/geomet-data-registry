@@ -34,13 +34,13 @@ class BaseTileIndex(object):
         :param url: url/path of tile index
         :param group: provider group
 
-        :returns: `geomet_weather.tileindex.base.BaseTileIndex`
+        :returns: `geomet_data_registry.tileindex.base.BaseTileIndex`
         """
 
         self.type = provider_def['type']
         self.url = provider_def['url']
         self.group = provider_def['group']
-        self.name = 'geomet-weather-tileindex'
+        self.name = 'geomet-data-registry-tileindex'
 
         if self.group is not None:
             self.name = '{}-{}'.format(self.name, self.group)

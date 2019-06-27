@@ -17,48 +17,23 @@
 #
 ###############################################################################
 
-import logging
+__version__ = '2.3.dev0'
 
-LOGGER = logging.getLogger(__name__)
+import click
 
-
-class BaseStore(object):
-    """generic key-value store ABC"""
-
-    def __init__(self, provider_def):
-        """
-        Initialize object
-
-        :param provider_def: provider definition dict
-
-        :returns: `geomet_weather.store.base.BaseStore`
-        """
-
-        self.type = provider_def['type']
-        self.url = provider_def['url']
-
-    def create(self):
-        """
-        Create the store
-
-        :returns: boolean of process status
-        """
-
-        raise NotImplementedError()
-
-    def delete(self):
-        """
-        Delete the store
-
-        :returns: boolean of process status
-        """
-
-        raise NotImplementedError()
-
-    def __repr__(self):
-        return '<BaseStore> {}'.format(self.type)
+from geomet_data_registry.layer import layer
+from geomet_data_registry.store import store
+from geomet_data_registry.tileindex import tileindex
+from geomet_data_registry.yml_writer import expand_yml
 
 
-class StoreError(Exception):
-    """setup error"""
+@click.group()
+@click.version_option(version=__version__)
+def cli():
     pass
+
+
+cli.add_command(expand_yml)
+cli.add_command(layer)
+cli.add_command(store)
+cli.add_command(tileindex)

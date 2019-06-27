@@ -1,10 +1,10 @@
-# geomet-weather Docker setup
+# geomet-data-registry Docker setup
 
 Development environment using Docker
 
 ```bash
-git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-weather.git
-cd geomet-weather
+git clone https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry.git
+cd geomet-data-registry
 
 # build image
 make build

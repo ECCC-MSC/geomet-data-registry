@@ -37,14 +37,14 @@ class PyCleanBuild(Command):
     def run(self):
         remove_files = [
             'debian/files',
-            'debian/geomet-weather.debhelper.log',
-            'debian/geomet-weather.postinst.debhelper',
-            'debian/geomet-weather.prerm.debhelper',
-            'debian/geomet-weather.substvars'
+            'debian/geomet-data-registry.debhelper.log',
+            'debian/geomet-data-registry.postinst.debhelper',
+            'debian/geomet-data-registry.prerm.debhelper',
+            'debian/geomet-data-registry.substvars'
         ]
 
         remove_dirs = [
-            'debian/geomet-weather'
+            'debian/geomet-data-registry'
         ]
 
         for file_ in remove_files:
@@ -76,7 +76,7 @@ class PyTest(Command):
     def run(self):
         import subprocess
         errno = subprocess.call([sys.executable,
-                                 'geomet_weather/tests/run_tests.py'])
+                                 'geomet_data_registry/tests/run_tests.py'])
         raise SystemExit(errno)
 
 
@@ -92,9 +92,10 @@ class PyCoverage(Command):
     def run(self):
         import subprocess
 
-        errno = subprocess.call(['coverage', 'run', '--source=geomet_weather',
+        errno = subprocess.call(['coverage', 'run',
+                                 '--source=geomet_data_registry',
                                  '-m', 'unittest',
-                                 'geomet_weather.tests.run_tests'])
+                                 'geomet_data_registry.tests.run_tests'])
         errno = subprocess.call(['coverage', 'report', '-m'])
         raise SystemExit(errno)
 
@@ -109,7 +110,7 @@ def read(filename, encoding='utf-8'):
 
 def get_package_version():
     """get version from top-level package init"""
-    version_file = read('geomet_weather/__init__.py')
+    version_file = read('geomet_data_registry/__init__.py')
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
                               version_file, re.M)
     if version_match:
@@ -128,7 +129,7 @@ if os.path.exists('MANIFEST'):
     os.unlink('MANIFEST')
 
 setup(
-    name='geomet-weather',
+    name='geomet-data-registry',
     version=get_package_version(),
     description='Geospatial Web Services for Canadian Weather data',
     long_description=LONG_DESCRIPTION,
@@ -143,13 +144,13 @@ setup(
     author_email='tom.kralidis@canada.ca',
     maintainer='Meteorological Service of Canada',
     maintainer_email='tom.kralidis@canada.ca',
-    url='https://gccode.ssc-spc.gc.ca/ec-msc/geomet-weather',
+    url='https://gccode.ssc-spc.gc.ca/ec-msc/geomet-data-registry',
     install_requires=read('requirements.txt').splitlines(),
-    packages=find_packages(exclude=['geomet_weather.tests']),
+    packages=find_packages(exclude=['geomet_data_registry.tests']),
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'geomet-weather=geomet_weather:cli'
+            'geomet-data-registry=geomet_data_registry:cli'
         ]
     },
     classifiers=[

@@ -21,8 +21,8 @@ import logging
 
 import redis
 
-from geomet_weather import __version__
-from geomet_weather.store.base import BaseStore, StoreError
+from geomet_data_registry import __version__
+from geomet_data_registry.store.base import BaseStore, StoreError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -36,7 +36,7 @@ class RedisStore(BaseStore):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_weather.store.redis_.RedisStore`
+        :returns: `geomet_data_registry.store.redis_.RedisStore`
         """
 
         BaseStore.__init__(self, provider_def)
@@ -55,7 +55,7 @@ class RedisStore(BaseStore):
         :returns: boolean of process status
         """
 
-        return self.redis.set('geomet-weather-version', __version__)
+        return self.redis.set('geomet-data-registry-version', __version__)
 
     def get(self, key):
         """
@@ -76,7 +76,7 @@ class RedisStore(BaseStore):
         :returns: boolean of process status
         """
 
-        return self.redis.delete('geomet-weather-version')
+        return self.redis.delete('geomet-data-registry-version')
 
     def __repr__(self):
         return '<BaseStore> {}'.format(self.type)

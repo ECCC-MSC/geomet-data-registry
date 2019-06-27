@@ -34,7 +34,7 @@ class Event(object):
         :returns: `bool` of dispatch result
         """
         try:
-            from geomet_weather.trigger.core import CoreTriggerHandler
+            from geomet_data_registry.trigger.core import CoreTriggerHandler
 
             filepath = parent.msg.local_file
             parent.logger.debug('Filepath: {}'.format(filepath))

@@ -24,7 +24,7 @@ import os
 from parse import parse
 import re
 
-from geomet_weather.layer.base import BaseLayer
+from geomet_data_registry.layer.base import BaseLayer
 
 LOGGER = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ class ModelGemGlobalLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_weather.layer.model_gem_global.ModelGemGlobalLayer`
+        :returns: `geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer`  # noqa
         """
 
         self.elevation = None
