@@ -54,6 +54,9 @@ class ModelGemGlobalLayer(BaseLayer):
         :returns: `list` of file properties
         """
 
+        self.filepath = filepath
+        self.file_creation_datetime = datetime.fromtimestamp(
+                os.path.getmtime(filepath))
         self.model = 'model_gem_global'
 
         LOGGER.debug('Loading model information from store')
