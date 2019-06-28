@@ -64,8 +64,6 @@ class BaseLayer(object):
         :returns: `bool` of file properties
         """
 
-        raise NotImplementedError
-
     def register(self):
         """
         Registers a file into the system

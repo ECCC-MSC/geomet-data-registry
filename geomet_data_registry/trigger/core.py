@@ -69,7 +69,7 @@ class CoreTriggerHandler(BaseTriggerHandler):
             self.layer_plugin.identify_datetime = datetime.now().isoformat()
             if self.layer_plugin.register():
                 self.layer_plugin.register_datetime = datetime.now().isoformat()
-                # self.layer_plugin.tileindex.update_by_query({'match': {'properties.filepath.raw': self.layer_plugin.filepath}}, {'source': 'ctx._source.properties.register_datetime=\'{}\''.format(self.layer_plugin.register_datetime)})
+                self.layer_plugin.tileindex.update_by_query({'match': {'properties.filepath.raw': {'query': self.layer_plugin.filepath}}}, {'source': 'ctx._source.properties.register_datetime=\"{}\"'.format(self.layer_plugin.register_datetime)})
 
         return True
 

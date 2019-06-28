@@ -17,6 +17,7 @@
 #
 ###############################################################################
 
+import json
 import logging
 from urllib.parse import urlparse
 
@@ -197,7 +198,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param identifier: tileindex item id
         :param data: Python dictionnary
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         LOGGER.info('Updating {}'.format(identifier))
@@ -219,12 +220,12 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param identifier: tileindex item id
         :param data: Python dictionnary
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         LOGGER.info('Updating by query: {}'.format(query_dict))
 
-        q = {'query': query_dict, 'script': update_dict}
+        q = {'query': query_dict, 'script': update_dict} 
         try:
             self.es.update_by_query(index=self.name, body=q)
         except Exception as err:

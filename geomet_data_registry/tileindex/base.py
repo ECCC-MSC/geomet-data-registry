@@ -39,7 +39,7 @@ class BaseTileIndex(object):
 
         self.type = provider_def['type']
         self.url = provider_def['url']
-        self.name = 'geomet-data-registry-tileindex-etienne'
+        self.name = 'geomet-data-registry-tileindex'
         self.group = None
 
         LOGGER.debug('Detecting group tileindex')
