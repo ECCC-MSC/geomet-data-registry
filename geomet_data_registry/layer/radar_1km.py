@@ -29,7 +29,7 @@ from geomet_data_registry.layer.base import BaseLayer
 LOGGER = logging.getLogger(__name__)
 
 
-class radarLayer(BaseLayer):
+class Radar1kmLayer(BaseLayer):
     """radar layer"""
 
     def __init__(self, provider_def):
@@ -38,10 +38,10 @@ class radarLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer`  # noqa
+        :returns: `geomet_data_registry.layer.radar_1km.Radar1kmLayer`  # noqa
         """
 
-        provider_def = {'name': 'radar'}
+        provider_def = {'name': 'Radar_1km'}
 
         BaseLayer.__init__(self, provider_def)
 

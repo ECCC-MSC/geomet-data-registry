@@ -31,7 +31,7 @@ PLUGINS = {
     },
     'layer': {
         'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer',  # noqa
-        'radar': 'geomet_data_registry.layer.radar.radarLayer'  # noqa
+        'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer'  # noqa
     }
 }
 
