@@ -39,8 +39,9 @@ pip install -r requirements-dev.txt
 pip install -e .
 
 # configure environment
-vi geomet-data-registry.env  # edit paths accordingly
-. geomet-data-registry.env
+cp geomet-data-registry.env dev.env
+vi dev.env # edit paths accordingly
+. dev.env
 ```
 
 ## Running
