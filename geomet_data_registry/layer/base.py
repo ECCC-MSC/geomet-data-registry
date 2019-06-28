@@ -73,7 +73,7 @@ class BaseLayer(object):
 
             item_dict = self.layer2dict(item)
 
-            if item['expected_count'] is not null:
+            if item['expected_count'] is not None:
 
                 layer_count_key = '{}_{}_count'.format(
                     item_dict['properties']['layer'], self.model_run)

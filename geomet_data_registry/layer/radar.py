@@ -17,7 +17,7 @@
 #
 ###############################################################################
 
-from datetime import datetime, timedelta
+from datetime import datetime
 import json
 import logging
 import os
@@ -87,11 +87,12 @@ class radarLayer(BaseLayer):
             'layer_name': layer_name,
             'filepath': filepath,
             'identifier': identifier,
-            'reference_datetime': reference_datetime,
-            'forecast_hour_datetime': null,
+            'reference_datetime': None,
+            'forecast_hour_datetime': date_,
             'member': member,
             'elevation': elevation,
-            'expected_count': null 
+            'expected_count': None
+        }
         self.items.append(feature_dict)
 
         return True
