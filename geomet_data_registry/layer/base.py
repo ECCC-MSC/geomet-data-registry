@@ -78,7 +78,7 @@ class BaseLayer(object):
                 layer_count_key = '{}_{}_count'.format(
                     item_dict['properties']['layer'], self.model_run)
                 current_layer_file_count = self.store.get(layer_count_key)
-    
+
                 LOGGER.debug('Adding to store')
                 if current_layer_file_count is not None:
                     LOGGER.debug('Incrementing count')
@@ -88,7 +88,7 @@ class BaseLayer(object):
                 else:
                     LOGGER.debug('Initializing count')
                     self.store.set(layer_count_key, 1)
-    
+
                 LOGGER.debug('Look if we have a complete model run')
                 if int(new_layer_file_count) >= item['expected_count']:
                     for mr in self.model_run_list:
@@ -101,7 +101,7 @@ class BaseLayer(object):
                             item_dict['properties']['layer'], mr)
                         if layer_count_key_reset != layer_count_key:
                             self.store.set(layer_count_key_reset, 0)
-    
+
             LOGGER.debug('Adding to tileindex')
             self.tileindex.add(item['identifier'], item_dict)
 
