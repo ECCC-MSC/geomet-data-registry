@@ -46,7 +46,11 @@ class CoreTriggerHandler(BaseTriggerHandler):
         BaseTriggerHandler.__init__(self, filepath)
 
     def handle(self):
-        """handle incoming file"""
+        """
+        handle incoming file
+
+        :returns: `bool` of status result
+        """
 
         LOGGER.debug('Detecting filename pattern')
         for key in DATASET_HANDLERS.keys():
@@ -61,6 +65,8 @@ class CoreTriggerHandler(BaseTriggerHandler):
 
         if self.layer_plugin.identify(self.filepath):
             self.layer_plugin.register()
+
+        return True
 
     def __repr__(self):
         return '<CoreTriggerHandler> {}'.format(self.filepath)

@@ -21,7 +21,7 @@ import logging
 
 import click
 
-from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.trigger.core import CoreTriggerHandler
 from geomet_data_registry.util import json_pretty_print
 
 LOGGER = logging.getLogger(__name__)
@@ -46,22 +46,12 @@ def add_file(ctx, file_, verify=False):
     if file_ is None:
         raise click.ClickException('Missing --file/-f option')
 
-    lyr = load_plugin('layer', {'name': 'GDPS', 'type': 'ModelGemGlobal'})
+    handler = CoreTriggerHandler(file_)
+    result = handler.handle()
 
-    click.echo('Adding {}'.format(file_))
-    click.echo('Identifying')
-    status = lyr.identify(file_)
-
-    if not status:
-        msg = 'Could not identify file {}: {}'.format(file_)
-        LOGGER.exception(msg)
-        raise click.ClickException(msg)
-
-    click.echo('File properties: {}'.format(json_pretty_print(lyr.items)))
-
-    if not verify:
-        click.echo('Registering')
-        lyr.register()
+    if result:
+        click.echo('File properties: {}'.format(
+            json_pretty_print(handler.layer_plugin.items)))
 
 
 layer.add_command(add_file)
