@@ -71,7 +71,7 @@ class radarLayer(BaseLayer):
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        time_format = '%Y%m%d%H'
+        time_format = '%Y%m%d%H%M'
         date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
         layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
@@ -81,7 +81,7 @@ class radarLayer(BaseLayer):
         str_fh = re.sub('[^0-9]',
                         '',
                         date_.strftime('%Y-%m-%dT%H:%M:%SZ'))
-        identifier = '{}-{}-{}'.format(layer_name, str_fh)
+        identifier = '{}-{}'.format(layer_name, str_fh)
 
         feature_dict = {
             'layer_name': layer_name,
