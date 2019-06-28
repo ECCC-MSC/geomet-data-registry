@@ -17,14 +17,18 @@
 #
 ###############################################################################
 
-__version__ = '2.99.dev0'
-
 import click
 
+from geomet_data_registry import env
 from geomet_data_registry.layer import layer
+from geomet_data_registry.log import setup_logger
 from geomet_data_registry.store import store
 from geomet_data_registry.tileindex import tileindex
 from geomet_data_registry.yml_writer import expand_yml
+
+__version__ = '2.99.dev0'
+
+setup_logger(env.LOGGING_LOGLEVEL, env.LOGGING_LOGFILE)
 
 
 @click.group()
