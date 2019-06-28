@@ -25,6 +25,8 @@ LOGGER = logging.getLogger(__name__)
 
 LOGGER.info('Fetching environment variables')
 
+LOGGING_LOGLEVEL = os.getenv('GDR_LOGGING_LOGLEVEL', 'ERROR')
+LOGGING_LOGFILE = os.getenv('GDR_LOGGING_LOGFILE', None)
 BASEDIR = os.environ.get('GDR_BASEDIR', None)
 DATADIR = os.environ.get('GDR_DATADIR', None)
 CONFIG = os.environ.get('GDR_CONFIG', None)

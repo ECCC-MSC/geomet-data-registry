@@ -17,13 +17,12 @@
 #
 ###############################################################################
 
-import json
 import logging
 
 import click
 
 from geomet_data_registry.plugin import load_plugin
-from geomet_data_registry.util import json_serial
+from geomet_data_registry.util import json_pretty_print
 
 LOGGER = logging.getLogger(__name__)
 
@@ -58,8 +57,7 @@ def add_file(ctx, file_, verify=False):
         LOGGER.exception(msg)
         raise click.ClickException(msg)
 
-    click.echo('File properties: {}'.format(json.dumps(lyr.items, indent=4,
-                                            default=json_serial)))
+    click.echo('File properties: {}'.format(json_pretty_print(lyr.items)))
 
     if not verify:
         click.echo('Registering')

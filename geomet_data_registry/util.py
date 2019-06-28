@@ -18,9 +18,22 @@
 ###############################################################################
 
 from datetime import datetime, date, time
+import json
 import logging
 
 LOGGER = logging.getLogger(__name__)
+
+
+def json_pretty_print(data):
+    """
+    Pretty print a JSON serialization
+
+    :param data: `dict` of JSON
+
+    :returns: `str` of pretty printed JSON representation
+    """
+
+    return json.dumps(data, indent=4, default=json_serial)
 
 
 def json_serial(obj):

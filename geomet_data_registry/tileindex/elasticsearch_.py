@@ -23,6 +23,7 @@ from urllib.parse import urlparse
 from elasticsearch import Elasticsearch, exceptions
 
 from geomet_data_registry.tileindex.base import BaseTileIndex, TileIndexError
+from geomet_data_registry.util import json_pretty_print
 
 LOGGER = logging.getLogger(__name__)
 
@@ -34,74 +35,72 @@ INDEX_SETTINGS = {
         }
     },
     'mappings': {
-        'FeatureCollection': {
+        'properties': {
+            'type': {
+                'type': 'text'
+            },
             'properties': {
-                'type': {
-                    'type': 'text'
-                },
                 'properties': {
-                    'properties': {
-                        'identifier': {
-                            'type': 'text',
-                            'fields': {
-                                'raw': {
-                                    'type': 'keyword'
-                                }
+                    'identifier': {
+                        'type': 'text',
+                        'fields': {
+                            'raw': {
+                                'type': 'keyword'
                             }
-                        },
-                        'layer': {
-                            'type': 'text',
-                            'fields': {
-                                'raw': {
-                                    'type': 'keyword'
-                                }
-                            }
-                        },
-                        'filepath': {
-                            'type': 'text',
-                            'fields': {
-                                'raw': {
-                                    'type': 'keyword'
-                                }
-                            }
-                        },
-                        'forecast_hour_datetime': {
-                            'type': 'date',
-                        },
-                        'reference_datetime': {
-                            'type': 'date',
-                        },
-                        'file_creation_datetime': {
-                            'type': 'date',
-                        },
-                        'receive_datetime': {
-                            'type': 'date',
-                        },
-                        'identify_datetime': {
-                            'type': 'date',
-                        },
-                        'register_datetime': {
-                            'type': 'date',
-                        },
-                        'expiry_datetime': {
-                            'type': 'date',
-                        },
-                        'elevation': {
-                            'type': 'text',
-                            'fields': {
-                                 'raw': {
-                                     'type': 'keyword'
-                                 }
-                             }
-                        },
-                        'members': {
-                            'type': 'integer'
                         }
+                    },
+                    'layer': {
+                        'type': 'text',
+                        'fields': {
+                            'raw': {
+                                'type': 'keyword'
+                            }
+                        }
+                    },
+                    'filepath': {
+                        'type': 'text',
+                        'fields': {
+                            'raw': {
+                                'type': 'keyword'
+                            }
+                        }
+                    },
+                    'forecast_hour_datetime': {
+                        'type': 'date',
+                    },
+                    'reference_datetime': {
+                        'type': 'date',
+                    },
+                    'file_creation_datetime': {
+                        'type': 'date',
+                    },
+                    'receive_datetime': {
+                        'type': 'date',
+                    },
+                    'identify_datetime': {
+                        'type': 'date',
+                    },
+                    'register_datetime': {
+                        'type': 'date',
+                    },
+                    'expiry_datetime': {
+                        'type': 'date',
+                    },
+                    'elevation': {
+                        'type': 'text',
+                        'fields': {
+                             'raw': {
+                                 'type': 'keyword'
+                             }
+                         }
+                    },
+                    'members': {
+                        'type': 'integer'
                     }
-                },
-                'geometry': {
-                    'type': 'geo_shape'
                 }
+            },
+            'geometry': {
+                'type': 'geo_shape'
             }
         }
     }
@@ -182,9 +181,9 @@ class ElasticsearchTileIndex(BaseTileIndex):
         """
 
         LOGGER.info('Indexing {}'.format(identifier))
+        LOGGER.debug('Data: {}'.format(json_pretty_print(data)))
         try:
-            self.es.index(index=self.name, doc_type=self.type_name,
-                          id=identifier, body=data)
+            self.es.index(index=self.name, id=identifier, body=data)
         except Exception as err:
             LOGGER.exception('Error indexing {}: {}'.format(identifier, err))
             return False
