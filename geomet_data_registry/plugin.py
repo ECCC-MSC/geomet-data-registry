@@ -30,7 +30,8 @@ PLUGINS = {
         'Elasticsearch': 'geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
     },
     'layer': {
-        'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer'  # noqa
+        'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer',  # noqa
+        'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer'  # noqa
     }
 }
 
