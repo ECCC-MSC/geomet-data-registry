@@ -17,6 +17,7 @@
 #
 ###############################################################################
 
+from datetime import datetime
 import logging
 
 from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
@@ -41,6 +42,10 @@ class BaseLayer(object):
         self.items = []
         self.model_run_list = []
 
+        self.file_creation_datetime = None
+        self.receive_datetime = datetime.now()
+        self.identify_datetime = None
+        self.register_datetime = None
         self.filepath = None
         self.model = None
         self.model_run = None
@@ -59,7 +64,7 @@ class BaseLayer(object):
         :returns: `bool` of file properties
         """
 
-        self.filepath = filepath
+        raise NotImplementedError
 
     def register(self):
         """
@@ -105,6 +110,8 @@ class BaseLayer(object):
             LOGGER.debug('Adding to tileindex')
             self.tileindex.add(item['identifier'], item_dict)
 
+        return True
+
     def layer2dict(self, item):
         """
         Uses one model item to create a dictionary
@@ -128,9 +135,13 @@ class BaseLayer(object):
                  'layer': item['layer_name'],
                  'filepath': item['filepath'],
                  'elevation': item['elevation'],
+                 'member': item['member'],
                  'forecast_hour_datetime': item['forecast_hour_datetime'],
                  'reference_datetime': item['reference_datetime'],
-                 'member': item['member']
+                 'file_creation_datetime': self.file_creation_datetime,
+                 'receive_datetime': self.receive_datetime,
+                 'identify_datetime': self.identify_datetime,
+                 'register_datetime': self.register_datetime
             }
         }
 

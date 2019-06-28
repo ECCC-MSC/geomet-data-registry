@@ -190,5 +190,48 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         return True
 
+    def update(self, identifier, update_dict):
+        """
+        Update an existing item in the tileindex
+
+        :param identifier: tileindex item id
+        :param data: Python dictionnary
+
+        :returns: boolean of process status
+        """
+
+        LOGGER.info('Updating {}'.format(identifier))
+
+        update_dict = {'doc': update_dict}
+        try:
+            self.es.update(index=self.name, doc_type=self.type_name,
+                    id=identifier, body=update_dict)
+        except Exception as err:
+            LOGGER.exception('Error updating {}: {}'.format(identifier, err))
+            return False
+
+        return True
+
+    def update_by_query(self, query_dict, update_dict):
+        """
+        Update an existing item in the tileindex
+
+        :param identifier: tileindex item id
+        :param data: Python dictionnary
+
+        :returns: boolean of process status
+        """
+
+        LOGGER.info('Updating by query: {}'.format(query_dict))
+
+        q = {'query': query_dict, 'script': update_dict}
+        try:
+            self.es.update_by_query(index=self.name, body=q)
+        except Exception as err:
+            LOGGER.exception('Error updating by query: {}'.format(err))
+            return False
+
+        return True
+
     def __repr__(self):
         return '<ElasticsearchTileIndex> {}'.format(self.url)
