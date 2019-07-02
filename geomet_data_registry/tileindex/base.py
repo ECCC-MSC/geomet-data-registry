@@ -39,7 +39,7 @@ class BaseTileIndex(object):
 
         self.type = provider_def['type']
         self.url = provider_def['url']
-        self.name = 'geomet-data-registry-tileindex'
+        self.name = provider_def['name']
         self.group = None
 
         LOGGER.debug('Detecting group tileindex')
@@ -51,7 +51,7 @@ class BaseTileIndex(object):
 
         self.fullpath = os.path.join(self.url, self.name)
 
-    def create(self):
+    def setup(self):
         """
         Create the tileindex
 
@@ -60,7 +60,7 @@ class BaseTileIndex(object):
 
         raise NotImplementedError()
 
-    def delete(self):
+    def teardown(self):
         """
         Delete the tileindex
 
@@ -95,6 +95,30 @@ class BaseTileIndex(object):
 
         :param identifier: tileindex item identifier
         :param data: GeoJSON dict
+
+        :returns: boolean of process status
+        """
+
+        raise NotImplementedError()
+
+    def update(self, identifier, update_dict):
+        """
+        Update an item to the tileindex
+
+        :param identifier: tileindex item identifier
+        :param update_dict: `dict` of key/value updates
+
+        :returns: boolean of process status
+        """
+
+        raise NotImplementedError()
+
+    def update_by_query(self, query_dict, update_dict):
+        """
+        Add an item to the tileindex
+
+        :param query_dict: `dict` of query
+        :param update_dict: `dict` of key/value updates
 
         :returns: boolean of process status
         """

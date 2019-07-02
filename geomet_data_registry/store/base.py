@@ -37,7 +37,7 @@ class BaseStore(object):
         self.type = provider_def['type']
         self.url = provider_def['url']
 
-    def create(self):
+    def setup(self):
         """
         Create the store
 
@@ -46,7 +46,7 @@ class BaseStore(object):
 
         raise NotImplementedError()
 
-    def delete(self):
+    def teardown(self):
         """
         Delete the store
 

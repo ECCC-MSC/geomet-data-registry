@@ -60,16 +60,36 @@ class CoreTriggerHandler(BaseTriggerHandler):
                 plugin_def = {
                     'type': DATASET_HANDLERS[key],
                 }
+                LOGGER.debug('Loading plugin {}'.format(plugin_def))
                 self.layer_plugin = load_plugin('layer', plugin_def)
 
         if self.layer_plugin is None:
-            raise RuntimeError('oops')
+            msg = 'Plugin not found'
+            LOGGER.error(msg)
+            raise RuntimeError(msg)
 
-        if self.layer_plugin.identify(self.filepath):
+        LOGGER.debug('Identifying file')
+        identify_status = self.layer_plugin.identify(self.filepath)
+
+        if identify_status:
             self.layer_plugin.identify_datetime = datetime.now().isoformat()
-            if self.layer_plugin.register():
-                self.layer_plugin.register_datetime = datetime.now().isoformat()
-                self.layer_plugin.tileindex.update_by_query({'match': {'properties.filepath.raw': {'query': self.layer_plugin.filepath}}}, {'source': 'ctx._source.properties.register_datetime=\"{}\"'.format(self.layer_plugin.register_datetime)})
+
+            LOGGER.debug('Registering file')
+            register_status = self.layer_plugin.register()
+
+            if register_status:
+                register_datetime_ = datetime.now()
+                self.layer_plugin.register_datetime = register_datetime_
+
+                query_dict = {
+                    'filepath': self.layer_plugin.filepath
+                }
+                update_dict = {
+                    'register_datetime': register_datetime_
+                }
+
+                self.layer_plugin.tileindex.update_by_query(
+                    query_dict, update_dict)
 
         return True
 
