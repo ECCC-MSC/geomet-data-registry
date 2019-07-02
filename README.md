@@ -71,45 +71,16 @@ geomet-data-registry store setup
 # teardown store
 geomet-data-registry store teardown
 
+# start up
+sr_subscribe path/to/amqp.conf foreground
 
+# dev workflows
+# process a test file
+geomet-data-registry data add --file /path/to/file
 
-
-# generate VRTs for all layers
-geomet-data-registry vrt generate
-
-# generate VRTs for single group
-geomet-data-registry vrt generate --group=GDPS
-
-# generate tileindex for all layers/groups
-geomet-data-registry tileindex generate
-
-# generate tileindex for single group
-geomet-data-registry tileindex generate --group=GDPS
-
-# generate mapfile for WMS (English)
-geomet-data-registry mapfile generate --language=en --service=WMS
-
-# generate mapfile for WMS (English) with specific configuration for single layer
-geomet-data-registry mapfile generate --language=en --service=WMS --layer=GDPS.ETA_TT
-
-# generate mapfile for WMS (English) with specific configuration for single group
-geomet-data-registry mapfile generate --language=en --service=WMS --group=GDPS
-
-# generate mapfile for WCS (French)
-geomet-data-registry mapfile generate --language=fr --service=WCS
-
-# update mapfile
-geomet-data-registry mapfile update --layer=GDPS.ETA_TT
-geomet-data-registry mapfile update --group=GDPS --timedefault=YYYY-MM-DDTHH:MM:SSZ --timeextent=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ/interval
-
-# run server
-geomet-data-registry serve  # server runs on port 8099
-
-# run server on a different port
-geomet-data-registry serve  --port=8011
-
-# cache WMS and WCS Capabilities URLs
-geomet-data-registry cache-ows-urls
+# dev workflows
+# process a test directory of files (recursive)
+geomet-data-registry data add --directory /path/to/directory
 ```
 
 ## Development

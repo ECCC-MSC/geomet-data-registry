@@ -52,7 +52,7 @@ class RedisStore(BaseStore):
         """
         Create the store
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         return self.redis.set('geomet-data-registry-version', __version__)
@@ -61,7 +61,7 @@ class RedisStore(BaseStore):
         """
         Delete the store
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         return self.redis.delete('geomet-data-registry-version')

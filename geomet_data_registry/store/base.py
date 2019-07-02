@@ -41,7 +41,7 @@ class BaseStore(object):
         """
         Create the store
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         raise NotImplementedError()
@@ -50,7 +50,7 @@ class BaseStore(object):
         """
         Delete the store
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         raise NotImplementedError()

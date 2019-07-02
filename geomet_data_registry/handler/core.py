@@ -21,7 +21,7 @@ from datetime import datetime
 import logging
 
 from geomet_data_registry.plugin import load_plugin
-from geomet_data_registry.trigger.base import BaseTriggerHandler
+from geomet_data_registry.handler.base import BaseHandler
 
 LOGGER = logging.getLogger(__name__)
 
@@ -31,8 +31,8 @@ DATASET_HANDLERS = {
 }
 
 
-class CoreTriggerHandler(BaseTriggerHandler):
-    """base trigger handler"""
+class CoreHandler(BaseHandler):
+    """base handler"""
 
     def __init__(self, filepath):
         """
@@ -40,12 +40,12 @@ class CoreTriggerHandler(BaseTriggerHandler):
 
         :param filepath: path to file
 
-        :returns: `geomet_data_registry.trigger.core.CoreTriggerHandler`
+        :returns: `geomet_data_registry.handler.core.CoreHandler`
         """
 
         self.layer_plugin = None
 
-        BaseTriggerHandler.__init__(self, filepath)
+        BaseHandler.__init__(self, filepath)
 
     def handle(self):
         """
@@ -94,4 +94,4 @@ class CoreTriggerHandler(BaseTriggerHandler):
         return True
 
     def __repr__(self):
-        return '<CoreTriggerHandler> {}'.format(self.filepath)
+        return '<CoreHandler> {}'.format(self.filepath)
