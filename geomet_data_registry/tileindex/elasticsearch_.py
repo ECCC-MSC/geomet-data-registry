@@ -189,8 +189,9 @@ class ElasticsearchTileIndex(BaseTileIndex):
             # immediately after in support of tracking performance (kind of
             # ironic eh?).
             # TODO: update using asyncio or multiprocessing
-            self.es.index(index=self.name, id=identifier, body=data,
-                          refresh='wait_for')
+            r = self.es.index(index=self.name, id=identifier, body=data,
+                              refresh='wait_for')
+            return r
         except Exception as err:
             LOGGER.exception('Error indexing {}: {}'.format(identifier, err))
             return False
