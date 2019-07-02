@@ -37,7 +37,7 @@ def store():
 @click.command()
 @click.pass_context
 @click.option('--group', '-g', help='group')
-def create(ctx, group=None):
+def setup(ctx, group=None):
     """create store"""
 
     provider_def = {
@@ -50,7 +50,7 @@ def create(ctx, group=None):
 
     try:
         click.echo('Creating store {}'.format(st.url))
-        st.create()
+        st.setup()
     except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')
@@ -59,7 +59,7 @@ def create(ctx, group=None):
 @click.command()
 @click.pass_context
 @click.option('--group', '-g', help='group')
-def delete(ctx, group=None):
+def teardown(ctx, group=None):
     """delete store"""
 
     provider_def = {
@@ -72,11 +72,11 @@ def delete(ctx, group=None):
 
     try:
         click.echo('Deleting store {}'.format(st.url))
-        st.delete()
+        st.teardown()
     except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')
 
 
-store.add_command(create)
-store.add_command(delete)
+store.add_command(setup)
+store.add_command(teardown)

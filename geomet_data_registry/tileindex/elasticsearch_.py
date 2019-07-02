@@ -17,7 +17,6 @@
 #
 ###############################################################################
 
-import json
 import logging
 from urllib.parse import urlparse
 
@@ -115,7 +114,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         """
         Initialize object
 
-        :param provider_def: provider definition dict
+        :param provider_def: provider definition `dict`
 
         :returns: `geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex`  # noqa
         """
@@ -138,7 +137,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
             LOGGER.error(msg)
             raise TileIndexError(msg)
 
-    def create(self):
+    def setup(self):
         """
         Create the tileindex
 
@@ -154,7 +153,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         self.es.indices.create(index=self.name, body=INDEX_SETTINGS)
         return True
 
-    def delete(self):
+    def teardown(self):
         """
         Delete the tileindex
 
@@ -184,7 +183,14 @@ class ElasticsearchTileIndex(BaseTileIndex):
         LOGGER.info('Indexing {}'.format(identifier))
         LOGGER.debug('Data: {}'.format(json_pretty_print(data)))
         try:
-            self.es.index(index=self.name, id=identifier, body=data)
+            # FIXME: refresh='wait_for' essentially blocks further processing
+            # until the document is fully available in ES.  This is done in
+            # order to make updates to the layer registration datetime
+            # immediately after in support of tracking performance (kind of
+            # ironic eh?).
+            # TODO: update using asyncio or multiprocessing
+            self.es.index(index=self.name, id=identifier, body=data,
+                          refresh='wait_for')
         except Exception as err:
             LOGGER.exception('Error indexing {}: {}'.format(identifier, err))
             return False
@@ -206,7 +212,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         update_dict = {'doc': update_dict}
         try:
             self.es.update(index=self.name, doc_type=self.type_name,
-                    id=identifier, body=update_dict)
+                           id=identifier, body=update_dict)
         except Exception as err:
             LOGGER.exception('Error updating {}: {}'.format(identifier, err))
             return False
@@ -223,11 +229,32 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :returns: `bool` of process status
         """
 
-        LOGGER.info('Updating by query: {}'.format(query_dict))
+        es_query_body = {}
 
-        q = {'query': query_dict, 'script': update_dict} 
+        LOGGER.info('Updating by query: {}'.format(query_dict))
+        LOGGER.info('query dict: {}'.format(query_dict))
+        LOGGER.info('update dict: {}'.format(update_dict))
+
+        query_dict2 = {}
+        for key, value in query_dict.items():
+            property_name = 'properties.{}.raw'.format(key)
+            query_dict2['match'] = {
+                property_name: {
+                    'query': value
+                }
+            }
+
+        for key, value in update_dict.items():
+            es_query_body['script'] = {
+                'source': 'ctx._source.properties.{} = "{}"'.format(
+                    key, value.isoformat())
+            }
+
+        LOGGER.debug('ES query body: {}'.format(es_query_body))
+        LOGGER.debug('Updating by query in ES')
         try:
-            self.es.update_by_query(index=self.name, body=q)
+            self.es.update_by_query(index=self.name, body=es_query_body,
+                                    conflicts='proceed')
         except Exception as err:
             LOGGER.exception('Error updating by query: {}'.format(err))
             return False

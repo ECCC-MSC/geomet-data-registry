@@ -48,7 +48,7 @@ class RedisStore(BaseStore):
             LOGGER.exception(msg)
             raise StoreError(msg)
 
-    def create(self):
+    def setup(self):
         """
         Create the store
 
@@ -57,7 +57,7 @@ class RedisStore(BaseStore):
 
         return self.redis.set('geomet-data-registry-version', __version__)
 
-    def delete(self):
+    def teardown(self):
         """
         Delete the store
 

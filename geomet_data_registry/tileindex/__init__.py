@@ -21,7 +21,8 @@ import logging
 
 import click
 
-from geomet_data_registry.env import TILEINDEX_TYPE, TILEINDEX_BASEURL
+from geomet_data_registry.env import (
+    TILEINDEX_TYPE, TILEINDEX_BASEURL, TILEINDEX_NAME)
 from geomet_data_registry.plugin import load_plugin
 from geomet_data_registry.tileindex.base import TileIndexError
 
@@ -37,12 +38,13 @@ def tileindex():
 @click.command()
 @click.pass_context
 @click.option('--group', '-g', help='group')
-def create(ctx, group=None):
+def setup(ctx, group=None):
     """create tileindex"""
 
     provider_def = {
         'type': TILEINDEX_TYPE,
         'url': TILEINDEX_BASEURL,
+        'name': TILEINDEX_NAME,
         'group': group
     }
 
@@ -50,7 +52,7 @@ def create(ctx, group=None):
 
     try:
         click.echo('Creating tileindex {}'.format(ti.fullpath))
-        ti.create()
+        ti.setup()
     except TileIndexError as err:
         raise click.ClickException(err)
     click.echo('Done')
@@ -59,12 +61,13 @@ def create(ctx, group=None):
 @click.command()
 @click.pass_context
 @click.option('--group', '-g', help='group')
-def delete(ctx, group=None):
+def teardown(ctx, group=None):
     """delete tileindex"""
 
     provider_def = {
         'type': TILEINDEX_TYPE,
         'url': TILEINDEX_BASEURL,
+        'name': TILEINDEX_NAME,
         'group': group
     }
 
@@ -72,11 +75,11 @@ def delete(ctx, group=None):
 
     try:
         click.echo('Deleting tileindex {}'.format(ti.fullpath))
-        ti.delete()
+        ti.teardown()
     except TileIndexError as err:
         raise click.ClickException(err)
     click.echo('Done')
 
 
-tileindex.add_command(create)
-tileindex.add_command(delete)
+tileindex.add_command(setup)
+tileindex.add_command(teardown)

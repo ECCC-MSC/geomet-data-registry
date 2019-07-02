@@ -33,6 +33,7 @@ CONFIG = os.environ.get('GDR_CONFIG', None)
 URL = os.environ.get('GDR_URL', None)
 TILEINDEX_TYPE = os.environ.get('GDR_TILEINDEX_TYPE', None)
 TILEINDEX_BASEURL = os.environ.get('GDR_TILEINDEX_BASEURL', None)
+TILEINDEX_NAME = os.environ.get('GDR_TILEINDEX_NAME', None)
 STORE_TYPE = os.environ.get('GDR_STORE_TYPE', None)
 STORE_URL = os.environ.get('GDR_STORE_URL', None)
 
@@ -42,11 +43,12 @@ LOGGER.debug(CONFIG)
 LOGGER.debug(URL)
 LOGGER.debug(TILEINDEX_TYPE)
 LOGGER.debug(TILEINDEX_BASEURL)
+LOGGER.debug(TILEINDEX_NAME)
 LOGGER.debug(STORE_TYPE)
 LOGGER.debug(STORE_URL)
 
 if None in [BASEDIR, DATADIR, CONFIG, URL, TILEINDEX_TYPE, TILEINDEX_BASEURL,
-            STORE_TYPE, STORE_URL]:
+            TILEINDEX_NAME, STORE_TYPE, STORE_URL]:
     msg = 'Environment variables not set!'
     LOGGER.error(msg)
     raise EnvironmentError(msg)
@@ -59,5 +61,6 @@ STORE_PROVIDER_DEF = {
 TILEINDEX_PROVIDER_DEF = {
     'type': TILEINDEX_TYPE,
     'url': TILEINDEX_BASEURL,
+    'name': TILEINDEX_NAME,
     'group': None
 }

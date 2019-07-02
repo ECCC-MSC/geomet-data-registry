@@ -59,6 +59,21 @@ geomet-data-registry expand-yml
 # Expand yaml for single group
 geomet-data-registry expand-yml --group=GDPS
 
+# setup tileindex
+geomet-data-registry tileindex setup
+
+# teardown tileindex
+geomet-data-registry tileindex teardown
+
+# setup store
+geomet-data-registry store setup
+
+# teardown store
+geomet-data-registry store teardown
+
+
+
+
 # generate VRTs for all layers
 geomet-data-registry vrt generate
 
