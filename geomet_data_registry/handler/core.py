@@ -77,7 +77,7 @@ class CoreHandler(BaseHandler):
             LOGGER.debug('Registering file')
             register_status = self.layer_plugin.register()
 
-            if register_status in [200, 201]:
+            if register_status:
                 register_datetime_ = datetime.now()
                 self.layer_plugin.register_datetime = register_datetime_
 
