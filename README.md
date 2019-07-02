@@ -71,6 +71,9 @@ geomet-data-registry store setup
 # teardown store
 geomet-data-registry store teardown
 
+# setup metadata
+geomet-data-registry metadata setup
+
 # start up
 sr_subscribe path/to/amqp.conf foreground
 
