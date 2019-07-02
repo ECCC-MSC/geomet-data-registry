@@ -34,6 +34,12 @@ def data():
     pass
 
 
+@click.group()
+def metadata():
+    """Manage geomet-data-registry metadata"""
+    pass
+
+
 @click.command('add')
 @click.pass_context
 @click.option('--file', '-f', 'file_',
@@ -45,8 +51,8 @@ def data():
               help='Path to directory')
 @click.option('--verify', '-v', is_flag=True, help='Verify only',
               default=False)
-def add(ctx, file_, directory, verify=False):
-    """add file to layer"""
+def add_data(ctx, file_, directory, verify=False):
+    """add data to system"""
 
     if all([file_ is None, directory is None]):
         raise click.ClickException('Missing --file/-f or --dir/-d option')
@@ -68,4 +74,16 @@ def add(ctx, file_, directory, verify=False):
                 json_pretty_print(handler.layer_plugin.items)))
 
 
-data.add_command(add)
+@click.command('setup')
+@click.pass_context
+def setup_metadata(ctx):
+    """initialize system metadata"""
+
+    # connect to store
+    # processs all YAML configurations
+    # dump into store
+    raise click.ClickException('Not implemented yet')
+
+
+data.add_command(add_data)
+metadata.add_command(setup_metadata)
