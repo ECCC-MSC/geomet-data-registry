@@ -141,7 +141,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         """
         Create the tileindex
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         if self.es.indices.exists(self.name):
@@ -157,7 +157,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         """
         Delete the tileindex
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         LOGGER.info('Deleting index {}'.format(self.name))
@@ -177,7 +177,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param identifier: tileindex item id
         :param data: GeoJSON dict
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         LOGGER.info('Indexing {}'.format(identifier))

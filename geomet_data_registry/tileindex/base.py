@@ -55,7 +55,7 @@ class BaseTileIndex(object):
         """
         Create the tileindex
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         raise NotImplementedError()
@@ -64,7 +64,7 @@ class BaseTileIndex(object):
         """
         Delete the tileindex
 
-        :returns: boolean of process status
+        :returns: `bool` of process status
         """
 
         raise NotImplementedError()
@@ -96,7 +96,7 @@ class BaseTileIndex(object):
         :param identifier: tileindex item identifier
         :param data: GeoJSON dict
 
-        :returns: boolean of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
 
         raise NotImplementedError()
@@ -108,7 +108,7 @@ class BaseTileIndex(object):
         :param identifier: tileindex item identifier
         :param update_dict: `dict` of key/value updates
 
-        :returns: boolean of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
 
         raise NotImplementedError()
@@ -120,7 +120,7 @@ class BaseTileIndex(object):
         :param query_dict: `dict` of query
         :param update_dict: `dict` of key/value updates
 
-        :returns: boolean of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
 
         raise NotImplementedError()
@@ -131,7 +131,7 @@ class BaseTileIndex(object):
 
         :param identifier: tileindex item identifier
 
-        :returns: boolean of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
 
         raise NotImplementedError()

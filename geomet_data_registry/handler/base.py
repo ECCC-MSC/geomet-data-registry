@@ -22,8 +22,8 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseTriggerHandler(object):
-    """base trigger handler"""
+class BaseHandler(object):
+    """base handler"""
 
     def __init__(self, filepath):
         """
@@ -41,4 +41,4 @@ class BaseTriggerHandler(object):
         raise NotImplementedError()
 
     def __repr__(self):
-        return '<BaseTriggerHandler> {}'.format(self.filepath)
+        return '<BaseHandler> {}'.format(self.filepath)
