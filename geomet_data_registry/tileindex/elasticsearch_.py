@@ -235,12 +235,13 @@ class ElasticsearchTileIndex(BaseTileIndex):
         LOGGER.info('query dict: {}'.format(query_dict))
         LOGGER.info('update dict: {}'.format(update_dict))
 
-        query_dict2 = {}
         for key, value in query_dict.items():
             property_name = 'properties.{}.raw'.format(key)
-            query_dict2['match'] = {
-                property_name: {
-                    'query': value
+            es_query_body['query'] = {
+                'match': {
+                    property_name: {
+                        'query': value
+                    }
                 }
             }
 
