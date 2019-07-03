@@ -20,7 +20,7 @@
 import click
 
 from geomet_data_registry import env
-from geomet_data_registry.handler import data
+from geomet_data_registry.handler import data, metadata
 from geomet_data_registry.log import setup_logger
 from geomet_data_registry.store import store
 from geomet_data_registry.tileindex import tileindex
@@ -39,5 +39,6 @@ def cli():
 
 cli.add_command(expand_yml)
 cli.add_command(data)
+cli.add_command(metadata)
 cli.add_command(store)
 cli.add_command(tileindex)
