@@ -76,7 +76,9 @@ class BaseLayer(object):
 
             item_dict = self.layer2dict(item)
 
-            if item['expected_count'] is not None:
+            LOGGER.debug('Adding to tileindex')
+            r = self.tileindex.add(item['identifier'], item_dict)
+            if item['expected_count'] is not None and r == 201:
 
                 layer_count_key = '{}_{}_count'.format(
                     item_dict['properties']['layer'], self.model_run)
@@ -104,9 +106,6 @@ class BaseLayer(object):
                             item_dict['properties']['layer'], mr)
                         if layer_count_key_reset != layer_count_key:
                             self.store.set(layer_count_key_reset, 0)
-
-            LOGGER.debug('Adding to tileindex')
-            self.tileindex.add(item['identifier'], item_dict)
 
         return True
 
