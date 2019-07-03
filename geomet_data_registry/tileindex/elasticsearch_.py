@@ -177,8 +177,10 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param identifier: tileindex item id
         :param data: GeoJSON dict
 
-        :returns: `bool` of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
+
+        status_code = None
 
         LOGGER.info('Indexing {}'.format(identifier))
         LOGGER.debug('Data: {}'.format(json_pretty_print(data)))
@@ -189,13 +191,17 @@ class ElasticsearchTileIndex(BaseTileIndex):
             # immediately after in support of tracking performance (kind of
             # ironic eh?).
             # TODO: update using asyncio or multiprocessing
-            self.es.index(index=self.name, id=identifier, body=data,
-                          refresh='wait_for')
+            r = self.es.index(index=self.name, id=identifier, body=data,
+                              refresh='wait_for')
+            if r['result'] == 'created':
+                status_code = 201
+            elif r['result'] == 'updated':
+                status_code = 200
         except Exception as err:
             LOGGER.exception('Error indexing {}: {}'.format(identifier, err))
-            return False
+            return 500
 
-        return True
+        return status_code
 
     def update(self, identifier, update_dict):
         """
@@ -204,7 +210,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param identifier: tileindex item id
         :param data: Python dictionnary
 
-        :returns: `bool` of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
 
         LOGGER.info('Updating {}'.format(identifier))
@@ -215,9 +221,9 @@ class ElasticsearchTileIndex(BaseTileIndex):
                            id=identifier, body=update_dict)
         except Exception as err:
             LOGGER.exception('Error updating {}: {}'.format(identifier, err))
-            return False
+            return 500
 
-        return True
+        return 200
 
     def update_by_query(self, query_dict, update_dict):
         """
@@ -226,7 +232,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :param identifier: tileindex item id
         :param data: Python dictionnary
 
-        :returns: `bool` of process status
+        :returns: `int` of status (as per HTTP status codes)
         """
 
         es_query_body = {}
@@ -258,9 +264,9 @@ class ElasticsearchTileIndex(BaseTileIndex):
                                     conflicts='proceed')
         except Exception as err:
             LOGGER.exception('Error updating by query: {}'.format(err))
-            return False
+            return 500
 
-        return True
+        return 200
 
     def __repr__(self):
         return '<ElasticsearchTileIndex> {}'.format(self.url)
