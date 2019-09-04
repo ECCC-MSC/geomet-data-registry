@@ -92,6 +92,7 @@ class BaseLayer(object):
                                    new_layer_file_count)
                 else:
                     LOGGER.debug('Initializing count')
+                    new_layer_file_count = 1
                     self.store.set(layer_count_key, 1)
 
                 LOGGER.debug('Look if we have a complete model run')
