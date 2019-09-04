@@ -87,9 +87,7 @@ class ModelGemGlobalLayer(BaseLayer):
         forecast_hour_datetime = date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
-        layer_name = file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
-
-        member = file_dict[self.model]['variable'][self.wx_variable]['member']  # noqa
+        member = file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
         elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
         str_mr = re.sub('[^0-9]',
                         '',
@@ -97,21 +95,29 @@ class ModelGemGlobalLayer(BaseLayer):
         str_fh = re.sub('[^0-9]',
                         '',
                         forecast_hour_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'))
-        identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
         expected_count = file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected'] # noqa
 
-        feature_dict = {
-            'layer_name': layer_name,
-            'filepath': filepath,
-            'identifier': identifier,
-            'reference_datetime': reference_datetime,
-            'forecast_hour_datetime': forecast_hour_datetime,
-            'member': member,
-            'elevation': elevation,
-            'expected_count': expected_count
-        }
+        for key, values in file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items(): # noqa
+            layer_name = key
+            identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
-        self.items.append(feature_dict)
+            begin, end, interval = file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/') # noqa
+            interval = re.sub('[^0-9]', '', interval)
+
+            fh = file_pattern_info['fh']
+            if int(fh) in range(int(begin), int(end), int(interval)):
+                feature_dict = {
+                    'layer_name': layer_name,
+                    'filepath': filepath,
+                    'identifier': identifier,
+                    'reference_datetime': reference_datetime,
+                    'forecast_hour_datetime': forecast_hour_datetime,
+                    'member': member,
+                    'elevation': elevation,
+                    'expected_count': expected_count
+                }
+
+                self.items.append(feature_dict)
 
         return True
 
