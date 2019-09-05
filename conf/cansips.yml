@@ -1,0 +1,39 @@
+cansips:
+    # name of the model
+    model: CANSIPS
+    # file name pattern with the different variables between {}
+    # Those path variables will be defined in the layre handler script depending on the filename
+    file_path_pattern: cansips_forecast_raw_latlon1.0x1.0_{wx_variable}_{pressure}_{pres_value}_{YYYY}-{MM}_allmembers.grib2
+    # integer: how many members for each variables as this is a ensemble prediction model
+    members: 20
+    # list of the different bands and their member number and forecast interval
+    bands:
+        - 1:
+            # for example, band 1 is member 1 and forecast month 0 (P0M)
+            member: 1
+            forecast_interval: P0M
+        - 2:
+            # band 2 is member 1 but forecast month 1 (P1M)
+            member: 1
+            forecast_interval: P1M
+        - 13:
+            member: 2
+            forecast_interval: P0M
+    # dictionnary of the different variables for this particular model
+    # variables should matvh the {wx-variable} in file_path_pattern
+    variable:
+        TMP_TGL_2m:
+            # We can have a variable in geomet layer name {}
+            # These variabled will be completed by the layer handler script
+            geomet_layer: CANSIPS.MEM.ETA_TT.{}
+            # forecast hours interval
+            # 00: variable is available from relative forecast month 0
+            # 12: variable is available until relative forecast month 212
+            # PT3H: variable is available every 3 hours (ISO8601)
+            forecast_hours: 00/12/P1M
+            # elevation value for future dimension filtering. Must be string
+            elevation: surface
+        PRATE_SFC_0:
+            geomet_layer: CANSIPS.MEM.ETA_TT.{}
+            forecast_hours: 00/12/P1M
+            elevation: surface

@@ -53,12 +53,6 @@ geomet-data-registry --help
 # get version
 geomet-data-registry --version
 
-# Expand yaml for all groups
-geomet-data-registry expand-yml
-
-# Expand yaml for single group
-geomet-data-registry expand-yml --group=GDPS
-
 # setup tileindex
 geomet-data-registry tileindex setup
 
