@@ -89,9 +89,9 @@ INDEX_SETTINGS = {
                     'elevation': {
                         'type': 'text',
                         'fields': {
-                             'raw': {
-                                 'type': 'keyword'
-                             }
+                            'raw': {
+                                'type': 'keyword'
+                            }
                          }
                     },
                     'members': {
@@ -244,9 +244,9 @@ class ElasticsearchTileIndex(BaseTileIndex):
         for key, value in query_dict.items():
             property_name = 'properties.{}.raw'.format(key)
             es_query_body['query'] = {
-                'match': {
+                'wildcard': {
                     property_name: {
-                        'query': value
+                        'wildcard': value
                     }
                 }
             }
