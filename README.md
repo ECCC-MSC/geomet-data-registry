@@ -65,6 +65,9 @@ geomet-data-registry store setup
 # teardown store
 geomet-data-registry store teardown
 
+# set key/value in store
+geomet-data-registry store set --key somekey --config /path/to/file
+
 # setup metadata
 geomet-data-registry metadata setup
 
@@ -104,4 +107,3 @@ All bugs, enhancements and issues are managed on [GitHub](https://github.com/ECC
 ## Contact
 
 * [Tom Kralidis](https://github.com/tomkralidis)
-

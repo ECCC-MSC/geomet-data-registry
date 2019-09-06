@@ -55,6 +55,29 @@ class BaseStore(object):
 
         raise NotImplementedError()
 
+    def get(self, key):
+        """
+        Get key from store
+
+        :param key: key to fetch
+
+        :returns: string of key value from Redis store
+        """
+
+        raise NotImplementedError()
+
+    def set(self, key, value):
+        """
+        Set key value from
+
+        :param key: key to set value
+        :param value: value to set
+
+        :returns: `bool` of set success
+        """
+
+        raise NotImplementedError()
+
     def __repr__(self):
         return '<BaseStore> {}'.format(self.type)
 

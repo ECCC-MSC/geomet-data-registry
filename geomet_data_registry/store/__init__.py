@@ -17,9 +17,12 @@
 #
 ###############################################################################
 
+import codecs
+import json
 import logging
 
 import click
+from yaml import load, Loader
 
 from geomet_data_registry.env import STORE_TYPE, STORE_URL
 from geomet_data_registry.plugin import load_plugin
@@ -78,5 +81,33 @@ def teardown(ctx, group=None):
     click.echo('Done')
 
 
+@click.command()
+@click.pass_context
+@click.option('--key', '-k', help='key name for store')
+@click.option('--config', '-c', 'config',
+              type=click.Path(exists=True, resolve_path=True),
+              help='Path to config yaml file')
+def set(ctx, key, config):
+    """populate store"""
+
+    provider_def = {
+        'type': STORE_TYPE,
+        'url': STORE_URL
+    }
+
+    st = load_plugin('store', provider_def)
+
+    try:
+        click.echo('populating store {}'.format(st.url))
+        with codecs.open(config) as ff:
+            yml_dict = load(ff, Loader=Loader)
+            string_ = json.dumps(yml_dict)
+            st.set(key, string_)
+    except StoreError as err:
+        raise click.ClickException(err)
+    click.echo('Done')
+
+
 store.add_command(setup)
 store.add_command(teardown)
+store.add_command(set)
