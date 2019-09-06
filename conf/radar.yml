@@ -2,9 +2,9 @@ radar:
     # model name
     model: radar_1km
     # file name pattern with the different variables between {}
-    # Those path variables will be defined in the layre handler script depending on the filename
+    # Those path variables will be defined in the layer handler script depending on the filename
     file_path_pattern: "{YYYYMMDDhhmm}_RADAR_COMPOSITE_1KM_{precipitation_type}.tif"
-    # variables should matvh the {wx-variable} in file_path_pattern
+    # variables should match the {wx-variable} in file_path_pattern
     variable:
         MMHR:
             # geomet layer associated with this variable
