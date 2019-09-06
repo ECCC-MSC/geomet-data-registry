@@ -27,6 +27,7 @@ from yaml import load, Loader
 from geomet_data_registry.env import STORE_TYPE, STORE_URL
 from geomet_data_registry.plugin import load_plugin
 from geomet_data_registry.store.base import StoreError
+from geomet_data_registry.util import json_pretty_print
 
 LOGGER = logging.getLogger(__name__)
 
@@ -101,7 +102,7 @@ def set_key(ctx, key, config):
     st = load_plugin('store', provider_def)
 
     try:
-        click.echo('populating store {}'.format(st.url))
+        click.echo('Setting {} key in store ({}).'.format(key, st.url))
         with codecs.open(config) as ff:
             yml_dict = load(ff, Loader=Loader)
             string_ = json.dumps(yml_dict)
@@ -111,6 +112,35 @@ def set_key(ctx, key, config):
     click.echo('Done')
 
 
+@click.command('get')
+@click.pass_context
+@click.option('--key', '-k', help='key name to retrieve from store')
+def get_key(ctx, key):
+    """get key from store"""
+
+    if all([key is None]):
+        raise click.ClickException('Missing --key/-k')
+
+    provider_def = {
+        'type': STORE_TYPE,
+        'url': STORE_URL
+    }
+
+    st = load_plugin('store', provider_def)
+
+    try:
+        click.echo('Getting {} key from store ({}).'.format(key, st.url))
+        retrived_key = json.loads(st.get_key(key))
+        if retrived_key:
+            click.echo('{}'.format(
+                json_pretty_print(retrived_key)))
+
+    except StoreError as err:
+        raise click.ClickException(err)
+    click.echo('Done')
+
+
 store.add_command(setup)
 store.add_command(teardown)
 store.add_command(set_key)
+store.add_command(get_key)
