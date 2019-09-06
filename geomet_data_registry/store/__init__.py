@@ -90,6 +90,9 @@ def teardown(ctx, group=None):
 def set_key(ctx, key, config):
     """populate store"""
 
+    if all([key is None, config is None]):
+        raise click.ClickException('Missing --key/-k or --config/-c option')
+
     provider_def = {
         'type': STORE_TYPE,
         'url': STORE_URL
