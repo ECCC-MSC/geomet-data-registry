@@ -81,13 +81,13 @@ def teardown(ctx, group=None):
     click.echo('Done')
 
 
-@click.command()
+@click.command('set')
 @click.pass_context
 @click.option('--key', '-k', help='key name for store')
 @click.option('--config', '-c', 'config',
               type=click.Path(exists=True, resolve_path=True),
               help='Path to config yaml file')
-def set(ctx, key, config):
+def set_key(ctx, key, config):
     """populate store"""
 
     provider_def = {
@@ -102,7 +102,7 @@ def set(ctx, key, config):
         with codecs.open(config) as ff:
             yml_dict = load(ff, Loader=Loader)
             string_ = json.dumps(yml_dict)
-            st.set(key, string_)
+            st.set_key(key, string_)
     except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')
@@ -110,4 +110,4 @@ def set(ctx, key, config):
 
 store.add_command(setup)
 store.add_command(teardown)
-store.add_command(set)
+store.add_command(set_key)
