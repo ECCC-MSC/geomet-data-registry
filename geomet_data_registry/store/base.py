@@ -55,7 +55,7 @@ class BaseStore(object):
 
         raise NotImplementedError()
 
-    def get(self, key):
+    def get_key(self, key):
         """
         Get key from store
 
@@ -66,7 +66,7 @@ class BaseStore(object):
 
         raise NotImplementedError()
 
-    def set(self, key, value):
+    def set_key(self, key, value):
         """
         Set key value from
 
