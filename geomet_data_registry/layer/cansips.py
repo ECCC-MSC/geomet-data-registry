@@ -122,7 +122,7 @@ class CansipsLayer(BaseLayer):
                 <SourceBand>{}</SourceBand>
             </ComplexSource>
         </VRTRasterBand>
-    </VRTDataset>'''.format(filepath, band)
+    </VRTDataset>'''.format(filepath, band).replace('\n', '')
 
             feature_dict = {
                 'layer_name': layer_name,

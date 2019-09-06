@@ -28,7 +28,8 @@ LOGGER = logging.getLogger(__name__)
 DATASET_HANDLERS = {
     'CMC_glb': 'ModelGemGlobal',
     'RADAR_COMPOSITE_1KM': 'Radar1km',
-    'cansips': 'CanSIPS'
+    'cansips': 'CanSIPS',
+    'reps': 'REPS'
 }
 
 
@@ -83,7 +84,7 @@ class CoreHandler(BaseHandler):
                 self.layer_plugin.register_datetime = register_datetime_
 
                 query_dict = {
-                    'filepath': self.layer_plugin.filepath
+                    'filepath': '*{}*'.format(self.layer_plugin.filepath)
                 }
                 update_dict = {
                     'register_datetime': register_datetime_
