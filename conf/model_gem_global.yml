@@ -2,24 +2,24 @@ model_gem_global:
     # name of the model
     model: GDPS
     # file name pattern with the different variables between {}
-    # Those path variables will be defined in the layre handler script depending on the filename
+    # Those path variables will be defined in the layer handler script depending on the filename
     file_path_pattern: CMC_glb_{wx_variable}_latlon.24x.24_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
-    # dictionnary of the different variables for this particular model
-    # variables should matvh the {wx-variable} in file_path_pattern
+    # dictionary of the different variables for this particular model
+    # variables should match the {wx-variable} in file_path_pattern
     variable:
         TMP_TGL_2:
             # no members for GDPS as it is a deterministic prediction system
             members: null
             # elevation value for future dimension filtering. Must be string
             elevation: surface
-            # dictionnary of the different model run for this particular model
+            # dictionary of the different model run for this particular model
             model_run:
                 00Z:
-                    # how much files you should expected for this particular variable to have a complete model run
+                    # how many files you should expect for this particular variable to have a complete model run
                     files_expected: 82
                 12Z:
                     files_expected: 82
-            # dictionnary of the different geomet layers associated with this variable
+            # dictionary of the different geomet layers associated with this variable
             geomet_layers:
                 GDPS.ETA_TT:
                     # forecast hours interval
@@ -48,7 +48,7 @@ model_gem_global:
                     files_expected: 82
             geomet_layers:
                 # You may have more then one geomet layers associated to a model variable
-                # you can define those different layers as a dictionnary under geomet_layers
+                # you can define those different layers as a dictionary under geomet_layers
                 GDPS.PRES.WP.600.3h:
                     forecast_hours: 000/144/PT3H
                 GDPS.PRES.WP.600.6h:

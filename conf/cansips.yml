@@ -19,17 +19,17 @@ cansips:
         - 13:
             member: 2
             forecast_interval: P0M
-    # dictionnary of the different variables for this particular model
-    # variables should matvh the {wx-variable} in file_path_pattern
+    # dictionary of the different variables for this particular model
+    # variables should match the {wx-variable} in file_path_pattern
     variable:
         TMP_TGL_2m:
             # We can have a variable in geomet layer name {}
-            # These variabled will be completed by the layer handler script
+            # These variables will be completed by the layer handler script
             geomet_layer: CANSIPS.MEM.ETA_TT.{}
             # forecast hours interval
             # 00: variable is available from relative forecast month 0
             # 12: variable is available until relative forecast month 212
-            # PT3H: variable is available every 3 hours (ISO8601)
+            # P1M: variable is available every month (ISO8601)
             forecast_hours: 00/12/P1M
             # elevation value for future dimension filtering. Must be string
             elevation: surface

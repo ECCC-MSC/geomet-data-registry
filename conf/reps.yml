@@ -1,0 +1,155 @@
+reps:
+    # name of the model
+    model: REPS
+    # for the REPS model both products and members are available and we must distinguish between the two in the
+    # configuration file.
+    product:
+        # file name pattern for REPS products with the different variables between {}
+        # The path variables will be defined in the layer handler script depending on the filename
+        filename_pattern: CMC-reps-srpe-prob_{wx_variable}_ps15km_{YYYYMMDD_model_run}_P{forecast_hour}_all-products.grib2
+        # dictionary of the different variables for products for this particular model
+        # variables should match the {wx-variable} in file_path_pattern
+        variable:
+            FPRATE-Accum-12h_SFC_0:
+                # list of the different bands for a given weather variable and their product name
+                bands:
+                    1:
+                        product: ERGE0.2
+                    2:
+                        product: ERGE1
+                    3:
+                        product: ERGE2.5
+                    4:
+                        product: ERGE5
+                    5:
+                        product: ERGE10
+                    6:
+                        product: ERGE15
+                    7:
+                        product: ERGE20
+                    8:
+                        product: ERGE25
+                    9:
+                        product: ERGE30
+                    10:
+                        product: ERGE40
+                    11:
+                        product: ERGE50
+                    12:
+                        product: ERCE10
+                    13:
+                        product: ERC25
+                    14:
+                        product: ERC50
+                    15:
+                        product: ERC75
+                    16:
+                        product: ERC90
+                    17:
+                        product: ERSSTD
+                    18:
+                        product: ERMEAN
+                    19:
+                        product: ERC0
+                # elevation value for future dimension filtering. Must be string
+                elevation: surface
+                 # no members for REPS products
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 11
+                    12Z:
+                        files_expected: 11
+                geomet_layers:
+                    # We can have a variable in geomet layer name {}
+                    # These variables will be completed by the layer handler script
+                    # In this case the layer name will be completed with the corresponding product name
+                    REPS.DIAG.12_FRMM.{}:
+                        # forecast hours interval
+                        # 12: variable is available from relative forecast hour 12
+                        # 72: variable is available until relative forecast hour 72
+                        # PT12H: variable is available every 12 hours
+                        forecast_hour: 12/72/PT12H
+    member:
+        # file name pattern with the different variables between {}
+        # The path variables will be defined in the layer handler script depending on the filename
+        filename_pattern: CMC-reps-srpe-raw_{wx_variable}_ps15km_{YYYYMMDD_model_run}_P{forecast_hour}_allmbrs.grib2
+        # integer: how many members for each variables as this is a ensemble prediction model
+        members: 20
+        # list of the different bands and their member number
+        bands:
+            1:
+                member: 1
+            2:
+                member: 2
+            3:
+                member: 3
+            4:
+                member: 4
+            5:
+                member: 5
+            6:
+                member: 6
+            7:
+                member: 7
+            8:
+                member: 8
+            9:
+                member: 9
+            10:
+                member: 10
+            11:
+                member: 11
+            12:
+                member: 12
+            13:
+                member: 13
+            14:
+                member: 14
+            15:
+                member: 15
+            16:
+                member: 16
+            17:
+                member: 17
+            18:
+                member: 18
+            19:
+                member: 19
+            20:
+                member: 20
+            21:
+                member: 21
+        variable:
+            PRMSL_MSL_0:
+                # elevation value for future dimension filtering. Must be string. Placed at the variable level because
+                # the value may change for any given variable.
+                elevation: surface
+                # dictionary of the different model run for this particular model
+                model_run:
+                    00Z:
+                        # how many files you should expect for this particular variable to have a complete model run
+                        files_expected: 25
+                    12Z:
+                        files_expected: 25
+                geomet_layers:
+                    # You may have more then one geomet layers associated to a model variable
+                    # you can define those different layers as a dictionary under geomet_layers
+                    REPS.MEM.ETA_PN.{}:
+                        # forecast hours interval
+                        # 00: variable is available from relative forecast hour 00
+                        # 72: variable is available until relative forecast hour 72
+                        # PT12H: variable is available every 3 hours
+                        forecast_hours: 00/72/PT3H
+                    REPS.MEM.ETA_PN-SLP.{}:
+                        forecast_hours: 00/72/PT3H
+            PCP_SFC_0:
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 24
+                    12Z:
+                        files_expected: 24
+                geomet_layers:
+                    REPS.MEM.ETA_PR.{}:
+                        forecast_hours: 03/72/PT3H
