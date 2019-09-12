@@ -126,11 +126,25 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         LOGGER.debug('Connecting to Elasticsearch')
 
+        if self.url_parsed.port is None:  # proxy to default HTTP(S) port
+            if self.url_parsed.scheme == 'https':
+                port = 443
+            else:
+                port = 80
+        else:  # was set explictly
+            port = self.url_parsed.port
+
+        url_settings = {
+            'host': self.url_parsed.netloc,
+            'port': port
+        }
+
         if self.url_parsed.path is not None:
-            self.es = Elasticsearch(self.url_parsed.netloc,
-                                    url_prefix=self.url_parsed.path)
-        else:
-            self.es = Elasticsearch(self.url_parsed.netloc)
+            url_settings['url_prefix'] = self.url_parsed.path
+
+        LOGGER.debug('URL settings: {}'.format(url_settings))
+
+        self.connection = Elasticsearch([url_settings])
 
         if not self.es.ping():
             msg = 'Cannot connect to Elasticsearch'
