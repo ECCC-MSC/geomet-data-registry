@@ -139,12 +139,12 @@ class ElasticsearchTileIndex(BaseTileIndex):
             'port': port
         }
 
-        if self.url_parsed.path is not None:
+        if self.url_parsed.path:
             url_settings['url_prefix'] = self.url_parsed.path
 
         LOGGER.debug('URL settings: {}'.format(url_settings))
 
-        self.connection = Elasticsearch([url_settings])
+        self.es = Elasticsearch([url_settings])
 
         if not self.es.ping():
             msg = 'Cannot connect to Elasticsearch'
