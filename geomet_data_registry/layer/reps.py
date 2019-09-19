@@ -63,7 +63,7 @@ class RepsLayer(BaseLayer):
         self.model = 'reps'
 
         LOGGER.debug('Loading model information from store')
-        file_dict = json.loads(self.store.get(self.model))
+        file_dict = json.loads(self.store.get_key(self.model))
 
         if self.filepath.endswith('allmbrs.grib2'):
             filename_pattern = file_dict[self.model]['member']['filename_pattern']  # noqa
