@@ -135,7 +135,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
             port = self.url_parsed.port
 
         url_settings = {
-            'host': self.url_parsed.netloc,
+            'host': self.url_parsed.hostname,
             'port': port
         }
 
