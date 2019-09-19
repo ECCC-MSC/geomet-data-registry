@@ -60,7 +60,7 @@ class ModelGemGlobalLayer(BaseLayer):
         self.model = 'model_gem_global'
 
         LOGGER.debug('Loading model information from store')
-        file_dict = json.loads(self.store.get(self.model))
+        file_dict = json.loads(self.store.get_key(self.model))
 
         filename_pattern = file_dict[self.model]['file_path_pattern']
 
