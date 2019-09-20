@@ -89,7 +89,7 @@ class BaseLayer(object):
                     LOGGER.debug('Incrementing count')
                     new_layer_file_count = int(current_layer_file_count) + 1
                     self.store.set_key(layer_count_key,
-                                   new_layer_file_count)
+                                       new_layer_file_count)
                 else:
                     LOGGER.debug('Initializing count')
                     new_layer_file_count = 1
