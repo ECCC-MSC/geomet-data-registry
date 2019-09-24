@@ -1,0 +1,15 @@
+model_gem_global:
+    model: GDPS
+    file_path_pattern: CMC_glb_{wx_variable}_latlon.24x.24_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
+    variable:
+        TMP_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_TT:
+                    forecast_hours: 000/240/PT3H

@@ -1,0 +1,122 @@
+reps:
+    model: REPS
+    product:
+        filename_pattern: CMC-reps-srpe-prob_{wx_variable}_ps15km_{YYYYMMDD_model_run}_P{forecast_hour}_all-products.grib2
+        variable:
+            TEMP-Max-24h_TGL_2m:
+                bands:
+                    1:
+                        product: ERGE-30
+                    2:
+                        product: ERGE-25
+                    3:
+                        product: ERGE-20
+                    4:
+                        product: ERGE-15
+                    5:
+                        product: ERGE-10
+                    6:
+                        product: ERGE-5
+                    7:
+                        product: ERGE0
+                    8:
+                        product: ERGE5
+                    9:
+                        product: ERGE10
+                    10:
+                        product: ERGE15
+                    11:
+                        product: ERGE20
+                    12:
+                        product: ERGE25
+                    13:
+                        product: ERGE30
+                    14:
+                        product: ERGE35
+                    15:
+                        product: ERGE40
+                    16:
+                        product: ERC10
+                    17:
+                        product: ERC25
+                    18:
+                        product: ERC50
+                    19:
+                        product: ERC75
+                    20:
+                        product: ERC90
+                    21:
+                        product: ERSSTD
+                    22:
+                        product: ERMEAN
+                    23:
+                        product: ERC0
+                    24:
+                        product: ERC100
+                    elevation: 2m
+                    members: null
+                    model_run:
+                        00Z:
+                            files_expected: 5
+                        12Z:
+                            files_expected: 5
+                    geomet_layers:
+                        REPS.DIAG.24_T8.{}:
+                            forecast_hour: 24/72/PT12H
+   member:
+        filename_pattern: CMC-reps-srpe-raw_{wx_variable}_ps15km_{YYYYMMDD_model_run}_P{forecast_hour}_allmbrs.grib2
+        members: 20
+        bands:
+            1:
+                member: 1
+            2:
+                member: 2
+            3:
+                member: 3
+            4:
+                member: 4
+            5:
+                member: 5
+            6:
+                member: 6
+            7:
+                member: 7
+            8:
+                member: 8
+            9:
+                member: 9
+            10:
+                member: 10
+            11:
+                member: 11
+            12:
+                member: 12
+            13:
+                member: 13
+            14:
+                member: 14
+            15:
+                member: 15
+            16:
+                member: 16
+            17:
+                member: 17
+            18:
+                member: 18
+            19:
+                member: 19
+            20:
+                member: 20
+            21:
+                member: 21
+        variable:
+            TMP_TGL_2m:
+                elevation: 2m
+                model_run:
+                    00Z:
+                        files_expected: 25
+                    12Z:
+                        files_expected: 25
+                geomet_layers:
+                    REPS.MEM.ETA_TT.{}:
+                        forecast_hours: 00/72/PT3H

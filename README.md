@@ -88,7 +88,10 @@ geomet-data-registry data add --directory=/path/to/directory
 
 ### Running Tests
 
-TODO
+```bash
+. geomet_data_registry/tests/geomet-data-registry-test.env
+python setup.py test
+```
 
 ## Releasing
 
