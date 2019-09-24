@@ -24,7 +24,7 @@ import os
 from parse import parse
 import re
 
-from geomet_data_registry.layer.base import BaseLayer
+from geomet_data_registry.layer.base import BaseLayer, LayerError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -70,6 +70,12 @@ class Radar1kmLayer(BaseLayer):
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
+
+        if self.wx_variable not in file_dict[self.model]['variable']:
+            msg = 'Variable "{}" not in ' \
+                  'configuration file'.format(self.wx_variable)
+            LOGGER.exception(msg)
+            raise LayerError(msg)
 
         time_format = '%Y%m%d%H%M'
         date_ = datetime.strptime(file_pattern_info['time_'], time_format)
