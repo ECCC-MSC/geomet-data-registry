@@ -51,4 +51,4 @@ class Event(object):
 
 
 event = Event(self)
-self.on_message = event.dispatch
+self.on_file = event.dispatch
