@@ -55,7 +55,8 @@ class Radar1kmLayer(BaseLayer):
         """
 
         self.model = 'radar'
-
+        self.filepath = filepath    
+    
         LOGGER.debug('Loading model information from store')
         file_dict = json.loads(self.store.get_key(self.model))
 
