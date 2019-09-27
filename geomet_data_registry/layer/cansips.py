@@ -99,8 +99,11 @@ class CansipsLayer(BaseLayer):
 
             dict_bands = file_dict[self.model]['bands']
 
+            fhi = dict_bands[band]['forecast_interval']
+            fhi = re.sub('[^0-9]', '', fhi)
+
             forecast_hour_datetime = reference_datetime + \
-                relativedelta(months=dict_bands[band]['forecast_interval'])
+                relativedelta(months=int(fhi))
 
             member = dict_bands[band]['member']
 
@@ -138,6 +141,7 @@ class CansipsLayer(BaseLayer):
                 'reference_datetime': reference_datetime,
                 'forecast_hour_datetime': forecast_hour_datetime,
                 'member': member,
+                'model': self.model,
                 'elevation': elevation,
                 'expected_count': expected_count
             }

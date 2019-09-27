@@ -94,6 +94,14 @@ INDEX_SETTINGS = {
                             }
                          }
                     },
+                    'model': {
+                        'type': 'text',
+                        'fields': {
+                            'raw': {
+                                'type': 'keyword'
+                            }
+                         }
+                    },
                     'members': {
                         'type': 'integer'
                     }

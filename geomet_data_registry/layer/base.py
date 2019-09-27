@@ -134,6 +134,7 @@ class BaseLayer(object):
                  'filepath': item['filepath'],
                  'elevation': item['elevation'],
                  'member': item['member'],
+                 'model': item['model'],
                  'forecast_hour_datetime': item['forecast_hour_datetime'],
                  'reference_datetime': item['reference_datetime'],
                  'file_creation_datetime': self.file_creation_datetime,

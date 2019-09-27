@@ -97,6 +97,7 @@ class Radar1kmLayer(BaseLayer):
             'reference_datetime': None,
             'forecast_hour_datetime': date_,
             'member': member,
+            'model': self.model,
             'elevation': elevation,
             'expected_count': None
         }
