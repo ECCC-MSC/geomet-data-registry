@@ -22,6 +22,7 @@ import logging
 
 from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
 from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.util import get_today_and_now
 
 LOGGER = logging.getLogger(__name__)
 
@@ -43,7 +44,7 @@ class BaseLayer(object):
         self.model_run_list = []
 
         self.file_creation_datetime = None
-        self.receive_datetime = datetime.now()
+        self.receive_datetime = get_today_and_now()
         self.identify_datetime = None
         self.register_datetime = None
         self.filepath = None

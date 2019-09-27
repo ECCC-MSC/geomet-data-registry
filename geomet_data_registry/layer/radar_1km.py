@@ -54,8 +54,11 @@ class Radar1kmLayer(BaseLayer):
         :returns: `list` of file properties
         """
 
+        self.filepath = filepath
+        self.file_creation_datetime = datetime.fromtimestamp(
+            os.path.getmtime(filepath)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.model = 'radar'
-        self.filepath = filepath    
+
     
         LOGGER.debug('Loading model information from store')
         file_dict = json.loads(self.store.get_key(self.model))
@@ -95,7 +98,7 @@ class Radar1kmLayer(BaseLayer):
             'filepath': filepath,
             'identifier': identifier,
             'reference_datetime': None,
-            'forecast_hour_datetime': date_,
+            'forecast_hour_datetime': date_.strftime('%Y-%m-%dT%H:%M:%SZ'),
             'member': member,
             'model': self.model,
             'elevation': elevation,
