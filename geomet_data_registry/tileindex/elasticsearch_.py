@@ -164,7 +164,21 @@ class ElasticsearchTileIndex(BaseTileIndex):
             raise TileIndexError(msg)
 
         LOGGER.info('Creating index {}'.format(self.name))
+
         self.es.indices.create(index=self.name, body=INDEX_SETTINGS)
+        self.es.ingest.put_pipeline(id='gdr_register_datetime', body={
+            'description': 'Adds a timestamp to a geomet-data-registry document\'s '  # noqa
+                           'properties.register_datetime property as the document is indexed.',  # noqa
+            'processors': [
+                {
+                    'set': {
+                        'field': 'properties.register_datetime',
+                        'value': '{{_ingest.timestamp}}'
+                    }
+                }
+            ]
+        })
+
         return True
 
     def teardown(self):
@@ -177,6 +191,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         LOGGER.info('Deleting index {}'.format(self.name))
         try:
             self.es.indices.delete(index=self.name)
+            self.es.ingest.delete_pipeline(id='gdr_register_datetime')
         except exceptions.NotFoundError as err:
             msg = err
             LOGGER.error(msg)
@@ -206,7 +221,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
             # ironic eh?).
             # TODO: update using asyncio or multiprocessing
             r = self.es.index(index=self.name, id=identifier, body=data,
-                              refresh='wait_for')
+                              pipeline='gdr_register_datetime')
             if r['result'] == 'created':
                 status_code = 201
             elif r['result'] == 'updated':
