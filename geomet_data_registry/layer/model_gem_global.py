@@ -111,19 +111,20 @@ class ModelGemGlobalLayer(BaseLayer):
             interval = re.sub('[^0-9]', '', interval)
 
             fh = file_pattern_info['fh']
-            if int(fh) in range(int(begin), int(end), int(interval)):
-                feature_dict = {
-                    'layer_name': layer_name,
-                    'filepath': filepath,
-                    'identifier': identifier,
-                    'reference_datetime': reference_datetime,
-                    'forecast_hour_datetime': forecast_hour_datetime,
-                    'member': member,
-                    'model': self.model,
-                    'elevation': elevation,
-                    'expected_count': expected_count
-                }
 
+            feature_dict = {
+                'layer_name': layer_name,
+                'filepath': filepath,
+                'identifier': identifier,
+                'reference_datetime': reference_datetime,
+                'forecast_hour_datetime': forecast_hour_datetime,
+                'member': member,
+                'model': self.model,
+                'elevation': elevation,
+                'expected_count': expected_count
+            }
+
+            if (int(fh) == 0 and int(interval) == 0) or (int(fh) in range(int(begin), int(end), int(interval))):
                 self.items.append(feature_dict)
 
         return True
