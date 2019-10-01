@@ -119,6 +119,7 @@ class ModelGemGlobalLayer(BaseLayer):
                     'reference_datetime': reference_datetime,
                     'forecast_hour_datetime': forecast_hour_datetime,
                     'member': member,
+                    'model': self.model,
                     'elevation': elevation,
                     'expected_count': expected_count
                 }
