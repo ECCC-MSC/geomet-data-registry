@@ -77,21 +77,7 @@ class CoreHandler(BaseHandler):
             self.layer_plugin.identify_datetime = datetime.now().isoformat()
 
             LOGGER.debug('Registering file')
-            register_status = self.layer_plugin.register()
-
-            if register_status:
-                register_datetime_ = datetime.now()
-                self.layer_plugin.register_datetime = register_datetime_
-
-                query_dict = {
-                    'filepath': '*{}*'.format(self.layer_plugin.filepath)
-                }
-                update_dict = {
-                    'register_datetime': register_datetime_
-                }
-
-                self.layer_plugin.tileindex.update_by_query(
-                    query_dict, update_dict)
+            self.layer_plugin.register()
 
         return True
 
