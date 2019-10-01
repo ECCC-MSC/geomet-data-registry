@@ -101,6 +101,18 @@ class BaseTileIndex(object):
 
         raise NotImplementedError()
 
+    def bulk_add(self, data):
+        """
+        Add an many items to the tileindex
+
+        :param data: GeoJSON dict
+
+        :returns: list of dict {layer_id: HTTP status code} 
+        """
+
+        raise NotImplementedError()
+
+
     def update(self, identifier, update_dict):
         """
         Update an item to the tileindex
