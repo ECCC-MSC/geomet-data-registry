@@ -240,6 +240,57 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         return status_code
 
+    def bulk_add(self, data):
+        """
+        Add many items to the tileindex
+
+        :param data: GeoJSON dict
+
+        :returns: list of dict {layer_id: HTTP status code}
+        """
+
+        status_code = None
+
+        LOGGER.debug('Starting bulk add')
+        try:
+            # until the document is fully available in ES.  This is done in
+            # order to make updates to the layer registration datetime
+            # immediately after in support of tracking performance (kind of
+            # ironic eh?).
+            # TODO: update using asyncio or multiprocessing
+
+            # add 'pipeline': 'register_datetime' to data_es
+            bulk_data = []
+            for doc in data:
+                op_dict = {
+                    'index': {
+                        '_index': self.name,
+                        '_type': '_doc'
+                    }
+                }
+                op_dict['index']['_id'] = doc['properties']['identifier']
+                bulk_data.append(op_dict)
+                bulk_data.append(doc)
+            r = self.es.bulk(index=self.name, body=bulk_data,
+                             pipeline='gdr_register_datetime')
+
+            status_arr = {} 
+
+            for i in r['items']:
+                lyr_id = i['index']['_id']
+                lyr_status = i['index']['status']
+                tmp_dict = {}
+                tmp_dict[lyr_id] = lyr_status
+                status_arr.update(tmp_dict)
+
+        except Exception as err:
+            LOGGER.exception('Error bulk indexing: {}'.format(err))
+            return 500
+
+
+        return status_arr
+
+
     def update(self, identifier, update_dict):
         """
         Update an existing item in the tileindex

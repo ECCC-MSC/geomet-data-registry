@@ -71,42 +71,24 @@ class BaseLayer(object):
         :returns: `bool` of status result
         """
 
-        for item in self.items:
+        if len(self.items) > 1:
+            item_bulk = []
+            for item in self.items:
+                item_bulk.append(self.layer2dict(item))
+            LOGGER.debug('Adding to tileindex (bulk)')
+            r = self.tileindex.bulk_add(item_bulk)
+            for item in self.items:
+                status = r[item['identifier']]
+                item_dict = self.layer2dict(item)
+                self.update_count(item, status, item_dict)
+        else:
+            item = self.items[0]
             LOGGER.debug('Adding item {}'.format(item['identifier']))
-
             item_dict = self.layer2dict(item)
-
             LOGGER.debug('Adding to tileindex')
-            r = self.tileindex.add(item['identifier'], item_dict)
-            if item['expected_count'] is not None and r == 201:
-
-                layer_count_key = '{}_{}_count'.format(
-                    item_dict['properties']['layer'], self.model_run)
-                current_layer_file_count = self.store.get_key(layer_count_key)
-
-                LOGGER.debug('Adding to store')
-                if current_layer_file_count is not None:
-                    LOGGER.debug('Incrementing count')
-                    new_layer_file_count = int(current_layer_file_count) + 1
-                    self.store.set_key(layer_count_key,
-                                       new_layer_file_count)
-                else:
-                    LOGGER.debug('Initializing count')
-                    new_layer_file_count = 1
-                    self.store.set_key(layer_count_key, 1)
-
-                LOGGER.debug('Look if we have a complete model run')
-                if int(new_layer_file_count) >= item['expected_count']:
-                    for mr in self.model_run_list:
-                        layer_count_key_reset = '{}_{}_count'.format(
-                            item_dict['properties']['layer'], mr)
-                        self.store.set_key(layer_count_key_reset, 0)
-                elif int(new_layer_file_count) == 1:
-                    for mr in self.model_run_list:
-                        layer_count_key_reset = '{}_{}_count'.format(
-                            item_dict['properties']['layer'], mr)
-                        if layer_count_key_reset != layer_count_key:
-                            self.store.set_key(layer_count_key_reset, 0)
+            r = self.tileindex.add(item_dict['properties']['identifier'],
+                                   item_dict)
+            self.update_count(item, r, item_dict)
 
         return True
 
@@ -145,6 +127,45 @@ class BaseLayer(object):
         }
 
         return feature_dict
+
+    def update_count(self, item, r, item_dict):
+        """
+        update count in store for expected files/layers
+
+        :param item: dictionary of layer property from the items list
+        :param r: (int) http status code
+        :param item_dict: dictionary of layers formatted for the tileindex
+        """
+
+        if item['expected_count'] is not None and r == 201:
+
+            layer_count_key = '{}_{}_count'.format(
+                item_dict['properties']['layer'], self.model_run)
+            current_layer_file_count = self.store.get_key(layer_count_key)
+
+            LOGGER.debug('Adding to store')
+            if current_layer_file_count is not None:
+                LOGGER.debug('Incrementing count')
+                new_layer_file_count = int(current_layer_file_count) + 1
+                self.store.set_key(layer_count_key,
+                                   new_layer_file_count)
+            else:
+                LOGGER.debug('Initializing count')
+                new_layer_file_count = 1
+                self.store.set_key(layer_count_key, 1)
+
+            LOGGER.debug('Look if we have a complete model run')
+            if int(new_layer_file_count) >= item['expected_count']:
+                for mr in self.model_run_list:
+                    layer_count_key_reset = '{}_{}_count'.format(
+                        item_dict['properties']['layer'], mr)
+                    self.store.set_key(layer_count_key_reset, 0)
+            elif int(new_layer_file_count) == 1:
+                for mr in self.model_run_list:
+                    layer_count_key_reset = '{}_{}_count'.format(
+                        item_dict['properties']['layer'], mr)
+                    if layer_count_key_reset != layer_count_key:
+                        self.store.set_key(layer_count_key_reset, 0)
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)
