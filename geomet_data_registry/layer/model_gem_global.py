@@ -56,7 +56,7 @@ class ModelGemGlobalLayer(BaseLayer):
 
         self.filepath = filepath
         self.file_creation_datetime = datetime.fromtimestamp(
-                os.path.getmtime(filepath))
+            os.path.getmtime(filepath)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.model = 'model_gem_global'
 
         LOGGER.debug('Loading model information from store')
@@ -116,8 +116,8 @@ class ModelGemGlobalLayer(BaseLayer):
                 'layer_name': layer_name,
                 'filepath': filepath,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime,
-                'forecast_hour_datetime': forecast_hour_datetime,
+                'reference_datetime': reference_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                'forecast_hour_datetime': forecast_hour_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,

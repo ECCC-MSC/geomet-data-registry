@@ -57,7 +57,7 @@ class CansipsLayer(BaseLayer):
 
         self.filepath = filepath
         self.file_creation_datetime = datetime.fromtimestamp(
-                os.path.getmtime(filepath))
+            os.path.getmtime(filepath)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         self.model = 'cansips'
 
         LOGGER.debug('Loading model information from store')
@@ -138,8 +138,8 @@ class CansipsLayer(BaseLayer):
                 'layer_name': layer_name,
                 'filepath': vrt,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime,
-                'forecast_hour_datetime': forecast_hour_datetime,
+                'reference_datetime': reference_datetime.strftime(time_format),
+                'forecast_hour_datetime': forecast_hour_datetime.strftime(time_format),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,

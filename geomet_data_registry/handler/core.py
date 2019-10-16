@@ -22,7 +22,7 @@ import logging
 
 from geomet_data_registry.plugin import load_plugin
 from geomet_data_registry.handler.base import BaseHandler
-
+from geomet_data_registry.util import get_today_and_now
 LOGGER = logging.getLogger(__name__)
 
 DATASET_HANDLERS = {
@@ -74,8 +74,7 @@ class CoreHandler(BaseHandler):
         identify_status = self.layer_plugin.identify(self.filepath)
 
         if identify_status:
-            self.layer_plugin.identify_datetime = datetime.now().isoformat()
-
+            self.layer_plugin.identify_datetime = get_today_and_now()
             LOGGER.debug('Registering file')
             self.layer_plugin.register()
 

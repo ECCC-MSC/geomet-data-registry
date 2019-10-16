@@ -67,24 +67,31 @@ INDEX_SETTINGS = {
                     },
                     'forecast_hour_datetime': {
                         'type': 'date',
+                        'format': 'date_time_no_millis'
                     },
                     'reference_datetime': {
                         'type': 'date',
+                        'format': 'date_time_no_millis'
                     },
                     'file_creation_datetime': {
                         'type': 'date',
+                        'format': 'date_time'
                     },
                     'receive_datetime': {
                         'type': 'date',
+                        'format': 'date_time'
                     },
                     'identify_datetime': {
                         'type': 'date',
+                        'format': 'date_time'
                     },
                     'register_datetime': {
                         'type': 'date',
+                        'format': 'date_time'
                     },
                     'expiry_datetime': {
                         'type': 'date',
+                        'format': 'date_time'
                     },
                     'elevation': {
                         'type': 'text',
@@ -342,7 +349,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         for key, value in update_dict.items():
             es_query_body['script'] = {
                 'source': 'ctx._source.properties.{} = "{}"'.format(
-                    key, value.isoformat())
+                    key, value)
             }
 
         LOGGER.debug('ES query body: {}'.format(es_query_body))

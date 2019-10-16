@@ -17,7 +17,7 @@
 #
 ###############################################################################
 
-from datetime import datetime, date, time
+from datetime import datetime, date, time, timezone
 import json
 import logging
 
@@ -53,3 +53,14 @@ def json_serial(obj):
     msg = '{} type {} not serializable'.format(obj, type(obj))
     LOGGER.error(msg)
     raise TypeError(msg)
+
+
+def get_today_and_now():
+    """
+    helper function to return a string
+    of the current UTC datetime with the Z designator
+    (ex. `2019-09-30T14:49:28.213142Z`)
+
+    :returns: Current UTC datetime as `str`
+    """
+    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
