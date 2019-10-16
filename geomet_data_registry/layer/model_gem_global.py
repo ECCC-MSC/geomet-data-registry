@@ -124,7 +124,7 @@ class ModelGemGlobalLayer(BaseLayer):
                 'expected_count': expected_count
             }
 
-            if (int(fh) == 0 and int(interval) == 0) or (int(fh) in range(int(begin), int(end), int(interval))):
+            if (int(fh) == 0 and int(interval) == 0) or (int(fh) in range(int(begin), int(end) + 1, int(interval))):
                 self.items.append(feature_dict)
 
         return True
