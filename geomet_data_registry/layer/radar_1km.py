@@ -78,8 +78,8 @@ class Radar1kmLayer(BaseLayer):
         if self.wx_variable not in file_dict[self.model]['variable']:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
-            LOGGER.exception(msg)
-            raise LayerError(msg)
+            LOGGER.warning(msg)
+            return False
 
         time_format = '%Y%m%d%H%M'
         date_ = datetime.strptime(file_pattern_info['time_'], time_format)

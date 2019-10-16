@@ -87,8 +87,8 @@ class RepsLayer(BaseLayer):
         if self.wx_variable not in var_path:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
-            LOGGER.exception(msg)
-            raise LayerError(msg)
+            LOGGER.warning(msg)
+            return False
 
         weather_var = file_dict[self.model][self.type]['variable'][self.wx_variable]  # noqa
 

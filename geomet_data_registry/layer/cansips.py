@@ -81,8 +81,8 @@ class CansipsLayer(BaseLayer):
         if self.wx_variable not in file_dict[self.model]['variable']:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
-            LOGGER.exception(msg)
-            raise LayerError(msg)
+            LOGGER.warning(msg)
+            return False
 
         weather_var = file_dict[self.model]['variable'][self.wx_variable]
 
