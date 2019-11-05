@@ -17,7 +17,6 @@
 #
 ###############################################################################
 
-from datetime import datetime
 import logging
 
 from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
@@ -165,7 +164,14 @@ class BaseLayer(object):
                 for mr in self.model_run_list:
                     layer_count_key_reset = '{}_{}_count'.format(
                         item_dict['properties']['layer'], mr)
-                    if layer_count_key_reset != layer_count_key:
+                    mr_nm = int(self.store.get_key(layer_count_key_reset))
+                    if layer_count_key_reset != layer_count_key and mr_nm != 0:
+                        LOGGER.error('Incomplete model run: {} '
+                                     '--> {} / {} files '
+                                     '({})'.format(mr,
+                                                   mr_nm,
+                                                   item['expected_count'],
+                                                   item['layer_name']))
                         self.store.set_key(layer_count_key_reset, 0)
 
     def __repr__(self):
