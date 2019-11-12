@@ -63,7 +63,7 @@ def add_data(ctx, file_, directory, verify=False):
         files_to_process = [file_]
     elif directory is not None:
         for root, dirs, files in os.walk(directory):
-            for f in files:
+            for f in sorted(files):
                 files_to_process.append(os.path.join(root, f))
 
     for file_to_process in files_to_process:

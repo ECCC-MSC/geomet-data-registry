@@ -17,7 +17,6 @@
 #
 ###############################################################################
 
-from datetime import datetime
 import logging
 
 from geomet_data_registry.plugin import load_plugin
@@ -77,7 +76,8 @@ class CoreHandler(BaseHandler):
             self.layer_plugin.identify_datetime = get_today_and_now()
             LOGGER.debug('Registering file')
             self.layer_plugin.register()
-
+            if self.layer_plugin.new_key_store is True:
+                self.layer_plugin.add_time_key()
         return True
 
     def __repr__(self):

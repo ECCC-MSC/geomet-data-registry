@@ -50,6 +50,9 @@ class BaseLayer(object):
         self.model = None
         self.model_run = None
         self.wx_variable = None
+        self.layer_name = None
+        self.date_ = None
+        self.file_dict = None
 
         self.name = provider_def['name']
         self.store = load_plugin('store', STORE_PROVIDER_DEF)
@@ -160,6 +163,7 @@ class BaseLayer(object):
                     layer_count_key_reset = '{}_{}_count'.format(
                         item_dict['properties']['layer'], mr)
                     self.store.set_key(layer_count_key_reset, 0)
+                    # self.new_key_store = True
             elif int(new_layer_file_count) == 1:
                 for mr in self.model_run_list:
                     layer_count_key_reset = '{}_{}_count'.format(
@@ -173,6 +177,18 @@ class BaseLayer(object):
                                                    item['expected_count'],
                                                    item['layer_name']))
                         self.store.set_key(layer_count_key_reset, 0)
+        else:
+            self.new_key_store = True
+
+    def add_time_key(self):
+        """
+        Add time keys when applicable:
+            - model run default time
+            - model run extent
+            - forecast hour extent
+        and for observation:
+            - latest time step
+        """
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)
