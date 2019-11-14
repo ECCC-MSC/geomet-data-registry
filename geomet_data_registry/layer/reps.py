@@ -25,7 +25,7 @@ import os
 from parse import parse
 import re
 
-from geomet_data_registry.layer.base import BaseLayer, LayerError
+from geomet_data_registry.layer.base import BaseLayer
 
 LOGGER = logging.getLogger(__name__)
 
@@ -144,8 +144,8 @@ class RepsLayer(BaseLayer):
                     'layer_name': layer_name,
                     'filepath': vrt,
                     'identifier': identifier,
-                    'reference_datetime': reference_datetime.strftime(time_format),
-                    'forecast_hour_datetime': forecast_hour_datetime.strftime(time_format),
+                    'reference_datetime': reference_datetime.strftime(time_format), # noqa
+                    'forecast_hour_datetime': forecast_hour_datetime.strftime(time_format), # noqa
                     'member': member,
                     'model': self.model,
                     'elevation': elevation,
@@ -155,6 +155,19 @@ class RepsLayer(BaseLayer):
                 self.items.append(feature_dict)
 
         return True
+
+    def add_time_key(self):
+        """
+        Add time keys when applicable:
+            - model run default time
+            - model run extent
+            - forecast hour extent
+        and for observation:
+            - latest time step
+        """
+
+        # TODO add function to create time keys
+        pass
 
     def __repr__(self):
         return '<ModelREPSLayer> {}'.format(self.name)

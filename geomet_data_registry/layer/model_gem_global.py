@@ -24,7 +24,8 @@ import os
 from parse import parse
 import re
 
-from geomet_data_registry.layer.base import BaseLayer, LayerError
+from geomet_data_registry.layer.base import BaseLayer
+from geomet_data_registry.util import DATE_FORMAT
 
 LOGGER = logging.getLogger(__name__)
 
@@ -60,9 +61,9 @@ class ModelGemGlobalLayer(BaseLayer):
         self.model = 'model_gem_global'
 
         LOGGER.debug('Loading model information from store')
-        file_dict = json.loads(self.store.get_key(self.model))
+        self.file_dict = json.loads(self.store.get_key(self.model))
 
-        filename_pattern = file_dict[self.model]['file_path_pattern']
+        filename_pattern = self.file_dict[self.model]['file_path_pattern']
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
@@ -75,39 +76,39 @@ class ModelGemGlobalLayer(BaseLayer):
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        if self.wx_variable not in file_dict[self.model]['variable']:
+        if self.wx_variable not in self.file_dict[self.model]['variable']:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
             LOGGER.warning(msg)
             return False
 
-        runs = file_dict[self.model]['variable'][self.wx_variable]['model_run']
+        runs = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'] # noqa
         self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%d%H'
-        date_ = datetime.strptime(file_pattern_info['time_'], time_format)
+        self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        reference_datetime = date_
-        self.model_run = '{}Z'.format(date_.strftime('%H'))
+        reference_datetime = self.date_
+        self.model_run = '{}Z'.format(self.date_.strftime('%H'))
 
-        forecast_hour_datetime = date_ + \
+        forecast_hour_datetime = self.date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
-        member = file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
-        elevation = file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
+        member = self.file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
+        elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
         str_mr = re.sub('[^0-9]',
                         '',
-                        reference_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'))
+                        reference_datetime.strftime(DATE_FORMAT))
         str_fh = re.sub('[^0-9]',
                         '',
-                        forecast_hour_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'))
-        expected_count = file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected'] # noqa
+                        forecast_hour_datetime.strftime(DATE_FORMAT))
+        expected_count = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected'] # noqa
 
-        for key, values in file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items(): # noqa
+        for key, values in self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items(): # noqa
             layer_name = key
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
-            begin, end, interval = file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/') # noqa
+            begin, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/') # noqa
             interval = re.sub('[^0-9]', '', interval)
 
             fh = file_pattern_info['fh']
@@ -116,18 +117,57 @@ class ModelGemGlobalLayer(BaseLayer):
                 'layer_name': layer_name,
                 'filepath': filepath,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'),
-                'forecast_hour_datetime': forecast_hour_datetime.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                'reference_datetime': reference_datetime.strftime(DATE_FORMAT),
+                'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT), # noqa
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,
                 'expected_count': expected_count
             }
 
-            if (int(fh) == 0 and int(interval) == 0) or (int(fh) in range(int(begin), int(end) + 1, int(interval))):
+            if (int(fh) == 0 and int(interval) == 0) or \
+               (int(fh) in range(int(begin), int(end) + 1, int(interval))):
                 self.items.append(feature_dict)
 
         return True
+
+    def add_time_key(self):
+        """
+        Add time keys when applicable:
+            - model run default time
+            - model run extent
+            - forecast hour extent
+        and for observation:
+            - latest time step
+        """
+
+        for key, values in self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items(): # noqa
+
+            time_extent_key = '{}_time_extent'.format(key)
+            start, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/') # noqa
+            start_time = self.date_ + timedelta(hours=int(start))
+            end_time = self.date_ + timedelta(hours=int(end))
+            start_time = start_time.strftime(DATE_FORMAT)
+            end_time = end_time.strftime(DATE_FORMAT)
+            time_extent_value = '{}/{}/{}'.format(start_time,
+                                                  end_time,
+                                                  interval)
+
+            default_model_key = '{}_default_model_run'.format(key)
+
+            model_run_extent_key = '{}_model_run_extent'.format(key)
+            retention_hours = self.file_dict[self.model]['model_run_retention_hours'] # noqa
+            interval_hours = self.file_dict[self.model]['model_run_interval_hours'] # noqa
+            default_model_run = self.date_.strftime(DATE_FORMAT)
+            run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT) # noqa
+            run_interval = 'PT{}H'.format(interval_hours)
+            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval) # noqa
+
+            LOGGER.debug('Adding time keys in the store')
+
+            self.store.set_key(time_extent_key, time_extent_value)
+            self.store.set_key(default_model_key, default_model_run)
+            self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
         return '<ModelGemGlobalLayer> {}'.format(self.name)

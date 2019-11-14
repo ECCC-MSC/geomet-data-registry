@@ -50,9 +50,9 @@ class BaseLayer(object):
         self.model = None
         self.model_run = None
         self.wx_variable = None
-        self.layer_name = None
         self.date_ = None
         self.file_dict = None
+        self.new_key_store = False
 
         self.name = provider_def['name']
         self.store = load_plugin('store', STORE_PROVIDER_DEF)
@@ -80,10 +80,9 @@ class BaseLayer(object):
                 item_bulk.append(self.layer2dict(item))
             LOGGER.debug('Adding to tileindex (bulk)')
             r = self.tileindex.bulk_add(item_bulk)
-            for item in self.items:
-                status = r[item['identifier']]
-                item_dict = self.layer2dict(item)
-                self.update_count(item, status, item_dict)
+            status = r[self.items[0]['identifier']]
+            item_dict = item_bulk[0]
+            self.update_count(self.items[0], status, item_dict)
         else:
             item = self.items[0]
             LOGGER.debug('Adding item {}'.format(item['identifier']))
@@ -91,7 +90,7 @@ class BaseLayer(object):
             LOGGER.debug('Adding to tileindex')
             r = self.tileindex.add(item_dict['properties']['identifier'],
                                    item_dict)
-            self.update_count(item, r, item_dict)
+            self.update_count(self.items[0], r, item_dict)
 
         return True
 
@@ -120,6 +119,7 @@ class BaseLayer(object):
                  'elevation': item['elevation'],
                  'member': item['member'],
                  'model': item['model'],
+                 'weather_variable': self.wx_variable,
                  'forecast_hour_datetime': item['forecast_hour_datetime'],
                  'reference_datetime': item['reference_datetime'],
                  'file_creation_datetime': self.file_creation_datetime,
@@ -141,9 +141,8 @@ class BaseLayer(object):
         """
 
         if item['expected_count'] is not None and r == 201:
-
-            layer_count_key = '{}_{}_count'.format(
-                item_dict['properties']['layer'], self.model_run)
+            layer_count_key = '{}_{}_{}_count'.format(
+                self.model, self.wx_variable, self.model_run)
             current_layer_file_count = self.store.get_key(layer_count_key)
 
             LOGGER.debug('Adding to store')
@@ -160,16 +159,17 @@ class BaseLayer(object):
             LOGGER.debug('Look if we have a complete model run')
             if int(new_layer_file_count) >= item['expected_count']:
                 for mr in self.model_run_list:
-                    layer_count_key_reset = '{}_{}_count'.format(
-                        item_dict['properties']['layer'], mr)
+                    layer_count_key_reset = '{}_{}_{}_count'.format(
+                        self.model, self.wx_variable, mr)
                     self.store.set_key(layer_count_key_reset, 0)
-                    # self.new_key_store = True
+                    self.new_key_store = True
             elif int(new_layer_file_count) == 1:
                 for mr in self.model_run_list:
-                    layer_count_key_reset = '{}_{}_count'.format(
-                        item_dict['properties']['layer'], mr)
-                    mr_nm = int(self.store.get_key(layer_count_key_reset))
-                    if layer_count_key_reset != layer_count_key and mr_nm != 0:
+                    layer_count_key_reset = '{}_{}_{}_count'.format(
+                        self.model, self.wx_variable, mr)
+                    mr_nm = self.store.get_key(layer_count_key_reset)
+                    if layer_count_key_reset != layer_count_key and \
+                       mr_nm not in ['0', None]:
                         LOGGER.error('Incomplete model run: {} '
                                      '--> {} / {} files '
                                      '({})'.format(mr,
