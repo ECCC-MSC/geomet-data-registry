@@ -25,6 +25,7 @@ LOGGER = logging.getLogger(__name__)
 
 DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 
+
 def json_pretty_print(data):
     """
     Pretty print a JSON serialization

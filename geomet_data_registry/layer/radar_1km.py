@@ -84,18 +84,18 @@ class Radar1kmLayer(BaseLayer):
         time_format = '%Y%m%d%H%M'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        self.layer_name = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
+        layer_name = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
 
         member = self.file_dict[self.model]['variable'][self.wx_variable]['member']  # noqa
         elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
         str_fh = re.sub('[^0-9]',
                         '',
                         self.date_.strftime(DATE_FORMAT))
-        identifier = '{}-{}'.format(self.layer_name, str_fh)
+        identifier = '{}-{}'.format(layer_name, str_fh)
         date_format = DATE_FORMAT
 
         feature_dict = {
-            'layer_name': self.layer_name,
+            'layer_name': layer_name,
             'filepath': filepath,
             'identifier': identifier,
             'reference_datetime': None,
@@ -119,10 +119,11 @@ class Radar1kmLayer(BaseLayer):
             - latest time step
         """
 
-        key_name = '{}_default_time'.format(self.layer_name)
+        layer_name = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layer'] # noqa
+        key_name = '{}_default_time'.format(layer_name)
         last_key = self.store.get_key(key_name)
         key_value = self.date_.strftime(DATE_FORMAT)
-        extent_key = '{}_time_extent'.format(self.layer_name)
+        extent_key = '{}_time_extent'.format(layer_name)
         start, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['forecast_hours'].split('/') # noqa
         start_time = self.date_ + timedelta(minutes=int(start))
         start_time = start_time.strftime(DATE_FORMAT)
@@ -142,4 +143,4 @@ class Radar1kmLayer(BaseLayer):
             self.store.set_key(extent_key, extent_value)
 
     def __repr__(self):
-        return '<ModelGemGlobalLayer> {}'.format(self.name)
+        return '<Radar1KM> {}'.format(self.name)
