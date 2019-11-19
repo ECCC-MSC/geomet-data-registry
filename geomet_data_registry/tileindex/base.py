@@ -107,11 +107,10 @@ class BaseTileIndex(object):
 
         :param data: GeoJSON dict
 
-        :returns: list of dict {layer_id: HTTP status code} 
+        :returns: list of dict {layer_id: HTTP status code}
         """
 
         raise NotImplementedError()
-
 
     def update(self, identifier, update_dict):
         """
