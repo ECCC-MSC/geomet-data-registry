@@ -253,10 +253,8 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         :param data: GeoJSON dict
 
-        :returns: list of dict {layer_id: HTTP status code}
+        :returns: `dict` {layer_id: HTTP status code}
         """
-
-        status_code = None
 
         LOGGER.debug('Starting bulk add')
         try:
@@ -281,22 +279,20 @@ class ElasticsearchTileIndex(BaseTileIndex):
             r = self.es.bulk(index=self.name, body=bulk_data,
                              pipeline='gdr_register_datetime')
 
-            status_arr = {} 
+            status_dict = {}
 
             for i in r['items']:
                 lyr_id = i['index']['_id']
                 lyr_status = i['index']['status']
                 tmp_dict = {}
                 tmp_dict[lyr_id] = lyr_status
-                status_arr.update(tmp_dict)
+                status_dict.update(tmp_dict)
 
         except Exception as err:
             LOGGER.exception('Error bulk indexing: {}'.format(err))
             return 500
 
-
-        return status_arr
-
+        return status_dict
 
     def update(self, identifier, update_dict):
         """
