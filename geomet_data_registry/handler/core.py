@@ -76,7 +76,7 @@ class CoreHandler(BaseHandler):
             self.layer_plugin.identify_datetime = get_today_and_now()
             LOGGER.debug('Registering file')
             self.layer_plugin.register()
-            if self.layer_plugin.new_key_store is True:
+            if self.layer_plugin.new_key_store:
                 self.layer_plugin.add_time_key()
         return True
 
