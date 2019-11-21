@@ -17,7 +17,9 @@
 #
 ###############################################################################
 
+from datetime import datetime
 import logging
+import os
 
 from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
 from geomet_data_registry.plugin import load_plugin
@@ -66,6 +68,10 @@ class BaseLayer(object):
 
         :returns: `bool` of file properties
         """
+
+        self.filepath = filepath
+        self.file_creation_datetime = datetime.fromtimestamp(
+            os.path.getmtime(filepath)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
     def register(self):
         """
