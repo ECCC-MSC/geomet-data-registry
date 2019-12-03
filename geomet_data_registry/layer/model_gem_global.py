@@ -63,7 +63,7 @@ class ModelGemGlobalLayer(BaseLayer):
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model))
 
-        filename_pattern = self.file_dict[self.model]['file_path_pattern']
+        filename_pattern = self.file_dict[self.model]['filename_pattern']
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
