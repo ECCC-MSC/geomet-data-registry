@@ -62,7 +62,7 @@ class CansipsLayer(BaseLayer):
         LOGGER.debug('Loading model information from store')
         file_dict = json.loads(self.store.get_key(self.model))
 
-        filename_pattern = file_dict[self.model]['file_path_pattern']
+        filename_pattern = file_dict[self.model]['filename_pattern']
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
