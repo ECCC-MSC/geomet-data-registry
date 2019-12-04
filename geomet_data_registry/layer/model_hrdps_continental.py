@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Tom Kralidis
+# Copyright (C) 2019 Etienne Pelletier
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,8 +30,8 @@ from geomet_data_registry.util import DATE_FORMAT
 LOGGER = logging.getLogger(__name__)
 
 
-class ModelGemGlobalLayer(BaseLayer):
-    """GDPS layer"""
+class ModelHrdpsContinentalLayer(BaseLayer):
+    """HRDPS Continental layer"""
 
     def __init__(self, provider_def):
         """
@@ -42,7 +42,7 @@ class ModelGemGlobalLayer(BaseLayer):
         :returns: `geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer`  # noqa
         """
 
-        provider_def = {'name': 'model_gem_global'}
+        provider_def = {'name': 'model_hrdps_continental'}
 
         BaseLayer.__init__(self, provider_def)
 
@@ -57,7 +57,7 @@ class ModelGemGlobalLayer(BaseLayer):
 
         super().identify(filepath)
 
-        self.model = 'model_gem_global'
+        self.model = 'model_hrdps_continental'
 
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model))
@@ -65,7 +65,6 @@ class ModelGemGlobalLayer(BaseLayer):
         filename_pattern = self.file_dict[self.model]['filename_pattern']
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
-
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
             'time_': tmp.named['YYYYMMDD_model_run'],
@@ -174,4 +173,4 @@ class ModelGemGlobalLayer(BaseLayer):
             self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
-        return '<ModelGemGlobalLayer> {}'.format(self.name)
+        return '<ModelHrdpsContinentalLayer> {}'.format(self.name)

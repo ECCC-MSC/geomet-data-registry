@@ -31,6 +31,7 @@ PLUGINS = {
     },
     'layer': {
         'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer',  # noqa
+        'ModelHrdpsContinental': 'geomet_data_registry.layer.model_hrdps_continental.ModelHrdpsContinentalLayer',  # noqa
         'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',  # noqa
         'CanSIPS': 'geomet_data_registry.layer.cansips.CansipsLayer',  # noqa
         'REPS': 'geomet_data_registry.layer.reps.RepsLayer'  # noqa
