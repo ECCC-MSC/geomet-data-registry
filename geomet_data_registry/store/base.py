@@ -78,6 +78,17 @@ class BaseStore(object):
 
         raise NotImplementedError()
 
+    def list_keys(self, pattern=None):
+        """
+        List all keys in store
+
+        :param pattern: regular expression to filter keys on
+
+        :returns: `list` of all store keys
+        """
+
+        raise NotImplementedError()
+
     def __repr__(self):
         return '<BaseStore> {}'.format(self.type)
 

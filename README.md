@@ -62,11 +62,20 @@ geomet-data-registry tileindex teardown
 # setup store
 geomet-data-registry store setup
 
+# list all store keys
+geomet-data-registry store list
+
+# list all store keys filtering on a regex
+geomet-data-registry store list --pattern="RADAR*"
+
+# list all store keys filtering on a fancier regex
+geomet-data-registry store list --pattern="RADAR*time$"
+
 # teardown store
 geomet-data-registry store teardown
 
 # set key/value in store
-geomet-data-registry store set --key somekey --config /path/to/file
+geomet-data-registry store set --key=somekey --config=/path/to/file
 
 # setup metadata
 geomet-data-registry metadata setup
@@ -76,11 +85,11 @@ sr_subscribe path/to/amqp.conf foreground
 
 # dev workflows
 # process a test file
-geomet-data-registry data add --file /path/to/file
+geomet-data-registry data add --file=/path/to/file
 
 # dev workflows
 # process a test directory of files (recursive)
-geomet-data-registry data add --directory /path/to/directory
+geomet-data-registry data add --directory=/path/to/directory
 ```
 
 ## Development

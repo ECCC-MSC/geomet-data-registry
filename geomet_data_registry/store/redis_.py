@@ -89,5 +89,19 @@ class RedisStore(BaseStore):
 
         return self.redis.set(key, value)
 
+    def list_keys(self, pattern=None):
+        """
+        List all store keys
+
+        :param pattern: regular expression to filter keys on
+
+        :returns: `list` of all store keys
+        """
+
+        if pattern is not None:
+            return self.redis.keys(pattern=pattern)
+
+        return self.redis.keys()
+
     def __repr__(self):
         return '<BaseStore> {}'.format(self.type)
