@@ -49,8 +49,9 @@ def json_serial(obj):
     """
 
     if isinstance(obj, (datetime, date, time)):
-        serial = obj.isoformat()
-        return serial
+        return obj.isoformat()
+    elif isinstance(obj, bytes):
+        return str(obj.decode('utf-8'))
 
     msg = '{} type {} not serializable'.format(obj, type(obj))
     LOGGER.error(msg)

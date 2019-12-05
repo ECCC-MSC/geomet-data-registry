@@ -128,9 +128,11 @@ class ModelGemGlobalLayer(BaseLayer):
                (int(fh) in range(int(begin), int(end) + 1, int(interval_num))):
                 self.items.append(feature_dict)
             else:
-                LOGGER.debug("Forecast hour {} not included in {}/{}/{} as defined for variable {}. "
-                             "File will not be added to registry.".format(
-                                fh, begin, end, interval, self.wx_variable))
+                LOGGER.debug("Forecast hour {} not included in {}/{}/{} as "
+                             "defined for variable {}. File will not be "
+                             "added to registry.".format(fh, begin, end,
+                                                         interval,
+                                                         self.wx_variable))
                 return False
 
         return True

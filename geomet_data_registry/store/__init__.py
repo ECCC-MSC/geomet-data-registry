@@ -140,7 +140,29 @@ def get_key(ctx, key):
     click.echo('Done')
 
 
+@click.command('list')
+@click.option('--pattern', '-p',
+              help='regular expression to filter keys on')
+@click.pass_context
+def list_keys(ctx, pattern=None):
+    """list all keys in store"""
+
+    provider_def = {
+        'type': STORE_TYPE,
+        'url': STORE_URL
+    }
+
+    st = load_plugin('store', provider_def)
+
+    try:
+        click.echo(json_pretty_print(st.list_keys(pattern)))
+    except StoreError as err:
+        raise click.ClickException(err)
+    click.echo('Done')
+
+
 store.add_command(setup)
 store.add_command(teardown)
 store.add_command(set_key)
 store.add_command(get_key)
+store.add_command(list_keys)
