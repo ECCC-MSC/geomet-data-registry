@@ -30,8 +30,8 @@ from geomet_data_registry.util import DATE_FORMAT
 LOGGER = logging.getLogger(__name__)
 
 
-class ModelHrdpsContinentalLayer(BaseLayer):
-    """HRDPS Continental layer"""
+class ModelGemRegionalLayer(BaseLayer):
+    """RDPS layer"""
 
     def __init__(self, provider_def):
         """
@@ -39,10 +39,10 @@ class ModelHrdpsContinentalLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.model_gem_global.ModelHrdpsContinentalLayer`  # noqa
+        :returns: `geomet_data_registry.layer.model_gem_global.ModelGemRegionalLayer`  # noqa
         """
 
-        provider_def = {'name': 'model_hrdps_continental'}
+        provider_def = {'name': 'model_gem_regional'}
 
         BaseLayer.__init__(self, provider_def)
 
@@ -57,7 +57,7 @@ class ModelHrdpsContinentalLayer(BaseLayer):
 
         super().identify(filepath)
 
-        self.model = 'model_hrdps_continental'
+        self.model = 'model_gem_regional'
 
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model))
@@ -65,6 +65,7 @@ class ModelHrdpsContinentalLayer(BaseLayer):
         filename_pattern = self.file_dict[self.model]['filename_pattern']
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
+
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
             'time_': tmp.named['YYYYMMDD_model_run'],
@@ -106,7 +107,7 @@ class ModelHrdpsContinentalLayer(BaseLayer):
             layer_name = key
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
-            begin, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/')  # noqa
+            begin, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'][self.model_run].split('/')  # noqa
             interval_num = re.sub('[^0-9]', '', interval)
 
             fh = file_pattern_info['fh']
@@ -127,10 +128,9 @@ class ModelHrdpsContinentalLayer(BaseLayer):
                (int(fh) in range(int(begin), int(end) + 1, int(interval_num))):
                 self.items.append(feature_dict)
             else:
-                LOGGER.debug("Forecast hour {} not included in {}/{}/{} as "
-                             "defined for variable {}. File will not be added"
-                             " to registry.".format(fh, begin, end, interval,
-                                                    self.wx_variable))
+                LOGGER.debug("Forecast hour {} not included in {}/{}/{} as defined for variable {}. "
+                             "File will not be added to registry.".format(
+                                fh, begin, end, interval, self.wx_variable))
                 return False
 
         return True
@@ -148,7 +148,7 @@ class ModelHrdpsContinentalLayer(BaseLayer):
         for key, values in self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items():  # noqa
 
             time_extent_key = '{}_time_extent'.format(key)
-            start, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/')  # noqa
+            start, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'][self.model_run].split('/')  # noqa
             start_time = self.date_ + timedelta(hours=int(start))
             end_time = self.date_ + timedelta(hours=int(end))
             start_time = start_time.strftime(DATE_FORMAT)
@@ -174,4 +174,4 @@ class ModelHrdpsContinentalLayer(BaseLayer):
             self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
-        return '<ModelHrdpsContinentalLayer> {}'.format(self.name)
+        return '<ModelGemRegionalLayer> {}'.format(self.name)
