@@ -1,0 +1,3014 @@
+model_hrdps_continental:
+    model: HRDPS
+    filename_pattern: CMC_hrdps_continental_{wx_variable}_ps2.5km_{YYYYMMDD_model_run}_P{forecast_hour}-00.grib2
+    model_run_retention_hours: 48
+    model_run_interval_hours: 6
+    variable:
+        ABSV_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_QQ.250:
+                    forecast_hours: 000/048/PT1H
+        ABSV_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_QQ.500:
+                    forecast_hours: 000/048/PT1H
+        ABSV_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_QQ.700:
+                    forecast_hours: 000/048/PT1H
+        ABSV_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_QQ.850:
+                    forecast_hours: 000/048/PT1H
+        ABSV_ISBL_1000:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_QQ.1000:
+                    forecast_hours: 000/048/PT1H
+        ALBDO_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_AL:
+                    forecast_hours: 000/048/PT1H
+        APCP_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                HRDPS.CONTINENTAL_PR:
+                    forecast_hours: 001/048/PT1H
+        DEPR_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.50:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.100:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.150:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.175:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.200:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.225:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.250:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.275:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.300:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.350:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.400:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.450:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.500:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.550:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.600:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.650:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.700:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.750:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.800:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.850:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.875:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.900:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.925:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.950:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.970:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.985:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.1000:
+                    forecast_hours: 000/048/PT1H
+        DEPR_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_ES.1015:
+                    forecast_hours: 000/048/PT1H
+        DEPR_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_ES:
+                    forecast_hours: 000/048/PT1H
+        DPT_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_TD:
+                    forecast_hours: 000/048/PT1H
+        GUST_MAX_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_WGX:
+                    forecast_hours: 000/048/PT1H
+        GUST_MIN_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_WGN:
+                    forecast_hours: 000/048/PT1H
+        GUST_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_WGE:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.50:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.50-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.100:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.100-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.200:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.200-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.250:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.250-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.500:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.500-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.700:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.700-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.850:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.850-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.925:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.925-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.950:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.970:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.985:
+                    forecast_hours: 000/048/PT1H
+        HGT_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_GZ.1000:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_GZ.1000-CONTOUR:
+                    forecast_hours: 000/048/PT1H
+        HGT_SFC_0:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                HRDPS.CONTINENTAL_GZ:
+                    forecast_hours: 001/048/PT1H
+                HRDPS.CONTINENTAL_GZ-CONTOUR:
+                    forecast_hours: 001/048/PT1H
+        HPBL_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_HPBL:
+                    forecast_hours: 000/048/PT1H
+        MU-VT-LI_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.CONV_MU-VT-LI.500:
+                    forecast_hours: 000/048/PT1H
+        PRATE_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                HRDPS.CONTINENTAL_RT:
+                    forecast_hours: 001/048/PT1H
+        PRES_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_P0:
+                    forecast_hours: 000/048/PT1H
+        PRMSL_MSL_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_PN:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL_PN-SLP:
+                    forecast_hours: 000/048/PT1H
+        PTYPE_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.DIAG_PTYPE:
+                    forecast_hours: 001/048/PT1H
+        RH_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.50:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.100:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.150:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.175:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.200:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.225:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.250:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.275:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.300:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.350:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.400:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.450:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.500:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.550:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.600:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.650:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.700:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.750:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.800:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.850:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.875:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.900:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.925:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.950:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.970:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.985:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.1000:
+                    forecast_hours: 000/048/PT1H
+        RH_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HR.1015:
+                    forecast_hours: 000/048/PT1H
+        RH_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_HR:
+                    forecast_hours: 000/048/PT1H
+        SDWE_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_SDWE:
+                    forecast_hours: 000/048/PT1H
+        SFCWRO_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_NO:
+                    forecast_hours: 000/048/PT1H
+        SHWINX_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.CONV_SHWINX.500:
+                    forecast_hours: 000/048/PT1H
+        SKINT_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_SKINT:
+                    forecast_hours: 000/048/PT1H
+        SNOD_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_SD:
+                    forecast_hours: 000/048/PT1H
+        SOILVIC_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_I2:
+                    forecast_hours: 000/048/PT1H
+        SOILW_DBLL_100:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_I1:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.50:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.100:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.150:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.175:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.200:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.225:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.250:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.275:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.300:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.350:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.400:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.450:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.500:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.550:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.600:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.650:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.700:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.750:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.800:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.850:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.875:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.900:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.925:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.950:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.970:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.985:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.1000:
+                    forecast_hours: 000/048/PT1H
+        SPFH_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_HU.1015:
+                    forecast_hours: 000/048/PT1H
+        SPFH_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_HU:
+                    forecast_hours: 000/048/PT1H
+        TCDC_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_NT:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.50:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.100:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.150:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.175:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.200:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.225:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.250:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.275:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.300:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.350:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.400:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.450:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.500:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.550:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.600:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.650:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.700:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.750:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.800:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.850:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.875:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.900:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.925:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.950:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.970:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.985:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.1000:
+                    forecast_hours: 000/048/PT1H
+        TMP_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_TT.1015:
+                    forecast_hours: 000/048/PT1H
+        TMP_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_TT:
+                    forecast_hours: 000/048/PT1H
+        TSOIL_DBLL_100:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_I0.100:
+                    forecast_hours: 000/048/PT1H
+        TSOIL_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_I0:
+                    forecast_hours: 000/048/PT1H
+        VVEL_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WP.250:
+                    forecast_hours: 000/048/PT1H
+        VVEL_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WP.500:
+                    forecast_hours: 000/048/PT1H
+        VVEL_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WP.700:
+                    forecast_hours: 000/048/PT1H
+        VVEL_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WP.850:
+                    forecast_hours: 000/048/PT1H
+        VVEL_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WP.1000:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.50:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.50:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.100:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.100:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.150:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.150:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.175:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.175:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.200:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.200:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.225:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.225:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.250:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.250:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.275:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.275:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.300:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.300:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.350:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.350:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.400:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.400:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.450:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.450:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.500:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.500:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.550:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.550:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.600:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.600:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.650:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.650:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.700:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.700:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.750:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.750:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.800:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.800:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.850:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.850:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.875:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.875:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.900:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.900:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.925:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.925:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.950:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.950:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.970:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.970:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.985:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.985:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.1000:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.1000:
+                    forecast_hours: 000/048/PT1H
+        WDIR_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WD.1015:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_WSPD.1015:
+                    forecast_hours: 000/048/PT1H
+        WDIR_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_WD:
+                    forecast_hours: 000/048/PT1H
+        WEAFR_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                HRDPS.CONTINENTAL_FR:
+                    forecast_hours: 001/048/PT1H
+        WEARN_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                HRDPS.CONTINENTAL_RN:
+                    forecast_hours: 001/048/PT1H
+        WEASN_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                HRDPS.CONTINENTAL_SN:
+                    forecast_hours: 001/048/PT1H
+        WIND_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL_WSPD:
+                    forecast_hours: 000/048/PT1H
+
+
+            
+        
+        
+        
+            
+        
+        
+        
+
+
+
+
+
+        
+
+        
+        
+        
