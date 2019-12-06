@@ -3,22 +3,733 @@ cansips:
     model: CANSIPS
     # file name pattern with the different variables between {}
     # Those path variables will be defined in the layre handler script depending on the filename
-    file_path_pattern: cansips_forecast_raw_latlon1.0x1.0_{wx_variable}_{pressure}_{pres_value}_{YYYY}-{MM}_allmembers.grib2
+    filename_pattern: cansips_forecast_raw_latlon1.0x1.0_{wx_variable}_{pressure}_{pres_value}_{YYYY}-{MM}_allmembers.grib2
     # integer: how many members for each variables as this is a ensemble prediction model
     members: 20
     # list of the different bands and their member number and forecast interval
     bands:
-        - 1:
+        1:
             # for example, band 1 is member 1 and forecast month 0 (P0M)
             member: 1
             forecast_interval: P0M
-        - 2:
+        2:
             # band 2 is member 1 but forecast month 1 (P1M)
             member: 1
             forecast_interval: P1M
-        - 13:
+        3:
+            member: 1
+            forecast_interval: P2M
+        4:
+            member: 1
+            forecast_interval: P3M
+        5:
+            member: 1
+            forecast_interval: P4M
+        6:
+            member: 1
+            forecast_interval: P5M
+        7:
+            member: 1
+            forecast_interval: P6M
+        8:
+            member: 1
+            forecast_interval: P7M
+        9:
+            member: 1
+            forecast_interval: P8M
+        10:
+            member: 1
+            forecast_interval: P9M
+        11:
+            member: 1
+            forecast_interval: P10M
+        12:
+            member: 1
+            forecast_interval: P11M
+        13:
             member: 2
             forecast_interval: P0M
+        14:
+            member: 2
+            forecast_interval: P1M
+        15:
+            member: 2
+            forecast_interval: P2M
+        16:
+            member: 2
+            forecast_interval: P3M
+        17:
+            member: 2
+            forecast_interval: P4M
+        18:
+            member: 2
+            forecast_interval: P5M
+        19:
+            member: 2
+            forecast_interval: P6M
+        20:
+            member: 2
+            forecast_interval: P7M
+        21:
+            member: 2
+            forecast_interval: P8M
+        22:
+            member: 2
+            forecast_interval: P9M
+        23:
+            member: 2
+            forecast_interval: P10M
+        24:
+            member: 2
+            forecast_interval: P11M
+        25:
+            member: 3
+            forecast_interval: P0M
+        26:
+            member: 3
+            forecast_interval: P1M
+        27:
+            member: 3
+            forecast_interval: P2M
+        28:
+            member: 3
+            forecast_interval: P3M
+        29:
+            member: 3
+            forecast_interval: P4M
+        30:
+            member: 3
+            forecast_interval: P5M
+        31:
+            member: 3
+            forecast_interval: P6M
+        32:
+            member: 3
+            forecast_interval: P7M
+        33:
+            member: 3
+            forecast_interval: P8M
+        34:
+            member: 3
+            forecast_interval: P9M
+        35:
+            member: 3
+            forecast_interval: P10M
+        36:
+            member: 3
+            forecast_interval: P11M
+        37:
+            member: 4
+            forecast_interval: P0M
+        38:
+            member: 4
+            forecast_interval: P1M
+        39:
+            member: 4
+            forecast_interval: P2M
+        40:
+            member: 4
+            forecast_interval: P3M
+        41:
+            member: 4
+            forecast_interval: P4M
+        42:
+            member: 4
+            forecast_interval: P5M
+        43:
+            member: 4
+            forecast_interval: P6M
+        44:
+            member: 4
+            forecast_interval: P7M
+        45:
+            member: 4
+            forecast_interval: P8M
+        46:
+            member: 4
+            forecast_interval: P9M
+        47:
+            member: 4
+            forecast_interval: P10M
+        48:
+            member: 4
+            forecast_interval: P11M
+        49:
+            member: 5
+            forecast_interval: P0M
+        50:
+            member: 5
+            forecast_interval: P1M
+        51:
+            member: 5
+            forecast_interval: P2M
+        52:
+            member: 5
+            forecast_interval: P3M
+        53:
+            member: 5
+            forecast_interval: P4M
+        54:
+            member: 5
+            forecast_interval: P5M
+        55:
+            member: 5
+            forecast_interval: P6M
+        56:
+            member: 5
+            forecast_interval: P7M
+        57:
+            member: 5
+            forecast_interval: P8M
+        58:
+            member: 5
+            forecast_interval: P9M
+        59:
+            member: 5
+            forecast_interval: P10M
+        60:
+            member: 5
+            forecast_interval: P11M
+        61:
+            member: 6
+            forecast_interval: P0M
+        62:
+            member: 6
+            forecast_interval: P1M
+        63:
+            member: 6
+            forecast_interval: P2M
+        64:
+            member: 6
+            forecast_interval: P3M
+        65:
+            member: 6
+            forecast_interval: P4M
+        66:
+            member: 6
+            forecast_interval: P5M
+        67:
+            member: 6
+            forecast_interval: P6M
+        68:
+            member: 6
+            forecast_interval: P7M
+        69:
+            member: 6
+            forecast_interval: P8M
+        70:
+            member: 6
+            forecast_interval: P9M
+        71:
+            member: 6
+            forecast_interval: P10M
+        72:
+            member: 6
+            forecast_interval: P11M
+        73:
+            member: 7
+            forecast_interval: P0M
+        74:
+            member: 7
+            forecast_interval: P1M
+        75:
+            member: 7
+            forecast_interval: P2M
+        76:
+            member: 7
+            forecast_interval: P3M
+        77:
+            member: 7
+            forecast_interval: P4M
+        78:
+            member: 7
+            forecast_interval: P5M
+        79:
+            member: 7
+            forecast_interval: P6M
+        80:
+            member: 7
+            forecast_interval: P7M
+        81:
+            member: 7
+            forecast_interval: P8M
+        82:
+            member: 7
+            forecast_interval: P9M
+        83:
+            member: 7
+            forecast_interval: P10M
+        84:
+            member: 7
+            forecast_interval: P11M
+        85:
+            member: 8
+            forecast_interval: P0M
+        86:
+            member: 8
+            forecast_interval: P1M
+        87:
+            member: 8
+            forecast_interval: P2M
+        88:
+            member: 8
+            forecast_interval: P3M
+        89:
+            member: 8
+            forecast_interval: P4M
+        90:
+            member: 8
+            forecast_interval: P5M
+        91:
+            member: 8
+            forecast_interval: P6M
+        92:
+            member: 8
+            forecast_interval: P7M
+        93:
+            member: 8
+            forecast_interval: P8M
+        94:
+            member: 8
+            forecast_interval: P9M
+        95:
+            member: 8
+            forecast_interval: P10M
+        96:
+            member: 8
+            forecast_interval: P11M
+        97:
+            member: 9
+            forecast_interval: P0M
+        98:
+            member: 9
+            forecast_interval: P1M
+        99:
+            member: 9
+            forecast_interval: P2M
+        100:
+            member: 9
+            forecast_interval: P3M
+        101:
+            member: 9
+            forecast_interval: P4M
+        102:
+            member: 9
+            forecast_interval: P5M
+        103:
+            member: 9
+            forecast_interval: P6M
+        104:
+            member: 9
+            forecast_interval: P7M
+        105:
+            member: 9
+            forecast_interval: P8M
+        106:
+            member: 9
+            forecast_interval: P9M
+        107:
+            member: 9
+            forecast_interval: P10M
+        108:
+            member: 9
+            forecast_interval: P11M
+        109:
+            member: 10
+            forecast_interval: P0M
+        110:
+            member: 10
+            forecast_interval: P1M
+        111:
+            member: 10
+            forecast_interval: P2M
+        112:
+            member: 10
+            forecast_interval: P3M
+        113:
+            member: 10
+            forecast_interval: P4M
+        114:
+            member: 10
+            forecast_interval: P5M
+        115:
+            member: 10
+            forecast_interval: P6M
+        116:
+            member: 10
+            forecast_interval: P7M
+        117:
+            member: 10
+            forecast_interval: P8M
+        118:
+            member: 10
+            forecast_interval: P9M
+        119:
+            member: 10
+            forecast_interval: P10M
+        120:
+            member: 10
+            forecast_interval: P11M
+        121:
+            member: 11
+            forecast_interval: P0M
+        122:
+            member: 11
+            forecast_interval: P1M
+        123:
+            member: 11
+            forecast_interval: P2M
+        124:
+            member: 11
+            forecast_interval: P3M
+        125:
+            member: 11
+            forecast_interval: P4M
+        126:
+            member: 11
+            forecast_interval: P5M
+        127:
+            member: 11
+            forecast_interval: P6M
+        128:
+            member: 11
+            forecast_interval: P7M
+        129:
+            member: 11
+            forecast_interval: P8M
+        130:
+            member: 11
+            forecast_interval: P9M
+        131:
+            member: 11
+            forecast_interval: P10M
+        132:
+            member: 11
+            forecast_interval: P11M
+        133:
+            member: 12
+            forecast_interval: P0M
+        134:
+            member: 12
+            forecast_interval: P1M
+        135:
+            member: 12
+            forecast_interval: P2M
+        136:
+            member: 12
+            forecast_interval: P3M
+        137:
+            member: 12
+            forecast_interval: P4M
+        138:
+            member: 12
+            forecast_interval: P5M
+        139:
+            member: 12
+            forecast_interval: P6M
+        140:
+            member: 12
+            forecast_interval: P7M
+        141:
+            member: 12
+            forecast_interval: P8M
+        142:
+            member: 12
+            forecast_interval: P9M
+        143:
+            member: 12
+            forecast_interval: P10M
+        144:
+            member: 12
+            forecast_interval: P11M
+        145:
+            member: 13
+            forecast_interval: P0M
+        146:
+            member: 13
+            forecast_interval: P1M
+        147:
+            member: 13
+            forecast_interval: P2M
+        148:
+            member: 13
+            forecast_interval: P3M
+        149:
+            member: 13
+            forecast_interval: P4M
+        150:
+            member: 13
+            forecast_interval: P5M
+        151:
+            member: 13
+            forecast_interval: P6M
+        152:
+            member: 13
+            forecast_interval: P7M
+        153:
+            member: 13
+            forecast_interval: P8M
+        154:
+            member: 13
+            forecast_interval: P9M
+        155:
+            member: 13
+            forecast_interval: P10M
+        156:
+            member: 13
+            forecast_interval: P11M
+        157:
+            member: 14
+            forecast_interval: P0M
+        158:
+            member: 14
+            forecast_interval: P1M
+        159:
+            member: 14
+            forecast_interval: P2M
+        160:
+            member: 14
+            forecast_interval: P3M
+        161:
+            member: 14
+            forecast_interval: P4M
+        162:
+            member: 14
+            forecast_interval: P5M
+        163:
+            member: 14
+            forecast_interval: P6M
+        164:
+            member: 14
+            forecast_interval: P7M
+        165:
+            member: 14
+            forecast_interval: P8M
+        166:
+            member: 14
+            forecast_interval: P9M
+        167:
+            member: 14
+            forecast_interval: P10M
+        168:
+            member: 14
+            forecast_interval: P11M
+        169:
+            member: 15
+            forecast_interval: P0M
+        170:
+            member: 15
+            forecast_interval: P1M
+        171:
+            member: 15
+            forecast_interval: P2M
+        172:
+            member: 15
+            forecast_interval: P3M
+        173:
+            member: 15
+            forecast_interval: P4M
+        174:
+            member: 15
+            forecast_interval: P5M
+        175:
+            member: 15
+            forecast_interval: P6M
+        176:
+            member: 15
+            forecast_interval: P7M
+        177:
+            member: 15
+            forecast_interval: P8M
+        178:
+            member: 15
+            forecast_interval: P9M
+        179:
+            member: 15
+            forecast_interval: P10M
+        180:
+            member: 15
+            forecast_interval: P11M
+        181:
+            member: 16
+            forecast_interval: P0M
+        182:
+            member: 16
+            forecast_interval: P1M
+        183:
+            member: 16
+            forecast_interval: P2M
+        184:
+            member: 16
+            forecast_interval: P3M
+        185:
+            member: 16
+            forecast_interval: P4M
+        186:
+            member: 16
+            forecast_interval: P5M
+        187:
+            member: 16
+            forecast_interval: P6M
+        188:
+            member: 16
+            forecast_interval: P7M
+        189:
+            member: 16
+            forecast_interval: P8M
+        190:
+            member: 16
+            forecast_interval: P9M
+        191:
+            member: 16
+            forecast_interval: P10M
+        192:
+            member: 16
+            forecast_interval: P11M
+        193:
+            member: 17
+            forecast_interval: P0M
+        194:
+            member: 17
+            forecast_interval: P1M
+        195:
+            member: 17
+            forecast_interval: P2M
+        196:
+            member: 17
+            forecast_interval: P3M
+        197:
+            member: 17
+            forecast_interval: P4M
+        198:
+            member: 17
+            forecast_interval: P5M
+        199:
+            member: 17
+            forecast_interval: P6M
+        200:
+            member: 17
+            forecast_interval: P7M
+        201:
+            member: 17
+            forecast_interval: P8M
+        202:
+            member: 17
+            forecast_interval: P9M
+        203:
+            member: 17
+            forecast_interval: P10M
+        204:
+            member: 17
+            forecast_interval: P11M
+        205:
+            member: 18
+            forecast_interval: P0M
+        206:
+            member: 18
+            forecast_interval: P1M
+        207:
+            member: 18
+            forecast_interval: P2M
+        208:
+            member: 18
+            forecast_interval: P3M
+        209:
+            member: 18
+            forecast_interval: P4M
+        210:
+            member: 18
+            forecast_interval: P5M
+        211:
+            member: 18
+            forecast_interval: P6M
+        212:
+            member: 18
+            forecast_interval: P7M
+        213:
+            member: 18
+            forecast_interval: P8M
+        214:
+            member: 18
+            forecast_interval: P9M
+        215:
+            member: 18
+            forecast_interval: P10M
+        216:
+            member: 18
+            forecast_interval: P11M
+        217:
+            member: 19
+            forecast_interval: P0M
+        218:
+            member: 19
+            forecast_interval: P1M
+        219:
+            member: 19
+            forecast_interval: P2M
+        220:
+            member: 19
+            forecast_interval: P3M
+        221:
+            member: 19
+            forecast_interval: P4M
+        222:
+            member: 19
+            forecast_interval: P5M
+        223:
+            member: 19
+            forecast_interval: P6M
+        224:
+            member: 19
+            forecast_interval: P7M
+        225:
+            member: 19
+            forecast_interval: P8M
+        226:
+            member: 19
+            forecast_interval: P9M
+        227:
+            member: 19
+            forecast_interval: P10M
+        228:
+            member: 19
+            forecast_interval: P11M
+        229:
+            member: 20
+            forecast_interval: P0M
+        230:
+            member: 20
+            forecast_interval: P1M
+        231:
+            member: 20
+            forecast_interval: P2M
+        232:
+            member: 20
+            forecast_interval: P3M
+        233:
+            member: 20
+            forecast_interval: P4M
+        234:
+            member: 20
+            forecast_interval: P5M
+        235:
+            member: 20
+            forecast_interval: P6M
+        236:
+            member: 20
+            forecast_interval: P7M
+        237:
+            member: 20
+            forecast_interval: P8M
+        238:
+            member: 20
+            forecast_interval: P9M
+        239:
+            member: 20
+            forecast_interval: P10M
+        240:
+            member: 20
+            forecast_interval: P11M
     # dictionary of the different variables for this particular model
     # variables should match the {wx-variable} in file_path_pattern
     variable:
@@ -34,6 +745,22 @@ cansips:
             # elevation value for future dimension filtering. Must be string
             elevation: surface
         PRATE_SFC_0:
-            geomet_layer: CANSIPS.MEM.ETA_TT.{}
+            geomet_layer: CANSIPS.MEM.ETA_RT.{}
             forecast_hours: 00/12/P1M
             elevation: surface
+        PRMSL_MSL_0:
+            geomet_layer: CANSIPS.ETA_PN-SLP.{}
+            forecast_hours: 00/12/P1M
+            elevation: surface
+        WTMP_SFC_0:
+            geomet_layer: CANSIPS.ETA_WTMP.{}
+            forecast_hours: 00/12/P1M
+            elevation: surface
+        HGT_ISBL_0500:
+            geomet_layer: CANSIPS.PRES_GZ.500.{}
+            forecast_hours: 00/12/P1M
+            elevation: 500mb
+        TMP_ISBL_0850:
+            geomet_layer: CANSIPS.PRES_TT.850.{}
+            forecast_hours: 00/12/P1M
+            elevation: 850mb

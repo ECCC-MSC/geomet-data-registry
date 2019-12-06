@@ -1,55 +1,2547 @@
 model_gem_global:
-    # name of the model
     model: GDPS
-    # file name pattern with the different variables between {}
-    # Those path variables will be defined in the layer handler script depending on the filename
-    file_path_pattern: CMC_glb_{wx_variable}_latlon.24x.24_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
-    # dictionary of the different variables for this particular model
-    # variables should match the {wx-variable} in file_path_pattern
+    filename_pattern: CMC_glb_{wx_variable}_latlon.15x.15_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
+    model_run_retention_hours: 48
+    model_run_interval_hours: 12
     variable:
-        TMP_TGL_2:
-            # no members for GDPS as it is a deterministic prediction system
+        ABSV_ISBL_200:
             members: null
-            # elevation value for future dimension filtering. Must be string
-            elevation: surface
-            # dictionary of the different model run for this particular model
+            elevation: 200mb
             model_run:
                 00Z:
-                    # how many files you should expect for this particular variable to have a complete model run
-                    files_expected: 82
+                    files_expected: 65
                 12Z:
-                    files_expected: 82
-            # dictionary of the different geomet layers associated with this variable
+                    files_expected: 65
             geomet_layers:
-                GDPS.ETA_TT:
-                    # forecast hours interval
-                    # 000: variable is available from relative forecast hour 0
-                    # 240: variable is available until relative forecast hour 240
-                    # PT3H: variable is available every 3 hours (ISO8601)
+                GDPS.PRES_QQ.200.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_QQ.200.3h:
+                    forecast_hours: 000/144/PT3H
+
+        ABSV_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.PRES_QQ.250.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.PRES_QQ.250.6h:
+                    forecast_hours: 000/240/PT6H
+
+        ABSV_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.PRES_QQ.500.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.PRES_QQ.500.6h:
+                    forecast_hours: 000/240/PT6H
+
+        ABSV_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.PRES_QQ.700.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.PRES_QQ.700.6h:
+                    forecast_hours: 000/240/PT6H
+
+        ABSV_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.PRES_QQ.850.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.PRES_QQ.850.6h:
+                    forecast_hours: 000/240/PT6H
+
+        ALBDO_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_AL:
                     forecast_hours: 000/240/PT3H
+
         APCP_SFC_0:
             members: null
             elevation: surface
             model_run:
                 00Z:
+                    files_expected: 80
+                12Z:
+                    files_expected: 80
+            geomet_layers:
+                GDPS.ETA_PR:
+                    forecast_hours: 003/240/PT3H
+
+        DEPR_ISBL_100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.100.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_ES.100.6h:
+                    forecast_hours: 000/240/PT6H
+
+        DEPR_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
                     files_expected: 81
                 12Z:
                     files_expected: 81
             geomet_layers:
-                GDPS.ETA_PR:
+                GDPS.PRES_ES.1000:
+                    forecast_hours: 000/240/PT3H
+
+        DEPR_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.1015.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.150.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_ES.150.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.175.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.200.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_ES.200.6h:
+                    forecast_hours: 000/240/PT6H
+
+        DEPR_ISBL_225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.225.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.250.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_ES.250.6h:
+                    forecast_hours: 000/240/PT6H
+
+        DEPR_ISBL_275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.275.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.300.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_ES.300.6h:
+                    forecast_hours: 000/240/PT6H
+
+        DEPR_ISBL_350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.350.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.400.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_ES.400.6h:
+                    forecast_hours: 000/240/PT6H
+
+        DEPR_ISBL_450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.450.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_50:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_ES.50.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_ES.50.6h:
+                    forecast_hours: 000/240/PT6H
+
+        DEPR_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_ES.500:
+                    forecast_hours: 000/240/PT3H
+
+        DEPR_ISBL_550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.550.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.600.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.650.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_ES.700:
+                    forecast_hours: 000/240/PT3H
+
+        DEPR_ISBL_750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.750.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.800.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_ES.850:
+                    forecast_hours: 000/240/PT3H
+
+        DEPR_ISBL_875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.875.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.900.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_ES.925:
+                    forecast_hours: 000/240/PT3H
+
+        DEPR_ISBL_950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.950.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.970.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_ISBL_985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_ES.985.3h:
+                    forecast_hours: 000/168/PT3H
+
+        DEPR_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_ES:
+                    forecast_hours: 000/240/PT3H
+
+        DPT_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_TD:
+                    forecast_hours: 000/240/PT3H
+
+        GUST_MAX_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_WGX:
+                    forecast_hours: 000/240/PT3H
+
+        GUST_MIN_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_WGN:
+                    forecast_hours: 000/240/PT3H
+
+        GUST_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_WGE:
+                    forecast_hours: 000/240/PT3H
+
+        HGT_ISBL_100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_GZ.100.6h-CONTOUR:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_GZ.100.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_GZ.100.3h-CONTOUR:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.100.3h:
+                    forecast_hours: 000/168/PT3H
+
+        HGT_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_GZ.1000-CONTOUR:
+                    forecast_hours: 000/240/PT3H
+                GDPS.PRES_GZ.1000:
+                    forecast_hours: 000/240/PT3H
+
+        HGT_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_GZ.200.3h-CONTOUR:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.200.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.200.6h-CONTOUR:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_GZ.200.6h:
+                    forecast_hours: 000/240/PT6H
+
+        HGT_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_GZ.250.3h-CONTOUR:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.250.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.250.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_GZ.250.6h-CONTOUR:
+                    forecast_hours: 000/240/PT6H
+
+        HGT_ISBL_50:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.PRES_GZ.50.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.50.3h-CONTOUR:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_GZ.50.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_GZ.50.6h-CONTOUR:
+                    forecast_hours: 000/240/PT6H
+
+        HGT_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_GZ.500:
+                    forecast_hours: 000/240/PT3H
+                GDPS.PRES_GZ.500-CONTOUR:
+                    forecast_hours: 000/240/PT3H
+
+        HGT_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_GZ.700:
+                    forecast_hours: 000/240/PT3H
+                GDPS.PRES_GZ.700-CONTOUR:
+                    forecast_hours: 000/240/PT3H
+
+        HGT_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_GZ.850:
+                    forecast_hours: 000/240/PT3H
+                GDPS.PRES_GZ.850-CONTOUR:
+                    forecast_hours: 000/240/PT3H
+
+        HGT_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_GZ.925-CONTOUR:
+                    forecast_hours: 000/240/PT3H
+                GDPS.PRES_GZ.925:
+                    forecast_hours: 000/240/PT3H
+
+        HGT_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+            geomet_layers:
+                GDPS.ETA_GZ-CONTOUR:
+                    forecast_hours: 000/000/PT0H
+                GDPS.ETA_GZ:
+                    forecast_hours: 000/000/PT0H
+
+        HPBL_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_HPBL:
+                    forecast_hours: 000/240/PT3H
+
+        PRATE_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 80
+                12Z:
+                    files_expected: 80
+            geomet_layers:
+                GDPS.ETA_RT:
                     forecast_hours: 003/240/PT3H
+
+        PRES_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_P0:
+                    forecast_hours: 000/240/PT3H
+
+        PRMSL_MSL_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_PN:
+                    forecast_hours: 000/240/PT3H
+                GDPS.ETA_PN-SLP:
+                    forecast_hours: 000/240/PT3H
+
+        PTYPE_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.DIAG_PTYPE.PT3H:
+                    forecast_hours: 000/168/PT3H
+                GDPS.DIAG_PTYPE.PT6H:
+                    forecast_hours: 000/240/PT6H
+
+        RH_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.1000.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HR.1000.6h:
+                    forecast_hours: 000/240/PT6H
+
+        RH_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.200.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HR.200.6h:
+                    forecast_hours: 000/240/PT6H
+
+        RH_ISBL_300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.300.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HR.300.6h:
+                    forecast_hours: 000/240/PT6H
+
+        RH_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.500.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_HR.500.3h:
+                    forecast_hours: 000/168/PT3H
+
+        RH_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.700.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HR.700.6h:
+                    forecast_hours: 000/240/PT6H
+
+        RH_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.850.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_HR.850.3h:
+                    forecast_hours: 000/168/PT3H
+
+        RH_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HR.925.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HR.925.6h:
+                    forecast_hours: 000/240/PT6H
+
+        RH_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_HR:
+                    forecast_hours: 000/240/PT3H
+
+        SFCWRO_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.ETA_NO.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.ETA_NO.6h:
+                    forecast_hours: 000/240/PT6H
+
+        SIGPTYPE_SFC_0_PT12H:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 39
+                12Z:
+                    files_expected: 39
+            geomet_layers:
+                GDPS.DIAG_NW_PT12H:
+                    forecast_hours: 012/240/PT12H
+
+        SIGPTYPE_SFC_0_PT1H:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+            geomet_layers:
+                GDPS.DIAG_NW_PT1H:
+                    forecast_hours: 003/144/PT3H
+
+        SIGPTYPE_SFC_0_PT24H:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 37
+                12Z:
+                    files_expected: 37
+            geomet_layers:
+                GDPS.DIAG_NW_PT24H:
+                    forecast_hours: 024/240/PT24H
+
+        SIGPTYPE_SFC_0_PT3H:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 56
+                12Z:
+                    files_expected: 56
+            geomet_layers:
+                GDPS.DIAG_NW_PT3H:
+                    forecast_hours: 003/168/PT3H
+
+        SIGPTYPE_SFC_0_PT6H:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 40
+                12Z:
+                    files_expected: 40
+            geomet_layers:
+                GDPS.DIAG_NW_PT6H:
+                    forecast_hours: 006/240/PT6H
+
+        SKINT_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_SKINT:
+                    forecast_hours: 000/240/PT3H
+
+        SNOD_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_SD:
+                    forecast_hours: 000/240/PT3H
+
+        SOILVIC_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 65
+                12Z:
+                    files_expected: 65
+            geomet_layers:
+                GDPS.ETA_I2.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.ETA_I2.6h:
+                    forecast_hours: 000/240/PT6H
+
+        SOILW_DBLL_100:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_I1:
+                    forecast_hours: 000/240/PT3H
+
+        SPFH_ISBL_100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.100.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_HU.100.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_HU.1000:
+                    forecast_hours: 000/240/PT3H
+
+        SPFH_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.1015.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.150.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_HU.150.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.175.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.200.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_HU.200.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.225.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.250.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HU.250.6h:
+                    forecast_hours: 000/240/PT6H
+
+        SPFH_ISBL_275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.275.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.300.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HU.300.6h:
+                    forecast_hours: 000/240/PT6H
+
+        SPFH_ISBL_350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.350.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.400.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_HU.400.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.450.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_50:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_HU.50.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_HU.50.6h:
+                    forecast_hours: 000/240/PT6H
+
+        SPFH_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_HU.500:
+                    forecast_hours: 000/240/PT3H
+
+        SPFH_ISBL_550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.550.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.600.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.650.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_HU.700:
+                    forecast_hours: 000/240/PT3H
+
+        SPFH_ISBL_750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.750.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.800.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_HU.850:
+                    forecast_hours: 000/240/PT3H
+
+        SPFH_ISBL_875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.875.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.900.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_HU.925:
+                    forecast_hours: 000/240/PT3H
+
+        SPFH_ISBL_950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.950.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.970.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_ISBL_985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_HU.985.3h:
+                    forecast_hours: 000/168/PT3H
+
+        SPFH_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_HU:
+                    forecast_hours: 000/240/PT3H
+
+        TCDC_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_NT:
+                    forecast_hours: 000/240/PT3H
+
+        TMP_ISBL_100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.100.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_TT.100.6h:
+                    forecast_hours: 000/240/PT6H
+
+        TMP_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_TT.1000:
+                    forecast_hours: 000/240/PT3H
+
+        TMP_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.1015.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.150.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_TT.150.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.175.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.200.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_TT.200.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.225.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.250.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_TT.250.6h:
+                    forecast_hours: 000/240/PT6H
+
+        TMP_ISBL_275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.275.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.300.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_TT.300.6h:
+                    forecast_hours: 000/240/PT6H
+
+        TMP_ISBL_350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.350.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.400.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_TT.400.6h:
+                    forecast_hours: 000/240/PT6H
+
+        TMP_ISBL_450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.450.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_50:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_TT.50.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_TT.50.6h:
+                    forecast_hours: 000/240/PT6H
+
+        TMP_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_TT.500:
+                    forecast_hours: 000/240/PT3H
+
+        TMP_ISBL_550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.550.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.600.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.650.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_TT.700:
+                    forecast_hours: 000/240/PT3H
+
+        TMP_ISBL_750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.750.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.800.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_TT.850:
+                    forecast_hours: 000/240/PT3H
+
+        TMP_ISBL_875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.875.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.900.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_TT.925:
+                    forecast_hours: 000/240/PT3H
+
+        TMP_ISBL_950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.950.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.970.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_ISBL_985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_TT.985.3h:
+                    forecast_hours: 000/168/PT3H
+
+        TMP_TGL_2:
+            members: null
+            elevation: 2m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_TT:
+                    forecast_hours: 000/240/PT3H
+
+        TSOIL_DBLL_100:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_I0.100:
+                    forecast_hours: 000/240/PT3H
+
+        TSOIL_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_I0:
+                    forecast_hours: 000/240/PT3H
+
+        VVEL_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 53
+                12Z:
+                    files_expected: 53
+            geomet_layers:
+                GDPS.PRES_WP.250.3h:
+                    forecast_hours: 000/144/PT3H
+                GDPS.PRES_WP.250.6h:
+                    forecast_hours: 000/168/PT6H
+
+        VVEL_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WP.500:
+                    forecast_hours: 000/240/PT3H
+
         VVEL_ISBL_600:
             members: null
             elevation: 600mb
             model_run:
                 00Z:
-                    files_expected: 82
+                    files_expected: 65
                 12Z:
-                    files_expected: 82
+                    files_expected: 65
             geomet_layers:
-                # You may have more then one geomet layers associated to a model variable
-                # you can define those different layers as a dictionary under geomet_layers
-                GDPS.PRES.WP.600.3h:
+                GDPS.PRES_WP.600.3h:
                     forecast_hours: 000/144/PT3H
-                GDPS.PRES.WP.600.6h:
+                GDPS.PRES_WP.600.6h:
                     forecast_hours: 000/240/PT6H
+
+        VVEL_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WP.700:
+                    forecast_hours: 000/240/PT3H
+
+        VVEL_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WP.850:
+                    forecast_hours: 000/240/PT3H
+
+        WDIR_ISBL_100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.100.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_WD.100.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WD.1000:
+                    forecast_hours: 000/240/PT3H
+
+        WDIR_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.1015.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.150.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WD.150.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WDIR_ISBL_175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.175.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.200.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WD.200.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WDIR_ISBL_225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.225.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.250.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_WD.250.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.275.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.300.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WD.300.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WDIR_ISBL_350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.350.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.400.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WD.400.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WDIR_ISBL_450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.450.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_50:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WD.50.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_WD.50.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WD.500:
+                    forecast_hours: 000/240/PT3H
+
+        WDIR_ISBL_550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.550.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.600.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.650.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WD.700:
+                    forecast_hours: 000/240/PT3H
+
+        WDIR_ISBL_750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.750.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.800.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WD.850:
+                    forecast_hours: 000/240/PT3H
+
+        WDIR_ISBL_875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.875.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.900.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WD.925:
+                    forecast_hours: 000/240/PT3H
+
+        WDIR_ISBL_950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.950.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.970.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_ISBL_985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WD.985.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WDIR_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_WD:
+                    forecast_hours: 000/240/PT3H
+
+        WEAFR_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 80
+                12Z:
+                    files_expected: 80
+            geomet_layers:
+                GDPS.ETA_FR:
+                    forecast_hours: 003/240/PT3H
+
+        WEARN_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 80
+                12Z:
+                    files_expected: 80
+            geomet_layers:
+                GDPS.ETA_RN:
+                    forecast_hours: 003/240/PT3H
+
+        WEASN_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 80
+                12Z:
+                    files_expected: 80
+            geomet_layers:
+                GDPS.ETA_SN:
+                    forecast_hours: 003/240/PT3H
+
+        WIND_ISBL_100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.100.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WSPD.100.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WIND_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WSPD.1000:
+                    forecast_hours: 000/240/PT3H
+
+        WIND_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.1015.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.150.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WSPD.150.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WIND_ISBL_175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.175.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.200.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WSPD.200.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WIND_ISBL_225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.225.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.250.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_WSPD.250.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.275.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.300.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_WSPD.300.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.350.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.400.6h:
+                    forecast_hours: 000/240/PT6H
+                GDPS.PRES_WSPD.400.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.450.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_50:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 69
+                12Z:
+                    files_expected: 69
+            geomet_layers:
+                GDPS.PRES_WSPD.50.3h:
+                    forecast_hours: 000/168/PT3H
+                GDPS.PRES_WSPD.50.6h:
+                    forecast_hours: 000/240/PT6H
+
+        WIND_ISBL_500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WSPD.500:
+                    forecast_hours: 000/240/PT3H
+
+        WIND_ISBL_550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.550.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.600.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.650.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WSPD.700:
+                    forecast_hours: 000/240/PT3H
+
+        WIND_ISBL_750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.750.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.800.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WSPD.850:
+                    forecast_hours: 000/240/PT3H
+
+        WIND_ISBL_875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.875.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.900.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.PRES_WSPD.925:
+                    forecast_hours: 000/240/PT3H
+
+        WIND_ISBL_950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.950.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.970.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_ISBL_985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 57
+                12Z:
+                    files_expected: 57
+            geomet_layers:
+                GDPS.PRES_WSPD.985.3h:
+                    forecast_hours: 000/168/PT3H
+
+        WIND_TGL_10:
+            members: null
+            elevation: 10m
+            model_run:
+                00Z:
+                    files_expected: 81
+                12Z:
+                    files_expected: 81
+            geomet_layers:
+                GDPS.ETA_WSPD:
+                    forecast_hours: 000/240/PT3H
