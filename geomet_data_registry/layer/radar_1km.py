@@ -133,7 +133,6 @@ class Radar1kmLayer(BaseLayer):
             self.store.set_key(extent_key, extent_value)
         else:
             LOGGER.debug('Adding time keys in the store')
-            last_key = last_key.decode('utf-8')
             old_time = datetime.strptime(last_key, DATE_FORMAT)
             if old_time + timedelta(minutes=10) != self.date_:
                 LOGGER.error('Missing radar between {}/{}'.format(old_time,
