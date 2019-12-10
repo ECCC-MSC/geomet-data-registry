@@ -1,6 +1,5 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Louis-Philippe Rousseau-Lambert
 # Copyright (C) 2019 Etienne Pelletier
 #
 # This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ from datetime import datetime, timedelta
 import json
 import logging
 import os
-from parse import parse
+from parse import parse, with_pattern
 import re
 
 from geomet_data_registry.layer.base import BaseLayer
@@ -31,8 +30,13 @@ from geomet_data_registry.util import DATE_FORMAT
 LOGGER = logging.getLogger(__name__)
 
 
-class RepsLayer(BaseLayer):
-    """REPS layer"""
+@with_pattern(r'\S+')
+def parse_fileinfo(text):
+    return text
+
+
+class GiopsLayer(BaseLayer):
+    """GIOPS layer"""
 
     def __init__(self, provider_def):
         """
@@ -40,11 +44,12 @@ class RepsLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.reps.REPSLayer`  # noqa
+        :returns: `geomet_data_registry.layer.giops.GiopsLayer`
         """
 
-        provider_def = {'name': 'reps'}
-        self.type = None
+        provider_def = {'name': 'giops'}
+        self.model_base = 'model_giops'
+        self.dimension = None  # identifies if the layer is 2D or 3D GIOPS data
         self.bands = None
         self.layer_names = []
 
@@ -61,40 +66,40 @@ class RepsLayer(BaseLayer):
 
         super().identify(filepath)
 
-        self.model = 'reps'
-
         LOGGER.debug('Loading model information from store')
-        self.file_dict = json.loads(self.store.get_key(self.model))
+        self.file_dict = json.loads(self.store.get_key(self.model_base))
+        filename_pattern = self.file_dict[self.model_base]['filename_pattern']
 
-        if self.filepath.endswith('allmbrs.grib2'):
-            filename_pattern = self.file_dict[self.model]['member']['filename_pattern']  # noqa
-            self.type = 'member'
-        elif self.filepath.endswith('all-products.grib2'):
-            filename_pattern = self.file_dict[self.model]['product']['filename_pattern']  # noqa
-            self.type = 'product'
+        if self.filepath.split('/')[-4] == '2d':
+            self.dimension = '2D'
+            self.model = 'model_giops_2D'
+        elif self.filepath.split('/')[-4] == '3d':
+            self.dimension = '3D'
+            self.model = 'model_giops_3D'
 
-        tmp = parse(filename_pattern, os.path.basename(filepath))
+        tmp = parse(filename_pattern, os.path.basename(filepath), dict(parse_fileinfo=parse_fileinfo))
 
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
             'time_': tmp.named['YYYYMMDD_model_run'],
+            'forecast_hour_prefix': tmp.named['forecast_hour_prefix'],
             'fh': tmp.named['forecast_hour']
         }
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        var_path = self.file_dict[self.model][self.type]['variable']
+        var_path = self.file_dict[self.model_base][self.dimension]['variable']
         if self.wx_variable not in var_path:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
             LOGGER.warning(msg)
             return False
 
-        runs = self.file_dict[self.model][self.type]['variable'][self.wx_variable]['model_run'] # noqa
+        runs = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run']  # noqa
         self.model_run_list = list(runs.keys())
 
-        weather_var = self.file_dict[self.model][self.type]['variable'][self.wx_variable]  # noqa
+        weather_var = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]  # noqa
 
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
@@ -103,24 +108,41 @@ class RepsLayer(BaseLayer):
         forecast_hour_datetime = self.date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
-        if self.type == 'member':
-            self.bands = self.file_dict[self.model]['member']['bands']
-        elif self.type == 'product':
-            self.bands = weather_var['bands']
+        if self.dimension == '3D':
+            self.bands = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['bands']
+            for band in self.bands.keys():
+                elevation = self.bands[band]['elevation']
+                str_mr = re.sub('[^0-9]',
+                                '',
+                                reference_datetime.strftime(DATE_FORMAT))
+                str_fh = re.sub('[^0-9]',
+                                '',
+                                forecast_hour_datetime.strftime(DATE_FORMAT))
 
-        for band in self.bands.keys():
-            vrt = '''\
-<VRTDataset rasterXSize="145" rasterYSize="73">
-    <SRS>'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=250 +k=90 +x_0=0 +y_0=0 +a=6371229 +b=6371229 +units=m +no_defs'</SRS>
-    <GeoTransform> -4.4174117578025218e+06,  1.5000000000000000e+04,  0.0000000000000000e+00,  4.5777534875770006e+05,  0.0000000000000000e+00, -1.5000000000000000e+04</GeoTransform>
-    <VRTRasterBand dataType="Float64" band="1">
-        <ComplexSource>
-            <SourceFilename>{}</SourceFilename>
-            <SourceBand>{}</SourceBand>
-        </ComplexSource>
-    </VRTRasterBand>
-</VRTDataset>'''.format(self.filepath, band).replace('\n', '')  # noqa
+                expected_count = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
 
+                for layer in weather_var['geomet_layers'].keys():
+                    member = None
+                    layer_name = layer.format(self.bands[band]['product'])
+
+                    identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
+
+                    feature_dict = {
+                        'layer_name': layer_name,
+                        'filepath': self.filepath,
+                        'identifier': identifier,
+                        'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
+                        'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
+                        'member': member,
+                        'model': self.model,
+                        'elevation': elevation,
+                        'expected_count': expected_count
+                    }
+
+                    self.items.append(feature_dict)
+                    self.layer_names.append(layer_name)
+
+        if self.dimension == '2D':
             elevation = weather_var['elevation']
             str_mr = re.sub('[^0-9]',
                             '',
@@ -129,25 +151,18 @@ class RepsLayer(BaseLayer):
                             '',
                             forecast_hour_datetime.strftime(DATE_FORMAT))
 
-            expected_count = self.file_dict[self.model][self.type]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+            expected_count = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
 
             for layer in weather_var['geomet_layers'].keys():
-                if self.type == 'member':
-                    member = self.bands[band]['member']
-                    layer_name = layer.format(self.bands[band]['member'])
-
-                elif self.type == 'product':
-                    member = None
-                    layer_name = layer.format(self.bands[band]['product'])
-
-                identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
+                member = None
+                identifier = '{}-{}-{}'.format(layer, str_mr, str_fh)
 
                 feature_dict = {
-                    'layer_name': layer_name,
-                    'filepath': vrt,
+                    'layer_name': layer,
+                    'filepath': self.filepath,
                     'identifier': identifier,
-                    'reference_datetime': reference_datetime.strftime(DATE_FORMAT), # noqa
-                    'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT), # noqa
+                    'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
+                    'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
                     'member': member,
                     'model': self.model,
                     'elevation': elevation,
@@ -155,7 +170,7 @@ class RepsLayer(BaseLayer):
                 }
 
                 self.items.append(feature_dict)
-                self.layer_names.append(layer_name)
+                self.layer_names.append(layer)
 
         return True
 
@@ -168,12 +183,11 @@ class RepsLayer(BaseLayer):
         and for observation:
             - latest time step
         """
-
-        for key in self.layer_names:  # noqa
+        for key in self.layer_names:
 
             time_extent_key = '{}_time_extent'.format(key)
 
-            wx_info = self.file_dict[self.model][self.type]['variable'][self.wx_variable]  # noqa
+            wx_info = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]  # noqa
 
             for layer in wx_info['geomet_layers']:
                 if key.startswith(layer.format('')):
@@ -189,18 +203,18 @@ class RepsLayer(BaseLayer):
             default_model_key = '{}_default_model_run'.format(key)
 
             model_run_extent_key = '{}_model_run_extent'.format(key)
-            retention_hours = self.file_dict[self.model]['model_run_retention_hours']  # noqa
-            interval_hours = self.file_dict[self.model]['model_run_interval_hours']  # noqa
+            retention_hours = self.file_dict[self.model_base]['model_run_retention_hours']  # noqa
+            interval_hours = self.file_dict[self.model_base]['model_run_interval_hours']  # noqa
             default_model_run = self.date_.strftime(DATE_FORMAT)
             run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
             run_interval = 'PT{}H'.format(interval_hours)
             model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
 
-            LOGGER.debug('Adding time keys in the store')
+            LOGGER.debug('Adding time keys in the store - Variable: {} - Key: {} - Model run: {}'.format(key, self.wx_variable, default_model_run))
 
             self.store.set_key(time_extent_key, time_extent_value)
             self.store.set_key(default_model_key, default_model_run)
             self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
-        return '<ModelREPSLayer> {}'.format(self.name)
+        return '<ModelGiopsLayer> {}'.format(self.name)

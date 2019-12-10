@@ -1,0 +1,452 @@
+model_giops:
+    model: GIOPS
+    model_run_retention_hours: 120
+    model_run_interval_hours: 12
+    filename_pattern: CMC_giops_{wx_variable}_{fileinfo:parse_fileinfo}_{YYYYMMDD_model_run}_{forecast_hour_prefix:l}{forecast_hour:n}.nc
+    2D:
+        variable:
+            iiceconc:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 81
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_GL:
+                        forecast_hours: 003/240/PT3H
+            iicevol:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_GE:
+                        forecast_hours: 003/240/PT3H
+            votemper:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_TM2:
+                        forecast_hours: 003/240/PT3H
+            vosaline:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_SALW:
+                        forecast_hours: 003/240/PT3H
+            sossheig:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 81
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_SSH:
+                        forecast_hours: 003/240/PT3H
+            somixhgt:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 81
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_MLTW:
+                        forecast_hours: 003/240/PT3H
+            sokaraml:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_MLW:
+                        forecast_hours: 003/240/PT3H
+            isnowvol:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_SDV:
+                        forecast_hours: 003/240/PT3H
+            iicesurftemp:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_TMI:
+                        forecast_hours: 003/240/PT3H
+            iicepressure:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_SIII:
+                        forecast_hours: 003/240/PT3H
+            iicestrength:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 80
+                    12Z:
+                        files_expected: 80
+                geomet_layers:
+                    OCEAN.GIOPS.2D_STGI:
+                        forecast_hours: 003/240/PT3H
+    3D:
+        variable:
+            vosaline:
+                bands:
+                    1:
+                        product: '0000'
+                        elevation: surface
+                    2:
+                        product: '0002'
+                        elevation: -2m
+                    3:
+                        product: '0003'
+                        elevation: -3m
+                    4:
+                        product: '0004'
+                        elevation: -4m
+                    5:
+                        product: '0005'
+                        elevation: -5m
+                    6:
+                        product: '0006'
+                        elevation: -6m
+                    7:
+                        product: '0008'
+                        elevation: -8m
+                    8:
+                        product: '0010'
+                        elevation: -10m
+                    9:
+                        product: '0011'
+                        elevation: -11m
+                    10:
+                        product: '0013'
+                        elevation: -13m
+                    11:
+                        product: '0016'
+                        elevation: -16m
+                    12:
+                        product: '0018'
+                        elevation: -18m
+                    13:
+                        product: '0022'
+                        elevation: -22m
+                    14:
+                        product: '0025'
+                        elevation: -25m
+                    15:
+                        product: '0029'
+                        elevation: -29m
+                    16:
+                        product: '0034'
+                        elevation: -34m
+                    17:
+                        product: '0040'
+                        elevation: -40m
+                    18:
+                        product: '0047'
+                        elevation: -47m
+                    19:
+                        product: '0056'
+                        elevation: -56m
+                    20:
+                        product: '0066'
+                        elevation: -66m
+                    21:
+                        product: '0078'
+                        elevation: -78m
+                    22:
+                        product: '0092'
+                        elevation: -92m
+                    23:
+                        product: '0110'
+                        elevation: -110m
+                    24:
+                        product: '0131'
+                        elevation: -131m
+                    25:
+                        product: '0156'
+                        elevation: -156m
+                    26:
+                        product: '0186'
+                        elevation: -186m
+                    27:
+                        product: '0222'
+                        elevation: -222m
+                    28:
+                        product: '0266'
+                        elevation: -266m
+                    29:
+                        product: '0318'
+                        elevation: -318m
+                    30:
+                        product: '0380'
+                        elevation: -380m
+                    31:
+                        product: '0454'
+                        elevation: -454m
+                    32:
+                        product: '0541'
+                        elevation: -541m
+                    33:
+                        product: '0644'
+                        elevation: -644m
+                    34:
+                        product: '0763'
+                        elevation: -763m
+                    35:
+                        product: '0902'
+                        elevation: -902m
+                    36:
+                        product: '1062'
+                        elevation: -1062m
+                    37:
+                        product: '1245'
+                        elevation: -1245m
+                    38:
+                        product: '1452'
+                        elevation: -1452m
+                    39:
+                        product: '1684'
+                        elevation: -1684m
+                    40:
+                        product: '1942'
+                        elevation: -1942m
+                    41:
+                        product: '2225'
+                        elevation: -2225m
+                    42:
+                        product: '2533'
+                        elevation: -2533m
+                    43:
+                        product: '2866'
+                        elevation: -2866m
+                    44:
+                        product: '3221'
+                        elevation: -3221m
+                    45:
+                        product: '3597'
+                        elevation: -3597m
+                    46:
+                        product: '3992'
+                        elevation: -3992m
+                    47:
+                        product: '4405'
+                        elevation: -4405m
+                    48:
+                        product: '4833'
+                        elevation: -4833m
+                    49:
+                        product: '5275'
+                        elevation: -5275m
+                    50:
+                        product: '5728'
+                        elevation: -5728m
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 11
+                    12Z:
+                        files_expected: 10
+                geomet_layers:
+                    OCEAN.GIOPS.3D_SALW_{}:
+                        forecast_hours: 024/240/PT24H
+            votemper:
+                bands:
+                    1:
+                        product: '0000'
+                        elevation: surface
+                    2:
+                        product: '0002'
+                        elevation: -2m
+                    3:
+                        product: '0003'
+                        elevation: -3m
+                    4:
+                        product: '0004'
+                        elevation: -4m
+                    5:
+                        product: '0005'
+                        elevation: -5m
+                    6:
+                        product: '0006'
+                        elevation: -6m
+                    7:
+                        product: '0008'
+                        elevation: -8m
+                    8:
+                        product: '0010'
+                        elevation: -10m
+                    9:
+                        product: '0011'
+                        elevation: -11m
+                    10:
+                        product: '0013'
+                        elevation: -13m
+                    11:
+                        product: '0016'
+                        elevation: -16m
+                    12:
+                        product: '0018'
+                        elevation: -18m
+                    13:
+                        product: '0022'
+                        elevation: -22m
+                    14:
+                        product: '0025'
+                        elevation: -25m
+                    15:
+                        product: '0029'
+                        elevation: -29m
+                    16:
+                        product: '0034'
+                        elevation: -34m
+                    17:
+                        product: '0040'
+                        elevation: -40m
+                    18:
+                        product: '0047'
+                        elevation: -47m
+                    19:
+                        product: '0056'
+                        elevation: -56m
+                    20:
+                        product: '0066'
+                        elevation: -66m
+                    21:
+                        product: '0078'
+                        elevation: -78m
+                    22:
+                        product: '0092'
+                        elevation: -92m
+                    23:
+                        product: '0110'
+                        elevation: -110m
+                    24:
+                        product: '0131'
+                        elevation: -131m
+                    25:
+                        product: '0156'
+                        elevation: -156m
+                    26:
+                        product: '0186'
+                        elevation: -186m
+                    27:
+                        product: '0222'
+                        elevation: -222m
+                    28:
+                        product: '0266'
+                        elevation: -266m
+                    29:
+                        product: '0318'
+                        elevation: -318m
+                    30:
+                        product: '0380'
+                        elevation: -380m
+                    31:
+                        product: '0454'
+                        elevation: -454m
+                    32:
+                        product: '0541'
+                        elevation: -541m
+                    33:
+                        product: '0644'
+                        elevation: -644m
+                    34:
+                        product: '0763'
+                        elevation: -763m
+                    35:
+                        product: '0902'
+                        elevation: -902m
+                    36:
+                        product: '1062'
+                        elevation: -1062m
+                    37:
+                        product: '1245'
+                        elevation: -1245m
+                    38:
+                        product: '1452'
+                        elevation: -1452m
+                    39:
+                        product: '1684'
+                        elevation: -1684m
+                    40:
+                        product: '1942'
+                        elevation: -1942m
+                    41:
+                        product: '2225'
+                        elevation: -2225m
+                    42:
+                        product: '2533'
+                        elevation: -2533m
+                    43:
+                        product: '2866'
+                        elevation: -2866m
+                    44:
+                        product: '3221'
+                        elevation: -3221m
+                    45:
+                        product: '3597'
+                        elevation: -3597m
+                    46:
+                        product: '3992'
+                        elevation: -3992m
+                    47:
+                        product: '4405'
+                        elevation: -4405m
+                    48:
+                        product: '4833'
+                        elevation: -4833m
+                    49:
+                        product: '5275'
+                        elevation: -5275m
+                    50:
+                        product: '5728'
+                        elevation: -5728m
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 11
+                    12Z:
+                        files_expected: 10
+                geomet_layers:
+                    OCEAN.GIOPS.3D_TM2_{}:
+                        forecast_hours: 024/240/PT24H
