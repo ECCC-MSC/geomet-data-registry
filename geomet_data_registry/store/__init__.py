@@ -130,10 +130,13 @@ def get_key(ctx, key):
 
     try:
         click.echo('Getting {} key from store ({}).'.format(key, st.url))
-        retrived_key = json.loads(st.get_key(key))
-        if retrived_key:
-            click.echo('{}'.format(
-                json_pretty_print(retrived_key)))
+        retrieved_key = st.get_key(key)
+        if retrieved_key:
+            try:
+                click.echo('{}'.format(
+                    json_pretty_print(json.loads(retrieved_key))))
+            except ValueError:
+                click.echo(retrieved_key)
 
     except StoreError as err:
         raise click.ClickException(err)
