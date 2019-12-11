@@ -63,8 +63,9 @@ def add_data(ctx, file_, directory, verify=False):
         files_to_process = [file_]
     elif directory is not None:
         for root, dirs, files in os.walk(directory):
-            for f in sorted(files):
+            for f in files:
                 files_to_process.append(os.path.join(root, f))
+        files_to_process.sort(key=os.path.getmtime)
 
     for file_to_process in files_to_process:
         handler = CoreHandler(file_to_process)
