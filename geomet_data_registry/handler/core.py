@@ -26,6 +26,7 @@ LOGGER = logging.getLogger(__name__)
 
 DATASET_HANDLERS = {
     'CMC_glb': 'ModelGemGlobal',
+    'CMC_giops': 'GIOPS',
     'CMC_reg': 'ModelGemRegional',
     'CMC_hrdps_continental': 'ModelHrdpsContinental',
     'RADAR_COMPOSITE_1KM': 'Radar1km',

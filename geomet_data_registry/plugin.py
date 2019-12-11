@@ -35,7 +35,8 @@ PLUGINS = {
         'ModelHrdpsContinental': 'geomet_data_registry.layer.model_hrdps_continental.ModelHrdpsContinentalLayer',  # noqa
         'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',  # noqa
         'CanSIPS': 'geomet_data_registry.layer.cansips.CansipsLayer',  # noqa
-        'REPS': 'geomet_data_registry.layer.reps.RepsLayer'  # noqa
+        'REPS': 'geomet_data_registry.layer.reps.RepsLayer',  # noqa
+        'GIOPS': 'geomet_data_registry.layer.model_giops.GiopsLayer'  # noqa
     }
 }
 
