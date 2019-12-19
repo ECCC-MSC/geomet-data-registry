@@ -109,17 +109,7 @@ class RepsLayer(BaseLayer):
             self.bands = weather_var['bands']
 
         for band in self.bands.keys():
-            vrt = '''\
-<VRTDataset rasterXSize="145" rasterYSize="73">
-    <SRS>'+proj=stere +lat_0=90 +lat_ts=60 +lon_0=250 +k=90 +x_0=0 +y_0=0 +a=6371229 +b=6371229 +units=m +no_defs'</SRS>
-    <GeoTransform> -4.4174117578025218e+06,  1.5000000000000000e+04,  0.0000000000000000e+00,  4.5777534875770006e+05,  0.0000000000000000e+00, -1.5000000000000000e+04</GeoTransform>
-    <VRTRasterBand dataType="Float64" band="1">
-        <ComplexSource>
-            <SourceFilename>{}</SourceFilename>
-            <SourceBand>{}</SourceBand>
-        </ComplexSource>
-    </VRTRasterBand>
-</VRTDataset>'''.format(self.filepath, band).replace('\n', '')  # noqa
+            vrt = 'vrt://{}?bands={}'.format(self.filepath, band)  # noqa
 
             elevation = weather_var['elevation']
             str_mr = re.sub('[^0-9]',
@@ -134,11 +124,11 @@ class RepsLayer(BaseLayer):
             for layer in weather_var['geomet_layers'].keys():
                 if self.type == 'member':
                     member = self.bands[band]['member']
-                    layer_name = layer.format(self.bands[band]['member'])
+                    layer_name = layer.format(str(self.bands[band]['member']).zfill(2)) # noqa
 
                 elif self.type == 'product':
                     member = None
-                    layer_name = layer.format(self.bands[band]['product'])
+                    layer_name = layer.format(str(self.bands[band]['product']).zfill(2)) # noqa
 
                 identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
