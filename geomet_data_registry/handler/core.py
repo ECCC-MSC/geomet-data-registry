@@ -31,7 +31,8 @@ DATASET_HANDLERS = {
     'CMC_hrdps_continental': 'ModelHrdpsContinental',
     'RADAR_COMPOSITE_1KM': 'Radar1km',
     'cansips': 'CanSIPS',
-    'reps': 'REPS'
+    'reps': 'REPS',
+    'geps': 'GEPS',
 }
 
 
