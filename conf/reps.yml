@@ -70,7 +70,7 @@ reps:
                         # 03: variable is available from relative forecast hour 03
                         # 72: variable is available until relative forecast hour 72
                         # PT3H: variable is available every 3 hours
-                        forecast_hour: 03/72/PT3H
+                        forecast_hours: 03/72/PT3H
             RPRATE-Accum-6h_SFC_0:
                 bands:
                     1:
@@ -126,7 +126,7 @@ reps:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_RNMM.{}:
-                        forecast_hour: 06/72/PT6H
+                        forecast_hours: 06/72/PT6H
             FPRATE-Accum-6h_SFC_0:
                 bands:
                     1:
@@ -182,7 +182,7 @@ reps:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_FRMM.{}:
-                        forecast_hour: 06/72/PT6H
+                        forecast_hours: 06/72/PT6H
             IPRATE-Accum-6h_SFC_0:
                 bands:
                     1:
@@ -238,7 +238,7 @@ reps:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_PEMM.{}:
-                        forecast_hour: 06/72/PT6H
+                        forecast_hours: 06/72/PT6H
             SPRATE-Accum-6h_SFC_0:
                 bands:
                     1:
@@ -294,7 +294,7 @@ reps:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_SNMM.{}:
-                        forecast_hour: 06/72/PT6H
+                        forecast_hours: 06/72/PT6H
             FPRATE-Accum-12h_SFC_0:
                 bands:
                     1:
@@ -346,7 +346,7 @@ reps:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_FRMM.{}:
-                        forecast_hour: 12/72/PT6H
+                        forecast_hours: 12/72/PT6H
             TPRATE-Accum-12h_SFC_0:
                 bands:
                     1:
@@ -404,7 +404,7 @@ reps:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_PRMM.{}:
-                        forecast_hour: 12/72/PT6H
+                        forecast_hours: 12/72/PT6H
             RPRATE-Accum-12h_SFC_0:
                 bands:
                     1:
@@ -462,7 +462,7 @@ reps:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_RNMM.{}:
-                        forecast_hour: 12/72/PT6H
+                        forecast_hours: 12/72/PT6H
             IPRATE-Accum-12h_SFC_0:
                 bands:
                     1:
@@ -514,7 +514,7 @@ reps:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_PEMM.{}:
-                        forecast_hour: 12/72/PT6H
+                        forecast_hours: 12/72/PT6H
             SPRATE-Accum-12h_SFC_0:
                 bands:
                     1:
@@ -566,7 +566,7 @@ reps:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_SNMM.{}:
-                        forecast_hour: 12/72/PT6H
+                        forecast_hours: 12/72/PT6H
             WIND-Max-12h_TGL_10m:
                 bands:
                     1:
@@ -620,7 +620,7 @@ reps:
                         files_expected: 6
                 geomet_layers:
                     REPS.DIAG.12_UVMX.{}:
-                        forecast_hour: 12/72/PT12H
+                        forecast_hours: 12/72/PT12H
             TEMP-Min-24h_TGL_2m:
                 bands:
                     1:
@@ -678,7 +678,7 @@ reps:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_T7.{}:
-                        forecast_hour: 24/72/PT12H
+                        forecast_hours: 24/72/PT12H
             TEMP-Max-24h_TGL_2m:
                 bands:
                     1:
@@ -738,7 +738,7 @@ reps:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_T8.{}:
-                        forecast_hour: 24/72/PT12H
+                        forecast_hours: 24/72/PT12H
             HEATX-Max-24h_TGL_2m:
                 bands:
                     1:
@@ -780,7 +780,7 @@ reps:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_HMXX.{}:
-                        forecast_hour: 24/72/PT12H
+                        forecast_hours: 24/72/PT12H
             RPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
@@ -840,7 +840,7 @@ reps:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_RNMM.{}:
-                        forecast_hour: 24/72/PT6H
+                        forecast_hours: 24/72/PT6H
             FPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
@@ -896,7 +896,7 @@ reps:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_FRMM.{}:
-                        forecast_hour: 24/72/PT6H
+                        forecast_hours: 24/72/PT6H
             IPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
@@ -952,7 +952,7 @@ reps:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_PEMM.{}:
-                        forecast_hour: 24/72/PT6H
+                        forecast_hours: 24/72/PT6H
             SPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
@@ -1008,7 +1008,7 @@ reps:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_SNMM.{}:
-                        forecast_hour: 24/72/PT6H
+                        forecast_hours: 24/72/PT6H
             TPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
@@ -1068,7 +1068,7 @@ reps:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_PRMM.{}:
-                        forecast_hour: 24/72/PT6H
+                        forecast_hours: 24/72/PT6H
             WCF-Min-24h_TGL_2m:
                 bands:
                     1:
@@ -1120,7 +1120,7 @@ reps:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_WCF.{}:
-                        forecast_hour: 24/72/PT12H
+                        forecast_hours: 24/72/PT12H
             TPRATE-Accum-48h_SFC_0:
                 bands:
                     1:
@@ -1178,7 +1178,7 @@ reps:
                         files_expected: 2
                 geomet_layers:
                     REPS.DIAG.48_PRMM.{}:
-                        forecast_hour: 48/72/PT24H
+                        forecast_hours: 48/72/PT24H
             TPRATE-Accum-72h_SFC_0:
                 bands:
                     1:
@@ -1236,7 +1236,7 @@ reps:
                         files_expected: 1
                 geomet_layers:
                     REPS.DIAG.72_PRMM.{}:
-                        forecast_hour: 72/72/PT72H
+                        forecast_hours: 72/72/PT72H
     member:
         # file name pattern with the different variables between {}
         # The path variables will be defined in the layer handler script depending on the filename
