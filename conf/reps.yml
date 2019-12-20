@@ -71,6 +71,64 @@ reps:
                         # 72: variable is available until relative forecast hour 72
                         # PT3H: variable is available every 3 hours
                         forecast_hours: 03/72/PT3H
+            TPRATE-Accum-6h_SFC_0:
+                bands:
+                    1:
+                        product: ERGE0.2
+                    2:
+                        product: ERGE0.5
+                    3:
+                        product: ERGE1
+                    4:
+                        product: ERGE2.5
+                    5:
+                        product: ERGE5
+                    6:
+                        product: ERGE10
+                    7:
+                        product: ERGE15
+                    8:
+                        product: ERGE20
+                    9:
+                        product: ERGE25
+                    10:
+                        product: ERGE30
+                    11:
+                        product: ERGE40
+                    12:
+                        product: ERGE50
+                    13:
+                        product: ERGE75
+                    14:
+                        product: ERGE100
+                    15:
+                        product: ERC10
+                    16:
+                        product: ERC25
+                    17:
+                        product: ERC50
+                    18:
+                        product: ERC75
+                    19:
+                        product: ERC90
+                    20:
+                        product: ERSSTD
+                    21:
+                        product: ERMEAN
+                    22:
+                        product: ERC0
+                    23:
+                        product: ERC100
+                elevation: surface
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 12
+                    12Z:
+                        files_expected: 12
+                geomet_layers:
+                    REPS.DIAG.6_PRMM.{}:
+                        forecast_hours: 06/72/PT3H
             RPRATE-Accum-6h_SFC_0:
                 bands:
                     1:
@@ -320,7 +378,7 @@ reps:
                     11:
                         product: ERGE50
                     12:
-                        product: ERCE10
+                        product: ERC10
                     13:
                         product: ERC25
                     14:
@@ -1654,12 +1712,12 @@ reps:
                 elevation: surface
                 model_run:
                     00Z:
-                        files_expected: 25
+                        files_expected: 24
                     12Z:
-                        files_expected: 25
+                        files_expected: 24
                 geomet_layers:
                     REPS.MEM.ETA_PR.{}:
-                        forecast_hours: 00/72/PT3H
+                        forecast_hours: 03/72/PT3H
             PRES_SFC_0:
                 elevation: surface
                 model_run:
