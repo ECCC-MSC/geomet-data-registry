@@ -89,7 +89,7 @@ class BaseLayer(object):
             status = r[self.items[0]['identifier']]
             item_dict = item_bulk[0]
             self.update_count(self.items[0], status, item_dict)
-        else:
+        elif len(self.items) == 1:
             item = self.items[0]
             LOGGER.debug('Adding item {}'.format(item['identifier']))
             item_dict = self.layer2dict(item)
@@ -97,6 +97,9 @@ class BaseLayer(object):
             r = self.tileindex.add(item_dict['properties']['identifier'],
                                    item_dict)
             self.update_count(self.items[0], r, item_dict)
+        else:
+            LOGGER.error('Empty item list for {}'.format(self.filepath))
+            return False
 
         return True
 
