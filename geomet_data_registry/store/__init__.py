@@ -78,7 +78,7 @@ def teardown(ctx, group=None):
         click.echo('Deleting store {}'.format(st.url))
         st.teardown()
     except StoreError as err:
-        raise click.ClickException(err)
+        click.echo(err)
     click.echo('Done')
 
 
