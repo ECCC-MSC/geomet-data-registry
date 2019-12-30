@@ -77,7 +77,7 @@ def teardown(ctx, group=None):
         click.echo('Deleting tileindex {}'.format(ti.fullpath))
         ti.teardown()
     except TileIndexError as err:
-        raise click.ClickException(err)
+        click.echo(err)
     click.echo('Done')
 
 
