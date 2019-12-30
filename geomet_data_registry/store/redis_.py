@@ -65,7 +65,7 @@ class RedisStore(BaseStore):
         """
 
         LOGGER.debug('Deleting all Redis keys')
-        for key in self.redis.scan_iter("*"):
+        for key in self.redis.scan_iter('*'):
             LOGGER.debug('Deleting key {}'.format(key))
             self.redis.delete(key)
 
