@@ -64,7 +64,12 @@ class RedisStore(BaseStore):
         :returns: `bool` of process status
         """
 
-        return self.redis.delete('geomet-data-registry-version')
+        LOGGER.debug('Deleting all Redis keys')
+        for key in self.redis.scan_iter("*"):
+            LOGGER.debug('Deleting key {}'.format(key))
+            self.redis.delete(key)
+
+        return True
 
     def get_key(self, key):
         """
