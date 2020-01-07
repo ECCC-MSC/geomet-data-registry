@@ -61,7 +61,7 @@ geps:
                 geomet_layers:
                     GEPS.DIAG.3_NT.{}:
                         forecast_hours: 003/384/PT3H
-            TEMP_TGL_2:
+            TEMP_TGL_2m:
                 bands:
                     1:
                         product: ERC10
@@ -501,6 +501,8 @@ geps:
                 geomet_layers:
                     GEPS.DIAG.12_PN-SLP.{}:
                         forecast_hours: 012/384/PT12H
+                    GEPS.DIAG.12_PN.{}:
+                        forecast_hours: 012/384/PT12H
             FPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
@@ -660,29 +662,29 @@ geps:
             SPRATE-Accum-24h_SFC_0:
                 bands:
                     1:
-                        product: ERGE20
+                        product: ERGE1
                     2:
-                        product: ERGE30
+                        product: ERGE2.5
                     3:
-                        product: ERGE37
+                        product: ERGE5
                     4:
-                        product: ERGE40
+                        product: ERGE10
                     5:
-                        product: ERGE50
+                        product: ERGE15
                     6:
-                        product: ERGE62
+                        product: ERGE20
                     7:
-                        product: ERGE65
+                        product: ERGE25
                     8:
-                        product: ERGE75
+                        product: ERGE30
                     9:
                         product: ERGE40
                     10:
-                        product: ERGE90
+                        product: ERGE50
                     11:
-                        product: ERGE100
+                        product: ERGE75
                     12:
-                        product: ERGE118
+                        product: ERGE100
                     13:
                         product: ERC10
                     14:
@@ -1018,7 +1020,7 @@ geps:
                     17:
                         product: ERC50
                     18:
-                        product: ERC50
+                        product: ERC75
                     19:
                         product: ERC90
                     20:
@@ -1076,7 +1078,7 @@ geps:
                     17:
                         product: ERC50
                     18:
-                        product: ERC50
+                        product: ERC75
                     19:
                         product: ERC90
                     20:
@@ -1134,7 +1136,7 @@ geps:
                     17:
                         product: ERC50
                     18:
-                        product: ERC50
+                        product: ERC75
                     19:
                         product: ERC90
                     20:
@@ -1192,7 +1194,7 @@ geps:
                     17:
                         product: ERC50
                     18:
-                        product: ERC50
+                        product: ERC75
                     19:
                         product: ERC90
                     20:
