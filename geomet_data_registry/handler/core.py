@@ -33,6 +33,7 @@ DATASET_HANDLERS = {
     'cansips': 'CanSIPS',
     'reps': 'REPS',
     'geps': 'GEPS',
+    'CMC_coupled-rdps-stlawrence': 'CGSL'
 }
 
 
