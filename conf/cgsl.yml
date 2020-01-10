@@ -1,0 +1,85 @@
+cgsl:
+    model: CGSL
+    filename_pattern: CMC_coupled-rdps-stlawrence-{wx_variable}_latlon0.02x0.03_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
+    model_run_retention_hours: 48
+    model_run_interval_hours: 6
+    variable:
+        atmosphere:
+            bands:
+                1:
+                    product: UGRD
+                2:
+                    product: VGRD
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                CGSL.ETA_UGRD:
+                    bands: 1,2
+                    forecast_hours: 001/048/PT1H
+        ocean:
+            bands:
+                1:
+                    product: ICEC
+                2:
+                    product: ICETK
+                3:
+                    product: UICE
+                4:
+                    product: VICE
+                5:
+                    product: UOGRD
+                6:
+                    product: VOGRD
+                7:
+                    product: WTMP
+                8:
+                    product: ICET
+                9:
+                    product: ICEPRS
+                10:
+                    product: ICESTG
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 48
+                06Z:
+                    files_expected: 48
+                12Z:
+                    files_expected: 48
+                18Z:
+                    files_expected: 48
+            geomet_layers:
+                CGSL.ETA_ICEC:
+                    bands: 1
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_ICETK:
+                    bands: 2
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_UICE:
+                    bands: 3,4
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_UOGRD:
+                    bands: 5,6
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_WTMP:
+                    bands: 7
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_ICET:
+                    bands: 8
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_ICEPRS:
+                    bands: 9
+                    forecast_hours: 001/048/PT1H
+                CGSL.ETA_ICESTG:
+                    bands: 10
+                    forecast_hours: 001/048/PT1H
