@@ -161,6 +161,7 @@ class CgslLayer(BaseLayer):
                                                   interval)
 
             default_model_key = '{}_default_model_run'.format(key)
+            stored_default_model_run = self.store.get_key(default_model_key)
 
             model_run_extent_key = '{}_model_run_extent'.format(key)
             retention_hours = self.file_dict[self.model]['model_run_retention_hours']  # noqa
@@ -169,6 +170,11 @@ class CgslLayer(BaseLayer):
             run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
             run_interval = 'PT{}H'.format(interval_hours)
             model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
+
+            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:
+                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "
+                             "Not updating time keys.".format(default_model_run, stored_default_model_run))
+                continue
 
             LOGGER.debug('Adding time keys in the store')
 
