@@ -77,7 +77,8 @@ class GiopsLayer(BaseLayer):
             self.dimension = '3D'
             self.model = 'model_giops_3D'
 
-        tmp = parse(filename_pattern, os.path.basename(filepath), dict(parse_fileinfo=parse_fileinfo))
+        tmp = parse(filename_pattern, os.path.basename(filepath),
+                    dict(parse_fileinfo=parse_fileinfo))
 
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
@@ -109,7 +110,7 @@ class GiopsLayer(BaseLayer):
             timedelta(hours=int(file_pattern_info['fh']))
 
         if self.dimension == '3D':
-            self.bands = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['bands']
+            self.bands = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['bands']  # noqa
             for band in self.bands.keys():
                 elevation = self.bands[band]['elevation']
                 str_mr = re.sub('[^0-9]',
@@ -211,12 +212,13 @@ class GiopsLayer(BaseLayer):
             run_interval = 'PT{}H'.format(interval_hours)
             model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
 
-            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:
-                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "
-                             "Not updating time keys.".format(default_model_run, stored_default_model_run))
+            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
+                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "  # noqa
+                             "Not updating time keys.".format(default_model_run, stored_default_model_run))  # noqa
                 continue
 
-            LOGGER.debug('Adding time keys in the store - Variable: {} - Key: {} - Model run: {}'.format(key, self.wx_variable, default_model_run))
+            LOGGER.debug('Adding time keys in the store - Variable:'
+                         ' {} - Key: {} - Model run: {}'.format(key, self.wx_variable, default_model_run))  # noqa
 
             self.store.set_key(time_extent_key, time_extent_value)
             self.store.set_key(default_model_key, default_model_run)

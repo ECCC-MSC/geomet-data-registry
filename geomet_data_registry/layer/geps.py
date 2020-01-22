@@ -187,9 +187,9 @@ class GepsLayer(BaseLayer):
             run_interval = 'PT{}H'.format(interval_hours)
             model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
 
-            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:
-                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "
-                             "Not updating time keys.".format(default_model_run, stored_default_model_run))
+            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
+                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "  # noqa
+                             "Not updating time keys.".format(default_model_run, stored_default_model_run))  # noqa
                 continue
 
             LOGGER.debug('Adding time keys in the store')
