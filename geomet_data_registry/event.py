@@ -56,5 +56,5 @@ class Event(object):
         return '<Event>'
 
 
-event = Event(self)
-self.on_file = event.dispatch
+event = Event(self)  # noqa
+self.on_file = event.dispatch  # noqa
