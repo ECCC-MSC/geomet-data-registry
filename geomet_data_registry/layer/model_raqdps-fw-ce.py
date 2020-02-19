@@ -118,6 +118,7 @@ class ModelRaqdpsFwCeLayer(BaseLayer):
                 'expected_count': None,
                 'layer_config': layer_config,
                 'register_status': True,
+                'refresh_config': True,
             }
 
             self.items.append(feature_dict)

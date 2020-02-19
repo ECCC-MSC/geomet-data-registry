@@ -20,6 +20,7 @@
 import logging
 import os
 
+from geomet_data_registry.util import str2bool
 
 LOGGER = logging.getLogger(__name__)
 
@@ -36,6 +37,8 @@ STORE_TYPE = os.environ.get('GDR_STORE_TYPE', None)
 STORE_URL = os.environ.get('GDR_STORE_URL', None)
 METPX_DISCARD = os.environ.get('GDR_METPX_DISCARD', 'on')
 METPX_EVENT_PY = os.environ.get('GDR_METPX_EVENT_PY', None)
+NOTIFICATIONS = str2bool(os.environ.get('GDR_NOTIFICATIONS', False))
+NOTIFICATIONS_URL = os.environ.get('GDR_NOTIFICATIONS_URL', None)
 
 LOGGER.debug(BASEDIR)
 LOGGER.debug(DATADIR)
@@ -45,21 +48,33 @@ LOGGER.debug(TILEINDEX_NAME)
 LOGGER.debug(STORE_TYPE)
 LOGGER.debug(STORE_URL)
 LOGGER.debug(METPX_DISCARD)
+LOGGER.debug(NOTIFICATIONS_URL)
 
-if None in [BASEDIR, DATADIR, TILEINDEX_TYPE, TILEINDEX_BASEURL,
-            TILEINDEX_NAME, STORE_TYPE, STORE_URL, METPX_EVENT_PY]:
+if None in [
+    BASEDIR,
+    DATADIR,
+    TILEINDEX_TYPE,
+    TILEINDEX_BASEURL,
+    TILEINDEX_NAME,
+    STORE_TYPE,
+    STORE_URL,
+    METPX_EVENT_PY,
+]:
     msg = 'Environment variables not set!'
     LOGGER.error(msg)
     raise EnvironmentError(msg)
 
-STORE_PROVIDER_DEF = {
-    'type': STORE_TYPE,
-    'url': STORE_URL
-}
+STORE_PROVIDER_DEF = {'type': STORE_TYPE, 'url': STORE_URL}
 
 TILEINDEX_PROVIDER_DEF = {
     'type': TILEINDEX_TYPE,
     'url': TILEINDEX_BASEURL,
     'name': TILEINDEX_NAME,
     'group': None
+}
+
+NOTIFICATIONS_PROVIDER_DEF = {
+    'type': 'Celery',
+    'active': NOTIFICATIONS,
+    'url': NOTIFICATIONS_URL,
 }

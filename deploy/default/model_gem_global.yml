@@ -1831,8 +1831,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.1015.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.1015.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.1015.3h:
                     dependencies:
@@ -1856,6 +1858,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_UGRD.1000:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.1000:
                     dependencies:
@@ -1875,8 +1878,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.985.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.985.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.985.3h:
                     dependencies:
@@ -1900,8 +1905,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.970.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.970.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.970.3h:
                     dependencies:
@@ -1925,8 +1932,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.950.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.950.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.950.3h:
                     dependencies:
@@ -1950,6 +1959,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_UGRD.925:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.925:
                     dependencies:
@@ -1969,8 +1979,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.900.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.900.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.900.3h:
                     dependencies:
@@ -1994,8 +2006,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.875.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.875.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.875.3h:
                     dependencies:
@@ -2019,6 +2033,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_UGRD.850:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.850:
                     dependencies:
@@ -2027,7 +2042,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         UGRD_ISBL_800:
             members: null
             elevation: 800mb
@@ -2038,8 +2053,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.800.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.800.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.800.3h:
                     dependencies:
@@ -2063,8 +2080,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.750.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.750.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.750.3h:
                     dependencies:
@@ -2088,6 +2107,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_UGRD.700:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.700:
                     dependencies:
@@ -2107,8 +2127,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.650.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.650.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.650.3h:
                     dependencies:
@@ -2132,8 +2154,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.600.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.600.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.600.3h:
                     dependencies:
@@ -2157,8 +2181,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.550.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.550.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.550.3h:
                     dependencies:
@@ -2182,6 +2208,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_UGRD.500:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.500:
                     dependencies:
@@ -2201,8 +2228,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.450.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.450.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.450.3h:
                     dependencies:
@@ -2226,8 +2255,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.400.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.400.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.400.3h:
                     dependencies:
@@ -2240,7 +2271,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-        
+
         UGRD_ISBL_350:
             members: null
             elevation: 350mb
@@ -2251,8 +2282,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.350.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.350.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.350.3h:
                     dependencies:
@@ -2276,8 +2309,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.300.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.300.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.300.3h:
                     dependencies:
@@ -2290,7 +2325,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-        
+
         UGRD_ISBL_275:
             members: null
             elevation: 275mb
@@ -2301,8 +2336,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.275.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.275.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.275.3h:
                     dependencies:
@@ -2326,8 +2363,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.250.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.250.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.250.3h:
                     dependencies:
@@ -2340,7 +2379,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-        
+
         UGRD_ISBL_225:
             members: null
             elevation: 225mb
@@ -2351,8 +2390,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.225.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.225.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.225.3h:
                     dependencies:
@@ -2365,7 +2406,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-        
+
         UGRD_ISBL_200:
             members: null
             elevation: 200mb
@@ -2376,8 +2417,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.200.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.200.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.200.3h:
                     dependencies:
@@ -2390,7 +2433,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-        
+
         UGRD_ISBL_175:
             members: null
             elevation: 175mb
@@ -2401,8 +2444,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.175.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.175.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.175.3h:
                     dependencies:
@@ -2415,7 +2460,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-        
+
         UGRD_ISBL_150:
             members: null
             elevation: 150mb
@@ -2426,8 +2471,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.150.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.150.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.150.3h:
                     dependencies:
@@ -2440,7 +2487,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         UGRD_ISBL_100:
             members: null
             elevation: 100mb
@@ -2451,8 +2498,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.100.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.100.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.100.3h:
                     dependencies:
@@ -2465,7 +2514,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         UGRD_ISBL_50:
             members: null
             elevation: 50mb
@@ -2476,8 +2525,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_UGRD.50.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_UGRD.50.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.50.3h:
                     dependencies:
@@ -2501,6 +2552,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.ETA_UGRD:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.ETA_UU:
                     dependencies:
@@ -2520,8 +2572,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.1015.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.1015.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.1015.3h:
                     dependencies:
@@ -2545,6 +2599,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_VGRD.1000:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.1000:
                     dependencies:
@@ -2553,7 +2608,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         VGRD_ISBL_985:
             members: null
             elevation: 985mb
@@ -2564,8 +2619,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.985.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.985.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.985.3h:
                     dependencies:
@@ -2578,7 +2635,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         VGRD_ISBL_970:
             members: null
             elevation: 970mb
@@ -2589,8 +2646,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.970.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.970.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.970.3h:
                     dependencies:
@@ -2614,8 +2673,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.950.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.950.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.950.3h:
                     dependencies:
@@ -2639,6 +2700,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_VGRD.925:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.925:
                     dependencies:
@@ -2658,8 +2720,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.900.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.900.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.900.3h:
                     dependencies:
@@ -2683,8 +2747,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.875.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.875.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.875.3h:
                     dependencies:
@@ -2708,6 +2774,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_VGRD.850:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.850:
                     dependencies:
@@ -2716,7 +2783,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         VGRD_ISBL_800:
             members: null
             elevation: 800mb
@@ -2727,8 +2794,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.800.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.800.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.800.3h:
                     dependencies:
@@ -2752,8 +2821,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.750.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.750.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.750.3h:
                     dependencies:
@@ -2777,6 +2848,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_VGRD.700:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.700:
                     dependencies:
@@ -2796,8 +2868,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.650.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.650.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.650.3h:
                     dependencies:
@@ -2821,8 +2895,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.600.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.600.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.600.3h:
                     dependencies:
@@ -2835,7 +2911,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         VGRD_ISBL_550:
             members: null
             elevation: 550mb
@@ -2846,8 +2922,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.550.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.550.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.550.3h:
                     dependencies:
@@ -2871,6 +2949,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.PRES_VGRD.500:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.PRES_UU.500:
                     dependencies:
@@ -2879,7 +2958,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         VGRD_ISBL_450:
             members: null
             elevation: 450mb
@@ -2890,8 +2969,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.450.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.450.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.450.3h:
                     dependencies:
@@ -2915,8 +2996,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.400.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.400.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.400.3h:
                     dependencies:
@@ -2940,8 +3023,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.350.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.350.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.350.3h:
                     dependencies:
@@ -2954,7 +3039,7 @@ model_gem_global:
             bands_order:
                 - UGRD_ISBL
                 - VGRD_ISBL
-                    
+
         VGRD_ISBL_300:
             members: null
             elevation: 300mb
@@ -2965,8 +3050,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.300.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.300.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.300.3h:
                     dependencies:
@@ -2990,8 +3077,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.275.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.275.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.275.3h:
                     dependencies:
@@ -3015,8 +3104,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.250.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.250.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.250.3h:
                     dependencies:
@@ -3040,8 +3131,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.225.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.225.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.225.3h:
                     dependencies:
@@ -3065,8 +3158,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.200.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.200.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.200.3h:
                     dependencies:
@@ -3090,8 +3185,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.175.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.175.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.175.3h:
                     dependencies:
@@ -3115,8 +3212,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.150.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.150.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.150.3h:
                     dependencies:
@@ -3140,8 +3239,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.100.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.100.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.100.3h:
                     dependencies:
@@ -3165,8 +3266,10 @@ model_gem_global:
                     files_expected: 69
             geomet_layers:
                 GDPS.PRES_VGRD.50.3h:
+                    published: False
                     forecast_hours: 000/168/PT3H
                 GDPS.PRES_VGRD.50.6h:
+                    published: False
                     forecast_hours: 000/240/PT6H
                 GDPS.PRES_UU.50.3h:
                     dependencies:
@@ -3190,6 +3293,7 @@ model_gem_global:
                     files_expected: 81
             geomet_layers:
                 GDPS.ETA_VGRD:
+                    published: False
                     forecast_hours: 000/240/PT3H
                 GDPS.ETA_UU:
                     dependencies:

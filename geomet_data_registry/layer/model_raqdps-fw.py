@@ -70,20 +70,22 @@ class ModelRaqdpsFwLayer(BaseLayer):
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
             'time_': tmp.named['YYYYMMDD_model_run'],
-            'fh': tmp.named['forecast_hour']
+            'fh': tmp.named['forecast_hour'],
         }
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
         if self.wx_variable not in self.file_dict[self.model]['variable']:
-            msg = 'Variable "{}" not in ' \
-                  'configuration file'.format(self.wx_variable)
+            msg = 'Variable "{}" not in ' 'configuration file'.format(
+                self.wx_variable
+            )
             LOGGER.warning(msg)
             return False
 
         runs = self.file_dict[self.model]['variable'][self.wx_variable][
-            'model_run']
+            'model_run'
+        ]
         self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%dT%HZ'
@@ -92,40 +94,45 @@ class ModelRaqdpsFwLayer(BaseLayer):
         reference_datetime = self.date_
         self.model_run = '{}Z'.format(self.date_.strftime('%H'))
 
-        forecast_hour_datetime = self.date_ + \
-            timedelta(hours=int(file_pattern_info['fh']))
+        forecast_hour_datetime = self.date_ + timedelta(
+            hours=int(file_pattern_info['fh'])
+        )
 
         member = self.file_dict[self.model]['variable'][self.wx_variable][
-            'members']
+            'members'
+        ]
         elevation = self.file_dict[self.model]['variable'][self.wx_variable][
-            'elevation']
-        str_mr = re.sub('[^0-9]',
-                        '',
-                        reference_datetime.strftime(DATE_FORMAT))
-        str_fh = re.sub('[^0-9]',
-                        '',
-                        forecast_hour_datetime.strftime(DATE_FORMAT))
+            'elevation'
+        ]
+        str_mr = re.sub('[^0-9]', '', reference_datetime.strftime(DATE_FORMAT))
+        str_fh = re.sub(
+            '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
+        )
         expected_count = self.file_dict[self.model]['variable'][
-            self.wx_variable]['model_run'][self.model_run]['files_expected']
+            self.wx_variable
+        ]['model_run'][self.model_run]['files_expected']
 
         self.geomet_layers = self.file_dict[self.model]['variable'][
-            self.wx_variable]['geomet_layers']
+            self.wx_variable
+        ]['geomet_layers']
         for layer_name, layer_config in self.geomet_layers.items():
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
             forecast_hours = layer_config['forecast_hours']
-            begin, end, interval = [int(re.sub('[^0-9]', '', value))
-                                    for value in forecast_hours.split('/')]
+            begin, end, interval = [
+                int(re.sub('[^0-9]', '', value))
+                for value in forecast_hours.split('/')
+            ]
             fh = int(file_pattern_info['fh'])
 
             feature_dict = {
                 'layer_name': layer_name,
                 'filepath': self.filepath,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime.strftime(
-                    DATE_FORMAT),
+                'reference_datetime': reference_datetime.strftime(DATE_FORMAT),
                 'forecast_hour_datetime': forecast_hour_datetime.strftime(
-                    DATE_FORMAT),
+                    DATE_FORMAT
+                ),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,
@@ -133,18 +140,22 @@ class ModelRaqdpsFwLayer(BaseLayer):
                 'forecast_hours': {
                     'begin': begin,
                     'end': end,
-                    'interval': forecast_hours.split('/')[2]
+                    'interval': forecast_hours.split('/')[2],
                 },
                 'layer_config': layer_config,
                 'register_status': True,
+                'refresh_config': True,
             }
 
             if not self.is_valid_interval(fh, begin, end, interval):
                 feature_dict['register_status'] = False
-                LOGGER.debug('Forecast hour {} not included in {} as '
-                             'defined for layer {}. File will not be '
-                             'added to registry for this layer'
-                             .format(fh, forecast_hours, layer_name))
+                LOGGER.debug(
+                    'Forecast hour {} not included in {} as '
+                    'defined for layer {}. File will not be '
+                    'added to registry for this layer'.format(
+                        fh, forecast_hours, layer_name
+                    )
+                )
 
             self.items.append(feature_dict)
 

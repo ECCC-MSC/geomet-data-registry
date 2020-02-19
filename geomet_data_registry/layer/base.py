@@ -347,6 +347,7 @@ class BaseLayer:
             if 'dependencies' in item['layer_config']:
                 if not self.check_dependencies_default_mr(
                         self.date_, item['layer_config']['dependencies']):
+                    item['refresh_config'] = False
                     LOGGER.debug(
                         'The default model run for at least one '
                         'dependency does not match. '

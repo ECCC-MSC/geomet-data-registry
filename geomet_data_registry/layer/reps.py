@@ -168,6 +168,7 @@ class RepsLayer(BaseLayer):
                     },
                     'layer_config': layer_config,
                     'register_status': True,
+                    'refresh_config': True,
                 }
 
                 if not self.is_valid_interval(fh, begin, end, interval):

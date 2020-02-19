@@ -108,8 +108,10 @@ gdwps:
                     files_expected: 73
             geomet_layers:
                 GDWPS.UGRD.1h:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 GDWPS.UGRD.3h:
+                    published: False
                     forecast_hours: 000/120/PT3H
                 GDWPS.UU.1h:
                     dependencies:
@@ -132,8 +134,10 @@ gdwps:
                     files_expected: 73
             geomet_layers:
                 GDWPS.VGRD.1h:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 GDWPS.VGRD.3h:
+                    published: False
                     forecast_hours: 000/120/PT3H
                 GDWPS.UU.1h:
                     dependencies:

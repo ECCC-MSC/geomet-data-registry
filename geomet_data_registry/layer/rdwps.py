@@ -164,6 +164,7 @@ class RdwpsLayer(BaseLayer):
                 },
                 'layer_config': layer_config,
                 'register_status': True,
+                'refresh_config': True,
             }
 
             if 'dependencies' in layer_config:

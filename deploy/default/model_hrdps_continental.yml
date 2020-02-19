@@ -2458,6 +2458,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.50:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.50:
                     dependencies:
@@ -2480,6 +2481,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.100:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.100:
                     dependencies:
@@ -2502,6 +2504,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.150:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.150:
                     dependencies:
@@ -2524,6 +2527,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.175:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.175:
                     dependencies:
@@ -2546,6 +2550,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.200:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.200:
                     dependencies:
@@ -2568,6 +2573,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.225:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.225:
                     dependencies:
@@ -2590,6 +2596,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.250:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.250:
                     dependencies:
@@ -2612,6 +2619,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.275:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.275:
                     dependencies:
@@ -2634,6 +2642,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.300:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.300:
                     dependencies:
@@ -2656,6 +2665,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.350:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.350:
                     dependencies:
@@ -2678,6 +2688,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.400:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.400:
                     dependencies:
@@ -2700,6 +2711,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.450:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.450:
                     dependencies:
@@ -2722,6 +2734,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.500:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.500:
                     dependencies:
@@ -2744,6 +2757,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.550:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.550:
                     dependencies:
@@ -2766,6 +2780,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.600:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.600:
                     dependencies:
@@ -2788,6 +2803,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.650:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.650:
                     dependencies:
@@ -2810,6 +2826,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.700:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.700:
                     dependencies:
@@ -2832,6 +2849,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.750:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.750:
                     dependencies:
@@ -2854,6 +2872,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.800:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.800:
                     dependencies:
@@ -2876,6 +2895,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.850:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.850:
                     dependencies:
@@ -2898,6 +2918,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.875:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.875:
                     dependencies:
@@ -2920,6 +2941,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.900:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.900:
                     dependencies:
@@ -2942,6 +2964,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.925:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.925:
                     dependencies:
@@ -2964,6 +2987,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.950:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.950:
                     dependencies:
@@ -2986,6 +3010,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.970:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.970:
                     dependencies:
@@ -3008,6 +3033,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.985:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.985:
                     dependencies:
@@ -3030,6 +3056,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.1000:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.1000:
                     dependencies:
@@ -3052,6 +3079,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.1015:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.1015:
                     dependencies:
@@ -3074,6 +3102,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL_WD:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL_UU:
                     dependencies:
@@ -3096,6 +3125,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.50:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.50:
                     dependencies:
@@ -3118,6 +3148,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.100:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.100:
                     dependencies:
@@ -3140,6 +3171,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.150:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.150:
                     dependencies:
@@ -3162,6 +3194,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.175:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.175:
                     dependencies:
@@ -3184,6 +3217,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.200:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.200:
                     dependencies:
@@ -3206,6 +3240,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.225:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.225:
                     dependencies:
@@ -3228,6 +3263,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.250:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.250:
                     dependencies:
@@ -3250,6 +3286,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.275:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.275:
                     dependencies:
@@ -3272,6 +3309,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.300:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.300:
                     dependencies:
@@ -3294,6 +3332,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.350:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.350:
                     dependencies:
@@ -3316,6 +3355,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.400:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.400:
                     dependencies:
@@ -3338,6 +3378,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.450:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.450:
                     dependencies:
@@ -3360,6 +3401,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.500:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.500:
                     dependencies:
@@ -3382,6 +3424,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.550:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.550:
                     dependencies:
@@ -3404,6 +3447,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.600:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.600:
                     dependencies:
@@ -3426,6 +3470,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.650:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.650:
                     dependencies:
@@ -3448,6 +3493,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.700:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.700:
                     dependencies:
@@ -3470,6 +3516,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.750:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.750:
                     dependencies:
@@ -3492,6 +3539,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.800:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.800:
                     dependencies:
@@ -3514,6 +3562,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.850:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.850:
                     dependencies:
@@ -3536,6 +3585,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.875:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.875:
                     dependencies:
@@ -3558,6 +3608,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.900:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.900:
                     dependencies:
@@ -3580,6 +3631,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.925:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.925:
                     dependencies:
@@ -3602,6 +3654,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.950:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.950:
                     dependencies:
@@ -3624,6 +3677,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.970:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.970:
                     dependencies:
@@ -3646,6 +3700,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.985:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.985:
                     dependencies:
@@ -3668,6 +3723,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.1000:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.1000:
                     dependencies:
@@ -3690,6 +3746,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WSPD.1015:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL.PRES_UU.1015:
                     dependencies:
@@ -3757,6 +3814,7 @@ model_hrdps_continental:
                     files_expected: 49
             geomet_layers:
                 HRDPS.CONTINENTAL_WSPD:
+                    published: False
                     forecast_hours: 000/048/PT1H
                 HRDPS.CONTINENTAL_UU:
                     dependencies:
@@ -3765,23 +3823,3 @@ model_hrdps_continental:
             bands_order:
                 - WDIR_TGL_10
                 - WIND_TGL_10
-
-
-            
-        
-        
-        
-            
-        
-        
-        
-
-
-
-
-
-        
-
-        
-        
-        

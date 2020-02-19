@@ -155,6 +155,7 @@ rdwps:
                         files_expected: 49
                 geomet_layers:
                     RDWPS.{}.UGRD:
+                        published: False
                         forecast_hours: 000/048/PT1H
                     RDWPS.{}.UU:
                         dependencies:
@@ -177,6 +178,7 @@ rdwps:
                         files_expected: 49
                 geomet_layers:
                     RDWPS.{}.VGRD:
+                        published: False
                         forecast_hours: 000/048/PT1H
                     RDWPS.{}.UU:
                         dependencies:
@@ -365,6 +367,7 @@ rdwps:
                         files_expected: 19
                 geomet_layers:
                     RDWPS.GULF.UGRD:
+                        published: False
                         forecast_hours:
                             00Z: 000/048/PT3H
                             06Z: 000/054/PT3H
@@ -395,6 +398,7 @@ rdwps:
                         files_expected: 19
                 geomet_layers:
                     RDWPS.GULF.VGRD:
+                        published: False
                         forecast_hours:
                             00Z: 000/048/PT3H
                             06Z: 000/054/PT3H

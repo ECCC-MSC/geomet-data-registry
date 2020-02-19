@@ -100,6 +100,7 @@ class Radar1kmLayer(BaseLayer):
 
         feature_dict = {
             'layer_name': layer_name,
+            'layer_config': layer_config,
             'filepath': self.filepath,
             'identifier': identifier,
             'reference_datetime': None,
@@ -110,6 +111,7 @@ class Radar1kmLayer(BaseLayer):
             'expected_count': None,
             'layer_config': layer_config,
             'register_status': True,
+            'refresh_config': True,
         }
         self.items.append(feature_dict)
 

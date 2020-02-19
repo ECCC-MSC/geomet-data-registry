@@ -139,6 +139,7 @@ model_giops:
                         files_expected: 80
                 geomet_layers:
                     OCEAN.GIOPS.2D.UUY:
+                        published: False
                         forecast_hours: 003/240/PT3H
                     OCEAN.GIOPS.2D.UUI:
                         dependencies:
@@ -157,6 +158,7 @@ model_giops:
                         files_expected: 80
                 geomet_layers:
                     OCEAN.GIOPS.2D.UUX:
+                        published: False
                         forecast_hours: 003/240/PT3H
                     OCEAN.GIOPS.2D.UUI:
                         dependencies:
@@ -175,6 +177,7 @@ model_giops:
                         files_expected: 80
                 geomet_layers:
                     OCEAN.GIOPS.2D.UU2W_Y:
+                        published: False
                         forecast_hours: 003/240/PT3H
                     OCEAN.GIOPS.2D.UU2W:
                         dependencies:
@@ -193,6 +196,7 @@ model_giops:
                         files_expected: 80
                 geomet_layers:
                     OCEAN.GIOPS.2D.UU2W_X:
+                        published: False
                         forecast_hours: 003/240/PT3H
                     OCEAN.GIOPS.2D.UU2W:
                         dependencies:
@@ -685,6 +689,7 @@ model_giops:
                         files_expected: 10
                 geomet_layers:
                     OCEAN.GIOPS.3D_UUW2_X_{}:
+                        published: False
                         forecast_hours: 024/240/PT24H
                     OCEAN.GIOPS.3D_UU2W_{}:
                         dependencies:
@@ -853,6 +858,7 @@ model_giops:
                         files_expected: 10
                 geomet_layers:
                     OCEAN.GIOPS.3D_UUW2_Y_{}:
+                        published: False
                         forecast_hours: 024/240/PT24H
                     OCEAN.GIOPS.3D_UU2W_{}:
                         dependencies:

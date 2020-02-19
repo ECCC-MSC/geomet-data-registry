@@ -33,6 +33,11 @@ PLUGINS = {
             'path': 'geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
         }
     },
+    'notifier': {
+        'Celery': {
+            'path': 'geomet_data_registry.notifier.celery_.CeleryTaskNotifier'
+        }
+    },
     'layer': {
         'ModelGemGlobal': {
             'pattern': 'CMC_glb*',
