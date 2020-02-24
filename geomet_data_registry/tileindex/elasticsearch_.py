@@ -359,5 +359,16 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         return 200
 
+    def get(self, identifier):
+        """
+        :param identifier: identifier of document to retrieve
+        :returns: `dict` of single GeoJSON feature
+        """
+        try:
+            result = self.es.get(index=self.name, id=identifier)
+            return result['_source']
+        except exceptions.NotFoundError as err:
+            LOGGER.warning('Could not get document with id: {}'.format(err))
+
     def __repr__(self):
         return '<ElasticsearchTileIndex> {}'.format(self.url)

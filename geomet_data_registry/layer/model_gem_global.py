@@ -81,6 +81,8 @@ class ModelGemGlobalLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
+        self.dimensions = self.file_dict[self.model]['dimensions']
+
         runs = self.file_dict[self.model]['variable'][self.wx_variable]['model_run']  # noqa
         self.model_run_list = list(runs.keys())
 
@@ -123,6 +125,24 @@ class ModelGemGlobalLayer(BaseLayer):
                 'elevation': elevation,
                 'expected_count': expected_count
             }
+
+            if 'dependencies' in values:
+                dependencies_found = self.check_layer_dependencies(
+                    values['dependencies'],
+                    str_mr,
+                    str_fh)
+                if dependencies_found:
+                    bands_order = (self.file_dict[self.model]
+                                   ['variable']
+                                   [self.wx_variable].get('bands_order'))
+                    (feature_dict['filepath'],
+                     feature_dict['weather_variable']) = (
+                        self.configure_layer_with_dependencies(
+                            dependencies_found,
+                            self.dimensions,
+                            bands_order))
+                else:
+                    continue
 
             if (int(fh) == 0 and int(interval_num) == 0) or \
                (int(fh) in range(int(begin), int(end) + 1, int(interval_num))):
@@ -170,9 +190,19 @@ class ModelGemGlobalLayer(BaseLayer):
             model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
 
             if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
-                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "  # noqa
-                             "Not updating time keys.".format(default_model_run, stored_default_model_run))  # noqa
+                LOGGER.debug('New default model run value ({}) is older than the current value in store: {}. '  # noqa
+                             'Not updating time keys.'.format(default_model_run, stored_default_model_run))  # noqa
                 continue
+
+            if 'dependencies' in values:
+                if not self.check_dependencies_default_mr(
+                        self.date_, values['dependencies']):
+                    LOGGER.debug(
+                        'The default model run for at least one '
+                        'dependency does not match. '
+                        'Not updating time keys for {}'.format(key)
+                    )
+                    continue
 
             LOGGER.debug('Adding time keys in the store')
 

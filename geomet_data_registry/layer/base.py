@@ -23,7 +23,7 @@ import os
 
 from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
 from geomet_data_registry.plugin import load_plugin
-from geomet_data_registry.util import get_today_and_now
+from geomet_data_registry.util import get_today_and_now, VRTDataset, DATE_FORMAT
 
 LOGGER = logging.getLogger(__name__)
 
@@ -49,6 +49,7 @@ class BaseLayer(object):
         self.identify_datetime = None
         self.register_datetime = None
         self.filepath = None
+        self.dimensions = None
         self.model = None
         self.model_run = None
         self.wx_variable = None
@@ -138,6 +139,13 @@ class BaseLayer(object):
             }
         }
 
+        # overwrite feature_dict property if found in item dictionary
+        # useful for UU layers for example when weather variable contains
+        # multiple variables
+        for key in item:
+            if key in feature_dict['properties']:
+                feature_dict['properties'][key] = item[key]
+
         return feature_dict
 
     def update_count(self, item, r, item_dict):
@@ -188,6 +196,68 @@ class BaseLayer(object):
                         self.store.set_key(layer_count_key_reset, 0)
         else:
             self.new_key_store = True
+
+    def check_layer_dependencies(self, layers_list, str_mr, str_fh):
+        """
+        Checks if all layer dependencies are available in the tileindex
+        for a given model run and forecast hour.
+        :param layers_list: `list` of layer dependencies
+        :param str_mr: `str` of model run
+        :param str_fh: `str` of forecast hour
+        :returns: `list` of GeoJSON objects for all retrieved dependencies if
+        all dependencies are found otherwise returns an empty list
+        """
+        dependencies = [self.tileindex.get('{}-{}-{}'.format(
+            layer, str_mr, str_fh)) for layer in layers_list]  # noqa
+
+        if None in dependencies:
+            return []
+
+        return dependencies
+
+    def configure_layer_with_dependencies(self,
+                                          dependencies,
+                                          image_dimension,
+                                          bands_order):
+        """
+        Create VRT and joined weather_variable string for layers
+        that consist of multiple weather variables.
+        :param dependencies: `list` of GeoJSON objects from tileindex
+        :param image_dimension: `dict` with x and y keys
+        :param bands_order: `list` of variables order in VRT
+        :returns: `list` with VRT and combined weather variables as string
+        """
+        filepaths = [self.filepath] + [dependency['properties']
+                                       ['filepath'] for dependency
+                                       in dependencies]
+        vrt = VRTDataset(
+            filepaths,
+            raster_x_size=image_dimension['x'],
+            raster_y_size=image_dimension['y'],
+            bands_order=bands_order).build()
+
+        weather_variables = '{},{}'.format(
+            self.wx_variable, ','.join(
+                [dependency['properties']['weather_variable']
+                 for dependency in dependencies]))
+
+        return vrt, weather_variables
+
+    def check_dependencies_default_mr(self, mr_datetime, dependencies):
+        """
+        For each dependency, verify that a default model run is available in
+        the store and the value is equal to the passed model run time.
+        :param dependencies: `list` of dependencies to check
+        :param mr_datetime: `datetime` to compare dependencies to
+        :returns: `bool` indicating if all dependencies'
+        default model run is equal to the passed mr_datetime param
+        """
+        results = [datetime.strptime(default_mr, DATE_FORMAT) == mr_datetime
+                   if default_mr is not None else False
+                   for default_mr in [self.store.get_key
+                                      ('{}_default_model_run'.format(layer))
+                                      for layer in dependencies]]
+        return all(results)
 
     def add_time_key(self):
         """
