@@ -18,7 +18,7 @@
 ###############################################################################
 
 
-class Event(object):
+class Event:
     """core event"""
 
     def __init__(self, parent):

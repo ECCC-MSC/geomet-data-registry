@@ -28,7 +28,7 @@ from geomet_data_registry.util import get_today_and_now, VRTDataset, DATE_FORMAT
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseLayer(object):
+class BaseLayer:
     """generic layer ABC"""
 
     def __init__(self, provider_def):

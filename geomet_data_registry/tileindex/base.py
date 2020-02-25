@@ -23,7 +23,7 @@ import os
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseTileIndex(object):
+class BaseTileIndex:
     """generic Tile Index ABC"""
 
     def __init__(self, provider_def):

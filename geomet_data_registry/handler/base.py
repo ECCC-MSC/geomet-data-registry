@@ -22,7 +22,7 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseHandler(object):
+class BaseHandler:
     """base handler"""
 
     def __init__(self, filepath):
