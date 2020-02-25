@@ -22,7 +22,7 @@ import logging
 LOGGER = logging.getLogger(__name__)
 
 
-class BaseStore(object):
+class BaseStore:
     """generic key-value store ABC"""
 
     def __init__(self, provider_def):
