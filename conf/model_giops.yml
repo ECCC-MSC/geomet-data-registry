@@ -10,7 +10,7 @@ model_giops:
                 elevation: surface
                 model_run:
                     00Z:
-                        files_expected: 81
+                        files_expected: 80
                     12Z:
                         files_expected: 80
                 geomet_layers:
@@ -54,7 +54,7 @@ model_giops:
                 elevation: surface
                 model_run:
                     00Z:
-                        files_expected: 81
+                        files_expected: 80
                     12Z:
                         files_expected: 80
                 geomet_layers:
@@ -65,7 +65,7 @@ model_giops:
                 elevation: surface
                 model_run:
                     00Z:
-                        files_expected: 81
+                        files_expected: 80
                     12Z:
                         files_expected: 80
                 geomet_layers:
@@ -283,7 +283,7 @@ model_giops:
                 members: null
                 model_run:
                     00Z:
-                        files_expected: 11
+                        files_expected: 10
                     12Z:
                         files_expected: 10
                 geomet_layers:
@@ -444,7 +444,7 @@ model_giops:
                 members: null
                 model_run:
                     00Z:
-                        files_expected: 11
+                        files_expected: 10
                     12Z:
                         files_expected: 10
                 geomet_layers:
