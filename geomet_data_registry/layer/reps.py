@@ -46,7 +46,6 @@ class RepsLayer(BaseLayer):
         provider_def = {'name': 'reps'}
         self.type = None
         self.bands = None
-        self.layer_names = []
 
         BaseLayer.__init__(self, provider_def)
 
@@ -95,6 +94,7 @@ class RepsLayer(BaseLayer):
         self.model_run_list = list(runs.keys())
 
         weather_var = self.file_dict[self.model][self.type]['variable'][self.wx_variable]  # noqa
+        self.geomet_layers = weather_var['geomet_layers']
 
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
@@ -121,7 +121,7 @@ class RepsLayer(BaseLayer):
 
             expected_count = self.file_dict[self.model][self.type]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
 
-            for layer in weather_var['geomet_layers'].keys():
+            for layer in self.geomet_layers.keys():
                 if self.type == 'member':
                     member = self.bands[band]['member']
                     layer_name = layer.format(str(self.bands[band]['member']).zfill(2)) # noqa
@@ -144,59 +144,22 @@ class RepsLayer(BaseLayer):
                     'expected_count': expected_count
                 }
 
-                self.items.append(feature_dict)
-                self.layer_names.append(layer_name)
+                forecast_hours = self.file_dict[self.model][self.type]['variable'][self.wx_variable]['geomet_layers'][layer]['forecast_hours']  # noqa
+                begin, end, interval = [int(re.sub('[^0-9]', '', value)) for value in forecast_hours.split('/')]  # noqa
+                fh = int(file_pattern_info['fh'])
+
+                if self.is_valid_interval(fh, begin, end, interval):
+                    self.items.append(feature_dict)
+                    self.layer_names.append(layer_name)
+
+                else:
+                    LOGGER.debug('Forecast hour {} not included in {} as '
+                                 'defined for variable {}. File will not be '
+                                 'added to registry.'.format(fh,
+                                                             forecast_hours,
+                                                             self.wx_variable))
 
         return True
-
-    def add_time_key(self):
-        """
-        Add time keys when applicable:
-            - model run default time
-            - model run extent
-            - forecast hour extent
-        and for observation:
-            - latest time step
-        """
-
-        for key in self.layer_names:  # noqa
-
-            time_extent_key = '{}_time_extent'.format(key)
-
-            wx_info = self.file_dict[self.model][self.type]['variable'][self.wx_variable]  # noqa
-
-            for layer in wx_info['geomet_layers']:
-                if key.startswith(layer.format('')):
-                    start, end, interval = wx_info['geomet_layers'][layer]['forecast_hours'].split('/')  # noqa
-                    start_time = self.date_ + timedelta(hours=int(start))
-                    end_time = self.date_ + timedelta(hours=int(end))
-                    start_time = start_time.strftime(DATE_FORMAT)
-                    end_time = end_time.strftime(DATE_FORMAT)
-                    time_extent_value = '{}/{}/{}'.format(start_time,
-                                                          end_time,
-                                                          interval)
-
-            default_model_key = '{}_default_model_run'.format(key)
-            stored_default_model_run = self.store.get_key(default_model_key)
-
-            model_run_extent_key = '{}_model_run_extent'.format(key)
-            retention_hours = self.file_dict[self.model]['model_run_retention_hours']  # noqa
-            interval_hours = self.file_dict[self.model]['model_run_interval_hours']  # noqa
-            default_model_run = self.date_.strftime(DATE_FORMAT)
-            run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
-            run_interval = 'PT{}H'.format(interval_hours)
-            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
-
-            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
-                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "  # noqa
-                             "Not updating time keys.".format(default_model_run, stored_default_model_run))  # noqa
-                continue
-
-            LOGGER.debug('Adding time keys in the store')
-
-            self.store.set_key(time_extent_key, time_extent_value)
-            self.store.set_key(default_model_key, default_model_run)
-            self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
         return '<ModelREPSLayer> {}'.format(self.name)

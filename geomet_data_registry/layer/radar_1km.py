@@ -110,12 +110,9 @@ class Radar1kmLayer(BaseLayer):
 
     def add_time_key(self):
         """
-        Add time keys when applicable:
-            - model run default time
-            - model run extent
-            - forecast hour extent
-        and for observation:
-            - latest time step
+        Adds default time and time extent datetime values to store for radar
+        layers. Overrides the add_time_key method of BaseLayer class due to
+        radar data's lack of forecast models.
         """
 
         layer_name = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layer'] # noqa

@@ -17,13 +17,14 @@
 #
 ###############################################################################
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 import os
+from parse import parse
 
 from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
 from geomet_data_registry.plugin import load_plugin
-from geomet_data_registry.util import get_today_and_now, VRTDataset, DATE_FORMAT
+from geomet_data_registry.util import get_today_and_now, VRTDataset, DATE_FORMAT  # noqa
 
 LOGGER = logging.getLogger(__name__)
 
@@ -52,10 +53,12 @@ class BaseLayer:
         self.dimensions = None
         self.model = None
         self.model_run = None
+        self.geomet_layers = None
         self.wx_variable = None
         self.date_ = None
         self.file_dict = None
         self.new_key_store = False
+        self.layer_names = []
 
         self.name = provider_def['name']
         self.store = load_plugin('store', STORE_PROVIDER_DEF)
@@ -259,15 +262,89 @@ class BaseLayer:
                                       for layer in dependencies]]
         return all(results)
 
+    @staticmethod
+    def is_valid_interval(fh, begin, end, interval):
+        """
+        Checks if a passed forecast hour is valid given begin, end and interval
+        parameters. If the forecast hour is 0 and the interval is 0, the
+        forecast hour is also considered valid (since Python's range function
+        does not accept 0 as an interval).
+        :param fh: `int` of forecast hour
+        :param begin: `int` of forecast hour begin
+        :param end: `int` of forecast hour end
+        :param interval: `int` of forecast hour interval
+        :returns: `bool` representing if the passed forecast hour is contained
+        in the passed begin/end/interval range
+        """
+
+        return any([(fh == 0 and interval == 0),
+                    fh in range(begin, end + 1, interval)])
+
     def add_time_key(self):
         """
-        Add time keys when applicable:
-            - model run default time
-            - model run extent
-            - forecast hour extent
-        and for observation:
-            - latest time step
+        Adds time keys (time extent, default model run and model runs extent,
+        to store for layers included in self.layer_names (a list of GeoMet
+        layers modified/updated by an incoming received weather
+        variable).
+        :returns:
         """
+
+        layers_to_update = [{'name': layer, 'config': config}
+                            for layer in self.layer_names
+                            for key, config in self.geomet_layers.items()
+                            if layer == key
+                            or (hasattr(parse(key, layer), 'fixed') and
+                                layer.replace(parse(key, layer).fixed[0],
+                                              '{}') == key)]
+
+        for layer in layers_to_update:  # noqa
+
+            time_extent_key = '{}_time_extent'.format(layer['name'])
+
+            if isinstance(layer['config']['forecast_hours'], str):
+                start, end, interval = layer['config']['forecast_hours'].split('/')  # noqa
+            elif isinstance(layer['config']['forecast_hours'], dict):
+                start, end, interval = layer['config']['forecast_hours'][self.model_run].split('/')  # noqa
+
+            start_time = self.date_ + timedelta(hours=int(start))
+            end_time = self.date_ + timedelta(hours=int(end))
+            start_time = start_time.strftime(DATE_FORMAT)
+            end_time = end_time.strftime(DATE_FORMAT)
+            time_extent_value = '{}/{}/{}'.format(start_time,
+                                                  end_time,
+                                                  interval)
+
+            default_model_key = '{}_default_model_run'.format(layer['name'])
+            stored_default_model_run = self.store.get_key(default_model_key)
+
+            model_run_extent_key = '{}_model_run_extent'.format(layer['name'])
+            retention_hours = self.file_dict[self.model]['model_run_retention_hours']  # noqa
+            interval_hours = self.file_dict[self.model]['model_run_interval_hours']  # noqa
+            default_model_run = self.date_.strftime(DATE_FORMAT)
+            run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
+            run_interval = 'PT{}H'.format(interval_hours)
+            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
+
+            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
+                LOGGER.debug('New default model run value ({}) is older than the current value in store: {}. '  # noqa
+                             'Not updating time keys.'.format(default_model_run, stored_default_model_run))  # noqa
+                continue
+
+            if 'dependencies' in layer['config']:
+                if not self.check_dependencies_default_mr(
+                        self.date_, layer['config']['dependencies']):
+                    LOGGER.debug(
+                        'The default model run for at least one '
+                        'dependency does not match. '
+                        'Not updating time keys for {}'.format(layer['name'])
+                    )
+                    continue
+
+            LOGGER.debug('Adding time keys in the store')
+
+            self.store.set_key(time_extent_key, time_extent_value)
+            self.store.set_key(default_model_key, default_model_run)
+            self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
         return '<BaseLayer> {}'.format(self.name)

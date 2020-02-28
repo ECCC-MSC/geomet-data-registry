@@ -64,8 +64,9 @@ class VRTDataset:
         :returns: `str` of VRT.
         """
         if self.bands_order:
+            LOGGER.debug("Sorting filepaths against provided bands order.")
             self.filepaths = sorted(self.filepaths,
-                                    key=lambda fp:self.sort_band(fp))
+                                    key=lambda fp: self.sort_band(fp))
 
         for index, filepath in enumerate(self.filepaths, start=1):
             self.vrt_dataset.insert(-1, self.vrt_raster_band_template.format(
@@ -79,9 +80,8 @@ class VRTDataset:
         :returns: `int` of new filepath position in relation to
         self.bands_order
         """
-        LOGGER.debug("Checking filepath against provided bands order.")
         filepath_postion = [idx for idx, value in enumerate(self.bands_order)
-                if value in filepath]
+                            if value in filepath]
         if len(filepath_postion) != 1:
             msg = "Band order could not be determined. Band order values do" \
                   " not match filepath or filepath matches several band " \
@@ -98,7 +98,7 @@ class VRTDataset:
         """
         formatted_vrt = ''
         for item in self.vrt_dataset:
-            formatted_vrt += dedent(re.sub('>\s+<', '><', item))
+            formatted_vrt += dedent(re.sub(r'>\s+<', '><', item))
 
         return formatted_vrt
 

@@ -51,7 +51,6 @@ class GiopsLayer(BaseLayer):
         self.model_base = 'model_giops'
         self.dimension = None  # identifies if the layer is 2D or 3D GIOPS data
         self.bands = None
-        self.layer_names = []
 
         BaseLayer.__init__(self, provider_def)
 
@@ -66,16 +65,16 @@ class GiopsLayer(BaseLayer):
 
         super().identify(filepath)
 
+        self.model = 'model_giops'
+
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model_base))
         filename_pattern = self.file_dict[self.model_base]['filename_pattern']
 
         if self.filepath.split('/')[-4] == '2d':
             self.dimension = '2D'
-            self.model = 'model_giops_2D'
         elif self.filepath.split('/')[-4] == '3d':
             self.dimension = '3D'
-            self.model = 'model_giops_3D'
 
         tmp = parse(filename_pattern, os.path.basename(filepath),
                     dict(parse_fileinfo=parse_fileinfo))
@@ -101,6 +100,7 @@ class GiopsLayer(BaseLayer):
         self.model_run_list = list(runs.keys())
 
         weather_var = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]  # noqa
+        self.geomet_layers = weather_var['geomet_layers']
 
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
@@ -135,13 +135,23 @@ class GiopsLayer(BaseLayer):
                         'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
                         'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
                         'member': member,
-                        'model': self.model,
+                        'model': '{}_{}'.format(self.model, self.dimension),
                         'elevation': elevation,
                         'expected_count': expected_count
                     }
 
-                    self.items.append(feature_dict)
-                    self.layer_names.append(layer_name)
+                    forecast_hours = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['geomet_layers'][layer]['forecast_hours']  # noqa
+                    begin, end, interval = [int(re.sub('[^0-9]', '', value)) for value in forecast_hours.split('/')]  # noqa
+                    fh = int(file_pattern_info['fh'])
+
+                    if self.is_valid_interval(fh, begin, end, interval):
+                        self.items.append(feature_dict)
+                        self.layer_names.append(layer_name)
+
+                    else:
+                        LOGGER.debug('Forecast hour {} not included in {} as '
+                                     'defined for variable {}. File will not '
+                                     'be added to registry.'.format(fh, forecast_hours, self.wx_variable))  # noqa
 
         if self.dimension == '2D':
             elevation = weather_var['elevation']
@@ -165,64 +175,27 @@ class GiopsLayer(BaseLayer):
                     'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
                     'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
                     'member': member,
-                    'model': self.model,
+                    'model': '{}_{}'.format(self.model, self.dimension),
                     'elevation': elevation,
                     'expected_count': expected_count
                 }
 
-                self.items.append(feature_dict)
-                self.layer_names.append(layer)
+                forecast_hours = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['geomet_layers'][layer]['forecast_hours']  # noqa
+                begin, end, interval = [int(re.sub('[^0-9]', '', value)) for value in forecast_hours.split('/')]  # noqa
+                fh = int(file_pattern_info['fh'])
+
+                if self.is_valid_interval(fh, begin, end, interval):
+                    self.items.append(feature_dict)
+                    self.layer_names.append(layer)
+
+                else:
+                    LOGGER.debug('Forecast hour {} not included in {} as '
+                                 'defined for variable {}. File will not be '
+                                 'added to registry.'.format(fh,
+                                                             forecast_hours,
+                                                             self.wx_variable))
 
         return True
-
-    def add_time_key(self):
-        """
-        Add time keys when applicable:
-            - model run default time
-            - model run extent
-            - forecast hour extent
-        and for observation:
-            - latest time step
-        """
-        for key in self.layer_names:
-
-            time_extent_key = '{}_time_extent'.format(key)
-
-            wx_info = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]  # noqa
-
-            for layer in wx_info['geomet_layers']:
-                if key.startswith(layer.format('')):
-                    start, end, interval = wx_info['geomet_layers'][layer]['forecast_hours'].split('/')  # noqa
-                    start_time = self.date_ + timedelta(hours=int(start))
-                    end_time = self.date_ + timedelta(hours=int(end))
-                    start_time = start_time.strftime(DATE_FORMAT)
-                    end_time = end_time.strftime(DATE_FORMAT)
-                    time_extent_value = '{}/{}/{}'.format(start_time,
-                                                          end_time,
-                                                          interval)
-
-            default_model_key = '{}_default_model_run'.format(key)
-            stored_default_model_run = self.store.get_key(default_model_key)
-
-            model_run_extent_key = '{}_model_run_extent'.format(key)
-            retention_hours = self.file_dict[self.model_base]['model_run_retention_hours']  # noqa
-            interval_hours = self.file_dict[self.model_base]['model_run_interval_hours']  # noqa
-            default_model_run = self.date_.strftime(DATE_FORMAT)
-            run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
-            run_interval = 'PT{}H'.format(interval_hours)
-            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
-
-            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
-                LOGGER.debug("New default model run value ({}) is older than the current value in store: {}. "  # noqa
-                             "Not updating time keys.".format(default_model_run, stored_default_model_run))  # noqa
-                continue
-
-            LOGGER.debug('Adding time keys in the store - Variable:'
-                         ' {} - Key: {} - Model run: {}'.format(key, self.wx_variable, default_model_run))  # noqa
-
-            self.store.set_key(time_extent_key, time_extent_value)
-            self.store.set_key(default_model_key, default_model_run)
-            self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
         return '<ModelGiopsLayer> {}'.format(self.name)

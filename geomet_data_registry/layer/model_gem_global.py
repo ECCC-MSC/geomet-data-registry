@@ -105,14 +105,15 @@ class ModelGemGlobalLayer(BaseLayer):
                         forecast_hour_datetime.strftime(DATE_FORMAT))
         expected_count = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
 
-        for key, values in self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items():  # noqa
+        self.geomet_layers = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers']  # noqa
+        for key, values in self.geomet_layers.items():  # noqa
+            # configure GeoMet layer feature dict
             layer_name = key
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
-            begin, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/')  # noqa
-            interval_num = re.sub('[^0-9]', '', interval)
-
-            fh = file_pattern_info['fh']
+            forecast_hours = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours']  # noqa
+            begin, end, interval = [int(re.sub('[^0-9]', '', value)) for value in forecast_hours.split('/')]  # noqa
+            fh = int(file_pattern_info['fh'])
 
             feature_dict = {
                 'layer_name': layer_name,
@@ -144,71 +145,18 @@ class ModelGemGlobalLayer(BaseLayer):
                 else:
                     continue
 
-            if (int(fh) == 0 and int(interval_num) == 0) or \
-               (int(fh) in range(int(begin), int(end) + 1, int(interval_num))):
+            if self.is_valid_interval(fh, begin, end, interval):
                 self.items.append(feature_dict)
+                self.layer_names.append(key)
+
             else:
-                LOGGER.debug('Forecast hour {} not included in {}/{}/{} as '
+                LOGGER.debug('Forecast hour {} not included in {} as '
                              'defined for variable {}. File will not be '
-                             'added to registry.'.format(fh, begin, end,
-                                                         interval,
+                             'added to registry.'.format(fh,
+                                                         forecast_hours,
                                                          self.wx_variable))
 
         return True
-
-    def add_time_key(self):
-        """
-        Add time keys when applicable:
-            - model run default time
-            - model run extent
-            - forecast hour extent
-        and for observation:
-            - latest time step
-        """
-
-        for key, values in self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'].items():  # noqa
-
-            time_extent_key = '{}_time_extent'.format(key)
-            start, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers'][key]['forecast_hours'].split('/')  # noqa
-            start_time = self.date_ + timedelta(hours=int(start))
-            end_time = self.date_ + timedelta(hours=int(end))
-            start_time = start_time.strftime(DATE_FORMAT)
-            end_time = end_time.strftime(DATE_FORMAT)
-            time_extent_value = '{}/{}/{}'.format(start_time,
-                                                  end_time,
-                                                  interval)
-
-            default_model_key = '{}_default_model_run'.format(key)
-            stored_default_model_run = self.store.get_key(default_model_key)
-
-            model_run_extent_key = '{}_model_run_extent'.format(key)
-            retention_hours = self.file_dict[self.model]['model_run_retention_hours']  # noqa
-            interval_hours = self.file_dict[self.model]['model_run_interval_hours']  # noqa
-            default_model_run = self.date_.strftime(DATE_FORMAT)
-            run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
-            run_interval = 'PT{}H'.format(interval_hours)
-            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
-
-            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
-                LOGGER.debug('New default model run value ({}) is older than the current value in store: {}. '  # noqa
-                             'Not updating time keys.'.format(default_model_run, stored_default_model_run))  # noqa
-                continue
-
-            if 'dependencies' in values:
-                if not self.check_dependencies_default_mr(
-                        self.date_, values['dependencies']):
-                    LOGGER.debug(
-                        'The default model run for at least one '
-                        'dependency does not match. '
-                        'Not updating time keys for {}'.format(key)
-                    )
-                    continue
-
-            LOGGER.debug('Adding time keys in the store')
-
-            self.store.set_key(time_extent_key, time_extent_value)
-            self.store.set_key(default_model_key, default_model_run)
-            self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
         return '<ModelGemGlobalLayer> {}'.format(self.name)
