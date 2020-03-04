@@ -1,6 +1,9 @@
 model_hrdps_continental:
     model: HRDPS
     filename_pattern: CMC_hrdps_continental_{wx_variable}_ps2.5km_{YYYYMMDD_model_run}_P{forecast_hour}-00.grib2
+    dimensions:
+        x: 2576
+        y: 1456
     model_run_retention_hours: 48
     model_run_interval_hours: 6
     variable:
@@ -2456,8 +2459,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.50:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.50:
+                HRDPS.CONTINENTAL.PRES_UU.50:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.50
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0050
+                - WIND_ISBL_0050
         WDIR_ISBL_0100:
             members: null
             elevation: 100mb
@@ -2473,8 +2481,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.100:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.100:
+                HRDPS.CONTINENTAL.PRES_UU.100:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.100
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0100
+                - WIND_ISBL_0100
         WDIR_ISBL_0150:
             members: null
             elevation: 150mb
@@ -2490,8 +2503,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.150:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.150:
+                HRDPS.CONTINENTAL.PRES_UU.150:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.150
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0150
+                - WIND_ISBL_0150
         WDIR_ISBL_0175:
             members: null
             elevation: 175mb
@@ -2507,8 +2525,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.175:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.175:
+                HRDPS.CONTINENTAL.PRES_UU.175:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.175
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0175
+                - WIND_ISBL_0175
         WDIR_ISBL_0200:
             members: null
             elevation: 200mb
@@ -2524,8 +2547,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.200:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.200:
+                HRDPS.CONTINENTAL.PRES_UU.200:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.200
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0200
+                - WIND_ISBL_0200
         WDIR_ISBL_0225:
             members: null
             elevation: 225mb
@@ -2541,8 +2569,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.225:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.225:
+                HRDPS.CONTINENTAL.PRES_UU.225:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.225
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0225
+                - WIND_ISBL_0225
         WDIR_ISBL_0250:
             members: null
             elevation: 250mb
@@ -2558,8 +2591,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.250:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.250:
+                HRDPS.CONTINENTAL.PRES_UU.250:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.250
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0250
+                - WIND_ISBL_0250
         WDIR_ISBL_0275:
             members: null
             elevation: 275mb
@@ -2575,8 +2613,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.275:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.275:
+                HRDPS.CONTINENTAL.PRES_UU.275:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.275
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0275
+                - WIND_ISBL_0275
         WDIR_ISBL_0300:
             members: null
             elevation: 300mb
@@ -2592,8 +2635,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.300:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.300:
+                HRDPS.CONTINENTAL.PRES_UU.300:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.300
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0300
+                - WIND_ISBL_0300
         WDIR_ISBL_0350:
             members: null
             elevation: 350mb
@@ -2609,8 +2657,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.350:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.350:
+                HRDPS.CONTINENTAL.PRES_UU.350:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.350
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0350
+                - WIND_ISBL_0350
         WDIR_ISBL_0400:
             members: null
             elevation: 400mb
@@ -2626,8 +2679,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.400:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.400:
+                HRDPS.CONTINENTAL.PRES_UU.400:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.400
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0400
+                - WIND_ISBL_0400
         WDIR_ISBL_0450:
             members: null
             elevation: 450mb
@@ -2643,8 +2701,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.450:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.450:
+                HRDPS.CONTINENTAL.PRES_UU.450:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.450
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0450
+                - WIND_ISBL_0450
         WDIR_ISBL_0500:
             members: null
             elevation: 500mb
@@ -2660,8 +2723,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.500:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.500:
+                HRDPS.CONTINENTAL.PRES_UU.500:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.500
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0500
+                - WIND_ISBL_0500
         WDIR_ISBL_0550:
             members: null
             elevation: 550mb
@@ -2677,8 +2745,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.550:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.550:
+                HRDPS.CONTINENTAL.PRES_UU.550:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.550
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0550
+                - WIND_ISBL_0550
         WDIR_ISBL_0600:
             members: null
             elevation: 600mb
@@ -2694,8 +2767,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.600:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.600:
+                HRDPS.CONTINENTAL.PRES_UU.600:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.600
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0600
+                - WIND_ISBL_0600
         WDIR_ISBL_0650:
             members: null
             elevation: 650mb
@@ -2711,8 +2789,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.650:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.650:
+                HRDPS.CONTINENTAL.PRES_UU.650:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.650
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0650
+                - WIND_ISBL_0650
         WDIR_ISBL_0700:
             members: null
             elevation: 700mb
@@ -2728,8 +2811,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.700:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.700:
+                HRDPS.CONTINENTAL.PRES_UU.700:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.700
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0700
+                - WIND_ISBL_0700
         WDIR_ISBL_0750:
             members: null
             elevation: 750mb
@@ -2745,8 +2833,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.750:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.750:
+                HRDPS.CONTINENTAL.PRES_UU.750:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.750
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0750
+                - WIND_ISBL_0750
         WDIR_ISBL_0800:
             members: null
             elevation: 800mb
@@ -2762,8 +2855,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.800:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.800:
+                HRDPS.CONTINENTAL.PRES_UU.800:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.800
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0800
+                - WIND_ISBL_0800
         WDIR_ISBL_0850:
             members: null
             elevation: 850mb
@@ -2779,8 +2877,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.850:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.850:
+                HRDPS.CONTINENTAL.PRES_UU.850:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.850
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0850
+                - WIND_ISBL_0850
         WDIR_ISBL_0875:
             members: null
             elevation: 875mb
@@ -2796,8 +2899,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.875:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.875:
+                HRDPS.CONTINENTAL.PRES_UU.875:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.875
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0875
+                - WIND_ISBL_0875
         WDIR_ISBL_0900:
             members: null
             elevation: 900mb
@@ -2813,8 +2921,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.900:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.900:
+                HRDPS.CONTINENTAL.PRES_UU.900:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.900
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0900
+                - WIND_ISBL_0900
         WDIR_ISBL_0925:
             members: null
             elevation: 925mb
@@ -2830,8 +2943,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.925:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.925:
+                HRDPS.CONTINENTAL.PRES_UU.925:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.925
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0925
+                - WIND_ISBL_0925
         WDIR_ISBL_0950:
             members: null
             elevation: 950mb
@@ -2847,8 +2965,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.950:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.950:
+                HRDPS.CONTINENTAL.PRES_UU.950:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.950
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0950
+                - WIND_ISBL_0950
         WDIR_ISBL_0970:
             members: null
             elevation: 970mb
@@ -2864,8 +2987,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.970:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.970:
+                HRDPS.CONTINENTAL.PRES_UU.970:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.970
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0970
+                - WIND_ISBL_0970
         WDIR_ISBL_0985:
             members: null
             elevation: 985mb
@@ -2881,8 +3009,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.985:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.985:
+                HRDPS.CONTINENTAL.PRES_UU.985:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.985
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0985
+                - WIND_ISBL_0985
         WDIR_ISBL_1000:
             members: null
             elevation: 1000mb
@@ -2898,8 +3031,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.1000:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.1000:
+                HRDPS.CONTINENTAL.PRES_UU.1000:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.1000
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_1000
+                - WIND_ISBL_1000
         WDIR_ISBL_1015:
             members: null
             elevation: 1015mb
@@ -2915,8 +3053,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL.PRES_WD.1015:
                     forecast_hours: 000/048/PT1H
-                HRDPS.CONTINENTAL.PRES_WSPD.1015:
+                HRDPS.CONTINENTAL.PRES_UU.1015:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WSPD.1015
                     forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_1015
+                - WIND_ISBL_1015
         WDIR_TGL_10:
             members: null
             elevation: 10m
@@ -2932,6 +3075,629 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL_WD:
                     forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL_UU:
+                    dependencies:
+                        - HRDPS.CONTINENTAL_WSPD
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_TGL_10
+                - WIND_TGL_10
+        WIND_ISBL_0050:
+            members: null
+            elevation: 50mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.50:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.50:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.50
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0050
+                - WIND_ISBL_0050
+        WIND_ISBL_0100:
+            members: null
+            elevation: 100mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.100:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.100:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.100
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0100
+                - WIND_ISBL_0100
+        WIND_ISBL_0150:
+            members: null
+            elevation: 150mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.150:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.150:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.150
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0150
+                - WIND_ISBL_0150
+        WIND_ISBL_0175:
+            members: null
+            elevation: 175mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.175:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.175:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.175
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0175
+                - WIND_ISBL_0175
+        WIND_ISBL_0200:
+            members: null
+            elevation: 200mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.200:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.200:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.200
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0200
+                - WIND_ISBL_0200
+        WIND_ISBL_0225:
+            members: null
+            elevation: 225mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.225:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.225:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.225
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0225
+                - WIND_ISBL_0225
+        WIND_ISBL_0250:
+            members: null
+            elevation: 250mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.250:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.250:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.250
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0250
+                - WIND_ISBL_0250
+        WIND_ISBL_0275:
+            members: null
+            elevation: 275mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.275:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.275:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.275
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0275
+                - WIND_ISBL_0275
+        WIND_ISBL_0300:
+            members: null
+            elevation: 300mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.300:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.300:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.300
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0300
+                - WIND_ISBL_0300
+        WIND_ISBL_0350:
+            members: null
+            elevation: 350mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.350:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.350:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.350
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0350
+                - WIND_ISBL_0350
+        WIND_ISBL_0400:
+            members: null
+            elevation: 400mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.400:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.400:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.400
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0400
+                - WIND_ISBL_0400
+        WIND_ISBL_0450:
+            members: null
+            elevation: 450mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.450:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.450:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.450
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0450
+                - WIND_ISBL_0450
+        WIND_ISBL_0500:
+            members: null
+            elevation: 500mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.500:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.500:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.500
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0500
+                - WIND_ISBL_0500
+        WIND_ISBL_0550:
+            members: null
+            elevation: 550mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.550:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.550:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.550
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0550
+                - WIND_ISBL_0550
+        WIND_ISBL_0600:
+            members: null
+            elevation: 600mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.600:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.600:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.600
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0600
+                - WIND_ISBL_0600
+        WIND_ISBL_0650:
+            members: null
+            elevation: 650mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.650:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.650:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.650
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0650
+                - WIND_ISBL_0650
+        WIND_ISBL_0700:
+            members: null
+            elevation: 700mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.700:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.700:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.700
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0700
+                - WIND_ISBL_0700
+        WIND_ISBL_0750:
+            members: null
+            elevation: 750mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.750:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.750:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.750
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0750
+                - WIND_ISBL_0750
+        WIND_ISBL_0800:
+            members: null
+            elevation: 800mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.800:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.800:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.800
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0800
+                - WIND_ISBL_0800
+        WIND_ISBL_0850:
+            members: null
+            elevation: 850mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.850:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.850:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.850
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0850
+                - WIND_ISBL_0850
+        WIND_ISBL_0875:
+            members: null
+            elevation: 875mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.875:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.875:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.875
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0875
+                - WIND_ISBL_0875
+        WIND_ISBL_0900:
+            members: null
+            elevation: 900mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.900:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.900:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.900
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0900
+                - WIND_ISBL_0900
+        WIND_ISBL_0925:
+            members: null
+            elevation: 925mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.925:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.925:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.925
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0925
+                - WIND_ISBL_0925
+        WIND_ISBL_0950:
+            members: null
+            elevation: 950mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.950:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.950:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.950
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0950
+                - WIND_ISBL_0950
+        WIND_ISBL_0970:
+            members: null
+            elevation: 970mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.970:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.970:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.970
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0970
+                - WIND_ISBL_0970
+        WIND_ISBL_0985:
+            members: null
+            elevation: 985mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.985:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.985:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.985
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_0985
+                - WIND_ISBL_0985
+        WIND_ISBL_1000:
+            members: null
+            elevation: 1000mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.1000:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.1000:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.1000
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_1000
+                - WIND_ISBL_1000
+        WIND_ISBL_1015:
+            members: null
+            elevation: 1015mb
+            model_run:
+                00Z:
+                    files_expected: 49
+                06Z:
+                    files_expected: 49
+                12Z:
+                    files_expected: 49
+                18Z:
+                    files_expected: 49
+            geomet_layers:
+                HRDPS.CONTINENTAL.PRES_WSPD.1015:
+                    forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL.PRES_UU.1015:
+                    dependencies:
+                        - HRDPS.CONTINENTAL.PRES_WD.1015
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_ISBL_1015
+                - WIND_ISBL_1015
         WEAFR_SFC_0:
             members: null
             elevation: surface
@@ -2992,6 +3758,13 @@ model_hrdps_continental:
             geomet_layers:
                 HRDPS.CONTINENTAL_WSPD:
                     forecast_hours: 000/048/PT1H
+                HRDPS.CONTINENTAL_UU:
+                    dependencies:
+                        - HRDPS.CONTINENTAL_WD
+                    forecast_hours: 000/048/PT1H
+            bands_order:
+                - WDIR_TGL_10
+                - WIND_TGL_10
 
 
             

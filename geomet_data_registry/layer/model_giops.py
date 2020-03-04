@@ -96,6 +96,8 @@ class GiopsLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
+        self.dimensions = self.file_dict[self.model]['dimensions']
+
         runs = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run']  # noqa
         self.model_run_list = list(runs.keys())
 
@@ -154,6 +156,30 @@ class GiopsLayer(BaseLayer):
                         'register_status': True,
                     }
 
+                    if 'dependencies' in layer_config:
+                        layer_config['dependencies'] = \
+                            [layer.format(self.bands[band]['product'])
+                             for layer in layer_config['dependencies']]
+                        dependencies_found = self.check_layer_dependencies(
+                            layer_config['dependencies'],
+                            str_mr,
+                            str_fh)
+                        if dependencies_found:
+                            bands_order = (
+                                self.file_dict[self.model][self.dimension][
+                                    'variable'][self.wx_variable].get(
+                                    'bands_order'))
+                            (feature_dict['filepath'],
+                             feature_dict['weather_variable']) = (
+                                self.configure_layer_with_dependencies(
+                                    dependencies_found,
+                                    self.dimensions,
+                                    bands_order))
+                        else:
+                            feature_dict['register_status'] = False
+                            self.items.append(feature_dict)
+                            continue
+
                     if not self.is_valid_interval(fh, begin, end, interval):
                         feature_dict['register_status'] = False
                         LOGGER.debug('Forecast hour {} not included in {} as '
@@ -202,6 +228,27 @@ class GiopsLayer(BaseLayer):
                     'layer_config': layer_config,
                     'register_status': True,
                 }
+
+                if 'dependencies' in layer_config:
+                    dependencies_found = self.check_layer_dependencies(
+                        layer_config['dependencies'],
+                        str_mr,
+                        str_fh)
+                    if dependencies_found:
+                        bands_order = (
+                            self.file_dict[self.model][self.dimension][
+                                'variable'][self.wx_variable].get(
+                                'bands_order'))
+                        (feature_dict['filepath'],
+                         feature_dict['weather_variable']) = (
+                            self.configure_layer_with_dependencies(
+                                dependencies_found,
+                                self.dimensions,
+                                bands_order))
+                    else:
+                        feature_dict['register_status'] = False
+                        self.items.append(feature_dict)
+                        continue
 
                 if not self.is_valid_interval(fh, begin, end, interval):
                     feature_dict['register_status'] = False
