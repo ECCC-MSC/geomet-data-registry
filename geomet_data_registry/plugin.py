@@ -40,6 +40,7 @@ PLUGINS = {
         'GIOPS': 'geomet_data_registry.layer.model_giops.GiopsLayer',  # noqa
         'CGSL': 'geomet_data_registry.layer.cgsl.CgslLayer',  #noqa
         'RDWPS': 'geomet_data_registry.layer.rdwps.RdwpsLayer',  #noqa
+        'GDWPS': 'geomet_data_registry.layer.gdwps.GdwpsLayer'  # noqa
     }
 }
 
