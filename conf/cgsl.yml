@@ -22,7 +22,7 @@ cgsl:
                 18Z:
                     files_expected: 48
             geomet_layers:
-                CGSL.ETA_UGRD:
+                CGSL.ETA_UU:
                     bands: 1,2
                     forecast_hours: 001/048/PT1H
         ocean:

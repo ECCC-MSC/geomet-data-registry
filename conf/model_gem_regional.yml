@@ -1,6 +1,9 @@
 model_gem_regional:
     model: RDPS
     filename_pattern: CMC_reg_{wx_variable}_ps10km_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
+    dimensions:
+        x: 935
+        y: 824
     model_run_retention_hours: 48
     model_run_interval_hours: 6
     variable:
@@ -2616,6 +2619,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.50:
+                    dependencies:
+                        - RDPS.PRES_WSPD.50
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_50
+                - WIND_ISBL_50
         WDIR_ISBL_100:
             members: null
             elevation: 100mb
@@ -2635,6 +2649,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.100:
+                    dependencies:
+                        - RDPS.PRES_WSPD.100
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_100
+                - WIND_ISBL_100
         WDIR_ISBL_150:
             members: null
             elevation: 150mb
@@ -2654,6 +2679,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.150:
+                    dependencies:
+                        - RDPS.PRES_WSPD.150
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_150
+                - WIND_ISBL_150
         WDIR_ISBL_175:
             members: null
             elevation: 175mb
@@ -2673,6 +2709,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.175:
+                    dependencies:
+                        - RDPS.PRES_WSPD.175
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_175
+                - WIND_ISBL_175
         WDIR_ISBL_200:
             members: null
             elevation: 200mb
@@ -2692,6 +2739,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.200:
+                    dependencies:
+                        - RDPS.PRES_WSPD.200
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_200
+                - WIND_ISBL_200
         WDIR_ISBL_225:
             members: null
             elevation: 225mb
@@ -2711,6 +2769,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.225:
+                    dependencies:
+                        - RDPS.PRES_WSPD.225
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_225
+                - WIND_ISBL_225
         WDIR_ISBL_250:
             members: null
             elevation: 250mb
@@ -2730,6 +2799,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.250:
+                    dependencies:
+                        - RDPS.PRES_WSPD.250
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_250
+                - WIND_ISBL_250
         WDIR_ISBL_275:
             members: null
             elevation: 275mb
@@ -2749,6 +2829,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.275:
+                    dependencies:
+                        - RDPS.PRES_WSPD.275
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_275
+                - WIND_ISBL_275
         WDIR_ISBL_300:
             members: null
             elevation: 300mb
@@ -2768,6 +2859,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.300:
+                    dependencies:
+                        - RDPS.PRES_WSPD.300
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_300
+                - WIND_ISBL_300
         WDIR_ISBL_350:
             members: null
             elevation: 350mb
@@ -2787,6 +2889,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.350:
+                    dependencies:
+                        - RDPS.PRES_WSPD.350
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_350
+                - WIND_ISBL_350
         WDIR_ISBL_400:
             members: null
             elevation: 400mb
@@ -2806,6 +2919,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.400:
+                    dependencies:
+                        - RDPS.PRES_WSPD.400
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_400
+                - WIND_ISBL_400
         WDIR_ISBL_450:
             members: null
             elevation: 450mb
@@ -2825,6 +2949,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.450:
+                    dependencies:
+                        - RDPS.PRES_WSPD.450
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_450
+                - WIND_ISBL_450
         WDIR_ISBL_500:
             members: null
             elevation: 500mb
@@ -2844,6 +2979,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.500:
+                    dependencies:
+                        - RDPS.PRES_WSPD.500
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_500
+                - WIND_ISBL_500
         WDIR_ISBL_550:
             members: null
             elevation: 550mb
@@ -2863,6 +3009,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.550:
+                    dependencies:
+                        - RDPS.PRES_WSPD.550
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_550
+                - WIND_ISBL_550
         WDIR_ISBL_600:
             members: null
             elevation: 600mb
@@ -2882,6 +3039,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.600:
+                    dependencies:
+                        - RDPS.PRES_WSPD.600
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_600
+                - WIND_ISBL_600
         WDIR_ISBL_650:
             members: null
             elevation: 650mb
@@ -2901,6 +3069,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.650:
+                    dependencies:
+                        - RDPS.PRES_WSPD.650
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_650
+                - WIND_ISBL_650
         WDIR_ISBL_700:
             members: null
             elevation: 700mb
@@ -2920,6 +3099,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.700:
+                    dependencies:
+                        - RDPS.PRES_WSPD.700
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_700
+                - WIND_ISBL_700
         WDIR_ISBL_750:
             members: null
             elevation: 750mb
@@ -2939,6 +3129,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.750:
+                    dependencies:
+                        - RDPS.PRES_WSPD.750
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_750
+                - WIND_ISBL_750
         WDIR_ISBL_800:
             members: null
             elevation: 800mb
@@ -2958,6 +3159,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.800:
+                    dependencies:
+                        - RDPS.PRES_WSPD.800
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_800
+                - WIND_ISBL_800
         WDIR_ISBL_850:
             members: null
             elevation: 850mb
@@ -2977,6 +3189,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.850:
+                    dependencies:
+                        - RDPS.PRES_WSPD.850
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_850
+                - WIND_ISBL_850
         WDIR_ISBL_875:
             members: null
             elevation: 875mb
@@ -2996,6 +3219,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.875:
+                    dependencies:
+                        - RDPS.PRES_WSPD.875
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_875
+                - WIND_ISBL_875
         WDIR_ISBL_900:
             members: null
             elevation: 900mb
@@ -3015,6 +3249,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.900:
+                    dependencies:
+                        - RDPS.PRES_WSPD.900
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_900
+                - WIND_ISBL_900
         WDIR_ISBL_925:
             members: null
             elevation: 925mb
@@ -3034,6 +3279,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.925:
+                    dependencies:
+                        - RDPS.PRES_WSPD.925
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_925
+                - WIND_ISBL_925
         WDIR_ISBL_950:
             members: null
             elevation: 950mb
@@ -3053,6 +3309,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.950:
+                    dependencies:
+                        - RDPS.PRES_WSPD.950
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_950
+                - WIND_ISBL_950
         WDIR_ISBL_970:
             members: null
             elevation: 970mb
@@ -3072,6 +3339,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.970:
+                    dependencies:
+                        - RDPS.PRES_WSPD.970
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_970
+                - WIND_ISBL_970
         WDIR_ISBL_985:
             members: null
             elevation: 985mb
@@ -3091,6 +3369,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.985:
+                    dependencies:
+                        - RDPS.PRES_WSPD.985
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_985
+                - WIND_ISBL_985
         WDIR_ISBL_1000:
             members: null
             elevation: 1000mb
@@ -3110,6 +3399,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.1000:
+                    dependencies:
+                        - RDPS.PRES_WSPD.1000
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_1000
+                - WIND_ISBL_1000
         WDIR_ISBL_1015:
             members: null
             elevation: 1015mb
@@ -3129,6 +3429,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.1015:
+                    dependencies:
+                        - RDPS.PRES_WSPD.1015
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_1015
+                - WIND_ISBL_1015
         WDIR_TGL_10:
             members: null
             elevation: 10m
@@ -3148,6 +3459,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.ETA_UU:
+                    dependencies:
+                        - RDPS.ETA_WSPD
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_TGL_10
+                - WIND_TGL_10
         WIND_ISBL_50:
             members: null
             elevation: 50mb
@@ -3167,6 +3489,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.50:
+                    dependencies:
+                        - RDPS.PRES_WD.50
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_50
+                - WIND_ISBL_50
         WIND_ISBL_100:
             members: null
             elevation: 100mb
@@ -3186,6 +3519,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.100:
+                    dependencies:
+                        - RDPS.PRES_WD.100
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_100
+                - WIND_ISBL_100
         WIND_ISBL_150:
             members: null
             elevation: 150mb
@@ -3205,6 +3549,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.150:
+                    dependencies:
+                        - RDPS.PRES_WD.150
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_150
+                - WIND_ISBL_150
         WIND_ISBL_175:
             members: null
             elevation: 175mb
@@ -3224,6 +3579,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.175:
+                    dependencies:
+                        - RDPS.PRES_WD.175
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_175
+                - WIND_ISBL_175
         WIND_ISBL_200:
             members: null
             elevation: 200mb
@@ -3243,6 +3609,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.200:
+                    dependencies:
+                        - RDPS.PRES_WD.200
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_200
+                - WIND_ISBL_200
         WIND_ISBL_225:
             members: null
             elevation: 225mb
@@ -3262,6 +3639,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.225:
+                    dependencies:
+                        - RDPS.PRES_WD.225
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_225
+                - WIND_ISBL_225
         WIND_ISBL_250:
             members: null
             elevation: 250mb
@@ -3281,6 +3669,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.250:
+                    dependencies:
+                        - RDPS.PRES_WD.250
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_250
+                - WIND_ISBL_250
         WIND_ISBL_275:
             members: null
             elevation: 275mb
@@ -3300,6 +3699,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.275:
+                    dependencies:
+                        - RDPS.PRES_WD.275
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_275
+                - WIND_ISBL_275
         WIND_ISBL_300:
             members: null
             elevation: 300mb
@@ -3319,6 +3729,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.300:
+                    dependencies:
+                        - RDPS.PRES_WD.300
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_300
+                - WIND_ISBL_300
         WIND_ISBL_350:
             members: null
             elevation: 350mb
@@ -3338,6 +3759,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.350:
+                    dependencies:
+                        - RDPS.PRES_WD.350
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_350
+                - WIND_ISBL_350
         WIND_ISBL_400:
             members: null
             elevation: 400mb
@@ -3357,6 +3789,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.400:
+                    dependencies:
+                        - RDPS.PRES_WD.400
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_400
+                - WIND_ISBL_400
         WIND_ISBL_450:
             members: null
             elevation: 450mb
@@ -3376,6 +3819,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.450:
+                    dependencies:
+                        - RDPS.PRES_WD.450
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_450
+                - WIND_ISBL_450
         WIND_ISBL_500:
             members: null
             elevation: 500mb
@@ -3395,6 +3849,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.500:
+                    dependencies:
+                        - RDPS.PRES_WD.500
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_500
+                - WIND_ISBL_500
         WIND_ISBL_550:
             members: null
             elevation: 550mb
@@ -3414,6 +3879,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.550:
+                    dependencies:
+                        - RDPS.PRES_WD.550
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_550
+                - WIND_ISBL_550
         WIND_ISBL_600:
             members: null
             elevation: 600mb
@@ -3433,6 +3909,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.600:
+                    dependencies:
+                        - RDPS.PRES_WD.600
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_600
+                - WIND_ISBL_600
         WIND_ISBL_650:
             members: null
             elevation: 650mb
@@ -3452,6 +3939,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.650:
+                    dependencies:
+                        - RDPS.PRES_WD.650
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_650
+                - WIND_ISBL_650
         WIND_ISBL_700:
             members: null
             elevation: 700mb
@@ -3471,6 +3969,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.700:
+                    dependencies:
+                        - RDPS.PRES_WD.700
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_700
+                - WIND_ISBL_700
         WIND_ISBL_750:
             members: null
             elevation: 750mb
@@ -3490,6 +3999,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.750:
+                    dependencies:
+                        - RDPS.PRES_WD.750
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                    18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_750
+                - WIND_ISBL_750
         WIND_ISBL_800:
             members: null
             elevation: 800mb
@@ -3509,6 +4029,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.800:
+                    dependencies:
+                        - RDPS.PRES_WD.800
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_800
+                - WIND_ISBL_800
         WIND_ISBL_850:
             members: null
             elevation: 850mb
@@ -3528,6 +4059,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.850:
+                    dependencies:
+                        - RDPS.PRES_WD.850
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_850
+                - WIND_ISBL_850
         WIND_ISBL_875:
             members: null
             elevation: 875mb
@@ -3547,6 +4089,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.875:
+                    dependencies:
+                        - RDPS.PRES_WD.875
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_875
+                - WIND_ISBL_875
         WIND_ISBL_900:
             members: null
             elevation: 900mb
@@ -3566,6 +4119,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.900:
+                    dependencies:
+                        - RDPS.PRES_WD.900
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_900
+                - WIND_ISBL_900
         WIND_ISBL_925:
             members: null
             elevation: 925mb
@@ -3585,6 +4149,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.925:
+                    dependencies:
+                        - RDPS.PRES_WD.925
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_925
+                - WIND_ISBL_925
         WIND_ISBL_950:
             members: null
             elevation: 950mb
@@ -3604,6 +4179,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.950:
+                    dependencies:
+                        - RDPS.PRES_WD.950
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_950
+                - WIND_ISBL_950
         WIND_ISBL_970:
             members: null
             elevation: 970mb
@@ -3623,6 +4209,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.970:
+                    dependencies:
+                        - RDPS.PRES_WD.970
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_970
+                - WIND_ISBL_970
         WIND_ISBL_985:
             members: null
             elevation: 985mb
@@ -3642,6 +4239,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.985:
+                    dependencies:
+                        - RDPS.PRES_WD.985
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_985
+                - WIND_ISBL_985
         WIND_ISBL_1000:
             members: null
             elevation: 1000mb
@@ -3661,6 +4269,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.1000:
+                    dependencies:
+                        - RDPS.PRES_WD.1000
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_1000
+                - WIND_ISBL_1000
         WIND_ISBL_1015:
             members: null
             elevation: 1015mb
@@ -3680,6 +4299,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.PRES_UU.1015:
+                    dependencies:
+                        - RDPS.PRES_WD.1015
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_ISBL_1015
+                - WIND_ISBL_1015
         WIND_TGL_10:
             members: null
             elevation: 10m
@@ -3699,6 +4329,17 @@ model_gem_regional:
                         06Z: 000/054/PT1H
                         12Z: 000/048/PT1H
                         18Z: 000/054/PT1H
+                RDPS.ETA_UU:
+                    dependencies:
+                        - RDPS.ETA_WD
+                    forecast_hours:
+                        00Z: 000/048/PT1H
+                        06Z: 000/054/PT1H
+                        12Z: 000/048/PT1H
+                        18Z: 000/054/PT1H
+            bands_order:
+                - WDIR_TGL_10
+                - WIND_TGL_10
         WEAFR_SFC_0:
             members: null
             elevation: surface
