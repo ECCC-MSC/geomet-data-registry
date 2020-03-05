@@ -1,0 +1,232 @@
+wcps:
+    model: WCPS
+    filename_pattern: CMC_wcps_nemo_{wx_variable}_latlon0.009x0.009_{YYYYMMDD_model_run}_P{forecast_hour}.nc
+    dimensions:
+        x: 3181
+        y: 1681
+    model_run_retention_hours: 72
+    model_run_interval_hours: 12
+    variable:
+        iiceconc_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_GL:
+                    forecast_hours: 001/084/PT1H
+        iicepressure_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_SIII:
+                    forecast_hours: 001/084/PT1H
+        iicestrength_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_STGI:
+                    forecast_hours: 001/084/PT1H
+        iicevol_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_GE:
+                    forecast_hours: 001/084/PT1H
+        itmecrty_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_UUI_Y:
+                    forecast_hours: 001/084/PT1H
+                WCPS.2D_UUI:
+                    dependencies:
+                        - WCPS.2D_UUI_X
+                    forecast_hours: 001/084/PT1H
+            bands_order:
+                - itzocrtx_sfc_0
+                - itmecrty_sfc_0
+        itzocrtx_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_UUI_X:
+                    forecast_hours: 001/084/PT1H
+                WCPS.2D_UUI:
+                    dependencies:
+                        - WCPS.2D_UUI_Y
+                    forecast_hours: 001/084/PT1H
+            bands_order:
+                - itzocrtx_sfc_0
+                - itmecrty_sfc_0
+        sokaraml_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_MLW:
+                    forecast_hours: 001/084/PT1H
+        sossheig_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_SSH:
+                    forecast_hours: 001/084/PT1H
+        tairsurf_tgl_40:
+            members: null
+            elevation: 40m
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_TT:
+                    forecast_hours: 001/084/PT1H
+        uwindsurf_tgl_40:
+            members: null
+            elevation: 40m
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_UU_U:
+                    forecast_hours: 001/084/PT1H
+                WCPS.2D_UU:
+                    dependencies:
+                        - WCPS.2D_UU_V
+                    forecast_hours: 001/084/PT1H
+            bands_order:
+                - uwindsurf_tgl_40
+                - vwindsurf_tgl_40
+        vwindsurf_tgl_40:
+            members: null
+            elevation: 40m
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_UU_V:
+                    forecast_hours: 001/084/PT1H
+                WCPS.2D_UU:
+                    dependencies:
+                        - WCPS.2D_UU_U
+                    forecast_hours: 001/084/PT1H
+            bands_order:
+                - uwindsurf_tgl_40
+                - vwindsurf_tgl_40
+        vomecrty_depth_0.5:
+            members: null
+            elevation: -0.5m
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_UU2W_Y:
+                    forecast_hours: 001/084/PT1H
+                WCPS.2D_UU2W:
+                    dependencies:
+                        - WCPS.2D_UU2W_X
+                    forecast_hours: 001/084/PT1H
+            bands_order:
+                - vozocrtx_depth_0.5
+                - vomecrty_depth_0.5
+        vozocrtx_depth_0.5:
+            members: null
+            elevation: -0.5m
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_UU2W_X:
+                    forecast_hours: 001/084/PT1H
+                WCPS.2D_UU2W:
+                    dependencies:
+                        - WCPS.2D_UU2W_Y
+                    forecast_hours: 001/084/PT1H
+            bands_order:
+                - vozocrtx_depth_0.5
+                - vomecrty_depth_0.5
+        vosaline_sfc_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_SALW:
+                    forecast_hours: 001/084/PT1H
+        votemper_depth_0.5:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 84
+                12Z:
+                    files_expected: 84
+            geomet_layers:
+                WCPS.2D_TM2:
+                    forecast_hours: 001/084/PT1H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
