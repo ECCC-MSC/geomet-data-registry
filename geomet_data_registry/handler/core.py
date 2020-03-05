@@ -35,7 +35,8 @@ DATASET_HANDLERS = {
     'geps': 'GEPS',
     'CMC_coupled-rdps-stlawrence': 'CGSL',
     'CMC_rdwps': 'RDWPS',
-    'CMC_gdwps_global': 'GDWPS'
+    'CMC_gdwps_global': 'GDWPS',
+    'CMC_wcps': 'WCPS'
 }
 
 
