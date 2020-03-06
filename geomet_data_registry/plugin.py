@@ -41,7 +41,8 @@ PLUGINS = {
         'CGSL': 'geomet_data_registry.layer.cgsl.CgslLayer',  #noqa
         'RDWPS': 'geomet_data_registry.layer.rdwps.RdwpsLayer',  #noqa
         'GDWPS': 'geomet_data_registry.layer.gdwps.GdwpsLayer',  # noqa
-        'WCPS': 'geomet_data_registry.layer.wcps.WcpsLayer'  # noqa
+        'WCPS': 'geomet_data_registry.layer.wcps.WcpsLayer',  # noqa
+        'HRDPA': 'geomet_data_registry.layer.hrdpa.HrdpaLayer',  # noqa
     }
 }
 
