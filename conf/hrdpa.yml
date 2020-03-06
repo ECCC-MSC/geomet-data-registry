@@ -1,0 +1,58 @@
+hrdpa:
+    model: HRDPA
+    filename_pattern: CMC_HRDPA_{wx_variable}_ps2.5km_{YYYYMMDD_model_run}_{forecast_hour}.grib2
+    variable:
+        APCP-006-0100cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+                18Z:
+                    files_expected: 1
+            geomet_layers:
+                HRDPA.6P_PR:
+                    forecast_hours: -720/000/PT6H
+        APCP-006-0700cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+                18Z:
+                    files_expected: 1
+            geomet_layers:
+                HRDPA.6F_PR:
+                    forecast_hours: -720/000/PT6H
+        APCP-024-0100cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+            geomet_layers:
+                HRDPA.24P_PR:
+                    forecast_hours: -720/000/PT24H
+        APCP-024-0700cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+            geomet_layers:
+                HRDPA.24F_PR:
+                    forecast_hours: -720/000/PT24H
+
+
