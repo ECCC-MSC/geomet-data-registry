@@ -209,7 +209,7 @@ class BaseLayer:
                    all dependencies are found otherwise returns an empty list
         """
         dependencies = [self.tileindex.get('{}-{}-{}'.format(
-            layer, str_mr, str_fh)) for layer in layers_list]  # noqa
+            layer, str_mr, str_fh)) for layer in layers_list]
 
         if None in dependencies:
             return []
@@ -306,17 +306,25 @@ class BaseLayer:
             default_model_key = '{}_default_model_run'.format(item['layer_name'])
             stored_default_model_run = self.store.get_key(default_model_key)
 
-            model_run_extent_key = '{}_model_run_extent'.format(item['layer_name'])  # noqa
-            retention_hours = self.file_dict[self.model]['model_run_retention_hours']  # noqa
-            interval_hours = self.file_dict[self.model]['model_run_interval_hours']  # noqa
+            model_run_extent_key = '{}_model_run_extent'.format(
+                item['layer_name'])
+            retention_hours = self.file_dict[self.model][
+                'model_run_retention_hours']
+            interval_hours = self.file_dict[self.model][
+                'model_run_interval_hours']
             default_model_run = self.date_.strftime(DATE_FORMAT)
-            run_start_time = (self.date_ - timedelta(hours=retention_hours)).strftime(DATE_FORMAT)  # noqa
+            run_start_time = (self.date_ - timedelta(
+                hours=retention_hours)).strftime(DATE_FORMAT)
             run_interval = 'PT{}H'.format(interval_hours)
-            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
+            model_run_extent_value = '{}/{}/{}'.format(
+                run_start_time, default_model_run, run_interval)
 
-            if stored_default_model_run and datetime.strptime(stored_default_model_run, DATE_FORMAT) > self.date_:  # noqa
-                LOGGER.debug('New default model run value ({}) is older than the current value in store: {}. '  # noqa
-                             'Not updating time keys.'.format(default_model_run, stored_default_model_run))  # noqa
+            if stored_default_model_run and datetime.strptime(
+                    stored_default_model_run, DATE_FORMAT) > self.date_:
+                LOGGER.debug('New default model run value ({}) is older '
+                             'than the current value in store: {}. '
+                             'Not updating time keys.'.format(
+                                default_model_run, stored_default_model_run))
                 continue
 
             if 'dependencies' in item['layer_config']:

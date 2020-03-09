@@ -98,10 +98,12 @@ class GiopsLayer(BaseLayer):
 
         self.dimensions = self.file_dict[self.model]['dimensions']
 
-        runs = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run']  # noqa
+        runs = self.file_dict[self.model_base][self.dimension]['variable'][
+            self.wx_variable]['model_run']
         self.model_run_list = list(runs.keys())
 
-        weather_var = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]  # noqa
+        weather_var = self.file_dict[self.model_base][self.dimension][
+            'variable'][self.wx_variable]
         self.geomet_layers = weather_var['geomet_layers']
 
         time_format = '%Y%m%d%H'
@@ -109,10 +111,11 @@ class GiopsLayer(BaseLayer):
         reference_datetime = self.date_
         self.model_run = '{}Z'.format(self.date_.strftime('%H'))
         forecast_hour_datetime = self.date_ + \
-            timedelta(hours=int(file_pattern_info['fh']))
+                                 timedelta(hours=int(file_pattern_info['fh']))
 
         if self.dimension == '3D':
-            self.bands = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['bands']  # noqa
+            self.bands = self.file_dict[self.model_base][self.dimension][
+                'variable'][self.wx_variable]['bands']
             for band in self.bands.keys():
                 elevation = self.bands[band]['elevation']
                 str_mr = re.sub('[^0-9]',
@@ -122,9 +125,12 @@ class GiopsLayer(BaseLayer):
                                 '',
                                 forecast_hour_datetime.strftime(DATE_FORMAT))
 
-                expected_count = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+                expected_count = self.file_dict[self.model_base][
+                    self.dimension]['variable'][self.wx_variable][
+                    'model_run'][self.model_run]['files_expected']
 
-                for layer, layer_config in weather_var['geomet_layers'].items():
+                for layer, layer_config in weather_var[
+                    'geomet_layers'].items():
                     member = None
                     layer_name = layer.format(self.bands[band]['product'])
 
@@ -141,7 +147,8 @@ class GiopsLayer(BaseLayer):
                         'layer_name_unformatted': layer,
                         'filepath': self.filepath,
                         'identifier': identifier,
-                        'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
+                        'reference_datetime': reference_datetime.strftime(
+                            DATE_FORMAT),
                         'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
                         'member': member,
                         'model': '{}_{}'.format(self.model, self.dimension),
@@ -199,9 +206,13 @@ class GiopsLayer(BaseLayer):
                             '',
                             forecast_hour_datetime.strftime(DATE_FORMAT))
 
-            expected_count = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+            expected_count = \
+            self.file_dict[self.model_base][self.dimension]['variable'][
+                self.wx_variable]['model_run'][self.model_run][
+                'files_expected']
 
-            for layer_name, layer_config in weather_var['geomet_layers'].items():
+            for layer_name, layer_config in weather_var[
+                'geomet_layers'].items():
                 identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
                 forecast_hours = layer_config['forecast_hours']
@@ -214,8 +225,10 @@ class GiopsLayer(BaseLayer):
                     'layer_name': layer_name,
                     'filepath': self.filepath,
                     'identifier': identifier,
-                    'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
-                    'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
+                    'reference_datetime': reference_datetime.strftime(
+                        DATE_FORMAT),
+                    'forecast_hour_datetime': forecast_hour_datetime.strftime(
+                        DATE_FORMAT),
                     'member': member,
                     'model': '{}_{}'.format(self.model, self.dimension),
                     'elevation': elevation,

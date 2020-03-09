@@ -40,7 +40,7 @@ class GepsLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.geps.GEPSLayer`  # noqa
+        :returns: `geomet_data_registry.layer.geps.GEPSLayer`
         """
 
         provider_def = {'name': 'geps'}
@@ -66,10 +66,12 @@ class GepsLayer(BaseLayer):
         self.file_dict = json.loads(self.store.get_key(self.model))
 
         if self.filepath.endswith('allmbrs.grib2'):
-            filename_pattern = self.file_dict[self.model]['member']['filename_pattern']  # noqa
+            filename_pattern = self.file_dict[self.model]['member'][
+                'filename_pattern']
             self.type = 'member'
         elif self.filepath.endswith('all-products.grib2'):
-            filename_pattern = self.file_dict[self.model]['product']['filename_pattern']  # noqa
+            filename_pattern = self.file_dict[self.model]['product'][
+                'filename_pattern']
             self.type = 'product'
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
@@ -90,10 +92,12 @@ class GepsLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
-        runs = self.file_dict[self.model][self.type]['variable'][self.wx_variable]['model_run'] # noqa
+        runs = self.file_dict[self.model][self.type]['variable'][self.wx_variable][
+            'model_run']
         self.model_run_list = list(runs.keys())
 
-        weather_var = self.file_dict[self.model][self.type]['variable'][self.wx_variable]  # noqa
+        weather_var = self.file_dict[self.model][self.type]['variable'][
+            self.wx_variable]
         self.geomet_layers = weather_var['geomet_layers']
 
         time_format = '%Y%m%d%H'
@@ -109,7 +113,7 @@ class GepsLayer(BaseLayer):
             self.bands = weather_var['bands']
 
         for band in self.bands.keys():
-            vrt = 'vrt://{}?bands={}'.format(self.filepath, band)  # noqa
+            vrt = 'vrt://{}?bands={}'.format(self.filepath, band)
 
             elevation = weather_var['elevation']
             str_mr = re.sub('[^0-9]',
@@ -119,7 +123,9 @@ class GepsLayer(BaseLayer):
                             '',
                             forecast_hour_datetime.strftime(DATE_FORMAT))
 
-            expected_count = self.file_dict[self.model][self.type]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+            expected_count = self.file_dict[self.model][self.type][
+                'variable'][self.wx_variable]['model_run'][self.model_run][
+                'files_expected']
 
             for layer, layer_config in self.geomet_layers.items():
                 if self.type == 'member':
@@ -143,8 +149,10 @@ class GepsLayer(BaseLayer):
                     'layer_name_unformatted': layer,
                     'filepath': vrt,
                     'identifier': identifier,
-                    'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
-                    'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
+                    'reference_datetime': reference_datetime.strftime(
+                        DATE_FORMAT),
+                    'forecast_hour_datetime': forecast_hour_datetime.strftime(
+                        DATE_FORMAT),
                     'member': member,
                     'model': self.model,
                     'elevation': elevation,

@@ -39,7 +39,7 @@ class CgslLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.cgsl.CgslLayer`  # noqa
+        :returns: `geomet_data_registry.layer.cgsl.CgslLayer`
         """
 
         provider_def = {'name': 'cgsl'}
@@ -81,7 +81,8 @@ class CgslLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
-        runs = self.file_dict[self.model]['variable'][self.wx_variable]['model_run']  # noqa
+        runs = self.file_dict[self.model]['variable'][self.wx_variable][
+            'model_run']
         self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%d%H'
@@ -93,18 +94,22 @@ class CgslLayer(BaseLayer):
         forecast_hour_datetime = self.date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
-        member = self.file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
-        elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
+        member = self.file_dict[self.model]['variable'][self.wx_variable][
+            'members']
+        elevation = self.file_dict[self.model]['variable'][self.wx_variable][
+            'elevation']
         str_mr = re.sub('[^0-9]',
                         '',
                         reference_datetime.strftime(DATE_FORMAT))
         str_fh = re.sub('[^0-9]',
                         '',
                         forecast_hour_datetime.strftime(DATE_FORMAT))
-        expected_count = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+        expected_count = self.file_dict[self.model]['variable'][
+            self.wx_variable]['model_run'][self.model_run]['files_expected']
 
-        self.geomet_layers = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers']  # noqa
-        for layer_name, layer_config in self.geomet_layers.items():  # noqa
+        self.geomet_layers = self.file_dict[self.model]['variable'][
+            self.wx_variable]['geomet_layers']
+        for layer_name, layer_config in self.geomet_layers.items():
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
             vrt = 'vrt://{}?bands={}'.format(filepath, layer_config['bands'])
@@ -119,7 +124,8 @@ class CgslLayer(BaseLayer):
                 'filepath': vrt,
                 'identifier': identifier,
                 'reference_datetime': reference_datetime.strftime(DATE_FORMAT),
-                'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
+                'forecast_hour_datetime': forecast_hour_datetime.strftime(
+                    DATE_FORMAT),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,
