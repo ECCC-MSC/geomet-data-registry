@@ -182,8 +182,9 @@ class ElasticsearchTileIndex(BaseTileIndex):
 
         self.es.indices.create(index=self.name, body=INDEX_SETTINGS)
         self.es.ingest.put_pipeline(id='gdr_register_datetime', body={
-            'description': 'Adds a timestamp to a geomet-data-registry document\'s '  # noqa
-                           'properties.register_datetime property as the document is indexed.',  # noqa
+            'description': 'Adds a timestamp to a geomet-data-registry '
+                           'document\'s properties.register_datetime property '
+                           'as the document is indexed.',
             'processors': [
                 {
                     'set': {

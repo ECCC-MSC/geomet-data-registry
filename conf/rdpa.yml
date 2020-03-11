@@ -1,0 +1,70 @@
+rdpa:
+    model: RDPA
+    filename_pattern:
+        15km:
+            CMC_RDPA_{wx_variable}_ps15km_{YYYYMMDD_model_run}_{forecast_hour}.grib2
+        10km:
+            CMC_RDPA_{wx_variable}_ps10km_{YYYYMMDD_model_run}_{forecast_hour}.grib2
+    variable:
+        APCP-006-0100cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+                18Z:
+                    files_expected: 1
+            geomet_layers:
+                RDPA.6P_PR:
+                    forecast_hours: -720/000/PT6H
+        APCP-006-0700cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+                18Z:
+                    files_expected: 1
+            geomet_layers:
+                RDPA.ARC_15km.6F_PR:
+                    begin: '2011-04-06T00:00:00Z'
+                    end: '2012-10-03T00:00:00Z'
+                    interval: PT6H
+                RDPA.6F_PR:
+                    begin: '2012-10-03T06:00:00Z'
+                    interval: PT6H
+        APCP-024-0100cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+            geomet_layers:
+                RDPA.24P_PR:
+                    forecast_hours: -720/000/PT24H
+        APCP-024-0700cutoff_SFC_0:
+            members: null
+            elevation: surface
+            model_run:
+                06Z:
+                    files_expected: 1
+                12Z:
+                    files_expected: 1
+            geomet_layers:
+                RDPA.ARC_15km.24F_PR:
+                    begin: '2011-04-06T00:00:00Z'
+                    end: '2012-10-03T00:00:00Z'
+                    interval: PT24H
+                RDPA.24F_PR:
+                    begin: '2012-10-03T06:00:00Z'
+                    interval: PT24H

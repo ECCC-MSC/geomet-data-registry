@@ -99,10 +99,12 @@ class RdwpsLayer(BaseLayer):
         elif self.category == 'gulf':
             self.dimensions = self.file_dict[self.model]['dimensions']['gulf']
 
-        runs = self.file_dict[self.model][self.category]['variable'][self.wx_variable]['model_run']  # noqa
+        runs = self.file_dict[self.model][self.category]['variable'][
+            self.wx_variable]['model_run']
         self.model_run_list = list(runs.keys())
 
-        weather_var = self.file_dict[self.model][self.category]['variable'][self.wx_variable]  # noqa
+        weather_var = self.file_dict[self.model][self.category]['variable'][
+            self.wx_variable]
 
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
@@ -111,18 +113,23 @@ class RdwpsLayer(BaseLayer):
         forecast_hour_datetime = self.date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
-        member = self.file_dict[self.model][self.category]['variable'][self.wx_variable]['members']  # noqa
-        elevation = self.file_dict[self.model][self.category]['variable'][self.wx_variable]['elevation']  # noqa
+        member = self.file_dict[self.model][self.category]['variable'][
+            self.wx_variable]['members']
+        elevation = self.file_dict[self.model][self.category]['variable'][
+            self.wx_variable]['elevation']
         str_mr = re.sub('[^0-9]',
                         '',
                         reference_datetime.strftime(DATE_FORMAT))
         str_fh = re.sub('[^0-9]',
                         '',
                         forecast_hour_datetime.strftime(DATE_FORMAT))
-        expected_count = self.file_dict[self.model][self.category]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+        expected_count = self.file_dict[self.model][self.category][
+            'variable'][self.wx_variable]['model_run'][
+            self.model_run]['files_expected']
 
-        self.geomet_layers = self.file_dict[self.model][self.category]['variable'][self.wx_variable]['geomet_layers']
-        for layer, layer_config in self.geomet_layers.items():  # noqa
+        self.geomet_layers = self.file_dict[self.model][self.category][
+            'variable'][self.wx_variable]['geomet_layers']
+        for layer, layer_config in self.geomet_layers.items():
             layer_name = layer \
                 if self.category == 'gulf' \
                 else layer.format(file_pattern_info['lake'].upper())
@@ -131,7 +138,8 @@ class RdwpsLayer(BaseLayer):
             if self.category == 'lake':
                 forecast_hours = layer_config['forecast_hours']
             elif self.category == 'gulf':
-                forecast_hours = layer_config['forecast_hours'][self.model_run]  # noqa
+                forecast_hours = layer_config['forecast_hours'][
+                    self.model_run]
             begin, end, interval = [int(re.sub('[^0-9]', '', value))
                                     for value in forecast_hours.split('/')]
 
@@ -141,8 +149,10 @@ class RdwpsLayer(BaseLayer):
                 'layer_name': layer_name,
                 'filepath': filepath,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
-                'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
+                'reference_datetime': reference_datetime.strftime(
+                    DATE_FORMAT),
+                'forecast_hour_datetime': forecast_hour_datetime.strftime(
+                    DATE_FORMAT),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,

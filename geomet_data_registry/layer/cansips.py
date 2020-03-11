@@ -39,7 +39,7 @@ class CansipsLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.cansips.CansipsLayer`  # noqa
+        :returns: `geomet_data_registry.layer.cansips.CansipsLayer`
         """
 
         provider_def = {'name': 'cansips'}
@@ -138,7 +138,8 @@ class CansipsLayer(BaseLayer):
                 'filepath': vrt,
                 'identifier': identifier,
                 'reference_datetime': reference_datetime.strftime(time_format),
-                'forecast_hour_datetime': forecast_hour_datetime.strftime(time_format), # noqa
+                'forecast_hour_datetime': forecast_hour_datetime.strftime(
+                    time_format),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,

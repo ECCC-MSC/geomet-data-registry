@@ -39,7 +39,7 @@ class Radar1kmLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.radar_1km.Radar1kmLayer`  # noqa
+        :returns: `geomet_data_registry.layer.radar_1km.Radar1kmLayer`
         """
 
         provider_def = {'name': 'Radar_1km'}
@@ -83,10 +83,13 @@ class Radar1kmLayer(BaseLayer):
         time_format = '%Y%m%d%H%M'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        layer_name = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layer']  # noqa
+        layer_name = self.file_dict[self.model]['variable'][self.wx_variable][
+            'geomet_layer']
 
-        member = self.file_dict[self.model]['variable'][self.wx_variable]['member']  # noqa
-        elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
+        member = self.file_dict[self.model]['variable'][self.wx_variable][
+            'member']
+        elevation = self.file_dict[self.model]['variable'][self.wx_variable][
+            'elevation']
         str_fh = re.sub('[^0-9]',
                         '',
                         self.date_.strftime(DATE_FORMAT))
@@ -117,12 +120,14 @@ class Radar1kmLayer(BaseLayer):
         :return: `bool` if successfully added a new radar time key
         """
 
-        layer_name = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layer'] # noqa
+        layer_name = self.file_dict[self.model]['variable'][
+            self.wx_variable]['geomet_layer']
         key_name = '{}_default_time'.format(layer_name)
         last_key = self.store.get_key(key_name)
         key_value = self.date_.strftime(DATE_FORMAT)
         extent_key = '{}_time_extent'.format(layer_name)
-        start, end, interval = self.file_dict[self.model]['variable'][self.wx_variable]['forecast_hours'].split('/') # noqa
+        start, end, interval = self.file_dict[self.model]['variable'][
+            self.wx_variable]['forecast_hours'].split('/')
         start_time = self.date_ + timedelta(minutes=int(start))
         start_time = start_time.strftime(DATE_FORMAT)
         extent_value = '{}/{}/{}'.format(start_time, key_value, interval)

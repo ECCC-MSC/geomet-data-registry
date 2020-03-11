@@ -39,7 +39,7 @@ class HrdpaLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.HrdpaLayer`  # noqa
+        :returns: `geomet_data_registry.layer.HrdpaLayer`
         """
 
         provider_def = {'name': 'hrdpa'}
@@ -81,7 +81,8 @@ class HrdpaLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
-        runs = self.file_dict[self.model]['variable'][self.wx_variable]['model_run']  # noqa
+        runs = self.file_dict[self.model]['variable'][self.wx_variable][
+            'model_run']
         self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%d%H'
@@ -93,24 +94,25 @@ class HrdpaLayer(BaseLayer):
         forecast_hour_datetime = self.date_ + \
             timedelta(hours=int(file_pattern_info['fh']))
 
-        member = self.file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
-        elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
-        str_mr = re.sub('[^0-9]',
-                        '',
-                        reference_datetime.strftime(DATE_FORMAT))
+        member = self.file_dict[self.model]['variable'][self.wx_variable][
+            'members']
+        elevation = self.file_dict[self.model]['variable'][self.wx_variable][
+            'elevation']
         str_fh = re.sub('[^0-9]',
                         '',
                         forecast_hour_datetime.strftime(DATE_FORMAT))
-        expected_count = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+        expected_count = self.file_dict[self.model]['variable'][
+            self.wx_variable]['model_run'][self.model_run]['files_expected']
 
-        self.geomet_layers = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers']
+        self.geomet_layers = self.file_dict[self.model]['variable'][
+            self.wx_variable]['geomet_layers']
         for layer_name, layer_config in self.geomet_layers.items():
             identifier = '{}-{}'.format(layer_name, str_fh)
-            LOGGER.debug(layer_config['forecast_hours'])
+
             forecast_hours = layer_config['forecast_hours']
             begin, end, interval = [int(re.sub(r'[^-\d]', '', value))
                                     for value in forecast_hours.split('/')]
-            LOGGER.debug(f'{begin}{end}{interval}')
+
             feature_dict = {
                 'layer_name': layer_name,
                 'filepath': filepath,

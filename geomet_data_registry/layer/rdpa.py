@@ -30,8 +30,8 @@ from geomet_data_registry.util import DATE_FORMAT
 LOGGER = logging.getLogger(__name__)
 
 
-class WcpsLayer(BaseLayer):
-    """WCPS layer"""
+class RdpaLayer(BaseLayer):
+    """RDPA layer"""
 
     def __init__(self, provider_def):
         """
@@ -39,10 +39,10 @@ class WcpsLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.wcps.WcpsLayer`
+        :returns: `geomet_data_registry.layer.RdpaLayer`
         """
 
-        provider_def = {'name': 'wcps'}
+        provider_def = {'name': 'rdpa'}
 
         BaseLayer.__init__(self, provider_def)
 
@@ -52,17 +52,24 @@ class WcpsLayer(BaseLayer):
 
         :param filepath: filepath from AMQP
 
-        :returns: `bool` of identification success status
+        :returns: `list` of file properties
         """
 
         super().identify(filepath)
 
-        self.model = 'wcps'
+        self.model = 'rdpa'
 
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model))
 
-        filename_pattern = self.file_dict[self.model]['filename_pattern']
+        if '15km' in self.filepath:
+            filename_pattern = self.file_dict[self.model]['filename_pattern'][
+                '15km']
+            archive = True
+        elif '10km' in self.filepath:
+            filename_pattern = self.file_dict[self.model]['filename_pattern'][
+                '10km']
+            archive = False
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
@@ -80,8 +87,6 @@ class WcpsLayer(BaseLayer):
                   'configuration file'.format(self.wx_variable)
             LOGGER.warning(msg)
             return False
-
-        self.dimensions = self.file_dict[self.model]['dimensions']
 
         runs = self.file_dict[self.model]['variable'][self.wx_variable][
             'model_run']
@@ -107,27 +112,47 @@ class WcpsLayer(BaseLayer):
                         '',
                         forecast_hour_datetime.strftime(DATE_FORMAT))
         expected_count = self.file_dict[self.model]['variable'][
-            self.wx_variable]['model_run'][
-            self.model_run]['files_expected']
+            self.wx_variable]['model_run'][self.model_run]['files_expected']
 
         self.geomet_layers = self.file_dict[self.model]['variable'][
             self.wx_variable]['geomet_layers']
         for layer_name, layer_config in self.geomet_layers.items():
-            identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
-            forecast_hours = layer_config['forecast_hours']
-            begin, end, interval = [int(re.sub('[^0-9]', '', value))
-                                    for value in forecast_hours.split('/')]
-            fh = int(file_pattern_info['fh'])
+            if archive and 'ARC' not in layer_name:
+                continue
+
+            identifier = '{}-{}'.format(layer_name, str_fh)
+
+            archive_cutoff = datetime.strptime("2012-10-03T00:00:00Z",
+                                               DATE_FORMAT)
+
+            if 'ARC' in layer_name and self.date_ <= archive_cutoff:
+                begin_date = datetime.strptime(layer_config['begin'],
+                                               DATE_FORMAT)
+                begin, end, interval = ((begin_date - self.date_).
+                                        total_seconds() / 3600,
+                                        0,
+                                        layer_config['interval'])
+            elif 'F_' in layer_name:
+                begin_date = datetime.strptime(layer_config['begin'],
+                                               DATE_FORMAT)
+                begin, end, interval = ((begin_date - self.date_).
+                                        total_seconds() / 3600,
+                                        0,
+                                        layer_config['interval'])
+            else:
+                forecast_hours = layer_config['forecast_hours']
+                begin, end = [int(re.sub(r'[^-\d]', '', value))
+                              for value in
+                              forecast_hours.split('/')[:2]]
+                interval = forecast_hours.split('/')[2]
 
             feature_dict = {
                 'layer_name': layer_name,
                 'filepath': filepath,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime.strftime(
-                    DATE_FORMAT),
-                'forecast_hour_datetime': forecast_hour_datetime.strftime(
-                    DATE_FORMAT),
+                'reference_datetime': None,
+                'forecast_hour_datetime': self.date_.strftime(DATE_FORMAT),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,
@@ -135,42 +160,53 @@ class WcpsLayer(BaseLayer):
                 'forecast_hours': {
                     'begin': begin,
                     'end': end,
-                    'interval': forecast_hours.split('/')[2]
+                    'interval': interval
                 },
                 'layer_config': layer_config,
                 'register_status': True,
             }
-
-            if 'dependencies' in layer_config:
-                dependencies_found = self.check_layer_dependencies(
-                    layer_config['dependencies'],
-                    str_mr,
-                    str_fh)
-                if dependencies_found:
-                    bands_order = (self.file_dict[self.model]
-                                   ['variable']
-                                   [self.wx_variable].get('bands_order'))
-                    (feature_dict['filepath'],
-                     feature_dict['weather_variable']) = (
-                        self.configure_layer_with_dependencies(
-                            dependencies_found,
-                            self.dimensions,
-                            bands_order))
-                else:
-                    feature_dict['register_status'] = False
-                    self.items.append(feature_dict)
-                    continue
-
-            if not self.is_valid_interval(fh, begin, end, interval):
-                feature_dict['register_status'] = False
-                LOGGER.debug('Forecast hour {} not included in {} as '
-                             'defined for layer {}. File will not be '
-                             'added to registry for this layer'
-                             .format(fh, forecast_hours, layer_name))
-
             self.items.append(feature_dict)
 
         return True
 
+    def add_time_key(self):
+        """
+        Adds default time and time extent datetime values to store for radar
+        layers. Overrides the add_time_key method of BaseLayer class due to
+        radar data's lack of forecast models.
+        :return: `bool` if successfully added a new radar time key
+        """
+
+        for item in self.items:
+
+            default_time_key = '{}_default_time'.format(item['layer_name'])
+            last_default_time_key = self.store.get_key(default_time_key)
+            time_extent_key = '{}_time_extent'.format(item['layer_name'])
+
+            start_time = self.date_ + timedelta(
+                hours=item['forecast_hours']['begin'])
+            start_time = start_time.strftime(DATE_FORMAT)
+            end_time = self.date_.strftime(DATE_FORMAT)
+
+            time_extent_value = '{}/{}/{}'.format(start_time,
+                                                  end_time,
+                                                  item['forecast_hours']
+                                                  ['interval'])
+
+            if last_default_time_key and datetime.strptime(
+                    last_default_time_key, DATE_FORMAT) > self.date_:
+                LOGGER.debug(
+                    'New default time value ({}) is older than the current '
+                    'default time in store: {}. '
+                    'Not updating time keys.'.format(
+                        end_time, last_default_time_key))
+                continue
+
+            LOGGER.debug('Adding time keys in the store')
+            self.store.set_key(default_time_key, end_time)
+            self.store.set_key(time_extent_key, time_extent_value)
+
+        return True
+
     def __repr__(self):
-        return '<WcpsLayer> {}'.format(self.name)
+        return '<RdpaLayer> {}'.format(self.name)

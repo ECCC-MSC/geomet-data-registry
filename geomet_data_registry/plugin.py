@@ -33,16 +33,17 @@ PLUGINS = {
         'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer',  # noqa
         'ModelGemRegional': 'geomet_data_registry.layer.model_gem_regional.ModelGemRegionalLayer',  # noqa
         'ModelHrdpsContinental': 'geomet_data_registry.layer.model_hrdps_continental.ModelHrdpsContinentalLayer',  # noqa
-        'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',  # noqa
-        'CanSIPS': 'geomet_data_registry.layer.cansips.CansipsLayer',  # noqa
-        'REPS': 'geomet_data_registry.layer.reps.RepsLayer',  # noqa
-        'GEPS': 'geomet_data_registry.layer.geps.GepsLayer',  # noqa
-        'GIOPS': 'geomet_data_registry.layer.model_giops.GiopsLayer',  # noqa
-        'CGSL': 'geomet_data_registry.layer.cgsl.CgslLayer',  #noqa
-        'RDWPS': 'geomet_data_registry.layer.rdwps.RdwpsLayer',  #noqa
-        'GDWPS': 'geomet_data_registry.layer.gdwps.GdwpsLayer',  # noqa
-        'WCPS': 'geomet_data_registry.layer.wcps.WcpsLayer',  # noqa
-        'HRDPA': 'geomet_data_registry.layer.hrdpa.HrdpaLayer',  # noqa
+        'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',
+        'CanSIPS': 'geomet_data_registry.layer.cansips.CansipsLayer',
+        'REPS': 'geomet_data_registry.layer.reps.RepsLayer',
+        'GEPS': 'geomet_data_registry.layer.geps.GepsLayer',
+        'GIOPS': 'geomet_data_registry.layer.model_giops.GiopsLayer',
+        'CGSL': 'geomet_data_registry.layer.cgsl.CgslLayer',
+        'RDWPS': 'geomet_data_registry.layer.rdwps.RdwpsLayer',
+        'GDWPS': 'geomet_data_registry.layer.gdwps.GdwpsLayer',
+        'WCPS': 'geomet_data_registry.layer.wcps.WcpsLayer',
+        'HRDPA': 'geomet_data_registry.layer.hrdpa.HrdpaLayer',
+        'RDPA': 'geomet_data_registry.layer.rdpa.RdpaLayer',
     }
 }
 
