@@ -3,7 +3,7 @@ cansips:
     model: CANSIPS
     # file name pattern with the different variables between {}
     # Those path variables will be defined in the layre handler script depending on the filename
-    filename_pattern: cansips_forecast_raw_latlon1.0x1.0_{wx_variable}_{pressure}_{pres_value}_{YYYY}-{MM}_allmembers.grib2
+    filename_pattern: cansips_forecast_raw_latlon{resolution}_{wx_variable}_{pressure}_{pres_value}_{YYYY}-{MM}_allmembers.grib2
     # integer: how many members for each variables as this is a ensemble prediction model
     members: 20
     # list of the different bands and their member number and forecast interval
@@ -736,31 +736,45 @@ cansips:
         TMP_TGL_2m:
             # We can have a variable in geomet layer name {}
             # These variables will be completed by the layer handler script
-            geomet_layer: CANSIPS.MEM.ETA_TT.{}
-            # forecast hours interval
-            # 00: variable is available from relative forecast month 0
-            # 12: variable is available until relative forecast month 212
-            # P1M: variable is available every month (ISO8601)
-            forecast_hours: 00/12/P1M
+            geomet_layers:
+                CANSIPS.MEM.ETA_TT.{}:
+                    # forecast hours interval
+                    # 00: variable is available from relative forecast month 0
+                    # 12: variable is available until relative forecast month 212
+                    # P1M: variable is available every month (ISO8601)
+                    forecast_hours: 00/12/P1M
+                    # Static time begin because we serve archive for CanSIPS
+                    # End date is always the latest available month
+                    begin: '2013-05-01T00:00:00Z'
             # elevation value for future dimension filtering. Must be string
             elevation: surface
         PRATE_SFC_0:
-            geomet_layer: CANSIPS.MEM.ETA_RT.{}
-            forecast_hours: 00/12/P1M
+            geomet_layers:
+                CANSIPS.MEM.ETA_RT.{}:
+                    forecast_hours: 00/12/P1M
+                    begin: '2013-05-01T00:00:00Z'
             elevation: surface
         PRMSL_MSL_0:
-            geomet_layer: CANSIPS.ETA_PN-SLP.{}
-            forecast_hours: 00/12/P1M
+            geomet_layers:
+                CANSIPS.ETA_PN-SLP.{}:
+                    forecast_hours: 00/12/P1M
+                    begin: '2013-05-01T00:00:00Z'
             elevation: surface
         WTMP_SFC_0:
-            geomet_layer: CANSIPS.ETA_WTMP.{}
-            forecast_hours: 00/12/P1M
+            geomet_layers:
+                CANSIPS.ETA_WTMP.{}:
+                    forecast_hours: 00/12/P1M
+                    begin: '2013-05-01T00:00:00Z'
             elevation: surface
         HGT_ISBL_0500:
-            geomet_layer: CANSIPS.PRES_GZ.500.{}
-            forecast_hours: 00/12/P1M
+            geomet_layers:
+                CANSIPS.PRES_GZ.500.{}:
+                    forecast_hours: 00/12/P1M
+                    begin: '2013-05-01T00:00:00Z'
             elevation: 500mb
         TMP_ISBL_0850:
-            geomet_layer: CANSIPS.PRES_TT.850.{}
-            forecast_hours: 00/12/P1M
+            geomet_layers:
+                CANSIPS.PRES_TT.850.{}:
+                    forecast_hours: 00/12/P1M
+                    begin: '2013-05-01T00:00:00Z'
             elevation: 850mb
