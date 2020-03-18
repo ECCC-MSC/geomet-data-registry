@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Louis-Philippe Rousseau-Lambert
+# Copyright (C) 2020 Louis-Philippe Rousseau-Lambert
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ from parse import parse
 import re
 
 from geomet_data_registry.layer.base import BaseLayer
+from geomet_data_registry.util import DATE_FORMAT
 
 LOGGER = logging.getLogger(__name__)
 
@@ -39,7 +40,7 @@ class CansipsLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.cansips.CansipsLayer`
+        :returns: `geomet_data_registry.layer.cansips.CansipsLayer`  # noqa
         """
 
         provider_def = {'name': 'cansips'}
@@ -67,6 +68,7 @@ class CansipsLayer(BaseLayer):
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
         file_pattern_info = {
+            'resolution': tmp.named['resolution'],
             'wx_variable': '{}_{}_{}'.format(tmp.named['wx_variable'],
                                              tmp.named['pressure'],
                                              tmp.named['pres_value']),
@@ -84,15 +86,14 @@ class CansipsLayer(BaseLayer):
             return False
 
         weather_var = file_dict[self.model]['variable'][self.wx_variable]
+        self.geomet_layers = weather_var['geomet_layers']
 
         date_format = '%Y%m'
-        date_ = '{}{}'.format(file_pattern_info['year_'],
-                              file_pattern_info['month_'])
-        reference_datetime = datetime.strptime(date_, date_format)
+        self.date_ = '{}{}'.format(file_pattern_info['year_'],
+                                   file_pattern_info['month_'])
+        reference_datetime = datetime.strptime(self.date_, date_format)
+        self.date_ = reference_datetime
         self.model_run = '{}Z'.format(reference_datetime.strftime('%H'))
-
-        begin, end, interval = weather_var['forecast_hours'].split('/')
-        interval = int(re.sub("[^0-9]", "", interval))
 
         for band in file_dict[self.model]['bands']:
 
@@ -104,49 +105,52 @@ class CansipsLayer(BaseLayer):
             forecast_hour_datetime = reference_datetime + \
                 relativedelta(months=int(fhi))
 
+            elevation = weather_var['elevation']
             member = dict_bands[band]['member']
 
             mem_str = str(member).zfill(2)
-            layer_name = weather_var['geomet_layer'].format(mem_str)
-            elevation = weather_var['elevation']
-            time_format = '%Y-%m-%dT%H:%M:%SZ'
-            str_mr = re.sub('[^0-9]',
-                            '',
-                            reference_datetime.strftime(time_format))
-            str_fh = re.sub('[^0-9]',
-                            '',
-                            forecast_hour_datetime.strftime(time_format))
-            identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
-            expected_count = 1
 
-            vrt = '''
-<VRTDataset rasterXSize="145" rasterYSize="73">
-    <SRS>'+proj=longlat +a=6371229 +b=6371229 +no_defs +pm=-359.88'</SRS>
-    <GeoTransform> 178.75,  2.5000000000000000e+00,  0.0000000000000000e+00,
-  9.1250000000000000e+01,  0.0000000000000000e+00,
- -2.5000000000000000e+00</GeoTransform>
-        <VRTRasterBand dataType="Float64" band="1">
-            <ComplexSource>
-                <SourceFilename>{}</SourceFilename>
-                <SourceBand>{}</SourceBand>
-            </ComplexSource>
-        </VRTRasterBand>
-    </VRTDataset>'''.format(filepath, band).replace('\n', '')
+            for layer, layer_config in self.geomet_layers.items():
 
-            feature_dict = {
-                'layer_name': layer_name,
-                'filepath': vrt,
-                'identifier': identifier,
-                'reference_datetime': reference_datetime.strftime(time_format),
-                'forecast_hour_datetime': forecast_hour_datetime.strftime(
-                    time_format),
-                'member': member,
-                'model': self.model,
-                'elevation': elevation,
-                'expected_count': expected_count
-            }
+                layer_name = layer.format(mem_str)
+                str_mr = re.sub('[^0-9]',
+                                '',
+                                reference_datetime.strftime(DATE_FORMAT))
+                str_fh = re.sub('[^0-9]',
+                                '',
+                                forecast_hour_datetime.strftime(DATE_FORMAT))
+                identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
+                vrt = 'vrt://{}?bands={}'.format(self.filepath, band)
 
-            self.items.append(feature_dict)
+                begin, end, interval = layer_config['forecast_hours'].split(
+                    '/')
+                interval = int(re.sub("[^0-9]", "", interval))
+
+                feature_dict = {
+                    'layer_name': layer_name,
+                    'filepath': vrt,
+                    'identifier': identifier,
+                    'reference_datetime': reference_datetime.strftime(
+                        DATE_FORMAT),
+                    'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT), # noqa
+                    'member': member,
+                    'model': self.model,
+                    'elevation': elevation,
+                    'expected_count': None,
+                    'forecast_hours': {
+                        'begin': begin,
+                        'end': end,
+                        'interval': layer_config['forecast_hours'].split(
+                            '/')[2]
+                    },
+                    'static_model_run': {
+                        'begin': layer_config['begin']
+                    },
+                    'layer_config': layer_config,
+                    'register_status': True
+                }
+
+                self.items.append(feature_dict)
 
         return True
 
@@ -160,8 +164,35 @@ class CansipsLayer(BaseLayer):
             - latest time step
         """
 
-        # TODO add function to create time keys
-        pass
+        for item in self.items:
+
+            time_extent_key = '{}_time_extent'.format(item['layer_name'])
+
+            start_time = self.date_ + relativedelta(
+                months=int(item['forecast_hours']['begin']))
+            end_time = self.date_ + relativedelta(
+                months=int(item['forecast_hours']['end']))
+            end_time = end_time.strftime(DATE_FORMAT)
+            time_extent_value = '{}/{}/{}'.format(start_time,
+                                                  end_time,
+                                                  item['forecast_hours']
+                                                  ['interval'])
+
+            default_model_key = '{}_default_model_run'.format(
+                item['layer_name'])
+
+            model_run_extent_key = '{}_model_run_extent'.format(
+                item['layer_name'])
+            default_model_run = self.date_.strftime(DATE_FORMAT)
+            run_start_time = item['static_model_run']['begin']
+            run_interval = item['forecast_hours']['interval']
+            model_run_extent_value = '{}/{}/{}'.format(run_start_time, default_model_run, run_interval)  # noqa
+
+            LOGGER.debug('Adding time keys in the store')
+
+            self.store.set_key(time_extent_key, time_extent_value)
+            self.store.set_key(default_model_key, default_model_run)
+            self.store.set_key(model_run_extent_key, model_run_extent_value)
 
     def __repr__(self):
         return '<ModelCanSIPSLayer> {}'.format(self.name)
