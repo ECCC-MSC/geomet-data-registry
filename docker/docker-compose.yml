@@ -1,0 +1,57 @@
+###############################################################################
+#
+# Copyright (C) 2020 Tom Kralidis
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+###############################################################################
+
+version: "3"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    container_name: elasticsearch
+    environment:
+      - node.name=elasticsearch-01
+      - discovery.seed_hosts=elasticsearch-01
+      - cluster.initial_master_nodes=elasticsearch-01
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+#    volumes:
+#      - esdata01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - 6379:6379
+
+  geomet-data-registry:
+    container_name: geomet-data-registry-container
+    env_file:
+      - .env
+    build:
+      context: .
+#    entrypoint: /bin/bash
+    tty: true
+    volumes:
+      - ..:/home/geoadm/geomet-data-registry
