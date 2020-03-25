@@ -2,6 +2,8 @@
 
 Development environment using Docker
 
+## Docker
+
 ```bash
 git clone https://github.com/ECCC-MSC/geomet-data-registry.git
 cd geomet-data-registry
@@ -17,4 +19,10 @@ make login
 
 # stop
 make stop
+```
+
+## Docker Compose
+
+```bash
+docker-compose up -d
 ```
