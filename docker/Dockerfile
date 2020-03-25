@@ -44,5 +44,19 @@ WORKDIR geomet-data-registry
 RUN sudo python setup.py install
 RUN find conf/sarracenia -type f -name '*.conf' | xargs sed -i 's#/data/geomet/dev/apps/geomet-data-registry-dev/geomet-data-registry#/home/geoadm/geomet-data-registry/#g'
 
+
+ENV GDR_LOGGING_LOGLEVEL DEBUG
+ENV GDR_LOGGING_LOGFILE /tmp/geomet-data-registry-dev.log
+ENV GDR_CONFIG /opt/geomet-data-registry/geomet-data-registry.yml
+ENV GDR_BASEDIR /opt/geomet-data-registry
+ENV GDR_DATADIR /data/geomet
+ENV GDR_URL http://localhost/geomet-data-registry
+ENV GDR_TILEINDEX_TYPE Elasticsearch
+ENV GDR_TILEINDEX_BASEURL http://elasticsearch:9200
+ENV GDR_TILEINDEX_NAME geomet-data-registry-tileindex-dev
+ENV GDR_STORE_TYPE Redis
+ENV GDR_STORE_URL redis://redis:6379
+ENV XDG_CACHE_HOME /tmp/gdr-dev-logs
+
 RUN make setup && make start
 WORKDIR ..
