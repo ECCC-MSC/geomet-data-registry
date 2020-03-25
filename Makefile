@@ -27,7 +27,7 @@
 #
 # =================================================================
 
-include dev.env
+include docker/.env
 
 BASEDIR= $(shell pwd)/../
 
