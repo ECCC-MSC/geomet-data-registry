@@ -13,10 +13,15 @@
 ### HRDPS: twice a day at 02:05 and 14:05, clean out content older than 35 hours
 05 2,14 * * * /usr/bin/find $GDR_DATADIR/dev/feeds/model_hrdps/ -type f -mmin +2100 -exec rm {} \; > /dev/null 2>&1
 
-### RDPS: twice a day at 2:05 and 14:05, clean out content older than 30 hours
+### RDPS/CGSL: twice a day at 2:05 and 14:05, clean out content older than 30 hours
 05 2,14 * * *   /usr/bin/find $GDR_DATADIR/dev/feeds/model_gem_regional/ -type f -mmin +1800 -exec rm {} \; > /dev/null 2>&1
 
 ### GIOPS: twice a day at 4:35 and 16:35, clean out netcdf content older than 4 days
-36 4,16 * * *   /usr/bin/find $GDR_DATADIR/dev/feeds/model_giops/netcdf/ -type f -mtime +4 -exec rm {} \; > /dev/null 2>&1
-##############################################################################
+35 4,16 * * *   /usr/bin/find $GDR_DATADIR/dev/feeds/model_giops/netcdf/ -type f -mtime +4 -exec rm {} \; > /dev/null 2>&1
 
+### WCPS: twice a day at 4:35 and 16:35, clean out netcdf content older than 7 days
+35 4,16 * * *   /usr/bin/find $GDR_DATADIR/dev/feeds/model_wcps/nemo/netcdf/ -type f -mtime +7 -exec rm {} \; > /dev/null 2>&1
+
+### GDWPS/RDWPS: twice a day a 4:25 and 16:25 clean out model_wave files older than 35 hours
+25 4,16 * * *   /usr/bin/find $GDR_DATADIR/dev/feeds/model_wave/ -type f -mmin +2100 -exec rm {} \; > /dev/null 2>&1
+##############################################################################
