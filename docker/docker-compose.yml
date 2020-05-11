@@ -42,11 +42,15 @@ services:
   redis:
     container_name: redis
     image: redis
+    depends_on:
+      - elasticsearch
     ports:
       - 6379:6379
 
   geomet-data-registry:
     container_name: geomet-data-registry-container
+    depends_on:
+      - redis
     env_file:
       - .env
     build:
@@ -55,3 +59,8 @@ services:
     tty: true
     volumes:
       - ..:/home/geoadm/geomet-data-registry
+
+networks:
+  default:
+    external:
+      name: geomet-data-registry-network
