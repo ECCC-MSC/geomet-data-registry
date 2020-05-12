@@ -17,7 +17,7 @@
 #
 ###############################################################################
 
-FROM python:3.6-slim
+FROM python:3.6-slim-buster
 
 ENV GDR_LOGGING_LOGLEVEL DEBUG
 ENV GDR_LOGGING_LOGFILE /tmp/geomet-data-registry-dev.log
@@ -30,11 +30,11 @@ ENV GDR_TILEINDEX_BASEURL http://elasticsearch:9200
 ENV GDR_TILEINDEX_NAME geomet-data-registry-tileindex-dev
 ENV GDR_STORE_TYPE Redis
 ENV GDR_STORE_URL redis://redis:6379
-ENV XDG_CACHE_HOME /tmp/gdr-dev-logs
+ENV XDG_CACHE_HOME /tmp/geomet-data-registry-logs
 
 # install commonly used dependencies
 RUN apt-get update \
-  && apt-get install -y ca-certificates curl gcc locales make sudo \
+  && apt-get install -y ca-certificates curl gcc locales make redis-tools sudo \
   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen \
   && useradd -ms /bin/bash geoadm && echo "geoadm:geoadm" | chpasswd && adduser geoadm sudo \
   && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -52,4 +52,4 @@ WORKDIR /home/geoadm/geomet-data-registry
 RUN sudo python setup.py install \
   && find conf/sarracenia -type f -name "*.conf" | sudo xargs sed -i "s#/data/geomet/dev/apps/geomet-data-registry-dev/geomet-data-registry#/home/geoadm/geomet-data-registry#g"
 
-ENTRYPOINT [ "/home/geoadm/geomet-data-registry/entrypoint.sh" ]
+ENTRYPOINT [ "/home/geoadm/geomet-data-registry/docker/entrypoint.sh" ]

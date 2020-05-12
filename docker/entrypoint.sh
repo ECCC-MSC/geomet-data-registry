@@ -29,18 +29,18 @@
 # =================================================================
 
 echo "Verifying GDR supporting services are available"
-until curl --silent --output /dev/null --show-error --fail "$GDR_TILEINDEX_BASEURL"; do
-  >&2 echo "Elasticsearch is unavailable - sleeping"
+until curl --silent --output /dev/null --show-error --fail "$GDR_TILEINDEX_BASEURL" && redis-cli -u $GDR_STORE_URL ping; do
+  >&2 echo "Elasticsearch or Redis is not unavailable - sleeping"
   sleep 1
 done
 
->&2 echo "Elasticsearch is up - continuing"
+>&2 echo "Elasticsearch and Redis are up - continuing"
 
 echo "Setting up GDR store and tileindex"
 geomet-data-registry store setup
 geomet-data-registry tileindex setup
 
-echo "Setting up GDR store and tileindex"
+echo "Populating GDR store"
 geomet-data-registry store set -k cansips -c /home/geoadm/geomet-data-registry/conf/cansips.yml
 geomet-data-registry store set -k geps -c /home/geoadm/geomet-data-registry/conf/geps.yml
 geomet-data-registry store set -k model_gem_global -c /home/geoadm/geomet-data-registry/conf/model_gem_global.yml

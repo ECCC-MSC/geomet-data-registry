@@ -19,46 +19,61 @@
 
 version: "3"
 
+volumes:
+  esdata01:
+    driver: local
+
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: elasticsearch
     environment:
       - node.name=elasticsearch-01
-      - discovery.seed_hosts=elasticsearch-01
-      - cluster.initial_master_nodes=elasticsearch-01
       - cluster.name=docker-cluster
+      - cluster.initial_master_nodes=elasticsearch-01
+      - discovery.seed_hosts=elasticsearch-01
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
     ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
       memlock:
         soft: -1
         hard: -1
-#    volumes:
-#      - esdata01:/usr/share/elasticsearch/data
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
 
   redis:
     container_name: redis
-    image: redis
-    depends_on:
-      - elasticsearch
+    image: redis:alpine
     ports:
       - 6379:6379
 
   geomet-data-registry:
     container_name: geomet-data-registry-container
     depends_on:
+      - elasticsearch
       - redis
-    env_file:
-      - .env
+    environment:
+      - GDR_LOGGING_LOGLEVEL=DEBUG
+      - GDR_LOGGING_LOGFILE=/tmp/geomet-data-registry-dev.log
+      - GDR_CONFIG=/opt/geomet-data-registry/geomet-data-registry.yml
+      - GDR_BASEDIR=/opt/geomet-data-registry
+      - GDR_DATADIR=/data/geomet/data/feeds
+      - GDR_URL=http://localhost/geomet-data-registry
+      - GDR_TILEINDEX_TYPE=Elasticsearch
+      - GDR_TILEINDEX_BASEURL=http://elasticsearch:9200
+      - GDR_TILEINDEX_NAME=geomet-data-registry-tileindex
+      - GDR_STORE_TYPE=Redis
+      - GDR_STORE_URL=redis://redis:6379
+      - XDG_CACHE_HOME=/tmp/geomet-data-registry-logs
     build:
-      context: .
-#    entrypoint: /bin/bash
-    tty: true
-    volumes:
-      - ..:/home/geoadm/geomet-data-registry
+      context: ..
 
 networks:
   default:
