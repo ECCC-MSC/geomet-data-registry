@@ -59,3 +59,4 @@ sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/model_giops
 sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/model_hrdps_continental.conf
 sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/reps.conf
 #sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/radar.conf
+sleep infinity
