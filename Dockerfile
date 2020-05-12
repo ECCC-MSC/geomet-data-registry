@@ -32,11 +32,9 @@ ENV GDR_STORE_TYPE Redis
 ENV GDR_STORE_URL redis://redis:6379
 ENV XDG_CACHE_HOME /tmp/gdr-dev-logs
 
-#ENV DEB_BUILD_PACKAGES="gcc libyaml-dev"
-
 # install commonly used dependencies
 RUN apt-get update \
-  && apt-get install -y gcc ${DEB_BUILD_PACKAGES} locales sudo ca-certificates \
+  && apt-get install -y ca-certificates curl gcc locales make sudo \
   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen \
   && useradd -ms /bin/bash geoadm && echo "geoadm:geoadm" | chpasswd && adduser geoadm sudo \
   && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -48,7 +46,10 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR /home/geoadm
 
 # setup geomet-data-registry
-COPY . /home/geoadm
+USER geoadm
+COPY . /home/geoadm/geomet-data-registry
+WORKDIR /home/geoadm/geomet-data-registry
 RUN sudo python setup.py install \
-  && apt-get remove -y ${DEB_BUILD_PACKAGES}
-RUN find conf/sarracenia -type f -name "*.conf" | sudo xargs sed -i "s#/data/geomet/dev/apps/geomet-data-registry-dev/geomet-data-registry#/home/geoadm/geomet-data-registry#g"
+  && find conf/sarracenia -type f -name "*.conf" | sudo xargs sed -i "s#/data/geomet/dev/apps/geomet-data-registry-dev/geomet-data-registry#/home/geoadm/geomet-data-registry#g"
+
+ENTRYPOINT [ "/home/geoadm/geomet-data-registry/entrypoint.sh" ]

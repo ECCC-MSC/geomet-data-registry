@@ -27,9 +27,7 @@
 #
 # =================================================================
 
-include docker/.env
-
-BASEDIR= $(shell pwd)/../
+BASEDIR= $(shell pwd)
 
 foo:
 	@echo $(BASEDIR)
@@ -44,41 +42,37 @@ clean-logs:
 flake8:
 	find . -type f -name "*.py" | xargs flake8
 
-package:
-	python setup.py sdist bdist_wheel --universal
-
 setup:
 	geomet-data-registry store setup
 	geomet-data-registry tileindex setup
-
-	geomet-data-registry store set -k cansips -c $(BASEDIR)/geomet-data-registry/conf/cansips.yml
-	geomet-data-registry store set -k geps -c $(BASEDIR)/geomet-data-registry/conf/geps.yml
-	geomet-data-registry store set -k model_gem_global -c $(BASEDIR)/geomet-data-registry/conf/model_gem_global.yml
-	geomet-data-registry store set -k model_gem_regional -c $(BASEDIR)/geomet-data-registry/conf/model_gem_regional.yml
-	geomet-data-registry store set -k model_giops -c $(BASEDIR)/geomet-data-registry/conf/model_giops.yml
-	geomet-data-registry store set -k model_hrdps_continental -c $(BASEDIR)/geomet-data-registry/conf/model_hrdps_continental.yml
-	geomet-data-registry store set -k reps -c $(BASEDIR)/geomet-data-registry/conf/reps.yml
-	geomet-data-registry store set -k radar -c $(BASEDIR)/msc-geomet-data-registry/conf/radar.yml
-
+	
+	geomet-data-registry store set -k cansips -c conf/cansips.yml
+	geomet-data-registry store set -k geps -c conf/geps.yml
+	geomet-data-registry store set -k model_gem_global -c conf/model_gem_global.yml
+	geomet-data-registry store set -k model_gem_regional -c conf/model_gem_regional.yml
+	geomet-data-registry store set -k model_giops -c conf/model_giops.yml
+	geomet-data-registry store set -k model_hrdps_continental -c conf/model_hrdps_continental.yml
+	geomet-data-registry store set -k reps -c conf/reps.yml
+	#geomet-data-registry store set -k radar -c try/conf/radar.yml
+	
 start:
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/cansips.conf
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/geps.conf
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_gem_global.conf
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_gem_regional.conf
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_giops.conf
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_hrdps_continental.conf
-	sr_subscribe start $(BASEDIR)/geomet-data-registry/conf/sarracenia/reps.conf
-	sr_subscribe start $(BASEDIR)/msc-geomet-data-registry/conf/sarracenia/radar.conf
-
+	sr_subscribe start conf/sarracenia/cansips.conf
+	sr_subscribe start conf/sarracenia/geps.conf
+	sr_subscribe start conf/sarracenia/model_gem_global.conf
+	sr_subscribe start conf/sarracenia/model_gem_regional.conf
+	sr_subscribe start conf/sarracenia/model_giops.conf
+	sr_subscribe start conf/sarracenia/model_hrdps_continental.conf
+	sr_subscribe start conf/sarracenia/reps.conf
+	#sr_subscribe start msc-geomet-data-registry/conf/sarracenia/radar.conf
+	
 stop:
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/cansips.conf
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/geps.conf
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_gem_global.conf
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_gem_regional.conf
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_giops.conf
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/model_hrdps_continental.conf
-	sr_subscribe stop $(BASEDIR)/geomet-data-registry/conf/sarracenia/reps.conf
-	sr_subscribe stop $(BASEDIR)/msc-geomet-data-registry/conf/sarracenia/radar.conf
-
-.PHONY: clean clean-logs flake8 package setup start stop
-
+	sr_subscribe stop conf/sarracenia/cansips.conf
+	sr_subscribe stop conf/sarracenia/geps.conf
+	sr_subscribe stop conf/sarracenia/model_gem_global.conf
+	sr_subscribe stop conf/sarracenia/model_gem_regional.conf
+	sr_subscribe stop conf/sarracenia/model_giops.conf
+	sr_subscribe stop conf/sarracenia/model_hrdps_continental.conf
+	sr_subscribe stop conf/sarracenia/reps.conf
+	#sr_subscribe stop msc-geomet-data-registry/conf/sarracenia/radar.conf
+	
+.PHONY: clean clean-logs flake8 setup start stop
