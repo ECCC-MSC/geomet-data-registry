@@ -22,8 +22,8 @@ FROM python:3.6-slim-buster
 ENV GDR_LOGGING_LOGLEVEL DEBUG
 ENV GDR_LOGGING_LOGFILE /tmp/geomet-data-registry-dev.log
 ENV GDR_CONFIG /opt/geomet-data-registry/geomet-data-registry.yml
-ENV GDR_BASEDIR /opt/geomet-data-registry
-ENV GDR_DATADIR /data/geomet
+ENV GDR_BASEDIR /home/geoadm/geomet-data-registry
+ENV GDR_DATADIR /home/geoadm/data/feeds
 ENV GDR_URL http://localhost/geomet-data-registry
 ENV GDR_TILEINDEX_TYPE Elasticsearch
 ENV GDR_TILEINDEX_BASEURL http://elasticsearch:9200

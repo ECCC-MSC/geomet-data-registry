@@ -21,5 +21,6 @@ make stop
 ## Docker Compose
 
 ```bash
+docker network create geomet-data-registry-network
 docker-compose up -d
 ```
