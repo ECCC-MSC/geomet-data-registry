@@ -63,7 +63,7 @@ services:
       - GDR_LOGGING_LOGLEVEL=DEBUG
       - GDR_LOGGING_LOGFILE=/tmp/geomet-data-registry-dev.log
       - GDR_CONFIG=/opt/geomet-data-registry/geomet-data-registry.yml
-      - GDR_BASEDIR=/opt/geomet-data-registry
+      - GDR_BASEDIR=/home/geoadm/geomet-data-registry
       - GDR_DATADIR=/data/geomet/data/feeds
       - GDR_URL=http://localhost/geomet-data-registry
       - GDR_TILEINDEX_TYPE=Elasticsearch

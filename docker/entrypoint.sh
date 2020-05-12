@@ -48,7 +48,7 @@ geomet-data-registry store set -k model_gem_regional -c /home/geoadm/geomet-data
 geomet-data-registry store set -k model_giops -c /home/geoadm/geomet-data-registry/conf/model_giops.yml
 geomet-data-registry store set -k model_hrdps_continental -c /home/geoadm/geomet-data-registry/conf/model_hrdps_continental.yml
 geomet-data-registry store set -k reps -c /home/geoadm/geomet-data-registry/conf/reps.yml
-#geomet-data-registry store set -k radar -c try//home/geoadm/geomet-data-registry/conf/radar.yml
+#geomet-data-registry store set -k radar -c /home/geoadm/geomet-data-registry/conf/radar.yml
 
 echo "Starting data feeds"
 sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/cansips.conf

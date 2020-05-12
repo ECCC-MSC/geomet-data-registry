@@ -50,6 +50,7 @@ USER geoadm
 COPY . /home/geoadm/geomet-data-registry
 WORKDIR /home/geoadm/geomet-data-registry
 RUN sudo python setup.py install \
-  && find conf/sarracenia -type f -name "*.conf" | sudo xargs sed -i "s#/data/geomet/dev/apps/geomet-data-registry-dev/geomet-data-registry#/home/geoadm/geomet-data-registry#g"
+  && mkdir -p ${GDR_DATADIR} \
+  && mkdir -p ${XDG_CACHE_HOME}
 
 ENTRYPOINT [ "/home/geoadm/geomet-data-registry/docker/entrypoint.sh" ]
