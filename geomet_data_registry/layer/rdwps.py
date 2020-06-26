@@ -66,7 +66,9 @@ class RdwpsLayer(BaseLayer):
 
         self.category = 'lake' if 'lake' in self.filepath else 'gulf'
 
-        filename_pattern = self.file_dict[self.model][self.category]['filename_pattern']
+        filename_pattern = (self.file_dict[self.model][self.category]
+                            ['filename_pattern'])
+
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
         if self.category == 'lake':
@@ -102,9 +104,6 @@ class RdwpsLayer(BaseLayer):
         runs = self.file_dict[self.model][self.category]['variable'][
             self.wx_variable]['model_run']
         self.model_run_list = list(runs.keys())
-
-        weather_var = self.file_dict[self.model][self.category]['variable'][
-            self.wx_variable]
 
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
@@ -198,7 +197,7 @@ class RdwpsLayer(BaseLayer):
                              .format(fh, forecast_hours, layer_name))
 
             self.items.append(feature_dict)
-            
+
         return True
 
     def __repr__(self):

@@ -36,6 +36,8 @@ TILEINDEX_BASEURL = os.environ.get('GDR_TILEINDEX_BASEURL', None)
 TILEINDEX_NAME = os.environ.get('GDR_TILEINDEX_NAME', None)
 STORE_TYPE = os.environ.get('GDR_STORE_TYPE', None)
 STORE_URL = os.environ.get('GDR_STORE_URL', None)
+METPX_DISCARD = os.environ.get('GDR_METPX_DISCARD', 'on')
+METPX_EVENT_PY = os.environ.get('GDR_METPX_EVENT_PY', None)
 
 LOGGER.debug(BASEDIR)
 LOGGER.debug(DATADIR)
@@ -46,9 +48,10 @@ LOGGER.debug(TILEINDEX_BASEURL)
 LOGGER.debug(TILEINDEX_NAME)
 LOGGER.debug(STORE_TYPE)
 LOGGER.debug(STORE_URL)
+LOGGER.debug(METPX_DISCARD)
 
 if None in [BASEDIR, DATADIR, CONFIG, URL, TILEINDEX_TYPE, TILEINDEX_BASEURL,
-            TILEINDEX_NAME, STORE_TYPE, STORE_URL]:
+            TILEINDEX_NAME, STORE_TYPE, STORE_URL METPX_EVENT_PY]:
     msg = 'Environment variables not set!'
     LOGGER.error(msg)
     raise EnvironmentError(msg)

@@ -110,8 +110,8 @@ class GiopsLayer(BaseLayer):
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
         reference_datetime = self.date_
         self.model_run = '{}Z'.format(self.date_.strftime('%H'))
-        forecast_hour_datetime = self.date_ + \
-                                 timedelta(hours=int(file_pattern_info['fh']))
+        forecast_hour_datetime = self.date_ + timedelta(
+            hours=int(file_pattern_info['fh']))
 
         if self.dimension == '3D':
             self.bands = self.file_dict[self.model_base][self.dimension][
@@ -129,8 +129,7 @@ class GiopsLayer(BaseLayer):
                     self.dimension]['variable'][self.wx_variable][
                     'model_run'][self.model_run]['files_expected']
 
-                for layer, layer_config in weather_var[
-                    'geomet_layers'].items():
+                for layer, layer_config in weather_var['geomet_layers'].items():  # noqa
                     member = None
                     layer_name = layer.format(self.bands[band]['product'])
 
@@ -206,13 +205,11 @@ class GiopsLayer(BaseLayer):
                             '',
                             forecast_hour_datetime.strftime(DATE_FORMAT))
 
-            expected_count = \
-            self.file_dict[self.model_base][self.dimension]['variable'][
-                self.wx_variable]['model_run'][self.model_run][
-                'files_expected']
+            expected_count = (self.file_dict[self.model_base][self.dimension]
+                              ['variable'][self.wx_variable]['model_run']
+                              [self.model_run]['files_expected'])
 
-            for layer_name, layer_config in weather_var[
-                'geomet_layers'].items():
+            for layer_name, layer_config in weather_var['geomet_layers'].items():  # noqa
                 identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
                 forecast_hours = layer_config['forecast_hours']

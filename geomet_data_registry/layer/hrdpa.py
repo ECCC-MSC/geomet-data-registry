@@ -88,7 +88,6 @@ class HrdpaLayer(BaseLayer):
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        reference_datetime = self.date_
         self.model_run = '{}Z'.format(self.date_.strftime('%H'))
 
         forecast_hour_datetime = self.date_ + \

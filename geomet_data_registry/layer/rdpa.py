@@ -95,7 +95,6 @@ class RdpaLayer(BaseLayer):
         time_format = '%Y%m%d%H'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        reference_datetime = self.date_
         self.model_run = '{}Z'.format(self.date_.strftime('%H'))
 
         forecast_hour_datetime = self.date_ + \
@@ -105,11 +104,7 @@ class RdpaLayer(BaseLayer):
             'members']
         elevation = self.file_dict[self.model]['variable'][self.wx_variable][
             'elevation']
-        str_mr = re.sub('[^0-9]',
-                        '',
-                        reference_datetime.strftime(DATE_FORMAT))
-        str_fh = re.sub('[^0-9]',
-                        '',
+        str_fh = re.sub('[^0-9]', '',
                         forecast_hour_datetime.strftime(DATE_FORMAT))
         expected_count = self.file_dict[self.model]['variable'][
             self.wx_variable]['model_run'][self.model_run]['files_expected']
