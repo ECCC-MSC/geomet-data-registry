@@ -51,7 +51,7 @@ LOGGER.debug(STORE_URL)
 LOGGER.debug(METPX_DISCARD)
 
 if None in [BASEDIR, DATADIR, CONFIG, URL, TILEINDEX_TYPE, TILEINDEX_BASEURL,
-            TILEINDEX_NAME, STORE_TYPE, STORE_URL METPX_EVENT_PY]:
+            TILEINDEX_NAME, STORE_TYPE, STORE_URL, METPX_EVENT_PY]:
     msg = 'Environment variables not set!'
     LOGGER.error(msg)
     raise EnvironmentError(msg)
