@@ -7,11 +7,6 @@ of MSC GeoMet weather service data OGC Web Services.
 
 ## Installation
 
-### Dependencies
-
-- Python MapScript
-- GDAL Python bindings
-
 ### Requirements
 - Python 3
 - [virtualenv](https://virtualenv.pypa.io/)
@@ -22,9 +17,6 @@ are automatically installed during installation.
 
 ### Installing geomet-data-registry
 ```bash
-
-# install system wide packages
-sudo apt-get install python-mapscript python-gdal
 
 # setup virtualenv
 python -m venv geomet-data-registry

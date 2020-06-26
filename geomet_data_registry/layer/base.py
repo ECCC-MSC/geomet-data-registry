@@ -303,7 +303,9 @@ class BaseLayer:
                                                   item['forecast_hours']
                                                   ['interval'])
 
-            default_model_key = '{}_default_model_run'.format(item['layer_name'])
+            default_model_key = '{}_default_model_run'.format(
+                item['layer_name'])
+
             stored_default_model_run = self.store.get_key(default_model_key)
 
             model_run_extent_key = '{}_model_run_extent'.format(

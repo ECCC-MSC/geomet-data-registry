@@ -65,6 +65,14 @@ INDEX_SETTINGS = {
                             }
                         }
                     },
+                    'url': {
+                        'type': 'text',
+                        'fields': {
+                            'raw': {
+                                'type': 'keyword'
+                            }
+                        }
+                    },
                     'forecast_hour_datetime': {
                         'type': 'date',
                         'format': 'date_time_no_millis'

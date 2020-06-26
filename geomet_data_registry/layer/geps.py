@@ -92,8 +92,9 @@ class GepsLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
-        runs = self.file_dict[self.model][self.type]['variable'][self.wx_variable][
-            'model_run']
+        runs = (self.file_dict[self.model][self.type]['variable']
+                [self.wx_variable]['model_run'])
+
         self.model_run_list = list(runs.keys())
 
         weather_var = self.file_dict[self.model][self.type]['variable'][
