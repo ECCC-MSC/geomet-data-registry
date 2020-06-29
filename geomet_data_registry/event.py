@@ -34,14 +34,13 @@ class Event:
         :returns: `bool` of dispatch result
         """
 
-        from urllib.parse import urlunparse
-
         from geomet_data_registry import env
         from geomet_data_registry.log import setup_logger
 
         setup_logger(env.LOGGING_LOGLEVEL, env.LOGGING_LOGFILE)
 
         try:
+            from urllib.parse import urlunparse
             from geomet_data_registry.handler.core import CoreHandler
 
             filepath = parent.msg.local_file
