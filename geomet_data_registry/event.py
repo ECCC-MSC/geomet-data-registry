@@ -34,6 +34,8 @@ class Event:
         :returns: `bool` of dispatch result
         """
 
+        from urllib.parse import urlunparse
+
         from geomet_data_registry import env
         from geomet_data_registry.log import setup_logger
 
@@ -44,7 +46,9 @@ class Event:
 
             filepath = parent.msg.local_file
             parent.logger.debug('Filepath: {}'.format(filepath))
-            handler = CoreHandler(filepath)
+            url = urlunparse(parent.msg.url)
+            parent.logger.debug('URL: {}'.format(url))
+            handler = CoreHandler(filepath, url)
             result = handler.handle()
             parent.logger.debug('Result: {}'.format(result))
             return True

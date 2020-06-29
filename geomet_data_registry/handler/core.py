@@ -45,18 +45,19 @@ DATASET_HANDLERS = {
 class CoreHandler(BaseHandler):
     """base handler"""
 
-    def __init__(self, filepath):
+    def __init__(self, filepath, url=None):
         """
         initializer
 
         :param filepath: path to file
+        :param url: fully qualified URL of file
 
         :returns: `geomet_data_registry.handler.core.CoreHandler`
         """
 
         self.layer_plugin = None
 
-        BaseHandler.__init__(self, filepath)
+        super().__init__(self, filepath, url)
 
     def handle(self):
         """
@@ -80,7 +81,7 @@ class CoreHandler(BaseHandler):
             raise RuntimeError(msg)
 
         LOGGER.debug('Identifying file')
-        identify_status = self.layer_plugin.identify(self.filepath)
+        identify_status = self.layer_plugin.identify(self.filepath, self.url)
 
         if identify_status:
             self.layer_plugin.identify_datetime = get_today_and_now()
@@ -91,4 +92,4 @@ class CoreHandler(BaseHandler):
         return True
 
     def __repr__(self):
-        return '<CoreHandler> {}'.format(self.filepath)
+        return '<CoreHandler> {}'.format(self.url)

@@ -50,6 +50,7 @@ class BaseLayer:
         self.identify_datetime = None
         self.register_datetime = None
         self.filepath = None
+        self.url = None
         self.dimensions = None
         self.model = None
         self.model_run = None
@@ -63,16 +64,18 @@ class BaseLayer:
         self.store = load_plugin('store', STORE_PROVIDER_DEF)
         self.tileindex = load_plugin('tileindex', TILEINDEX_PROVIDER_DEF)
 
-    def identify(self, filepath):
+    def identify(self, filepath, url=None):
         """
         Identifies a file of the layer
 
         :param filepath: filepath on disk
+        :param url: fully qualified URL of file
 
         :returns: `bool` of file properties
         """
 
         self.filepath = filepath
+        self.url = url
         self.file_creation_datetime = datetime.fromtimestamp(
             os.path.getmtime(filepath)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
@@ -127,6 +130,7 @@ class BaseLayer:
                  'identifier': item['identifier'],
                  'layer': item['layer_name'],
                  'filepath': item['filepath'],
+                 'url': item['url'],
                  'elevation': item['elevation'],
                  'member': item['member'],
                  'model': item['model'],

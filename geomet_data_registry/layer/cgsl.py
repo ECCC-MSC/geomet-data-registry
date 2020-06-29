@@ -44,18 +44,19 @@ class CgslLayer(BaseLayer):
 
         provider_def = {'name': 'cgsl'}
 
-        BaseLayer.__init__(self, provider_def)
+        super().__init__(self, provider_def)
 
-    def identify(self, filepath):
+    def identify(self, filepath, url=None):
         """
         Identifies a file of the layer
 
         :param filepath: filepath from AMQP
+        :param url: fully qualified URL of file
 
         :returns: `list` of file properties
         """
 
-        super().identify(filepath)
+        super().identify(filepath, url)
 
         self.model = 'cgsl'
 

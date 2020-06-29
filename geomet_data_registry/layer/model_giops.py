@@ -52,13 +52,14 @@ class GiopsLayer(BaseLayer):
         self.dimension = None  # identifies if the layer is 2D or 3D GIOPS data
         self.bands = None
 
-        BaseLayer.__init__(self, provider_def)
+        super().__init__(self, provider_def)
 
-    def identify(self, filepath):
+    def identify(self, filepath, url=None):
         """
         Identifies a file of the layer
 
         :param filepath: filepath from AMQP
+        :param url: fully qualified URL of file
 
         :returns: `list` of file properties
         """
