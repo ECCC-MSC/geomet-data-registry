@@ -25,15 +25,18 @@ LOGGER = logging.getLogger(__name__)
 class BaseHandler:
     """base handler"""
 
-    def __init__(self, filepath):
+    def __init__(self, filepath, url=None):
         """
         initializer
 
         :param filepath: path to file
+        :param url: fully qualified URL of file
         """
 
         self.filepath = filepath
+        self.url = url
         LOGGER.debug('Filepath: {}'.format(self.filepath))
+        LOGGER.debug('URL: {}'.format(self.url))
 
     def handle(self):
         """handle incoming file"""

@@ -142,7 +142,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
         :returns: `geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex`  # noqa
         """
 
-        BaseTileIndex.__init__(self, provider_def)
+        super().__init__(self, provider_def)
 
         self.url_parsed = urlparse(self.url)
         self.type_name = 'FeatureCollection'

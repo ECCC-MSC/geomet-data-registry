@@ -39,7 +39,7 @@ class RedisStore(BaseStore):
         :returns: `geomet_data_registry.store.redis_.RedisStore`
         """
 
-        BaseStore.__init__(self, provider_def)
+        super().__init__(self, provider_def)
 
         try:
             self.redis = redis.Redis.from_url(self.url,

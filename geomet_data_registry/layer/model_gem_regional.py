@@ -44,18 +44,19 @@ class ModelGemRegionalLayer(BaseLayer):
 
         provider_def = {'name': 'model_gem_regional'}
 
-        BaseLayer.__init__(self, provider_def)
+        super().__init__(self, provider_def)
 
-    def identify(self, filepath):
+    def identify(self, filepath, url=None):
         """
         Identifies a file of the layer
 
         :param filepath: filepath from AMQP
+        :param url: fully qualified URL of file
 
         :returns: `list` of file properties
         """
 
-        super().identify(filepath)
+        super().identify(filepath, url)
 
         self.model = 'model_gem_regional'
 
@@ -121,7 +122,7 @@ class ModelGemRegionalLayer(BaseLayer):
 
             feature_dict = {
                 'layer_name': layer_name,
-                'filepath': filepath,
+                'filepath': self.filepath,
                 'identifier': identifier,
                 'reference_datetime': reference_datetime.strftime(
                     DATE_FORMAT),

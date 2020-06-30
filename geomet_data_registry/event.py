@@ -40,11 +40,14 @@ class Event:
         setup_logger(env.LOGGING_LOGLEVEL, env.LOGGING_LOGFILE)
 
         try:
+            from urllib.parse import urlunparse
             from geomet_data_registry.handler.core import CoreHandler
 
             filepath = parent.msg.local_file
             parent.logger.debug('Filepath: {}'.format(filepath))
-            handler = CoreHandler(filepath)
+            url = urlunparse(parent.msg.url)
+            parent.logger.debug('URL: {}'.format(url))
+            handler = CoreHandler(filepath, url)
             result = handler.handle()
             parent.logger.debug('Result: {}'.format(result))
             return True
