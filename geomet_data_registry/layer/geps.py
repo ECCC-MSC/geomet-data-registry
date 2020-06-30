@@ -150,7 +150,6 @@ class GepsLayer(BaseLayer):
                     'layer_name': layer_name,
                     'layer_name_unformatted': layer,
                     'filepath': vrt,
-                    'url': url,
                     'identifier': identifier,
                     'reference_datetime': reference_datetime.strftime(
                         DATE_FORMAT),

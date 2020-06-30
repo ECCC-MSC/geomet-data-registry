@@ -130,7 +130,6 @@ class CansipsLayer(BaseLayer):
                 feature_dict = {
                     'layer_name': layer_name,
                     'filepath': vrt,
-                    'url': url,
                     'identifier': identifier,
                     'reference_datetime': reference_datetime.strftime(
                         DATE_FORMAT),

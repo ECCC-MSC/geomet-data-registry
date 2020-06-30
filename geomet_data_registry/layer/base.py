@@ -130,7 +130,7 @@ class BaseLayer:
                  'identifier': item['identifier'],
                  'layer': item['layer_name'],
                  'filepath': item['filepath'],
-                 'url': item['url'],
+                 'url': self.url,
                  'elevation': item['elevation'],
                  'member': item['member'],
                  'model': item['model'],
