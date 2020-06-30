@@ -150,6 +150,7 @@ class GdwpsLayer(BaseLayer):
                                    ['variable']
                                    [self.wx_variable].get('bands_order'))
                     (feature_dict['filepath'],
+                     feature_dict['url'],
                      feature_dict['weather_variable']) = (
                         self.configure_layer_with_dependencies(
                             dependencies_found,

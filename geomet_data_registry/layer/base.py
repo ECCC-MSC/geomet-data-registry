@@ -130,11 +130,11 @@ class BaseLayer:
                  'identifier': item['identifier'],
                  'layer': item['layer_name'],
                  'filepath': item['filepath'],
-                 'url': self.url,
+                 'url': [self.url],
                  'elevation': item['elevation'],
                  'member': item['member'],
                  'model': item['model'],
-                 'weather_variable': self.wx_variable,
+                 'weather_variable': [self.wx_variable],
                  'forecast_hour_datetime': item['forecast_hour_datetime'],
                  'reference_datetime': item['reference_datetime'],
                  'file_creation_datetime': self.file_creation_datetime,
@@ -225,28 +225,41 @@ class BaseLayer:
                                           image_dimension,
                                           bands_order):
         """
-        Create VRT and joined weather_variable string for layers
+        Create VRT, weather_variable list, and urls list for layers
         that consist of multiple weather variables.
         :param dependencies: `list` of GeoJSON objects from tileindex
         :param image_dimension: `dict` with x and y keys
         :param bands_order: `list` of variables order in VRT
-        :returns: `tuple` of VRT and combined weather variables as string
+        :returns: `tuple` of VRT, urls list and weather_variables list
         """
         filepaths = [self.filepath] + [dependency['properties']
                                        ['filepath'] for dependency
                                        in dependencies]
+
+        urls = [self.url] + [
+            url
+            for urls in [
+                dependency["properties"]["url"] for dependency in dependencies
+            ]
+            for url in urls
+        ]
+
+        weather_variables = [self.wx_variable] + [
+            wx_variable
+            for wx_variables in [
+                dependency["properties"]["weather_variable"] for dependency in
+                dependencies
+            ]
+            for wx_variable in wx_variables
+        ]
+
         vrt = VRTDataset(
             filepaths,
             raster_x_size=image_dimension['x'],
             raster_y_size=image_dimension['y'],
             bands_order=bands_order).build()
 
-        weather_variables = '{},{}'.format(
-            self.wx_variable, ','.join(
-                [dependency['properties']['weather_variable']
-                 for dependency in dependencies]))
-
-        return vrt, weather_variables
+        return vrt, urls, weather_variables
 
     def check_dependencies_default_mr(self, mr_datetime, dependencies):
         """
