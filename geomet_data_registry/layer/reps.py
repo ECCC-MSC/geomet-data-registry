@@ -47,7 +47,7 @@ class RepsLayer(BaseLayer):
         self.type = None
         self.bands = None
 
-        super().__init__(self, provider_def)
+        super().__init__(provider_def)
 
     def identify(self, filepath, url=None):
         """

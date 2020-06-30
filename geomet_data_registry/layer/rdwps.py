@@ -46,7 +46,7 @@ class RdwpsLayer(BaseLayer):
         # self.category identifies if the RDWPS layer is a lake or gulf layer
         self.category = None
 
-        super().__init__(self, provider_def)
+        super().__init__(provider_def)
 
     def identify(self, filepath, url=None):
         """

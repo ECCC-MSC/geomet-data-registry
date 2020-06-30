@@ -57,7 +57,7 @@ class CoreHandler(BaseHandler):
 
         self.layer_plugin = None
 
-        super().__init__(self, filepath, url)
+        super().__init__(filepath, url)
 
     def handle(self):
         """

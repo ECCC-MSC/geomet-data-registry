@@ -52,7 +52,7 @@ class GiopsLayer(BaseLayer):
         self.dimension = None  # identifies if the layer is 2D or 3D GIOPS data
         self.bands = None
 
-        super().__init__(self, provider_def)
+        super().__init__(provider_def)
 
     def identify(self, filepath, url=None):
         """

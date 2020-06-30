@@ -44,7 +44,7 @@ class ModelHrdpsContinentalLayer(BaseLayer):
 
         provider_def = {'name': 'model_hrdps_continental'}
 
-        super().__init__(self, provider_def)
+        super().__init__(provider_def)
 
     def identify(self, filepath, url=None):
         """

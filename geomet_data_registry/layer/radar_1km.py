@@ -44,7 +44,7 @@ class Radar1kmLayer(BaseLayer):
 
         provider_def = {'name': 'Radar_1km'}
 
-        super().__init__(self, provider_def)
+        super().__init__(provider_def)
 
     def identify(self, filepath, url=None):
         """

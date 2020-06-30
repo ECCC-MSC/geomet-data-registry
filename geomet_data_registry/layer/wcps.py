@@ -44,7 +44,7 @@ class WcpsLayer(BaseLayer):
 
         provider_def = {'name': 'wcps'}
 
-        super().__init__(self, provider_def)
+        super().__init__(provider_def)
 
     def identify(self, filepath, url=None):
         """
