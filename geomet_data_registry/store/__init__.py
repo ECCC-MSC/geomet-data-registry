@@ -27,7 +27,7 @@ from yaml import load, Loader
 from geomet_data_registry.env import STORE_TYPE, STORE_URL
 from geomet_data_registry.plugin import load_plugin
 from geomet_data_registry.store.base import StoreError
-from geomet_data_registry.util import json_pretty_print
+from geomet_data_registry.util import json_pretty_print, remove_prefix
 
 LOGGER = logging.getLogger(__name__)
 
@@ -158,7 +158,10 @@ def list_keys(ctx, pattern=None):
     st = load_plugin('store', provider_def)
 
     try:
-        click.echo(json_pretty_print(st.list_keys(pattern)))
+        pattern = 'geomet-data-registry*{}'.format(pattern if pattern else '')
+        keys = [remove_prefix(key, 'geomet-data-registry_') for key
+                in st.list_keys(pattern)]
+        click.echo(json_pretty_print(keys))
     except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')

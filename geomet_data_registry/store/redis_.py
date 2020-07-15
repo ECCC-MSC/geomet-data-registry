@@ -67,22 +67,30 @@ class RedisStore(BaseStore):
         """
 
         LOGGER.debug('Deleting all Redis keys')
-        for key in self.redis.scan_iter():
+        keys = [
+            key for key in self.redis.scan_iter()
+            if key.startswith('geomet-data-registry')
+        ]
+        for key in keys:
             LOGGER.debug('Deleting key {}'.format(key))
             self.redis.delete(key)
 
         return True
 
-    def get_key(self, key):
+    def get_key(self, key, raw=False):
         """
         Get key from store
 
         :param key: key to fetch
 
+        :param raw: `bool` indication whether to add prefix when fetching key
+
         :returns: string of key value from Redis store
         """
+        if raw:
+            return self.redis.get(key)
 
-        return self.redis.get(key)
+        return self.redis.get('geomet-data-registry_{}'.format(key))
 
     def set_key(self, key, value):
         """
@@ -94,7 +102,7 @@ class RedisStore(BaseStore):
         :returns: `bool` of set success
         """
 
-        return self.redis.set(key, value)
+        return self.redis.set('geomet-data-registry_{}'.format(key), value)
 
     def list_keys(self, pattern=None):
         """
