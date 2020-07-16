@@ -88,25 +88,31 @@ def teardown(ctx, group=None):
 @click.option('--config', '-c', 'config',
               type=click.Path(exists=True, resolve_path=True),
               help='Path to config yaml file')
-def set_key(ctx, key, config):
+@click.option('--raw', '-r', is_flag=True,
+              help='set key without adding prefix')
+def set_key(ctx, key, config, raw):
     """populate store"""
 
     if all([key is None, config is None]):
         raise click.ClickException('Missing --key/-k or --config/-c option')
 
-    provider_def = {
-        'type': STORE_TYPE,
-        'url': STORE_URL
-    }
+    provider_def = {'type': STORE_TYPE, 'url': STORE_URL}
 
     st = load_plugin('store', provider_def)
 
     try:
-        click.echo('Setting {} key in store ({}).'.format(key, st.url))
         with codecs.open(config) as ff:
             yml_dict = load(ff, Loader=Loader)
             string_ = json.dumps(yml_dict)
-            st.set_key(key, string_)
+            if raw:
+                click.echo('Setting {} key in store ({}).'.format(key, st.url))
+                st.set_key(key, string_, raw=True)
+            else:
+                click.echo(
+                    'Setting geomet-data-registry_{} key in store ({}).'
+                    .format(key, st.url)
+                )
+                st.set_key(key, string_)
     except StoreError as err:
         raise click.ClickException(err)
     click.echo('Done')
@@ -115,7 +121,9 @@ def set_key(ctx, key, config):
 @click.command('get')
 @click.pass_context
 @click.option('--key', '-k', help='key name to retrieve from store')
-def get_key(ctx, key):
+@click.option('--raw', '-r', is_flag=True,
+              help='get key without adding prefix')
+def get_key(ctx, key, raw):
     """get key from store"""
 
     if all([key is None]):
@@ -129,8 +137,15 @@ def get_key(ctx, key):
     st = load_plugin('store', provider_def)
 
     try:
-        click.echo('Getting {} key from store ({}).'.format(key, st.url))
-        retrieved_key = st.get_key(key)
+        if raw:
+            click.echo('Getting {} key from store ({}).'.format(key, st.url))
+            retrieved_key = st.get_key(key, raw=True)
+        else:
+            click.echo(
+                'Getting geomet-data-registry_{} key from store ({}).'.format(
+                    key, st.url)
+            )
+            retrieved_key = st.get_key(key)
         if retrieved_key:
             try:
                 click.echo('{}'.format(
@@ -146,8 +161,10 @@ def get_key(ctx, key):
 @click.command('list')
 @click.option('--pattern', '-p',
               help='regular expression to filter keys on')
+@click.option('--raw', '-r', is_flag=True,
+              help='list raw keys without removing prefix')
 @click.pass_context
-def list_keys(ctx, pattern=None):
+def list_keys(ctx, raw, pattern=None):
     """list all keys in store"""
 
     provider_def = {
@@ -159,8 +176,11 @@ def list_keys(ctx, pattern=None):
 
     try:
         pattern = 'geomet-data-registry*{}'.format(pattern if pattern else '')
-        keys = [remove_prefix(key, 'geomet-data-registry_') for key
-                in st.list_keys(pattern)]
+        if raw:
+            keys = st.list_keys(pattern)
+        else:
+            keys = [remove_prefix(key, 'geomet-data-registry_') for key
+                    in st.list_keys(pattern)]
         click.echo(json_pretty_print(keys))
     except StoreError as err:
         raise click.ClickException(err)

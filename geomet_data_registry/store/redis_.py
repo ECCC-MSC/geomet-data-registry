@@ -82,25 +82,29 @@ class RedisStore(BaseStore):
         Get key from store
 
         :param key: key to fetch
-
         :param raw: `bool` indication whether to add prefix when fetching key
 
-        :returns: string of key value from Redis store
+        :returns: `str` of key value from Redis store
         """
+
         if raw:
             return self.redis.get(key)
 
         return self.redis.get('geomet-data-registry_{}'.format(key))
 
-    def set_key(self, key, value):
+    def set_key(self, key, value, raw=False):
         """
         Set key value from
 
         :param key: key to set value
         :param value: value to set
+        :param raw: `bool` indication whether to add prefix when setting key
 
         :returns: `bool` of set success
         """
+
+        if raw:
+            return self.redis.set(key, value)
 
         return self.redis.set('geomet-data-registry_{}'.format(key), value)
 
