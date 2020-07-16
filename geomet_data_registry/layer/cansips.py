@@ -62,9 +62,9 @@ class CansipsLayer(BaseLayer):
         self.model = 'cansips'
 
         LOGGER.debug('Loading model information from store')
-        file_dict = json.loads(self.store.get_key(self.model))
+        self.file_dict = json.loads(self.store.get_key(self.model))
 
-        filename_pattern = file_dict[self.model]['filename_pattern']
+        filename_pattern = self.file_dict[self.model]['filename_pattern']
 
         tmp = parse(filename_pattern, os.path.basename(filepath))
 
@@ -80,13 +80,13 @@ class CansipsLayer(BaseLayer):
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        if self.wx_variable not in file_dict[self.model]['variable']:
+        if self.wx_variable not in self.file_dict[self.model]['variable']:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
             LOGGER.warning(msg)
             return False
 
-        weather_var = file_dict[self.model]['variable'][self.wx_variable]
+        weather_var = self.file_dict[self.model]['variable'][self.wx_variable]
         self.geomet_layers = weather_var['geomet_layers']
 
         date_format = '%Y%m'
@@ -96,9 +96,9 @@ class CansipsLayer(BaseLayer):
         self.date_ = reference_datetime
         self.model_run = '{}Z'.format(reference_datetime.strftime('%H'))
 
-        for band in file_dict[self.model]['bands']:
+        for band in self.file_dict[self.model]['bands']:
 
-            dict_bands = file_dict[self.model]['bands']
+            dict_bands = self.file_dict[self.model]['bands']
 
             fhi = dict_bands[band]['forecast_interval']
             fhi = re.sub('[^0-9]', '', fhi)

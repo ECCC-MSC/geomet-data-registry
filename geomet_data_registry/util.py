@@ -148,3 +148,17 @@ def get_today_and_now():
     :returns: Current UTC datetime as `str`
     """
     return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+
+
+def remove_prefix(text, prefix):
+    """
+    Utility function to remove a given prefix from a string if is present
+
+    :param text: `str` to parse
+    :param prefix: `str` to remove from text
+
+    :returns: `str` of text without prefix, or text if no prefix found
+    """
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
