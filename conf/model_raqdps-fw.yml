@@ -1,0 +1,97 @@
+model_raqdps-fw:
+    model: RAQDPS-FW
+    filename_pattern: '{YYYYMMDD_model_run}_MSC_RAQDPS-FW_{wx_variable}_RLatLon0.09x0.09_P{forecast_hour}.grib2'
+    dimensions:
+        x: 729
+        y: 599
+    model_run_retention_hours: 48
+    model_run_interval_hours: 12
+    variable:
+        PM2.5_EATM:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.EATM_PM2.5:
+                    forecast_hours: 000/072/PT1H
+        PM2.5-Diff-RAQDPS_EATM:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.EATM_PM2.5-DIFF:
+                    forecast_hours: 000/072/PT1H
+        PM10_EATM:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.EATM_PM10:
+                    forecast_hours: 000/072/PT1H
+        PM10-Diff-RAQDPS_EATM:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.EATM_PM10-DIFF:
+                    forecast_hours: 000/072/PT1H
+        PM2.5_SFC:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.SFC_PM2.5:
+                    forecast_hours: 000/072/PT1H
+        PM2.5-Diff-RAQDPS_SFC:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.SFC_PM2.5-DIFF:
+                    forecast_hours: 000/072/PT1H
+        PM10_SFC:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.SFC_PM10:
+                    forecast_hours: 000/072/PT1H
+        PM10-Diff-RAQDPS_SFC:
+            members: null
+            elevation: null
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                RAQDPS-FW.SFC_PM10-DIFF:
+                    forecast_hours: 000/072/PT1H

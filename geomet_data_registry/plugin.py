@@ -44,6 +44,8 @@ PLUGINS = {
         'WCPS': 'geomet_data_registry.layer.wcps.WcpsLayer',
         'HRDPA': 'geomet_data_registry.layer.hrdpa.HrdpaLayer',
         'RDPA': 'geomet_data_registry.layer.rdpa.RdpaLayer',
+        'RAQDPS': 'geomet_data_registry.layer.model_raqdps.ModelRaqdpsLayer',  # noqa
+        'RAQDPS-FW': 'geomet_data_registry.layer.model_raqdps-fw.ModelRaqdpsFwLayer',  # noqa
     }
 }
 
