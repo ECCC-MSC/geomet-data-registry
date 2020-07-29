@@ -39,6 +39,8 @@ DATASET_HANDLERS = {
     'CMC_wcps': 'WCPS',
     'CMC_HRDPA': 'HRDPA',
     'CMC_RDPA': 'RDPA',
+    'MSC_RAQDPS_': 'RAQDPS',
+    'MSC_RAQDPS-FW': 'RAQDPS-FW',
 }
 
 
