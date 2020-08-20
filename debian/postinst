@@ -1,0 +1,47 @@
+#!/bin/sh
+# =================================================================
+#
+# Author: Tom Kralidis <tom.kralidis@canada.ca>
+#
+# Copyright (c) 2020 Tom Kralidis
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# =================================================================
+
+export GDR_LOGGING_LOGLEVEL=DEBUG
+export GDR_LOGGING_LOGFILE=stdout
+export GDR_CONFIG=/opt/geomet-data-registry/geomet-data-registry.yml
+export GDR_BASEDIR=/opt/geomet-data-registry
+export GDR_DATADIR=/data/geomet
+export GDR_URL=https://geo.weather.gc.ca/geomet-data-registry
+export GDR_TILEINDEX_TYPE=Elasticsearch
+export GDR_TILEINDEX_BASEURL=http://localhost:9200
+export GDR_TILEINDEX_NAME=geomet-data-registry
+export GDR_STORE_TYPE=Redis
+export GDR_STORE_URL=redis://localhost:6379
+export GDR_METPX_DISCARD=on
+export GDR_METPX_EVENT_PY=/opt/geomet-data-registry/event.py
+
+export XDG_CACHE_HOME=/tmp/geomet-data-registry-sarra-logs
+
+mkdir -p $XDG_CACHE_HOME

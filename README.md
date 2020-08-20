@@ -2,8 +2,8 @@
 
 ## Overview
 
-geomet-data-registry provides the MapServer setup and configuration for deployment
-of MSC GeoMet weather service data OGC Web Services.
+geomet-data-registry provides a searchable real-time inventory of MSC weather,
+climate and water data.
 
 ## Installation
 

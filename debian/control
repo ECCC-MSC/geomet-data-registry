@@ -1,0 +1,15 @@
+Source: geomet-data-registry
+Section: python
+Priority: optional
+Maintainer: Tom Kralidis <tom.kralidis@canada.ca>
+Build-Depends: debhelper (>= 9), python3, python3-setuptools
+Standards-Version: 3.9.5
+X-Python-Version: >= 3.6
+Vcs-Git: https://github.com/ECCC-MSC/geomet-data-registry.git
+
+Package: geomet-data-registry
+Architecture: all
+Depends: elasticsearch (>=7), elasticsearch (<8), python3, python3-click, python3-elasticsearch (>=7), python3-elasticsearch (<8), python3-dateutil, python3-metpx-sarracenia python3-parse, python3-redis, python3-yaml
+Homepage: https://github.com/ECCC-MSC/geomet-data-registry
+Description: geomet-data-registry provides a searchable real-time inventory
+ of MSC weather, climate and water data.

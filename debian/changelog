@@ -1,0 +1,5 @@
+geomet-data-registry (0.1.0) bionic; urgency=medium
+
+  * initial Debian packaging
+
+ -- Tom Kralidis <tom.kralidis@canada.ca>  Thu, 20 Aug 2020 10:34:22 +0000
