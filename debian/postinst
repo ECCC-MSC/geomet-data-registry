@@ -49,7 +49,6 @@ mkdir -p $GDR_DATADIR/local
 echo "Setting up GDR store"
 
 geomet-data-registry store setup
-geomet-data-registry store set -k -c $GDR_BASEDIR/etc/amqp.yml
 geomet-data-registry store set -k cansips -c $GDR_BASEDIR/etc/cansips.yml
 geomet-data-registry store set -k cgsl -c $GDR_BASEDIR/etc/cgsl.yml
 geomet-data-registry store set -k gdwps -c $GDR_BASEDIR/etc/gdwps.yml
