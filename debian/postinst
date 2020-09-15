@@ -31,7 +31,6 @@
 export GDR_LOGGING_LOGLEVEL=DEBUG
 export GDR_LOGGING_LOGFILE=stdout
 export GDR_BASEDIR=/opt/geomet-data-registry
-export GDR_CONFIG=$GDR_BASEDIR/geomet-data-registry.yml
 export GDR_DATADIR=/data/geomet
 export GDR_TILEINDEX_TYPE=Elasticsearch
 export GDR_TILEINDEX_BASEURL=http://localhost:9200
