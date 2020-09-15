@@ -30,18 +30,46 @@
 
 export GDR_LOGGING_LOGLEVEL=DEBUG
 export GDR_LOGGING_LOGFILE=stdout
-export GDR_CONFIG=/opt/geomet-data-registry/geomet-data-registry.yml
+export GDR_CONFIG=$GDR_BASEDIR/geomet-data-registry.yml
 export GDR_BASEDIR=/opt/geomet-data-registry
 export GDR_DATADIR=/data/geomet
-export GDR_URL=https://geo.weather.gc.ca/geomet-data-registry
 export GDR_TILEINDEX_TYPE=Elasticsearch
 export GDR_TILEINDEX_BASEURL=http://localhost:9200
 export GDR_TILEINDEX_NAME=geomet-data-registry
 export GDR_STORE_TYPE=Redis
 export GDR_STORE_URL=redis://localhost:6379
 export GDR_METPX_DISCARD=on
-export GDR_METPX_EVENT_PY=/opt/geomet-data-registry/event.py
+export GDR_METPX_EVENT_PY=$GDR_BASEDIR/event.py
 
 export XDG_CACHE_HOME=/tmp/geomet-data-registry-sarra-logs
 
 mkdir -p $XDG_CACHE_HOME
+
+echo "Setting up GDR store"
+
+geomet-data-registry store setup
+geomet-data-registry store set -k -c $GDR_BASEDIR/etc/amqp.yml
+geomet-data-registry store set -k cansips -c $GDR_BASEDIR/etc/cansips.yml
+geomet-data-registry store set -k cgsl -c $GDR_BASEDIR/etc/cgsl.yml
+geomet-data-registry store set -k gdwps -c $GDR_BASEDIR/etc/gdwps.yml
+geomet-data-registry store set -k geps -c $GDR_BASEDIR/etc/geps.yml
+geomet-data-registry store set -k hrdpa -c $GDR_BASEDIR/etc/hrdpa.yml
+geomet-data-registry store set -k model_gem_global -c $GDR_BASEDIR/etc/model_gem_global.yml
+geomet-data-registry store set -k model_gem_regional -c $GDR_BASEDIR/etc/model_gem_regional.yml
+geomet-data-registry store set -k model_giops -c $GDR_BASEDIR/etc/model_giops.yml
+geomet-data-registry store set -k model_hrdps_continental -c $GDR_BASEDIR/etc/model_hrdps_continental.yml
+geomet-data-registry store set -k model_raqdps-fw -c $GDR_BASEDIR/etc/model_raqdps-fw.yml
+geomet-data-registry store set -k model_raqdps -c $GDR_BASEDIR/etc/model_raqdps.yml
+geomet-data-registry store set -k rdpa -c $GDR_BASEDIR/etc/rdpa.yml
+geomet-data-registry store set -k rdwps -c $GDR_BASEDIR/etc/rdwps.yml
+geomet-data-registry store set -k reps -c $GDR_BASEDIR/etc/reps.yml
+geomet-data-registry store set -k wcps -c $GDR_BASEDIR/etc/wcps.yml
+geomet-data-registry store set -k wcps -c $GDR_BASEDIR/etc/radar.yml
+
+echo "Setting up GDR tileindex"
+
+geomet-data-registry tileindex setup
+
+if [ $? -ne 0 ];then
+   echo "GDR tileindex exists"
+fi

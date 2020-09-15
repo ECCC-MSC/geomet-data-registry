@@ -59,4 +59,7 @@
 # every day at 0300h, clean out empty MetPX directories
 0 3 * * * geoadm /usr/bin/find $GDR_DATADIR -type d -empty -delete > /dev/null 2>&1
 
+### RADAR: every hour, clean out content older than 240 minutes 
+0 * * * * geoadm /usr/bin/find $GDR_DATADIR/local/RADAR -type f  -mmin +240 -delete > /dev/null 2>&1
+
 ##############################################################################
