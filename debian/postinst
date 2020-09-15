@@ -44,6 +44,7 @@ export GDR_METPX_EVENT_PY=$GDR_BASEDIR/event.py
 export XDG_CACHE_HOME=/tmp/geomet-data-registry-sarra-logs
 
 mkdir -p $XDG_CACHE_HOME
+mkdir -p $GDR_DATADIR/local
 
 echo "Setting up GDR store"
 
