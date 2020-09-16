@@ -69,31 +69,32 @@ class Radar1kmLayer(BaseLayer):
 
         file_pattern_info = {
             'wx_variable': tmp.named['precipitation_type'],
-            'time_': tmp.named['YYYYMMDDhhmm']
+            'time_': tmp.named['YYYYMMDDhhmm'],
         }
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
         if self.wx_variable not in self.file_dict[self.model]['variable']:
-            msg = 'Variable "{}" not in ' \
-                  'configuration file'.format(self.wx_variable)
+            msg = 'Variable "{}" not in ' 'configuration file'.format(
+                self.wx_variable
+            )
             LOGGER.warning(msg)
             return False
 
         time_format = '%Y%m%d%H%M'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
-        layer_name = self.file_dict[self.model]['variable'][self.wx_variable][
-            'geomet_layer']
+        layer_config = self.file_dict[self.model]['variable'][self.wx_variable]
+        layer_name = layer_config['layer_name']
 
         member = self.file_dict[self.model]['variable'][self.wx_variable][
-            'member']
+            'member'
+        ]
         elevation = self.file_dict[self.model]['variable'][self.wx_variable][
-            'elevation']
-        str_fh = re.sub('[^0-9]',
-                        '',
-                        self.date_.strftime(DATE_FORMAT))
+            'elevation'
+        ]
+        str_fh = re.sub('[^0-9]', '', self.date_.strftime(DATE_FORMAT))
         identifier = '{}-{}'.format(layer_name, str_fh)
         date_format = DATE_FORMAT
 
@@ -107,6 +108,7 @@ class Radar1kmLayer(BaseLayer):
             'model': self.model,
             'elevation': elevation,
             'expected_count': None,
+            'layer_config': layer_config,
             'register_status': True,
         }
         self.items.append(feature_dict)
@@ -121,14 +123,16 @@ class Radar1kmLayer(BaseLayer):
         :return: `bool` if successfully added a new radar time key
         """
 
-        layer_name = self.file_dict[self.model]['variable'][
-            self.wx_variable]['geomet_layer']
+        layer_name = self.file_dict[self.model]['variable'][self.wx_variable][
+            'geomet_layer'
+        ]
         key_name = '{}_default_time'.format(layer_name)
         last_key = self.store.get_key(key_name)
         key_value = self.date_.strftime(DATE_FORMAT)
         extent_key = '{}_time_extent'.format(layer_name)
         start, end, interval = self.file_dict[self.model]['variable'][
-            self.wx_variable]['forecast_hours'].split('/')
+            self.wx_variable
+        ]['forecast_hours'].split('/')
         start_time = self.date_ + timedelta(minutes=int(start))
         start_time = start_time.strftime(DATE_FORMAT)
         extent_value = '{}/{}/{}'.format(start_time, key_value, interval)
@@ -140,8 +144,9 @@ class Radar1kmLayer(BaseLayer):
             LOGGER.debug('Adding time keys in the store')
             old_time = datetime.strptime(last_key, DATE_FORMAT)
             if old_time + timedelta(minutes=10) != self.date_:
-                LOGGER.error('Missing radar between {}/{}'.format(old_time,
-                                                                  self.date_))
+                LOGGER.error(
+                    'Missing radar between {}/{}'.format(old_time, self.date_)
+                )
             self.store.set_key(key_name, key_value)
             self.store.set_key(extent_key, extent_value)
 
