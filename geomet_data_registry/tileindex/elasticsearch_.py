@@ -22,7 +22,11 @@ from urllib.parse import urlparse
 
 from elasticsearch import Elasticsearch, exceptions
 
-from geomet_data_registry.tileindex.base import BaseTileIndex, TileIndexError
+from geomet_data_registry.tileindex.base import (
+    BaseTileIndex,
+    TileIndexError,
+    TileNotFoundError,
+)
 from geomet_data_registry.util import json_pretty_print
 
 LOGGER = logging.getLogger(__name__)
@@ -378,6 +382,7 @@ class ElasticsearchTileIndex(BaseTileIndex):
             return result['_source']
         except exceptions.NotFoundError as err:
             LOGGER.warning('Could not get document with id: {}'.format(err))
+            raise TileNotFoundError()
 
     def __repr__(self):
         return '<ElasticsearchTileIndex> {}'.format(self.url)

@@ -153,4 +153,11 @@ class BaseTileIndex:
 
 class TileIndexError(Exception):
     """setup error"""
+
+    pass
+
+
+class TileNotFoundError(Exception):
+    """BaseTileIndex.get() does not return a document"""
+
     pass
