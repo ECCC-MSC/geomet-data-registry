@@ -86,7 +86,7 @@ class Radar1kmLayer(BaseLayer):
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
         layer_config = self.file_dict[self.model]['variable'][self.wx_variable]
-        layer_name = layer_config['layer_name']
+        layer_name = layer_config['geomet_layer']
 
         member = self.file_dict[self.model]['variable'][self.wx_variable][
             'member'
