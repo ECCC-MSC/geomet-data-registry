@@ -25,6 +25,7 @@ from geomet_data_registry.env import STORE_PROVIDER_DEF, TILEINDEX_PROVIDER_DEF
 from geomet_data_registry.plugin import load_plugin
 from geomet_data_registry.util import (get_today_and_now, VRTDataset,
                                        DATE_FORMAT)
+from geomet_data_registry.tileindex.base import TileNotFoundError
 
 LOGGER = logging.getLogger(__name__)
 
@@ -212,10 +213,12 @@ class BaseLayer:
         :returns: `list` of GeoJSON objects for all retrieved dependencies if
                    all dependencies are found otherwise returns an empty list
         """
-        dependencies = [self.tileindex.get('{}-{}-{}'.format(
-            layer, str_mr, str_fh)) for layer in layers_list]
-
-        if None in dependencies:
+        try:
+            dependencies = [self.tileindex.get('{}-{}-{}'.format(
+                layer, str_mr, str_fh)) for layer in layers_list]
+            )
+        except TileNotFoundError:
+            LOGGER.debug('Some layer dependencies not found.')
             return []
 
         return dependencies
