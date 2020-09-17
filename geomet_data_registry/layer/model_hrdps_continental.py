@@ -56,7 +56,7 @@ class ModelHrdpsContinentalLayer(BaseLayer):
         :returns: `list` of file properties
         """
 
-        super().identify(filepath)
+        super().identify(filepath, url)
 
         self.model = 'model_hrdps_continental'
 
