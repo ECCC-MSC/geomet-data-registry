@@ -85,10 +85,6 @@ INDEX_SETTINGS = {
                         'type': 'date',
                         'format': 'date_time_no_millis'
                     },
-                    'file_creation_datetime': {
-                        'type': 'date',
-                        'format': 'date_time'
-                    },
                     'receive_datetime': {
                         'type': 'date',
                         'format': 'date_time'
