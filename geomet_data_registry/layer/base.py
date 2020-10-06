@@ -47,7 +47,6 @@ class BaseLayer:
         self.items = []
         self.model_run_list = []
 
-        self.file_creation_datetime = None
         self.receive_datetime = get_today_and_now()
         self.identify_datetime = None
         self.register_datetime = None
@@ -78,8 +77,6 @@ class BaseLayer:
 
         self.filepath = filepath
         self.url = url
-        self.file_creation_datetime = datetime.fromtimestamp(
-            os.path.getmtime(filepath)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 
     def register(self):
         """
@@ -139,7 +136,6 @@ class BaseLayer:
                  'weather_variable': [self.wx_variable],
                  'forecast_hour_datetime': item['forecast_hour_datetime'],
                  'reference_datetime': item['reference_datetime'],
-                 'file_creation_datetime': self.file_creation_datetime,
                  'receive_datetime': self.receive_datetime,
                  'identify_datetime': self.identify_datetime,
                  'register_datetime': self.register_datetime

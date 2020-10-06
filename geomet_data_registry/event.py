@@ -61,3 +61,4 @@ class Event:
 
 event = Event(self)  # noqa
 self.on_file = event.dispatch  # noqa
+self.on_message = event.dispatch  # noqa
