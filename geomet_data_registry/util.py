@@ -17,11 +17,13 @@
 #
 ###############################################################################
 
-from datetime import datetime, date, time, timezone
+from datetime import datetime, date, time, timezone, timedelta
 import json
 import logging
 import re
 from textwrap import dedent
+
+from dateutil.relativedelta import relativedelta
 
 LOGGER = logging.getLogger(__name__)
 
@@ -162,3 +164,30 @@ def remove_prefix(text, prefix):
     if text.startswith(prefix):
         return text[len(prefix):]
     return text
+
+
+def parse_iso8601_interval(interval):
+    """
+    Utility function to return a timedelta objet based on an ISO 8601
+    interval (ex. PT3H or P1Y).
+
+    :param inteval: `str` representing ISO 8601 interval
+
+    :returns: timedelta object of ISO 8601 interval
+    """
+    time_, duration, unit = re.search('^P(T?)(\\d+)(.)', interval).groups()
+
+    if time_:
+        # this means the duration is a time
+        if unit == 'H':
+            relative_delta = timedelta(hours=int(duration))
+        elif unit == 'M':
+            relative_delta = timedelta(minutes=int(duration))
+    else:
+        # this means the duration is a date
+        if unit == 'Y':
+            relative_delta = relativedelta(years=int(duration))
+        elif unit == 'M':
+            relative_delta = relativedelta(months=int(duration))
+
+    return relative_delta

@@ -98,6 +98,14 @@ PLUGINS = {
             'pattern': '*MSC_RAQDPS-FW_*.grib2',
             'path': 'geomet_data_registry.layer.model_raqdps-fw.ModelRaqdpsFwLayer',  # noqa
         },
+        'RAQDPS-FW-Cumulative-Effects': {
+            'pattern': '*MSC_RAQDPS-FW*.nc',
+            'path': 'geomet_data_registry.layer.model_raqdps-fw-ce.ModelRaqdpsFwCeLayer',  # noqa
+        },
+        'RDAQA-Cumulative-Effects': {
+            'pattern': '*MSC_RDAQA*.nc',
+            'path': 'geomet_data_registry.layer.model_rdaqa-ce.ModelRdaqaCeLayer',  # noqa
+        },
     },
 }
 
