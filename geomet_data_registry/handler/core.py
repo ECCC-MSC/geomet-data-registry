@@ -17,31 +17,15 @@
 #
 ###############################################################################
 
+from fnmatch import fnmatch
 import logging
+import os
 
-from geomet_data_registry.plugin import load_plugin
+from geomet_data_registry.plugin import load_plugin, PLUGINS
 from geomet_data_registry.handler.base import BaseHandler
 from geomet_data_registry.util import get_today_and_now
-LOGGER = logging.getLogger(__name__)
 
-DATASET_HANDLERS = {
-    'CMC_glb': 'ModelGemGlobal',
-    'CMC_giops': 'GIOPS',
-    'CMC_reg': 'ModelGemRegional',
-    'CMC_hrdps_continental': 'ModelHrdpsContinental',
-    'RADAR_COMPOSITE_1KM': 'Radar1km',
-    'cansips': 'CanSIPS',
-    'reps': 'REPS',
-    'geps': 'GEPS',
-    'CMC_coupled-rdps-stlawrence': 'CGSL',
-    'CMC_rdwps': 'RDWPS',
-    'CMC_gdwps_global': 'GDWPS',
-    'CMC_wcps': 'WCPS',
-    'CMC_HRDPA': 'HRDPA',
-    'CMC_RDPA': 'RDPA',
-    'MSC_RAQDPS_': 'RAQDPS',
-    'MSC_RAQDPS-FW': 'RAQDPS-FW',
-}
+LOGGER = logging.getLogger(__name__)
 
 
 class CoreHandler(BaseHandler):
@@ -69,10 +53,10 @@ class CoreHandler(BaseHandler):
         """
 
         LOGGER.debug('Detecting filename pattern')
-        for key in DATASET_HANDLERS.keys():
-            if key in self.filepath:
+        for key, value in PLUGINS['layer'].items():
+            if fnmatch(os.path.basename(self.filepath), value['pattern']):
                 plugin_def = {
-                    'type': DATASET_HANDLERS[key],
+                    'type': key,
                 }
                 LOGGER.debug('Loading plugin {}'.format(plugin_def))
                 self.layer_plugin = load_plugin('layer', plugin_def)
