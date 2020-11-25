@@ -24,29 +24,81 @@ LOGGER = logging.getLogger(__name__)
 
 PLUGINS = {
     'store': {
-        'Redis': 'geomet_data_registry.store.redis_.RedisStore'
+        'Redis': {
+            'path': 'geomet_data_registry.store.redis_.RedisStore'
+        }
     },
     'tileindex': {
-        'Elasticsearch': 'geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
+        'Elasticsearch': {
+            'path': 'geomet_data_registry.tileindex.elasticsearch_.ElasticsearchTileIndex'  # noqa
+        }
     },
     'layer': {
-        'ModelGemGlobal': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer',  # noqa
-        'ModelGemRegional': 'geomet_data_registry.layer.model_gem_regional.ModelGemRegionalLayer',  # noqa
-        'ModelHrdpsContinental': 'geomet_data_registry.layer.model_hrdps_continental.ModelHrdpsContinentalLayer',  # noqa
-        'Radar1km': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',
-        'CanSIPS': 'geomet_data_registry.layer.cansips.CansipsLayer',
-        'REPS': 'geomet_data_registry.layer.reps.RepsLayer',
-        'GEPS': 'geomet_data_registry.layer.geps.GepsLayer',
-        'GIOPS': 'geomet_data_registry.layer.model_giops.GiopsLayer',
-        'CGSL': 'geomet_data_registry.layer.cgsl.CgslLayer',
-        'RDWPS': 'geomet_data_registry.layer.rdwps.RdwpsLayer',
-        'GDWPS': 'geomet_data_registry.layer.gdwps.GdwpsLayer',
-        'WCPS': 'geomet_data_registry.layer.wcps.WcpsLayer',
-        'HRDPA': 'geomet_data_registry.layer.hrdpa.HrdpaLayer',
-        'RDPA': 'geomet_data_registry.layer.rdpa.RdpaLayer',
-        'RAQDPS': 'geomet_data_registry.layer.model_raqdps.ModelRaqdpsLayer',  # noqa
-        'RAQDPS-FW': 'geomet_data_registry.layer.model_raqdps-fw.ModelRaqdpsFwLayer',  # noqa
-    }
+        'ModelGemGlobal': {
+            'pattern': 'CMC_glb*',
+            'path': 'geomet_data_registry.layer.model_gem_global.ModelGemGlobalLayer',  # noqa
+        },
+        'ModelGemRegional': {
+            'pattern': 'CMC_reg*',
+            'path': 'geomet_data_registry.layer.model_gem_regional.ModelGemRegionalLayer',  # noqa
+        },
+        'ModelHrdpsContinental': {
+            'pattern': 'CMC_hrdps_continental*',
+            'path': 'geomet_data_registry.layer.model_hrdps_continental.ModelHrdpsContinentalLayer',  # noqa
+        },
+        'Radar1km': {
+            'pattern': '*RADAR_COMPOSITE_1KM*',
+            'path': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',
+        },
+        'CanSIPS': {
+            'pattern': 'cansips*',
+            'path': 'geomet_data_registry.layer.cansips.CansipsLayer',
+        },
+        'REPS': {
+            'pattern': 'CMC-reps*',
+            'path': 'geomet_data_registry.layer.reps.RepsLayer',
+        },
+        'GEPS': {
+            'pattern': 'CMC-geps*',
+            'path': 'geomet_data_registry.layer.geps.GepsLayer',
+        },
+        'GIOPS': {
+            'pattern': 'CMC_giops*',
+            'path': 'geomet_data_registry.layer.model_giops.GiopsLayer',
+        },
+        'CGSL': {
+            'pattern': 'CMC_coupled-rdps-stlawrence*',
+            'path': 'geomet_data_registry.layer.cgsl.CgslLayer',
+        },
+        'RDWPS': {
+            'pattern': 'CMC_rdwps*',
+            'path': 'geomet_data_registry.layer.rdwps.RdwpsLayer',
+        },
+        'GDWPS': {
+            'pattern': 'CMC_gdwps_global*',
+            'path': 'geomet_data_registry.layer.gdwps.GdwpsLayer',
+        },
+        'WCPS': {
+            'pattern': 'CMC_wcps*',
+            'path': 'geomet_data_registry.layer.wcps.WcpsLayer',
+        },
+        'HRDPA': {
+            'pattern': 'CMC_HRDPA*',
+            'path': 'geomet_data_registry.layer.hrdpa.HrdpaLayer',
+        },
+        'RDPA': {
+            'pattern': 'CMC_RDPA*',
+            'path': 'geomet_data_registry.layer.rdpa.RdpaLayer',
+        },
+        'RAQDPS': {
+            'pattern': '*MSC_RAQDPS*',
+            'path': 'geomet_data_registry.layer.model_raqdps.ModelRaqdpsLayer',
+        },
+        'RAQDPS-FW': {
+            'pattern': '*MSC_RAQDPS-FW_*.grib2',
+            'path': 'geomet_data_registry.layer.model_raqdps-fw.ModelRaqdpsFwLayer',  # noqa
+        },
+    },
 }
 
 
@@ -77,9 +129,9 @@ def load_plugin(plugin_type, plugin_def):
         raise InvalidPluginError(msg)
 
     if '.' in type_:  # dotted path
-        packagename, classname = type_.rsplit('.', 1)
+        packagename, classname = type_['path'].rsplit('.', 1)
     else:  # core formatter
-        packagename, classname = plugin_list[type_].rsplit('.', 1)
+        packagename, classname = plugin_list[type_]['path'].rsplit('.', 1)
 
     LOGGER.debug('package name: {}'.format(packagename))
     LOGGER.debug('class name: {}'.format(classname))
