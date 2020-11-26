@@ -1,0 +1,184 @@
+model_rdaqa-ce:
+    model: RDAQA Cumulative Effects
+    filename_pattern: '{YYYYMMDD_model_run}_MSC_RDAQA_{wx_variable}_RLatLon0.09x0.09_{interval}.nc'
+    variable:
+        O3-MAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_O3-MAvg:
+                    interval: P1M
+        O3-MAvg-DMax-8hRAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_O3-MAvg-DMax-8hRAvg:
+                    interval: P1M
+        O3-YAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_O3-YAvg:
+                    interval: P1Y
+        O3-YAvg-DMax-8hRAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_O3-YAvg-DMax-8hRAvg:
+                    interval: P1Y
+        PM2.5-MAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM2.5-MAvg:
+                    interval: P1M
+        PM2.5-MAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM2.5-MAvg-DMax:
+                    interval: P1M
+        PM2.5-YAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM2.5-YAvg:
+                    interval: P1Y
+        PM2.5-YAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM2.5-YAvg-DMax:
+                    interval: P1Y
+        PM10-MAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM10-MAvg:
+                    interval: P1M
+        PM10-MAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM10-MAvg-DMax:
+                    interval: P1M
+        PM10-YAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM10-YAvg:
+                    interval: P1Y
+        PM10-YAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_PM10-YAvg-DMax:
+                    interval: P1Y
+        NO2-MAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_NO2-MAvg:
+                    interval: P1M
+        NO2-MAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_NO2-MAvg-DMax:
+                    interval: P1M
+        NO2-YAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_NO2-YAvg:
+                    interval: P1Y
+        NO2-YAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_NO2-YAvg-DMax:
+                    interval: P1Y
+        SO2-MAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_SO2-MAvg:
+                    interval: P1M
+        SO2-MAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_SO2-MAvg-DMax:
+                    interval: P1M
+        SO2-YAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_SO2-YAvg:
+                    interval: P1Y
+        SO2-YAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RDAQA.CE_SO2-YAvg-DMax:
+                    interval: P1Y

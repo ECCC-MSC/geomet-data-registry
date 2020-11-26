@@ -1,0 +1,40 @@
+model_raqdps-fw-ce:
+    model: RAQDPS-FW Cumulative Effects
+    filename_pattern: '{YYYYMMDD_model_run}_MSC_RAQDPS-FW_{wx_variable}_RLatLon0.09x0.09_{interval}.nc'
+    variable:
+        PM2.5-DIFF-MAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RAQDPS-FW.CE_PM2.5-DIFF-MAvg-DMax:
+                    interval: P1M
+        PM2.5-DIFF-MAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RAQDPS-FW.CE_PM2.5-DIFF-MAvg:
+                    interval: P1M
+        PM2.5-DIFF-YAvg-DMax_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RAQDPS-FW.CE_PM2.5-DIFF-YAvg-DMax:
+                    interval: P1Y
+        PM2.5-DIFF-YAvg_SFC:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 1
+            geomet_layers:
+                RAQDPS-FW.CE_PM2.5-DIFF-YAvg:
+                    interval: P1Y
