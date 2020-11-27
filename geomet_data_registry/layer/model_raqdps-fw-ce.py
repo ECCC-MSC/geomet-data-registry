@@ -178,6 +178,12 @@ class ModelRaqdpsFwCeLayer(BaseLayer):
                         )
                     )
 
+                if previous_default_time < self.date_:
+                    self.store.set_key(
+                        default_time_key_name,
+                        new_date_str
+                    )
+
                 if self.date_ < previous_interval_begin:
                     self.store.set_key(
                         default_extent_key_name,
