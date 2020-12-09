@@ -688,12 +688,11 @@ model_giops:
                     12Z:
                         files_expected: 10
                 geomet_layers:
-                    OCEAN.GIOPS.3D_UUW2_X_{}:
-                        published: False
+                    OCEAN.GIOPS.3D_UU2W_X_{}:
                         forecast_hours: 024/240/PT24H
                     OCEAN.GIOPS.3D_UU2W_{}:
                         dependencies:
-                            - OCEAN.GIOPS.3D_UUW2_Y_{}
+                            - OCEAN.GIOPS.3D_UU2W_Y_{}
                         forecast_hours: 024/240/PT24H
                 bands_order:
                     - vozocrtx
@@ -857,12 +856,11 @@ model_giops:
                     12Z:
                         files_expected: 10
                 geomet_layers:
-                    OCEAN.GIOPS.3D_UUW2_Y_{}:
-                        published: False
+                    OCEAN.GIOPS.3D_UU2W_Y_{}:
                         forecast_hours: 024/240/PT24H
                     OCEAN.GIOPS.3D_UU2W_{}:
                         dependencies:
-                            - OCEAN.GIOPS.3D_UUW2_X_{}
+                            - OCEAN.GIOPS.3D_UU2W_X_{}
                         forecast_hours: 024/240/PT24H
                 bands_order:
                     - vozocrtx

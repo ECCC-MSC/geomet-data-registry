@@ -1,0 +1,1262 @@
+model_riops:
+    model: RIOPS
+    model_run_retention_hours: 96
+    model_run_interval_hours: 6
+    dimensions:
+        x: 1770
+        y: 1610
+    filename_pattern: '{YYYYMMDD_model_run}_MSC_RIOPS_{wx_variable}_{elevation}_PS5km_P{forecast_hour:n}.nc'
+    2D:
+        variable:
+            IICECONC:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICECONC_SFC:
+                        forecast_hours: 000/048/PT1H
+            IICEDIVERGENCE:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICEDIVERGENCE_SFC:
+                        forecast_hours: 000/048/PT1H
+            IICEPRESSURE:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICEPRESSURE_SFC:
+                        forecast_hours: 000/048/PT1H
+            IICESHEAR:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICESHEAR_SFC:
+                        forecast_hours: 000/048/PT1H
+            IICESTRENGTH:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICESTRENGTH_SFC:
+                        forecast_hours: 000/048/PT1H
+            IICESURFTEMP:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICESURFTEMP_SFC:
+                        forecast_hours: 000/048/PT1H
+            IICEVOL:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_IICEVOL_SFC:
+                        forecast_hours: 000/048/PT1H
+            ISNOWVOL:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_ISNOWVOL_SFC:
+                        forecast_hours: 000/048/PT1H
+            ITMECRTY:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_UUY_SFC:
+                        forecast_hours: 000/048/PT1H
+                    RIOPS_UUI_SFC:
+                        dependencies:
+                            - RIOPS_UUX_SFC
+                        forecast_hours: 000/048/PT1H
+                bands_order:
+                    - ITZOCRTX
+                    - ITMECRTY
+            ITZOCRTX:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_UUX_SFC:
+                        forecast_hours: 000/048/PT1H
+                    RIOPS_UUI_SFC:
+                        dependencies:
+                            - RIOPS_UUY_SFC
+                        forecast_hours: 000/048/PT1H
+                bands_order:
+                    - ITZOCRTX
+                    - ITMECRTY
+            SOKARAML:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_SOKARAML_SFC:
+                        forecast_hours: 000/048/PT1H
+            SOMIXHGT:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_SOMIXHGT_SFC:
+                        forecast_hours: 000/048/PT1H
+            SOSSHEIG:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_SOSSHEIG_SFC:
+                        forecast_hours: 000/048/PT1H
+            VOMECRTY:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_UU2W_Y_DBS-0.5m:
+                        forecast_hours: 000/048/PT1H
+                    RIOPS_UU2W_DBS-0.5m:
+                        dependencies:
+                            - RIOPS_UU2W_X_DBS-0.5m
+                        forecast_hours: 000/048/PT1H
+                bands_order:
+                    - VOZOCRTX
+                    - VOMECRTY
+            VOSALINE:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_VOSALINE_DBS-0.5m:
+                        forecast_hours: 000/048/PT1H
+            VOTEMPER:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_VOTEMPER_DBS-0.5m:
+                        forecast_hours: 000/048/PT1H
+            VOZOCRTX:
+                members: null
+                elevation: surface
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_UU2W_X_DBS-0.5m:
+                        forecast_hours: 000/048/PT1H
+                    RIOPS_UU2W_DBS-0.5m:
+                        dependencies:
+                            - RIOPS_UU2W_Y_DBS-0.5m
+                        forecast_hours: 000/048/PT1H
+                bands_order:
+                    - VOZOCRTX
+                    - VOMECRTY
+    3D:
+        variable:
+            VOMECRTY:
+                bands:
+                    # band 1 is the same as the surface variable in 2D
+                    2:
+                        product: '1.6m'
+                        elevation: -1.6m
+                    3:
+                        product: '2.7m'
+                        elevation: -2.7m
+                    4:
+                        product: '3.9m'
+                        elevation: -3.9m
+                    5:
+                        product: '5.1m'
+                        elevation: -5.1m
+                    6:
+                        product: '6.5m'
+                        elevation: -6.5m
+                    7:
+                        product: '8.1m'
+                        elevation: -8.1m
+                    8:
+                        product: '-9.8m'
+                        elevation: -9.8m
+                    9:
+                        product: '12m'
+                        elevation: -12m
+                    10:
+                        product: '14m'
+                        elevation: -14m
+                    11:
+                        product: '17m'
+                        elevation: -17m
+                    12:
+                        product: '19m'
+                        elevation: -19m
+                    13:
+                        product: '23m'
+                        elevation: -23m
+                    14:
+                        product: '27m'
+                        elevation: -27m
+                    15:
+                        product: '31m'
+                        elevation: -31m
+                    16:
+                        product: '36m'
+                        elevation: -36m
+                    17:
+                        product: '41m'
+                        elevation: -41m
+                    18:
+                        product: '47m'
+                        elevation: -47m
+                    19:
+                        product: '54m'
+                        elevation: -54m
+                    20:
+                        product: '61m'
+                        elevation: -61m
+                    21:
+                        product: '69m'
+                        elevation: -69m
+                    22:
+                        product: '78m'
+                        elevation: -78m
+                    23:
+                        product: '87m'
+                        elevation: -87m
+                    24:
+                        product: '97m'
+                        elevation: -97m
+                    25:
+                        product: '108m'
+                        elevation: -108m
+                    26:
+                        product: '120m'
+                        elevation: -120m
+                    27:
+                        product: '133m'
+                        elevation: -133m
+                    28:
+                        product: '147m'
+                        elevation: -147m
+                    29:
+                        product: '163m'
+                        elevation: -163m
+                    30:
+                        product: '181m'
+                        elevation: -181m
+                    31:
+                        product: '200m'
+                        elevation: -200m
+                    32:
+                        product: '221m'
+                        elevation: -221m
+                    33:
+                        product: '245m'
+                        elevation: -243m
+                    34:
+                        product: '271m'
+                        elevation: -271m
+                    35:
+                        product: '301m'
+                        elevation: -301m
+                    36:
+                        product: '334m'
+                        elevation: -334m
+                    37:
+                        product: '371m'
+                        elevation: -371m
+                    38:
+                        product: '412m'
+                        elevation: -412m
+                    39:
+                        product: '458m'
+                        elevation: -458m
+                    40:
+                        product: '509m'
+                        elevation: -509m
+                    41:
+                        product: '565m'
+                        elevation: -0565m
+                    42:
+                        product: '628m'
+                        elevation: -628m
+                    43:
+                        product: '697m'
+                        elevation: -697m
+                    44:
+                        product: '773m'
+                        elevation: -773m
+                    45:
+                        product: '857m'
+                        elevation: -857m
+                    46:
+                        product: '947m'
+                        elevation: -947m
+                    47:
+                        product: '1046m'
+                        elevation: -1046m
+                    48:
+                        product: '1152m'
+                        elevation: -1152m
+                    49:
+                        product: '1266m'
+                        elevation: -1266m
+                    50:
+                        product: '1387m'
+                        elevation: -1387m
+                    51:
+                        product: '1516m'
+                        elevation: -1516m
+                    52:
+                        product: '1653m'
+                        elevation: -1653m
+                    53:
+                        product: '1796m'
+                        elevation: -1796m
+                    54:
+                        product: '1945m'
+                        elevation: -1945m
+                    55:
+                        product: '2101m'
+                        elevation: -2101m
+                    56:
+                        product: '2262m'
+                        elevation: -2262m
+                    57:
+                        product: '2429m'
+                        elevation: -2429m
+                    58:
+                        product: '2600m'
+                        elevation: -2600m
+                    59:
+                        product: '2776m'
+                        elevation: -2776m
+                    60:
+                        product: '2956m'
+                        elevation: -2956m
+                    61:
+                        product: '3139m'
+                        elevation: -3139m
+                    62:
+                        product: '3325m'
+                        elevation: -3325m
+                    63:
+                        product: '3513m'
+                        elevation: -3513m
+                    64:
+                        product: '3705m'
+                        elevation: -3705m
+                    65:
+                        product: '3898m'
+                        elevation: -3898m
+                    66:
+                        product: '4093m'
+                        elevation: -4093m
+                    67:
+                        product: '4290m'
+                        elevation: -4290m
+                    68:
+                        product: '4488m'
+                        elevation: -4488m
+                    69:
+                        product: '4688m'
+                        elevation: -4688m
+                    70:
+                        product: '4888m'
+                        elevation: -4888m
+                    71:
+                        product: '5089m'
+                        elevation: -5089m
+                    72:
+                        product: '5292m'
+                        elevation: -5292m
+                    73:
+                        product: '5495m'
+                        elevation: -5495m
+                    74:
+                        product: '5698m'
+                        elevation: -5698m
+                    75:
+                        product: '5902m'
+                        elevation: -5902m
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_UU2W_Y_DBS-{}:
+                        forecast_hours: 000/048/PT1H
+                    RIOPS_UU2W_DBS-{}:
+                        dependencies:
+                            -  RIOPS_UU2W_X_DBS-{}
+                        forecast_hours: 000/048/PT1H
+                bands_order:
+                    - VOZOCRTX
+                    - VOMECRTY
+            VOSALINE:
+                bands:
+                    # band 1 is the same as the surface variable in 2D
+                    2:
+                        product: '1.6m'
+                        elevation: -1.6m
+                    3:
+                        product: '2.7m'
+                        elevation: -2.7m
+                    4:
+                        product: '3.9m'
+                        elevation: -3.9m
+                    5:
+                        product: '5.1m'
+                        elevation: -5.1m
+                    6:
+                        product: '6.5m'
+                        elevation: -6.5m
+                    7:
+                        product: '8.1m'
+                        elevation: -8.1m
+                    8:
+                        product: '-9.8m'
+                        elevation: -9.8m
+                    9:
+                        product: '12m'
+                        elevation: -12m
+                    10:
+                        product: '14m'
+                        elevation: -14m
+                    11:
+                        product: '17m'
+                        elevation: -17m
+                    12:
+                        product: '19m'
+                        elevation: -19m
+                    13:
+                        product: '23m'
+                        elevation: -23m
+                    14:
+                        product: '27m'
+                        elevation: -27m
+                    15:
+                        product: '31m'
+                        elevation: -31m
+                    16:
+                        product: '36m'
+                        elevation: -36m
+                    17:
+                        product: '41m'
+                        elevation: -41m
+                    18:
+                        product: '47m'
+                        elevation: -47m
+                    19:
+                        product: '54m'
+                        elevation: -54m
+                    20:
+                        product: '61m'
+                        elevation: -61m
+                    21:
+                        product: '69m'
+                        elevation: -69m
+                    22:
+                        product: '78m'
+                        elevation: -78m
+                    23:
+                        product: '87m'
+                        elevation: -87m
+                    24:
+                        product: '97m'
+                        elevation: -97m
+                    25:
+                        product: '108m'
+                        elevation: -108m
+                    26:
+                        product: '120m'
+                        elevation: -120m
+                    27:
+                        product: '133m'
+                        elevation: -133m
+                    28:
+                        product: '147m'
+                        elevation: -147m
+                    29:
+                        product: '163m'
+                        elevation: -163m
+                    30:
+                        product: '181m'
+                        elevation: -181m
+                    31:
+                        product: '200m'
+                        elevation: -200m
+                    32:
+                        product: '221m'
+                        elevation: -221m
+                    33:
+                        product: '245m'
+                        elevation: -243m
+                    34:
+                        product: '271m'
+                        elevation: -271m
+                    35:
+                        product: '301m'
+                        elevation: -301m
+                    36:
+                        product: '334m'
+                        elevation: -334m
+                    37:
+                        product: '371m'
+                        elevation: -371m
+                    38:
+                        product: '412m'
+                        elevation: -412m
+                    39:
+                        product: '458m'
+                        elevation: -458m
+                    40:
+                        product: '509m'
+                        elevation: -509m
+                    41:
+                        product: '565m'
+                        elevation: -0565m
+                    42:
+                        product: '628m'
+                        elevation: -628m
+                    43:
+                        product: '697m'
+                        elevation: -697m
+                    44:
+                        product: '773m'
+                        elevation: -773m
+                    45:
+                        product: '857m'
+                        elevation: -857m
+                    46:
+                        product: '947m'
+                        elevation: -947m
+                    47:
+                        product: '1046m'
+                        elevation: -1046m
+                    48:
+                        product: '1152m'
+                        elevation: -1152m
+                    49:
+                        product: '1266m'
+                        elevation: -1266m
+                    50:
+                        product: '1387m'
+                        elevation: -1387m
+                    51:
+                        product: '1516m'
+                        elevation: -1516m
+                    52:
+                        product: '1653m'
+                        elevation: -1653m
+                    53:
+                        product: '1796m'
+                        elevation: -1796m
+                    54:
+                        product: '1945m'
+                        elevation: -1945m
+                    55:
+                        product: '2101m'
+                        elevation: -2101m
+                    56:
+                        product: '2262m'
+                        elevation: -2262m
+                    57:
+                        product: '2429m'
+                        elevation: -2429m
+                    58:
+                        product: '2600m'
+                        elevation: -2600m
+                    59:
+                        product: '2776m'
+                        elevation: -2776m
+                    60:
+                        product: '2956m'
+                        elevation: -2956m
+                    61:
+                        product: '3139m'
+                        elevation: -3139m
+                    62:
+                        product: '3325m'
+                        elevation: -3325m
+                    63:
+                        product: '3513m'
+                        elevation: -3513m
+                    64:
+                        product: '3705m'
+                        elevation: -3705m
+                    65:
+                        product: '3898m'
+                        elevation: -3898m
+                    66:
+                        product: '4093m'
+                        elevation: -4093m
+                    67:
+                        product: '4290m'
+                        elevation: -4290m
+                    68:
+                        product: '4488m'
+                        elevation: -4488m
+                    69:
+                        product: '4688m'
+                        elevation: -4688m
+                    70:
+                        product: '4888m'
+                        elevation: -4888m
+                    71:
+                        product: '5089m'
+                        elevation: -5089m
+                    72:
+                        product: '5292m'
+                        elevation: -5292m
+                    73:
+                        product: '5495m'
+                        elevation: -5495m
+                    74:
+                        product: '5698m'
+                        elevation: -5698m
+                    75:
+                        product: '5902m'
+                        elevation: -5902m
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_VOSALINE_DBS-{}:
+                        forecast_hours: 000/048/PT1H
+            VOTEMPER:
+                bands:
+                bands:
+                    # band 1 is the same as the surface variable in 2D
+                    2:
+                        product: '1.6m'
+                        elevation: -1.6m
+                    3:
+                        product: '2.7m'
+                        elevation: -2.7m
+                    4:
+                        product: '3.9m'
+                        elevation: -3.9m
+                    5:
+                        product: '5.1m'
+                        elevation: -5.1m
+                    6:
+                        product: '6.5m'
+                        elevation: -6.5m
+                    7:
+                        product: '8.1m'
+                        elevation: -8.1m
+                    8:
+                        product: '-9.8m'
+                        elevation: -9.8m
+                    9:
+                        product: '12m'
+                        elevation: -12m
+                    10:
+                        product: '14m'
+                        elevation: -14m
+                    11:
+                        product: '17m'
+                        elevation: -17m
+                    12:
+                        product: '19m'
+                        elevation: -19m
+                    13:
+                        product: '23m'
+                        elevation: -23m
+                    14:
+                        product: '27m'
+                        elevation: -27m
+                    15:
+                        product: '31m'
+                        elevation: -31m
+                    16:
+                        product: '36m'
+                        elevation: -36m
+                    17:
+                        product: '41m'
+                        elevation: -41m
+                    18:
+                        product: '47m'
+                        elevation: -47m
+                    19:
+                        product: '54m'
+                        elevation: -54m
+                    20:
+                        product: '61m'
+                        elevation: -61m
+                    21:
+                        product: '69m'
+                        elevation: -69m
+                    22:
+                        product: '78m'
+                        elevation: -78m
+                    23:
+                        product: '87m'
+                        elevation: -87m
+                    24:
+                        product: '97m'
+                        elevation: -97m
+                    25:
+                        product: '108m'
+                        elevation: -108m
+                    26:
+                        product: '120m'
+                        elevation: -120m
+                    27:
+                        product: '133m'
+                        elevation: -133m
+                    28:
+                        product: '147m'
+                        elevation: -147m
+                    29:
+                        product: '163m'
+                        elevation: -163m
+                    30:
+                        product: '181m'
+                        elevation: -181m
+                    31:
+                        product: '200m'
+                        elevation: -200m
+                    32:
+                        product: '221m'
+                        elevation: -221m
+                    33:
+                        product: '245m'
+                        elevation: -243m
+                    34:
+                        product: '271m'
+                        elevation: -271m
+                    35:
+                        product: '301m'
+                        elevation: -301m
+                    36:
+                        product: '334m'
+                        elevation: -334m
+                    37:
+                        product: '371m'
+                        elevation: -371m
+                    38:
+                        product: '412m'
+                        elevation: -412m
+                    39:
+                        product: '458m'
+                        elevation: -458m
+                    40:
+                        product: '509m'
+                        elevation: -509m
+                    41:
+                        product: '565m'
+                        elevation: -0565m
+                    42:
+                        product: '628m'
+                        elevation: -628m
+                    43:
+                        product: '697m'
+                        elevation: -697m
+                    44:
+                        product: '773m'
+                        elevation: -773m
+                    45:
+                        product: '857m'
+                        elevation: -857m
+                    46:
+                        product: '947m'
+                        elevation: -947m
+                    47:
+                        product: '1046m'
+                        elevation: -1046m
+                    48:
+                        product: '1152m'
+                        elevation: -1152m
+                    49:
+                        product: '1266m'
+                        elevation: -1266m
+                    50:
+                        product: '1387m'
+                        elevation: -1387m
+                    51:
+                        product: '1516m'
+                        elevation: -1516m
+                    52:
+                        product: '1653m'
+                        elevation: -1653m
+                    53:
+                        product: '1796m'
+                        elevation: -1796m
+                    54:
+                        product: '1945m'
+                        elevation: -1945m
+                    55:
+                        product: '2101m'
+                        elevation: -2101m
+                    56:
+                        product: '2262m'
+                        elevation: -2262m
+                    57:
+                        product: '2429m'
+                        elevation: -2429m
+                    58:
+                        product: '2600m'
+                        elevation: -2600m
+                    59:
+                        product: '2776m'
+                        elevation: -2776m
+                    60:
+                        product: '2956m'
+                        elevation: -2956m
+                    61:
+                        product: '3139m'
+                        elevation: -3139m
+                    62:
+                        product: '3325m'
+                        elevation: -3325m
+                    63:
+                        product: '3513m'
+                        elevation: -3513m
+                    64:
+                        product: '3705m'
+                        elevation: -3705m
+                    65:
+                        product: '3898m'
+                        elevation: -3898m
+                    66:
+                        product: '4093m'
+                        elevation: -4093m
+                    67:
+                        product: '4290m'
+                        elevation: -4290m
+                    68:
+                        product: '4488m'
+                        elevation: -4488m
+                    69:
+                        product: '4688m'
+                        elevation: -4688m
+                    70:
+                        product: '4888m'
+                        elevation: -4888m
+                    71:
+                        product: '5089m'
+                        elevation: -5089m
+                    72:
+                        product: '5292m'
+                        elevation: -5292m
+                    73:
+                        product: '5495m'
+                        elevation: -5495m
+                    74:
+                        product: '5698m'
+                        elevation: -5698m
+                    75:
+                        product: '5902m'
+                        elevation: -5902m
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_VOTEMPER_DBS-{}:
+                        forecast_hours: 000/048/PT1H
+            VOZOCRTX:
+                bands:
+                    # band 1 is the same as the surface variable in 2D
+                    2:
+                        product: '1.6m'
+                        elevation: -1.6m
+                    3:
+                        product: '2.7m'
+                        elevation: -2.7m
+                    4:
+                        product: '3.9m'
+                        elevation: -3.9m
+                    5:
+                        product: '5.1m'
+                        elevation: -5.1m
+                    6:
+                        product: '6.5m'
+                        elevation: -6.5m
+                    7:
+                        product: '8.1m'
+                        elevation: -8.1m
+                    8:
+                        product: '-9.8m'
+                        elevation: -9.8m
+                    9:
+                        product: '12m'
+                        elevation: -12m
+                    10:
+                        product: '14m'
+                        elevation: -14m
+                    11:
+                        product: '17m'
+                        elevation: -17m
+                    12:
+                        product: '19m'
+                        elevation: -19m
+                    13:
+                        product: '23m'
+                        elevation: -23m
+                    14:
+                        product: '27m'
+                        elevation: -27m
+                    15:
+                        product: '31m'
+                        elevation: -31m
+                    16:
+                        product: '36m'
+                        elevation: -36m
+                    17:
+                        product: '41m'
+                        elevation: -41m
+                    18:
+                        product: '47m'
+                        elevation: -47m
+                    19:
+                        product: '54m'
+                        elevation: -54m
+                    20:
+                        product: '61m'
+                        elevation: -61m
+                    21:
+                        product: '69m'
+                        elevation: -69m
+                    22:
+                        product: '78m'
+                        elevation: -78m
+                    23:
+                        product: '87m'
+                        elevation: -87m
+                    24:
+                        product: '97m'
+                        elevation: -97m
+                    25:
+                        product: '108m'
+                        elevation: -108m
+                    26:
+                        product: '120m'
+                        elevation: -120m
+                    27:
+                        product: '133m'
+                        elevation: -133m
+                    28:
+                        product: '147m'
+                        elevation: -147m
+                    29:
+                        product: '163m'
+                        elevation: -163m
+                    30:
+                        product: '181m'
+                        elevation: -181m
+                    31:
+                        product: '200m'
+                        elevation: -200m
+                    32:
+                        product: '221m'
+                        elevation: -221m
+                    33:
+                        product: '245m'
+                        elevation: -243m
+                    34:
+                        product: '271m'
+                        elevation: -271m
+                    35:
+                        product: '301m'
+                        elevation: -301m
+                    36:
+                        product: '334m'
+                        elevation: -334m
+                    37:
+                        product: '371m'
+                        elevation: -371m
+                    38:
+                        product: '412m'
+                        elevation: -412m
+                    39:
+                        product: '458m'
+                        elevation: -458m
+                    40:
+                        product: '509m'
+                        elevation: -509m
+                    41:
+                        product: '565m'
+                        elevation: -0565m
+                    42:
+                        product: '628m'
+                        elevation: -628m
+                    43:
+                        product: '697m'
+                        elevation: -697m
+                    44:
+                        product: '773m'
+                        elevation: -773m
+                    45:
+                        product: '857m'
+                        elevation: -857m
+                    46:
+                        product: '947m'
+                        elevation: -947m
+                    47:
+                        product: '1046m'
+                        elevation: -1046m
+                    48:
+                        product: '1152m'
+                        elevation: -1152m
+                    49:
+                        product: '1266m'
+                        elevation: -1266m
+                    50:
+                        product: '1387m'
+                        elevation: -1387m
+                    51:
+                        product: '1516m'
+                        elevation: -1516m
+                    52:
+                        product: '1653m'
+                        elevation: -1653m
+                    53:
+                        product: '1796m'
+                        elevation: -1796m
+                    54:
+                        product: '1945m'
+                        elevation: -1945m
+                    55:
+                        product: '2101m'
+                        elevation: -2101m
+                    56:
+                        product: '2262m'
+                        elevation: -2262m
+                    57:
+                        product: '2429m'
+                        elevation: -2429m
+                    58:
+                        product: '2600m'
+                        elevation: -2600m
+                    59:
+                        product: '2776m'
+                        elevation: -2776m
+                    60:
+                        product: '2956m'
+                        elevation: -2956m
+                    61:
+                        product: '3139m'
+                        elevation: -3139m
+                    62:
+                        product: '3325m'
+                        elevation: -3325m
+                    63:
+                        product: '3513m'
+                        elevation: -3513m
+                    64:
+                        product: '3705m'
+                        elevation: -3705m
+                    65:
+                        product: '3898m'
+                        elevation: -3898m
+                    66:
+                        product: '4093m'
+                        elevation: -4093m
+                    67:
+                        product: '4290m'
+                        elevation: -4290m
+                    68:
+                        product: '4488m'
+                        elevation: -4488m
+                    69:
+                        product: '4688m'
+                        elevation: -4688m
+                    70:
+                        product: '4888m'
+                        elevation: -4888m
+                    71:
+                        product: '5089m'
+                        elevation: -5089m
+                    72:
+                        product: '5292m'
+                        elevation: -5292m
+                    73:
+                        product: '5495m'
+                        elevation: -5495m
+                    74:
+                        product: '5698m'
+                        elevation: -5698m
+                    75:
+                        product: '5902m'
+                        elevation: -5902m
+                members: null
+                model_run:
+                    00Z:
+                        files_expected: 49
+                    06Z:
+                        files_expected: 49
+                    12Z:
+                        files_expected: 49
+                    18Z:
+                        files_expected: 49
+                geomet_layers:
+                    RIOPS_UU2W_X_DBS-{}:
+                        forecast_hours: 000/048/PT1H
+                    RIOPS_UU2W_DBS-{}:
+                        dependencies:
+                            -  RIOPS_UU2W_Y_DBS-{}
+                        forecast_hours: 000/048/PT1H
+                bands_order:
+                    - VOZOCRTX
+                    - VOMECRTY
