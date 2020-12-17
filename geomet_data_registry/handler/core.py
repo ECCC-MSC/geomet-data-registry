@@ -21,11 +21,16 @@ from fnmatch import fnmatch
 import logging
 import os
 
+from geomet_data_registry.env import NOTIFICATIONS_PROVIDER_DEF
 from geomet_data_registry.plugin import load_plugin, PLUGINS
 from geomet_data_registry.handler.base import BaseHandler
 from geomet_data_registry.util import get_today_and_now
 
 LOGGER = logging.getLogger(__name__)
+
+LOGGER = logging.getLogger(__name__)
+
+NOTIFIERS = {'Celery': NOTIFICATIONS_PROVIDER_DEF}
 
 
 class CoreHandler(BaseHandler):
@@ -42,6 +47,7 @@ class CoreHandler(BaseHandler):
         """
 
         self.layer_plugin = None
+        self.notification_plugin = None
 
         super().__init__(filepath, url)
 
@@ -75,6 +81,28 @@ class CoreHandler(BaseHandler):
             self.layer_plugin.register()
             if self.layer_plugin.new_key_store:
                 self.layer_plugin.add_time_key()
+
+                for notifier, params in NOTIFIERS.items():
+                    if params['active']:
+                        plugin_def = NOTIFIERS[notifier]
+                        LOGGER.debug('Loading plugin {}'.format(plugin_def))
+                        self.notification_plugin = load_plugin(
+                            'notifier', plugin_def
+                        )
+
+                        if self.notification_plugin is None:
+                            msg = 'Plugin not found'
+                            LOGGER.error(msg)
+                            raise RuntimeError(msg)
+
+                        if notifier == 'Celery':
+                            LOGGER.debug(
+                                'Sending mapfile refresh tasks to Celery...'
+                            )
+                            self.notification_plugin.refresh_mapfile(
+                                self.layer_plugin.items, 'refresh_mapfile'
+                            )
+
         return True
 
     def __repr__(self):

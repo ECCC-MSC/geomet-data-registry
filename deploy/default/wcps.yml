@@ -61,6 +61,7 @@ wcps:
                     files_expected: 84
             geomet_layers:
                 WCPS.2D_UUI_Y:
+                    published: False
                     forecast_hours: 001/084/PT1H
                 WCPS.2D_UUI:
                     dependencies:
@@ -79,6 +80,7 @@ wcps:
                     files_expected: 84
             geomet_layers:
                 WCPS.2D_UUI_X:
+                    published: False
                     forecast_hours: 001/084/PT1H
                 WCPS.2D_UUI:
                     dependencies:
@@ -130,6 +132,7 @@ wcps:
                     files_expected: 84
             geomet_layers:
                 WCPS.2D_UU_U:
+                    published: False
                     forecast_hours: 001/084/PT1H
                 WCPS.2D_UU:
                     dependencies:
@@ -148,6 +151,7 @@ wcps:
                     files_expected: 84
             geomet_layers:
                 WCPS.2D_UU_V:
+                    published: False
                     forecast_hours: 001/084/PT1H
                 WCPS.2D_UU:
                     dependencies:
@@ -166,6 +170,7 @@ wcps:
                     files_expected: 84
             geomet_layers:
                 WCPS.2D_UU2W_Y:
+                    published: False
                     forecast_hours: 001/084/PT1H
                 WCPS.2D_UU2W:
                     dependencies:
@@ -184,6 +189,7 @@ wcps:
                     files_expected: 84
             geomet_layers:
                 WCPS.2D_UU2W_X:
+                    published: False
                     forecast_hours: 001/084/PT1H
                 WCPS.2D_UU2W:
                     dependencies:

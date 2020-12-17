@@ -160,6 +160,7 @@ class RdpaLayer(BaseLayer):
                 },
                 'layer_config': layer_config,
                 'register_status': True,
+                'refresh_config': True,
             }
             self.items.append(feature_dict)
 

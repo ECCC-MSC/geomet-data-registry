@@ -2614,6 +2614,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.50:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2644,6 +2645,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.100:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2674,6 +2676,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.150:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2704,6 +2707,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.175:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2734,6 +2738,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.200:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2764,6 +2769,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.225:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2794,6 +2800,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.250:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2824,6 +2831,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.275:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2854,6 +2862,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.300:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2884,6 +2893,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.350:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2914,6 +2924,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.400:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2944,6 +2955,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.450:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -2974,6 +2986,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.500:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3004,6 +3017,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.550:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3034,6 +3048,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.600:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3064,6 +3079,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.650:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3094,6 +3110,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.700:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3124,6 +3141,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.750:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3154,6 +3172,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.800:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3184,6 +3203,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.850:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3214,6 +3234,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.875:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3244,6 +3265,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.900:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3274,6 +3296,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.925:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3304,6 +3327,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.950:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3334,6 +3358,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.970:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3364,6 +3389,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.985:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3394,6 +3420,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.1000:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3424,6 +3451,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WD.1015:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3454,6 +3482,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.ETA_WD:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3484,6 +3513,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.50:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3514,6 +3544,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.100:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3544,6 +3575,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.150:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3574,6 +3606,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.175:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3604,6 +3637,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.200:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3634,6 +3668,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.225:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3664,6 +3699,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.250:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3694,6 +3730,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.275:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3724,6 +3761,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.300:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3754,6 +3792,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.350:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3784,6 +3823,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.400:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3814,6 +3854,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.450:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3844,6 +3885,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.500:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3874,6 +3916,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.550:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3904,6 +3947,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.600:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3934,6 +3978,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.650:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3964,6 +4009,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.700:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -3994,6 +4040,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.750:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4024,6 +4071,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.800:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4054,6 +4102,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.850:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4084,6 +4133,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.875:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4114,6 +4164,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.900:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4144,6 +4195,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.925:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4174,6 +4226,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.950:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4204,6 +4257,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.970:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4234,6 +4288,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.985:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4264,6 +4319,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.1000:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4294,6 +4350,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.PRES_WSPD.1015:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
@@ -4324,6 +4381,7 @@ model_gem_regional:
                     files_expected: 55
             geomet_layers:
                 RDPS.ETA_WSPD:
+                    published: False
                     forecast_hours:
                         00Z: 000/048/PT1H
                         06Z: 000/054/PT1H
