@@ -41,12 +41,15 @@ class CeleryTaskNotifier(BaseNotifier):
 
         self.app = Celery('geomet-mapfile', backend=self.url, broker=self.url)
 
-    def refresh_mapfile(self, items, task_name):
+    def notify(self, items=[]):
         """
-        Sends a refresh_mapfile task
+        Sends a refresh_mapfile notifier task
+
+        :param items: `list` of items for notification
 
         :returns: `bool` of notification status
         """
+
         for item in items:
             published = item['layer_config'].get('published', True)
             if item['refresh_config'] and published:

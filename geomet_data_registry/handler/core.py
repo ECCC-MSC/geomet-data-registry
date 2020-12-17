@@ -28,10 +28,6 @@ from geomet_data_registry.util import get_today_and_now
 
 LOGGER = logging.getLogger(__name__)
 
-LOGGER = logging.getLogger(__name__)
-
-NOTIFIERS = {'Celery': NOTIFICATIONS_PROVIDER_DEF}
-
 
 class CoreHandler(BaseHandler):
     """base handler"""
@@ -62,7 +58,7 @@ class CoreHandler(BaseHandler):
         for key, value in PLUGINS['layer'].items():
             if fnmatch(os.path.basename(self.filepath), value['pattern']):
                 plugin_def = {
-                    'type': key,
+                    'type': key
                 }
                 LOGGER.debug('Loading plugin {}'.format(plugin_def))
                 self.layer_plugin = load_plugin('layer', plugin_def)
@@ -82,12 +78,13 @@ class CoreHandler(BaseHandler):
             if self.layer_plugin.new_key_store:
                 self.layer_plugin.add_time_key()
 
-                for notifier, params in NOTIFIERS.items():
-                    if params['active']:
-                        plugin_def = NOTIFIERS[notifier]
-                        LOGGER.debug('Loading plugin {}'.format(plugin_def))
+                for notifier, params in PLUGINS['notifier'].items():
+                    if all([notifier == NOTIFICATIONS_PROVIDER_DEF['type'],
+                           params['active']]):
+                        LOGGER.debug('Loading plugin {}'.format(
+                            NOTIFICATIONS_PROVIDER_DEF))
                         self.notification_plugin = load_plugin(
-                            'notifier', plugin_def
+                            'notifier', NOTIFICATIONS_PROVIDER_DEF
                         )
 
                         if self.notification_plugin is None:
@@ -97,10 +94,10 @@ class CoreHandler(BaseHandler):
 
                         if notifier == 'Celery':
                             LOGGER.debug(
-                                'Sending mapfile refresh tasks to Celery...'
+                                'Sending mapfile refresh tasks to Celery'
                             )
-                            self.notification_plugin.refresh_mapfile(
-                                self.layer_plugin.items, 'refresh_mapfile'
+                            self.notification_plugin.notify(
+                                self.layer_plugin.items
                             )
 
         return True
