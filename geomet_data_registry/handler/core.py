@@ -78,9 +78,9 @@ class CoreHandler(BaseHandler):
             if self.layer_plugin.new_key_store:
                 self.layer_plugin.add_time_key()
 
-                for notifier, params in PLUGINS['notifier'].items():
+                for notifier in PLUGINS['notifier'].keys():
                     if all([notifier == NOTIFICATIONS_PROVIDER_DEF['type'],
-                           params['active']]):
+                           NOTIFICATIONS_PROVIDER_DEF['active']]):
                         LOGGER.debug('Loading plugin {}'.format(
                             NOTIFICATIONS_PROVIDER_DEF))
                         self.notification_plugin = load_plugin(
