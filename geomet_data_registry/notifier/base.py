@@ -37,6 +37,17 @@ class BaseNotifier:
         self.type = provider_def['type']
         self.url = provider_def['url']
 
+    def notify(self, items=[]):
+        """
+        Sends a notification
+
+        :param items: `list` of items for notification
+
+        :returns: `bool` of notification status
+        """
+
+        raise NotImplementedError()
+
     def __repr__(self):
         return '<BaseNotifier> {}'.format(self.type)
 
