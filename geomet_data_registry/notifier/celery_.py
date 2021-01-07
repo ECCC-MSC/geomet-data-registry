@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2020 Etienne Pelletier
+# Copyright (C) 2021 Etienne Pelletier
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +18,15 @@
 ###############################################################################
 
 import logging
-from celery import Celery
 
-from geomet_data_registry.notifier.base import BaseNotifier
+from celery import Celery
+import kombu
+from redis.exceptions import ConnectionError
+
+from geomet_data_registry.notifier.base import (
+    BaseNotifier,
+    NotifierConnectionError,
+)
 
 LOGGER = logging.getLogger(__name__)
 
@@ -39,7 +45,29 @@ class CeleryTaskNotifier(BaseNotifier):
 
         super().__init__(provider_def)
 
-        self.app = Celery('geomet-mapfile', backend=self.url, broker=self.url)
+        # check for valid broker connection and establish Celery app instance
+        if self.check_broker_connection():
+            self.app = Celery(
+                'geomet-mapfile', backend=self.url, broker=self.url
+            )
+
+    def check_broker_connection(self, timeout=5):
+        """
+        Check the connection status to Celery broker.
+
+        :param timeout: `float` timeout in seconds for connecting to broker.
+
+        :returns: `bool` of connection status
+        """
+        try:
+            with kombu.Connection(self.url, connect_timeout=timeout) as conn:
+                conn.connect()
+
+        except (ConnectionError, ConnectionRefusedError, OSError,) as e:
+            LOGGER.error(f'Could not connect to Celery broker ({self.url}).')
+            raise NotifierConnectionError(e)
+
+        return True
 
     def notify(self, items=[]):
         """
