@@ -55,3 +55,8 @@ class BaseNotifier:
 class NotifierError(Exception):
     """setup error"""
     pass
+
+
+class NotifierConnectionError(Exception):
+    """setup error"""
+    pass
