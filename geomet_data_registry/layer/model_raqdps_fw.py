@@ -1,6 +1,7 @@
 ###############################################################################
 #
 # Copyright (C) 2020 Etienne Pelletier
+# Copyright (C) 2021 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,7 +40,7 @@ class ModelRaqdpsFwLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.model_raqdps-fw.ModelRaqdpsFwLayer`  # noqa
+        :returns: `geomet_data_registry.layer.model_raqdps_fw.ModelRaqdpsFwLayer`  # noqa
         """
 
         provider_def = {'name': 'model_raqdps-fw'}

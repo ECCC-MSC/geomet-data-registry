@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Tom Kralidis
+# Copyright (C) 2021 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,15 +101,15 @@ PLUGINS = {
         },
         'RAQDPS-FW': {
             'pattern': '*MSC_RAQDPS-FW_*.grib2',
-            'path': 'geomet_data_registry.layer.model_raqdps-fw.ModelRaqdpsFwLayer',  # noqa
+            'path': 'geomet_data_registry.layer.model_raqdps_fw.ModelRaqdpsFwLayer',  # noqa
         },
         'RAQDPS-FW-Cumulative-Effects': {
             'pattern': '*MSC_RAQDPS-FW*.nc',
-            'path': 'geomet_data_registry.layer.model_raqdps-fw-ce.ModelRaqdpsFwCeLayer',  # noqa
+            'path': 'geomet_data_registry.layer.model_raqdps_fw_ce.ModelRaqdpsFwCeLayer',  # noqa
         },
         'RDAQA-Cumulative-Effects': {
             'pattern': '*MSC_RDAQA*.nc',
-            'path': 'geomet_data_registry.layer.model_rdaqa-ce.ModelRdaqaCeLayer',  # noqa
+            'path': 'geomet_data_registry.layer.model_rdaqa_ce.ModelRdaqaCeLayer',  # noqa
         },
     },
 }
