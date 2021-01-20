@@ -71,6 +71,10 @@ PLUGINS = {
             'pattern': 'CMC_giops*',
             'path': 'geomet_data_registry.layer.model_giops.GiopsLayer',
         },
+        'RIOPS': {
+            'pattern': '*MSC_RIOPS*',
+            'path': 'geomet_data_registry.layer.model_riops.RiopsLayer',
+        },
         'CGSL': {
             'pattern': 'CMC_coupled-rdps-stlawrence*',
             'path': 'geomet_data_registry.layer.cgsl.CgslLayer',

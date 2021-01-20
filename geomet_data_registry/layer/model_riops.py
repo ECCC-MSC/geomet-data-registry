@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 import json
 import logging
 import os
-from parse import parse, with_pattern
+from parse import parse
 import re
 
 from geomet_data_registry.layer.base import BaseLayer
@@ -31,13 +31,8 @@ from geomet_data_registry.util import DATE_FORMAT
 LOGGER = logging.getLogger(__name__)
 
 
-@with_pattern(r'\S+')
-def parse_fileinfo(text):
-    return text
-
-
-class GiopsLayer(BaseLayer):
-    """GIOPS layer"""
+class RiopsLayer(BaseLayer):
+    """RIOPS layer"""
 
     def __init__(self, provider_def):
         """
@@ -45,12 +40,12 @@ class GiopsLayer(BaseLayer):
 
         :param provider_def: provider definition dict
 
-        :returns: `geomet_data_registry.layer.giops.GiopsLayer`
+        :returns: `geomet_data_registry.layer.riops.RiopsLayer`
         """
 
-        provider_def = {'name': 'giops'}
-        self.model_base = 'model_giops'
-        self.dimension = None  # identifies if the layer is 2D or 3D GIOPS data
+        provider_def = {'name': 'riops'}
+        self.model_base = 'model_riops'
+        self.dimension = None  # identifies if the layer is 2D or 3D RIOPS data
         self.bands = None
 
         super().__init__(provider_def)
@@ -67,7 +62,7 @@ class GiopsLayer(BaseLayer):
 
         super().identify(filepath)
 
-        self.model = 'model_giops'
+        self.model = 'model_riops'
 
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model_base))
@@ -78,14 +73,13 @@ class GiopsLayer(BaseLayer):
         elif self.filepath.split('/')[-4] == '3d':
             self.dimension = '3D'
 
-        tmp = parse(filename_pattern, os.path.basename(filepath),
-                    dict(parse_fileinfo=parse_fileinfo))
+        tmp = parse(filename_pattern, os.path.basename(filepath))
 
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
             'time_': tmp.named['YYYYMMDD_model_run'],
-            'forecast_hour_prefix': tmp.named['forecast_hour_prefix'],
-            'fh': tmp.named['forecast_hour']
+            'elevation': tmp.named['elevation'],
+            'fh': tmp.named['forecast_hour'],
         }
 
         LOGGER.debug('Defining the different file properties')
@@ -93,43 +87,48 @@ class GiopsLayer(BaseLayer):
 
         var_path = self.file_dict[self.model_base][self.dimension]['variable']
         if self.wx_variable not in var_path:
-            msg = 'Variable "{}" not in ' \
-                  'configuration file'.format(self.wx_variable)
+            msg = 'Variable "{}" not in ' 'configuration file'.format(
+                self.wx_variable
+            )
             LOGGER.warning(msg)
             return False
 
         self.dimensions = self.file_dict[self.model]['dimensions']
 
         runs = self.file_dict[self.model_base][self.dimension]['variable'][
-            self.wx_variable]['model_run']
+            self.wx_variable
+        ]['model_run']
         self.model_run_list = list(runs.keys())
 
         weather_var = self.file_dict[self.model_base][self.dimension][
-            'variable'][self.wx_variable]
+            'variable'
+        ][self.wx_variable]
         self.geomet_layers = weather_var['geomet_layers']
 
-        time_format = '%Y%m%d%H'
+        time_format = '%Y%m%dT%HZ'
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
         reference_datetime = self.date_
         self.model_run = '{}Z'.format(self.date_.strftime('%H'))
         forecast_hour_datetime = self.date_ + timedelta(
-            hours=int(file_pattern_info['fh']))
+            hours=int(file_pattern_info['fh'])
+        )
 
         if self.dimension == '3D':
-            self.bands = self.file_dict[self.model_base][self.dimension][
-                'variable'][self.wx_variable]['bands']
+            self.bands = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['bands']  # noqa
             for band in self.bands.keys():
                 elevation = self.bands[band]['elevation']
-                str_mr = re.sub('[^0-9]',
-                                '',
-                                reference_datetime.strftime(DATE_FORMAT))
-                str_fh = re.sub('[^0-9]',
-                                '',
-                                forecast_hour_datetime.strftime(DATE_FORMAT))
+                str_mr = re.sub(
+                    '[^0-9]', '', reference_datetime.strftime(DATE_FORMAT)
+                )
+                str_fh = re.sub(
+                    '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
+                )
 
                 expected_count = self.file_dict[self.model_base][
-                    self.dimension]['variable'][self.wx_variable][
-                    'model_run'][self.model_run]['files_expected']
+                    self.dimension
+                ]['variable'][self.wx_variable]['model_run'][self.model_run][
+                    'files_expected'
+                ]
 
                 geomet_layers = deepcopy(weather_var['geomet_layers'])
                 for layer, layer_config in geomet_layers.items():
@@ -139,9 +138,10 @@ class GiopsLayer(BaseLayer):
                     identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
                     forecast_hours = layer_config['forecast_hours']
-                    begin, end, interval = [int(re.sub('[^0-9]', '', value))
-                                            for value in
-                                            forecast_hours.split('/')]
+                    begin, end, interval = [
+                        int(re.sub('[^0-9]', '', value))
+                        for value in forecast_hours.split('/')
+                    ]
                     fh = int(file_pattern_info['fh'])
 
                     feature_dict = {
@@ -149,8 +149,7 @@ class GiopsLayer(BaseLayer):
                         'layer_name_unformatted': layer,
                         'filepath': self.filepath,
                         'identifier': identifier,
-                        'reference_datetime': reference_datetime.strftime(
-                            DATE_FORMAT),
+                        'reference_datetime': reference_datetime.strftime(DATE_FORMAT),  # noqa
                         'forecast_hour_datetime': forecast_hour_datetime.strftime(DATE_FORMAT),  # noqa
                         'member': member,
                         'model': '{}_{}'.format(self.model, self.dimension),
@@ -159,33 +158,33 @@ class GiopsLayer(BaseLayer):
                         'forecast_hours': {
                             'begin': begin,
                             'end': end,
-                            'interval': forecast_hours.split('/')[2]
+                            'interval': forecast_hours.split('/')[2],
                         },
                         'layer_config': layer_config,
                         'register_status': True,
-                        'refresh_config': True,
                     }
 
                     if 'dependencies' in layer_config:
-                        layer_config['dependencies'] = \
-                            [layer.format(self.bands[band]['product'])
-                             for layer in layer_config['dependencies']]
+                        layer_config['dependencies'] = [
+                            layer.format(self.bands[band]['product'])
+                            for layer in layer_config['dependencies']
+                        ]
                         dependencies_found = self.check_layer_dependencies(
-                            layer_config['dependencies'],
-                            str_mr,
-                            str_fh)
+                            layer_config['dependencies'], str_mr, str_fh
+                        )
                         if dependencies_found:
-                            bands_order = (
-                                self.file_dict[self.model][self.dimension][
-                                    'variable'][self.wx_variable].get(
-                                    'bands_order'))
-                            (feature_dict['filepath'],
-                             feature_dict['url'],
-                             feature_dict['weather_variable']) = (
-                                self.configure_layer_with_dependencies(
-                                    dependencies_found,
-                                    self.dimensions,
-                                    bands_order))
+                            bands_order = self.file_dict[self.model][
+                                self.dimension
+                            ]['variable'][self.wx_variable].get('bands_order')
+                            (
+                                feature_dict['filepath'],
+                                feature_dict['url'],
+                                feature_dict['weather_variable'],
+                            ) = self.configure_layer_with_dependencies(
+                                dependencies_found,
+                                self.dimensions,
+                                bands_order,
+                            )
                         else:
                             feature_dict['register_status'] = False
                             self.items.append(feature_dict)
@@ -193,34 +192,40 @@ class GiopsLayer(BaseLayer):
 
                     if not self.is_valid_interval(fh, begin, end, interval):
                         feature_dict['register_status'] = False
-                        LOGGER.debug('Forecast hour {} not included in {} as '
-                                     'defined for layer {}. File will not be '
-                                     'added to registry for this layer'
-                                     .format(fh, forecast_hours, layer_name))
+                        LOGGER.debug(
+                            'Forecast hour {} not included in {} as '
+                            'defined for layer {}. File will not be '
+                            'added to registry for this layer'.format(
+                                fh, forecast_hours, layer_name
+                            )
+                        )
 
                     self.items.append(feature_dict)
 
         if self.dimension == '2D':
             member = weather_var['members']
             elevation = weather_var['elevation']
-            str_mr = re.sub('[^0-9]',
-                            '',
-                            reference_datetime.strftime(DATE_FORMAT))
-            str_fh = re.sub('[^0-9]',
-                            '',
-                            forecast_hour_datetime.strftime(DATE_FORMAT))
+            str_mr = re.sub(
+                '[^0-9]', '', reference_datetime.strftime(DATE_FORMAT)
+            )
+            str_fh = re.sub(
+                '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
+            )
 
-            expected_count = (self.file_dict[self.model_base][self.dimension]
-                              ['variable'][self.wx_variable]['model_run']
-                              [self.model_run]['files_expected'])
+            expected_count = self.file_dict[self.model_base][self.dimension][
+                'variable'
+            ][self.wx_variable]['model_run'][self.model_run]['files_expected']
 
-            for layer_name, layer_config in weather_var['geomet_layers'].items():  # noqa
+            for layer_name, layer_config in weather_var[
+                'geomet_layers'
+            ].items():  # noqa
                 identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
                 forecast_hours = layer_config['forecast_hours']
-                begin, end, interval = [int(re.sub('[^0-9]', '', value))
-                                        for value in
-                                        forecast_hours.split('/')]
+                begin, end, interval = [
+                    int(re.sub('[^0-9]', '', value))
+                    for value in forecast_hours.split('/')
+                ]
                 fh = int(file_pattern_info['fh'])
 
                 feature_dict = {
@@ -228,9 +233,11 @@ class GiopsLayer(BaseLayer):
                     'filepath': self.filepath,
                     'identifier': identifier,
                     'reference_datetime': reference_datetime.strftime(
-                        DATE_FORMAT),
+                        DATE_FORMAT
+                    ),
                     'forecast_hour_datetime': forecast_hour_datetime.strftime(
-                        DATE_FORMAT),
+                        DATE_FORMAT
+                    ),
                     'member': member,
                     'model': '{}_{}'.format(self.model, self.dimension),
                     'elevation': elevation,
@@ -238,30 +245,27 @@ class GiopsLayer(BaseLayer):
                     'forecast_hours': {
                         'begin': begin,
                         'end': end,
-                        'interval': forecast_hours.split('/')[2]
+                        'interval': forecast_hours.split('/')[2],
                     },
                     'layer_config': layer_config,
                     'register_status': True,
-                    'refresh_config': True,
                 }
 
                 if 'dependencies' in layer_config:
                     dependencies_found = self.check_layer_dependencies(
-                        layer_config['dependencies'],
-                        str_mr,
-                        str_fh)
+                        layer_config['dependencies'], str_mr, str_fh
+                    )
                     if dependencies_found:
-                        bands_order = (
-                            self.file_dict[self.model][self.dimension][
-                                'variable'][self.wx_variable].get(
-                                'bands_order'))
-                        (feature_dict['filepath'],
-                         feature_dict['url'],
-                         feature_dict['weather_variable']) = (
-                            self.configure_layer_with_dependencies(
-                                dependencies_found,
-                                self.dimensions,
-                                bands_order))
+                        bands_order = self.file_dict[self.model][
+                            self.dimension
+                        ]['variable'][self.wx_variable].get('bands_order')
+                        (
+                            feature_dict['filepath'],
+                            feature_dict['url'],
+                            feature_dict['weather_variable'],
+                        ) = self.configure_layer_with_dependencies(
+                            dependencies_found, self.dimensions, bands_order
+                        )
                     else:
                         feature_dict['register_status'] = False
                         self.items.append(feature_dict)
@@ -269,14 +273,17 @@ class GiopsLayer(BaseLayer):
 
                 if not self.is_valid_interval(fh, begin, end, interval):
                     feature_dict['register_status'] = False
-                    LOGGER.debug('Forecast hour {} not included in {} as '
-                                 'defined for layer {}. File will not be '
-                                 'added to registry for this layer'
-                                 .format(fh, forecast_hours, layer_name))
+                    LOGGER.debug(
+                        'Forecast hour {} not included in {} as '
+                        'defined for layer {}. File will not be '
+                        'added to registry for this layer'.format(
+                            fh, forecast_hours, layer_name
+                        )
+                    )
 
                 self.items.append(feature_dict)
 
         return True
 
     def __repr__(self):
-        return '<ModelGiopsLayer> {}'.format(self.name)
+        return '<ModelRiopsLayer> {}'.format(self.name)

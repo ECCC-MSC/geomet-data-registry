@@ -115,7 +115,7 @@ class ModelGemRegionalLayer(BaseLayer):
         for layer_name, layer_config in self.geomet_layers.items():
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
-            forecast_hours = layer_config['forecast_hours'][self.model_run]
+            forecast_hours = layer_config['forecast_hours']
             begin, end, interval = [int(re.sub('[^0-9]', '', value))
                                     for value in forecast_hours.split('/')]
             fh = int(file_pattern_info['fh'])
