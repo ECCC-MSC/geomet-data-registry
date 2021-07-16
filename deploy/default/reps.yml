@@ -4,7 +4,7 @@ reps:
     # for the REPS model both products and members are available and we must distinguish between the two in the
     # configuration file.
     model_run_retention_hours: 48
-    model_run_interval_hours: 12
+    model_run_interval_hours: 6
     product:
         # file name pattern for REPS products with the different variables between {}
         # The path variables will be defined in the layer handler script depending on the filename
@@ -59,7 +59,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 24
+                    06Z:
+                        files_expected: 24
                     12Z:
+                        files_expected: 24
+                    18Z:
                         files_expected: 24
                 geomet_layers:
                     # We can have a variable in geomet layer name {}
@@ -124,7 +128,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 12
+                    06Z:
+                        files_expected: 12
                     12Z:
+                        files_expected: 12
+                    18Z:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_PRMM.{}:
@@ -180,7 +188,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 12
+                    06Z:
+                        files_expected: 12
                     12Z:
+                        files_expected: 12
+                    18Z:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_RNMM.{}:
@@ -236,7 +248,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 12
+                    06Z:
+                        files_expected: 12
                     12Z:
+                        files_expected: 12
+                    18Z:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_FRMM.{}:
@@ -292,7 +308,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 12
+                    06Z:
+                        files_expected: 12
                     12Z:
+                        files_expected: 12
+                    18Z:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_PEMM.{}:
@@ -348,7 +368,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 12
+                    06Z:
+                        files_expected: 12
                     12Z:
+                        files_expected: 12
+                    18Z:
                         files_expected: 12
                 geomet_layers:
                     REPS.DIAG.6_SNMM.{}:
@@ -400,7 +424,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 11
+                    06Z:
+                        files_expected: 11
                     12Z:
+                        files_expected: 11
+                    18Z:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_FRMM.{}:
@@ -458,7 +486,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 11
+                    06Z:
+                        files_expected: 11
                     12Z:
+                        files_expected: 11
+                    18Z:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_PRMM.{}:
@@ -516,7 +548,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 11
+                    06Z:
+                        files_expected: 11
                     12Z:
+                        files_expected: 11
+                    18Z:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_RNMM.{}:
@@ -568,7 +604,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 11
+                    06Z:
+                        files_expected: 11
                     12Z:
+                        files_expected: 11
+                    18Z:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_PEMM.{}:
@@ -620,7 +660,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 11
+                    06Z:
+                        files_expected: 11
                     12Z:
+                        files_expected: 11
+                    18Z:
                         files_expected: 11
                 geomet_layers:
                     REPS.DIAG.12_SNMM.{}:
@@ -674,7 +718,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 6
+                    06Z:
+                        files_expected: 6
                     12Z:
+                        files_expected: 6
+                    18Z:
                         files_expected: 6
                 geomet_layers:
                     REPS.DIAG.12_UVMX.{}:
@@ -732,7 +780,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 5
+                    06Z:
+                        files_expected: 5
                     12Z:
+                        files_expected: 5
+                    18Z:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_T7.{}:
@@ -792,7 +844,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 5
+                    06Z:
+                        files_expected: 5
                     12Z:
+                        files_expected: 5
+                    18Z:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_T8.{}:
@@ -834,7 +890,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 5
+                    06Z:
+                        files_expected: 5
                     12Z:
+                        files_expected: 5
+                    18Z:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_HMXX.{}:
@@ -894,7 +954,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 9
+                    06Z:
+                        files_expected: 9
                     12Z:
+                        files_expected: 9
+                    18Z:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_RNMM.{}:
@@ -950,7 +1014,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 9
+                    06Z:
+                        files_expected: 9
                     12Z:
+                        files_expected: 9
+                    18Z:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_FRMM.{}:
@@ -1006,7 +1074,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 9
+                    06Z:
+                        files_expected: 9
                     12Z:
+                        files_expected: 9
+                    18Z:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_PEMM.{}:
@@ -1062,7 +1134,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 9
+                    06Z:
+                        files_expected: 9
                     12Z:
+                        files_expected: 9
+                    18Z:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_SNMM.{}:
@@ -1122,7 +1198,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 9
+                    06Z:
+                        files_expected: 9
                     12Z:
+                        files_expected: 9
+                    18Z:
                         files_expected: 9
                 geomet_layers:
                     REPS.DIAG.24_PRMM.{}:
@@ -1174,7 +1254,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 5
+                    06Z:
+                        files_expected: 5
                     12Z:
+                        files_expected: 5
+                    18Z:
                         files_expected: 5
                 geomet_layers:
                     REPS.DIAG.24_WCF.{}:
@@ -1232,7 +1316,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 2
+                    06Z:
+                        files_expected: 2
                     12Z:
+                        files_expected: 2
+                    18Z:
                         files_expected: 2
                 geomet_layers:
                     REPS.DIAG.48_PRMM.{}:
@@ -1290,7 +1378,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 1
+                    06Z:
+                        files_expected: 1
                     12Z:
+                        files_expected: 1
+                    18Z:
                         files_expected: 1
                 geomet_layers:
                     REPS.DIAG.72_PRMM.{}:
@@ -1355,7 +1447,11 @@ reps:
                     00Z:
                         # how many files you should expect for this particular variable to have a complete model run
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     # You may have more then one geomet layers associated to a model variable
@@ -1373,7 +1469,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 24
+                    06Z:
+                        files_expected: 24
                     12Z:
+                        files_expected: 24
+                    18Z:
                         files_expected: 24
                 geomet_layers:
                     REPS.MEM.ETA_PR.{}:
@@ -1383,7 +1483,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.ETA_I0.{}:
@@ -1393,7 +1497,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.ETA_HR.{}:
@@ -1403,7 +1511,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.10.{}:
@@ -1413,7 +1525,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.50.{}:
@@ -1423,7 +1539,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.100.{}:
@@ -1433,7 +1553,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.200.{}:
@@ -1443,7 +1567,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.250.{}:
@@ -1453,7 +1581,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.500.{}:
@@ -1463,7 +1595,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.700.{}:
@@ -1473,7 +1609,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.850.{}:
@@ -1483,7 +1623,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.925.{}:
@@ -1493,7 +1637,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_GZ.1000.{}:
@@ -1503,7 +1651,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.10.{}:
@@ -1513,7 +1665,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.50.{}:
@@ -1523,7 +1679,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.100.{}:
@@ -1533,7 +1693,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.200.{}:
@@ -1543,7 +1707,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.250.{}:
@@ -1553,7 +1721,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.500.{}:
@@ -1563,7 +1735,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.700.{}:
@@ -1573,7 +1749,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.850.{}:
@@ -1583,7 +1763,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.925.{}:
@@ -1593,7 +1777,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.1000.{}:
@@ -1603,7 +1791,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.10.{}:
@@ -1613,7 +1805,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.50.{}:
@@ -1623,7 +1819,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.100.{}:
@@ -1633,7 +1833,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.200.{}:
@@ -1643,7 +1847,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.250.{}:
@@ -1653,7 +1861,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.500.{}:
@@ -1663,7 +1875,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.700.{}:
@@ -1673,7 +1889,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.850.{}:
@@ -1683,7 +1903,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.925.{}:
@@ -1693,7 +1917,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_TT.1000.{}:
@@ -1703,7 +1931,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.ETA_TT.{}:
@@ -1713,7 +1945,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 24
+                    06Z:
+                        files_expected: 24
                     12Z:
+                        files_expected: 24
+                    18Z:
                         files_expected: 24
                 geomet_layers:
                     REPS.MEM.ETA_PR.{}:
@@ -1723,7 +1959,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.ETA_P0.{}:
@@ -1733,7 +1973,11 @@ reps:
                 model_run:
                     00Z:
                         files_expected: 25
+                    06Z:
+                        files_expected: 25
                     12Z:
+                        files_expected: 25
+                    18Z:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.ETA_NT.{}:

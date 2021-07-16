@@ -64,7 +64,7 @@ PLUGINS = {
             'path': 'geomet_data_registry.layer.reps.RepsLayer',
         },
         'GEPS': {
-            'pattern': 'CMC-geps*',
+            'pattern': 'CMC_geps*',
             'path': 'geomet_data_registry.layer.geps.GepsLayer',
         },
         'GIOPS': {
