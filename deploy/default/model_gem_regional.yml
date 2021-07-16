@@ -3054,11 +3054,7 @@ model_gem_regional:
                 RDPS.PRES_UU.750:
                     dependencies:
                         - RDPS.PRES_WD.750
-                    forecast_hours:
-                        00Z: 000/048/PT1H
-                        06Z: 000/054/PT1H
-                        12Z: 000/048/PT1H
-                    18Z: 000/054/PT1H
+                    forecast_hours: 000/084/PT1H
             bands_order:
                 - WDIR_ISBL_750
                 - WIND_ISBL_750
