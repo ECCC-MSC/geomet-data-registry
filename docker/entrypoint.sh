@@ -3,7 +3,7 @@
 #
 # Author: Tom Kralidis <tom.kralidis@canada.ca>
 #
-# Copyright (c) 2020 Tom Kralidis
+# Copyright (c) 2021 Tom Kralidis
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -37,26 +37,50 @@ done
 >&2 echo "Elasticsearch and Redis are up - continuing"
 
 echo "Setting up GDR store and tileindex"
-geomet-data-registry store setup
-geomet-data-registry tileindex setup
+#geomet-data-registry store setup
+#geomet-data-registry tileindex setup
+
 
 echo "Populating GDR store"
-geomet-data-registry store set -k cansips -c /home/geoadm/geomet-data-registry/conf/cansips.yml
-geomet-data-registry store set -k geps -c /home/geoadm/geomet-data-registry/conf/geps.yml
-geomet-data-registry store set -k model_gem_global -c /home/geoadm/geomet-data-registry/conf/model_gem_global.yml
-geomet-data-registry store set -k model_gem_regional -c /home/geoadm/geomet-data-registry/conf/model_gem_regional.yml
-geomet-data-registry store set -k model_giops -c /home/geoadm/geomet-data-registry/conf/model_giops.yml
-geomet-data-registry store set -k model_hrdps_continental -c /home/geoadm/geomet-data-registry/conf/model_hrdps_continental.yml
-geomet-data-registry store set -k reps -c /home/geoadm/geomet-data-registry/conf/reps.yml
-#geomet-data-registry store set -k radar -c /home/geoadm/geomet-data-registry/conf/radar.yml
+geomet-data-registry store set -k cansips -c /home/geoadm/geomet-data-registry/deploy/default/cansips.yml
+geomet-data-registry store set -k cgsl -c /home/geoadm/geomet-data-registry/deploy/default/cgsl.yml
+geomet-data-registry store set -k gdwps -c /home/geoadm/geomet-data-registry/deploy/default/gdwps.yml
+geomet-data-registry store set -k geps -c /home/geoadm/geomet-data-registry/deploy/default/geps.yml
+geomet-data-registry store set -k hrdpa -c /home/geoadm/geomet-data-registry/deploy/default/hrdpa.yml
+geomet-data-registry store set -k model_gem_global -c /home/geoadm/geomet-data-registry/deploy/default/model_gem_global.yml
+geomet-data-registry store set -k model_gem_regional -c /home/geoadm/geomet-data-registry/deploy/default/model_gem_regional.yml
+geomet-data-registry store set -k model_giops -c /home/geoadm/geomet-data-registry/deploy/default/model_giops.yml
+geomet-data-registry store set -k model_hrdps_continental -c /home/geoadm/geomet-data-registry/deploy/default/model_hrdps_continental.yml
+geomet-data-registry store set -k model_raqdps-fw-ce -c /home/geoadm/geomet-data-registry/deploy/default/model_raqdps-fw-ce.yml
+geomet-data-registry store set -k model_raqdps-fw -c /home/geoadm/geomet-data-registry/deploy/default/model_raqdps-fw.yml
+geomet-data-registry store set -k model_raqdps -c /home/geoadm/geomet-data-registry/deploy/default/model_raqdps.yml
+geomet-data-registry store set -k model_rdaqa-ce -c /home/geoadm/geomet-data-registry/deploy/default/model_rdaqa-ce.yml
+geomet-data-registry store set -k model_riops -c /home/geoadm/geomet-data-registry/deploy/default/model_riops.yml
+geomet-data-registry store set -k radar -c /home/geoadm/geomet-data-registry/deploy/default/radar.yml
+geomet-data-registry store set -k rdpa -c /home/geoadm/geomet-data-registry/deploy/default/rdpa.yml
+geomet-data-registry store set -k rdwps -c /home/geoadm/geomet-data-registry/deploy/default/rdwps.yml
+geomet-data-registry store set -k reps -c /home/geoadm/geomet-data-registry/deploy/default/reps.yml
+geomet-data-registry store set -k wcps -c /home/geoadm/geomet-data-registry/deploy/default/wcps.yml
 
 echo "Starting data feeds"
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/cansips.conf
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/geps.conf
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/model_gem_global.conf
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/model_gem_regional.conf
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/model_giops.conf
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/model_hrdps_continental.conf
-sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/reps.conf
-#sr_subscribe start /home/geoadm/geomet-data-registry/conf/sarracenia/radar.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/cansips.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/cgsl.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/gdwps.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/geps.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/hrdpa.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_gem_global.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_gem_regional.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_giops.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_hrdps_continental.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_raqdps-fw-ce.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_raqdps-fw.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_raqdps.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_rdaqa-ce.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/model_riops.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/radar.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/rdpa.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/rdwps.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/reps.conf
+sr_subscribe start /home/geoadm/geomet-data-registry/deploy/default/sarracenia/wcps.conf
+
 sleep infinity

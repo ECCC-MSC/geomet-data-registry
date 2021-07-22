@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2020 Tom Kralidis
+# Copyright (C) 2021 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,13 +24,21 @@ ENV GDR_LOGGING_LOGFILE /tmp/geomet-data-registry-dev.log
 ENV GDR_CONFIG /opt/geomet-data-registry/geomet-data-registry.yml
 ENV GDR_BASEDIR /home/geoadm/geomet-data-registry
 ENV GDR_DATADIR /home/geoadm/data/feeds
-ENV GDR_URL http://localhost/geomet-data-registry
 ENV GDR_TILEINDEX_TYPE Elasticsearch
-ENV GDR_TILEINDEX_BASEURL http://elasticsearch:9200
-ENV GDR_TILEINDEX_NAME geomet-data-registry-tileindex-dev
+ENV GDR_TILEINDEX_BASEURL http://localhost:9200
+ENV GDR_TILEINDEX_NAME geomet-data-registry-nightly
 ENV GDR_STORE_TYPE Redis
 ENV GDR_STORE_URL redis://redis:6379
-ENV XDG_CACHE_HOME /tmp/geomet-data-registry-logs
+ENV GDR_METPX_DISCARD on
+ENV GDR_METPX_EVENT_PY /home/geoadm/geomet-data-registry/geomet_data_registry/event.py
+ENV GDR_METPX_NOTIFY True
+ENV GDR_GEOMET_ONLY_USER username
+ENV GDR_GEOMET_ONLY_PASS password
+ENV GDR_GEOMET_ONLY_HOST example.host.com
+ENV GDR_NOTIFICATIONS False
+ENV GDR_NOTIFICATIONS_TYPE Celery
+ENV GDR_NOTIFICATIONS_URL redis://localhost:6379
+ENV XDG_CACHE_HOME /tmp/geomet-data-registry-sarra-logs
 
 # install commonly used dependencies
 RUN apt-get update \
