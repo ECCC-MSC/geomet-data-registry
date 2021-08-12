@@ -45,7 +45,7 @@ rm -fr latest
 echo "Generating nightly build for $TIMESTAMP"
 mkdir $NIGHTLYDIR
 cd $NIGHTLYDIR
-git clone $GDR_GITREPO -b docker-compose2
+git clone $GDR_GITREPO
 cd geomet-data-registry
 docker-compose -f docker/docker-compose-nightly.yml down
 docker-compose -f docker/docker-compose-nightly.yml build
