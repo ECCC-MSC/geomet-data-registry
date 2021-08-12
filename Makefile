@@ -46,33 +46,66 @@ setup:
 	geomet-data-registry store setup
 	geomet-data-registry tileindex setup
 	
-	geomet-data-registry store set -k cansips -c conf/cansips.yml
-	geomet-data-registry store set -k geps -c conf/geps.yml
-	geomet-data-registry store set -k model_gem_global -c conf/model_gem_global.yml
-	geomet-data-registry store set -k model_gem_regional -c conf/model_gem_regional.yml
-	geomet-data-registry store set -k model_giops -c conf/model_giops.yml
-	geomet-data-registry store set -k model_hrdps_continental -c conf/model_hrdps_continental.yml
-	geomet-data-registry store set -k reps -c conf/reps.yml
-	#geomet-data-registry store set -k radar -c try/conf/radar.yml
-	
-start:
-	sr_subscribe start conf/sarracenia/cansips.conf
-	sr_subscribe start conf/sarracenia/geps.conf
-	sr_subscribe start conf/sarracenia/model_gem_global.conf
-	sr_subscribe start conf/sarracenia/model_gem_regional.conf
-	sr_subscribe start conf/sarracenia/model_giops.conf
-	sr_subscribe start conf/sarracenia/model_hrdps_continental.conf
-	sr_subscribe start conf/sarracenia/reps.conf
-	#sr_subscribe start msc-geomet-data-registry/conf/sarracenia/radar.conf
-	
+	geomet-data-registry store set -k cansips -c deploy/default/cansips.yml
+	geomet-data-registry store set -k cgsl -c deploy/default/cgsl.yml
+	geomet-data-registry store set -k gdwps -c deploy/default/gdwps.yml
+	geomet-data-registry store set -k geps -c deploy/default/geps.yml
+	geomet-data-registry store set -k hrdpa -c deploy/default/hrdpa.yml
+	geomet-data-registry store set -k model_gem_global -c deploy/default/model_gem_global.yml
+	geomet-data-registry store set -k model_gem_regional -c deploy/default/model_gem_regional.yml
+	geomet-data-registry store set -k model_giops -c deploy/default/model_giops.yml
+	geomet-data-registry store set -k model_hrdps_continental -c deploy/default/model_hrdps_continental.yml
+	geomet-data-registry store set -k model_raqdps-fw-ce -c deploy/default/model_raqdps-fw-ce.yml
+	geomet-data-registry store set -k model_raqdps-fw -c deploy/default/model_raqdps-fw.yml
+	geomet-data-registry store set -k model_raqdps -c deploy/default/model_raqdps.yml
+	geomet-data-registry store set -k model_rdaqa-ce -c deploy/default/model_rdaqa-ce.yml
+	geomet-data-registry store set -k model_riops -c deploy/default/model_riops.yml
+	#geomet-data-registry store set -k radar -c deploy/default/radar.yml
+	geomet-data-registry store set -k rdpa -c deploy/default/rdpa.yml
+	geomet-data-registry store set -k rdwps -c deploy/default/rdwps.yml
+	geomet-data-registry store set -k reps -c deploy/default/reps.yml
+	geomet-data-registry store set -k wcps -c deploy/default/wcps.yml
+  
+start:  
+	sr_subscribe start deploy/default/sarracenia/cansips.conf
+	sr_subscribe start deploy/default/sarracenia/cgsl.conf
+	sr_subscribe start deploy/default/sarracenia/gdwps.conf
+	sr_subscribe start deploy/default/sarracenia/geps.conf
+	sr_subscribe start deploy/default/sarr acenia/hrdpa.conf
+	sr_subscribe start deploy/default/sarracenia/model_gem_global.conf
+	sr_subscribe start deploy/default/sarracenia/model_gem_regional.conf
+	sr_subscribe start deploy/default/sarracenia/model_giops.conf
+	sr_subscribe start deploy/default/sarracenia/model_hrdps_continental.conf
+	sr_subscribe start deploy/default/sarracenia/model_raqdps-fw-ce.conf
+	sr_subscribe start deploy/default/sarracenia/model_raqdps-fw.conf
+	sr_subscribe start deploy/default/sarracenia/model_raqdps.conf
+	sr_subscribe start deploy/default/sarracenia/model_rdaqa-ce.conf
+	sr_subscribe start deploy/default/sarracenia/model_riops.conf
+	#sr_subscribe start deploy/default/sarracenia/radar.conf
+	sr_subscribe start deploy/default/sarracenia/rdpa.conf
+	sr_subscribe start deploy/default/sarracenia/rdwps.conf
+	sr_subscribe start deploy/default/sarracenia/reps.conf
+	sr_subscribe start deploy/default/sarracenia/wcps.conf
+
 stop:
-	sr_subscribe stop conf/sarracenia/cansips.conf
-	sr_subscribe stop conf/sarracenia/geps.conf
-	sr_subscribe stop conf/sarracenia/model_gem_global.conf
-	sr_subscribe stop conf/sarracenia/model_gem_regional.conf
-	sr_subscribe stop conf/sarracenia/model_giops.conf
-	sr_subscribe stop conf/sarracenia/model_hrdps_continental.conf
-	sr_subscribe stop conf/sarracenia/reps.conf
-	#sr_subscribe stop msc-geomet-data-registry/conf/sarracenia/radar.conf
+	sr_subscribe stop deploy/default/sarracenia/cansips.conf
+	sr_subscribe stop deploy/default/sarracenia/cgsl.conf
+	sr_subscribe stop deploy/default/sarracenia/gdwps.conf
+	sr_subscribe stop deploy/default/sarracenia/geps.conf
+	sr_subscribe stop deploy/default/sarracenia/hrdpa.conf
+	sr_subscribe stop deploy/default/sarracenia/model_gem_global.conf
+	sr_subscribe stop deploy/default/sarracenia/model_gem_regional.conf
+	sr_subscribe stop deploy/default/sarracenia/model_giops.conf
+	sr_subscribe stop deploy/default/sarracenia/model_hrdps_continental.conf
+	sr_subscribe stop deploy/default/sarracenia/model_raqdps-fw-ce.conf
+	sr_subscribe stop deploy/default/sarracenia/model_raqdps-fw.conf
+	sr_subscribe stop deploy/default/sarracenia/model_raqdps.conf
+	sr_subscribe stop deploy/default/sarracenia/model_rdaqa-ce.conf
+	sr_subscribe stop deploy/default/sarracenia/model_riops.conf
+	#sr_subscribe stop deploy/default/sarracenia/radar.conf
+	sr_subscribe stop deploy/default/sarracenia/rdpa.conf
+	sr_subscribe stop deploy/default/sarracenia/rdwps.conf
+	sr_subscribe stop deploy/default/sarracenia/reps.conf
+	sr_subscribe stop deploy/default/sarracenia/wcps.conf
 	
 .PHONY: clean clean-logs flake8 setup start stop
