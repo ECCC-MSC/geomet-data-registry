@@ -28,9 +28,8 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: elasticsearch
     environment:
+      - discovery.type=single-node
       - node.name=elasticsearch-01
-      - cluster.name=docker-cluster
-      - cluster.initial_master_nodes=elasticsearch-01
       - discovery.seed_hosts=elasticsearch-01
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -38,8 +37,8 @@ services:
       - http.cors.allow-origin=*
     ulimits:
       nofile:
-        soft: 65535
-        hard: 65535
+        soft: 524288
+        hard: 524288
       memlock:
         soft: -1
         hard: -1
