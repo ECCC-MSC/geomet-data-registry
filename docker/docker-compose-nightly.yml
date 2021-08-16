@@ -38,7 +38,7 @@ services:
       - GDR_METPX_NOTIFY=True
       - GDR_GEOMET_ONLY_USER=username
       - GDR_GEOMET_ONLY_PASS=password
-      - GDR_GEOMET_ONLY_HOST=example.host.com
+      - GDR_GEOMET_ONLY_HOST=feeds.example.org
       - GDR_NOTIFICATIONS=False
       - GDR_NOTIFICATIONS_TYPE=Celery
       - GDR_NOTIFICATIONS_URL=redis://localhost:6379?db=15
