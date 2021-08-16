@@ -27,7 +27,7 @@ services:
       - GDR_LOGGING_LOGFILE=/tmp/geomet-data-registry-nightly.log
       - GDR_CONFIG=/opt/geomet-data-registry/geomet-data-registry.yml
       - GDR_BASEDIR=/home/geoadm/geomet-data-registry
-      - GDR_DATADIR=/home/geoadm/data/feeds
+      - GDR_DATADIR=/data/geomet/feeds
       - GDR_TILEINDEX_TYPE=Elasticsearch
       - GDR_TILEINDEX_BASEURL=http://localhost:9200
       - GDR_TILEINDEX_NAME=geomet-data-registry-nightly
