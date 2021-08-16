@@ -58,7 +58,8 @@ USER geoadm
 COPY . /home/geoadm/geomet-data-registry
 WORKDIR /home/geoadm/geomet-data-registry
 RUN sudo python setup.py install \
-  && mkdir -p ${GDR_DATADIR} \
+  && sudo mkdir -p ${GDR_DATADIR} \
+  && sudo chown -R geoadm:geoadm ${GDR_DATADIR} \
   && mkdir -p ${XDG_CACHE_HOME}
 
 ENTRYPOINT [ "/home/geoadm/geomet-data-registry/docker/entrypoint.sh" ]
