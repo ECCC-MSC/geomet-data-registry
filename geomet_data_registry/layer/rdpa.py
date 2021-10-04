@@ -114,7 +114,8 @@ class RdpaLayer(BaseLayer):
             self.wx_variable]['geomet_layers']
         for layer_name, layer_config in self.geomet_layers.items():
 
-            if archive and 'ARC' not in layer_name:
+            if (archive and 'ARC' not in layer_name) or \
+               (not archive and 'ARC' in layer_name):
                 continue
 
             identifier = '{}-{}'.format(layer_name, str_fh)
