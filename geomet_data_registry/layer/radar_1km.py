@@ -86,10 +86,10 @@ class Radar1kmLayer(BaseLayer):
         self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
 
         layer_config = self.file_dict[self.model]['variable'][self.wx_variable]
-        layer_name = layer_config['geomet_layer']
+        layer_name = layer_config['geomet_layers']
 
         member = self.file_dict[self.model]['variable'][self.wx_variable][
-            'member'
+            'members'
         ]
         elevation = self.file_dict[self.model]['variable'][self.wx_variable][
             'elevation'
@@ -126,7 +126,7 @@ class Radar1kmLayer(BaseLayer):
         """
 
         layer_name = self.file_dict[self.model]['variable'][self.wx_variable][
-            'geomet_layer'
+            'geomet_layers'
         ]
         key_name = '{}_default_time'.format(layer_name)
         last_key = self.store.get_key(key_name)
@@ -140,8 +140,6 @@ class Radar1kmLayer(BaseLayer):
         extent_value = '{}/{}/{}'.format(start_time, key_value, interval)
         if last_key is None:
             LOGGER.warning('No previous time information in the store')
-            self.store.set_key(key_name, key_value)
-            self.store.set_key(extent_key, extent_value)
         else:
             LOGGER.debug('Adding time keys in the store')
             old_time = datetime.strptime(last_key, DATE_FORMAT)
@@ -149,8 +147,8 @@ class Radar1kmLayer(BaseLayer):
                 LOGGER.error(
                     'Missing radar between {}/{}'.format(old_time, self.date_)
                 )
-            self.store.set_key(key_name, key_value)
-            self.store.set_key(extent_key, extent_value)
+        self.store.set_key(key_name, key_value)
+        self.store.set_key(extent_key, extent_value)
 
         return True
 
