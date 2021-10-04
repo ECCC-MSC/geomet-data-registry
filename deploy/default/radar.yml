@@ -3,18 +3,18 @@ radar:
     filename_pattern: "{YYYYMMDDhhmm}_RADAR_COMPOSITE_1KM_{precipitation_type}.tif"
     variable:
         MMHR:
-            geomet_layer: RADAR_1KM_RRAI
+            geomet_layers: RADAR_1KM_RRAI
             forecast_hours: -180/000/PT10M
             elevation: null
-            member: null
+            members: null
         CMHR:
-            geomet_layer: RADAR_1KM_RSNO
+            geomet_layers: RADAR_1KM_RSNO
             forecast_hours: -180/000/PT10M
             elevation: null
-            member: null
+            members: null
         DBZ:
-            geomet_layer: RADAR_1KM_RDBR
+            geomet_layers: RADAR_1KM_RDBR
             forecast_hours: -180/000/PT10M
             elevation: null
-            member: null
+            members: null
 

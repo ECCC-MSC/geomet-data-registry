@@ -1,6 +1,9 @@
 model_raqdps:
     model: RAQDPS
     filename_pattern: '{YYYYMMDD_model_run}_MSC_RAQDPS_{wx_variable}_RLatLon0.09x0.09_P{forecast_hour}.grib2'
+    dimensions:
+        x: 729
+        y: 599
     model_run_retention_hours: 48
     model_run_interval_hours: 12
     variable:

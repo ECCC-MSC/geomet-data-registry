@@ -44,7 +44,6 @@ class RiopsLayer(BaseLayer):
         """
 
         provider_def = {'name': 'riops'}
-        self.model_base = 'model_riops'
         self.dimension = None  # identifies if the layer is 2D or 3D RIOPS data
         self.bands = None
 
@@ -60,13 +59,13 @@ class RiopsLayer(BaseLayer):
         :returns: `list` of file properties
         """
 
-        super().identify(filepath)
+        super().identify(filepath, url)
 
         self.model = 'model_riops'
 
         LOGGER.debug('Loading model information from store')
-        self.file_dict = json.loads(self.store.get_key(self.model_base))
-        filename_pattern = self.file_dict[self.model_base]['filename_pattern']
+        self.file_dict = json.loads(self.store.get_key(self.model))
+        filename_pattern = self.file_dict[self.model]['filename_pattern']
 
         if self.filepath.split('/')[-4] == '2d':
             self.dimension = '2D'
@@ -85,7 +84,7 @@ class RiopsLayer(BaseLayer):
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        var_path = self.file_dict[self.model_base][self.dimension]['variable']
+        var_path = self.file_dict[self.model][self.dimension]['variable']
         if self.wx_variable not in var_path:
             msg = 'Variable "{}" not in ' 'configuration file'.format(
                 self.wx_variable
@@ -95,12 +94,12 @@ class RiopsLayer(BaseLayer):
 
         self.dimensions = self.file_dict[self.model]['dimensions']
 
-        runs = self.file_dict[self.model_base][self.dimension]['variable'][
+        runs = self.file_dict[self.model][self.dimension]['variable'][
             self.wx_variable
         ]['model_run']
         self.model_run_list = list(runs.keys())
 
-        weather_var = self.file_dict[self.model_base][self.dimension][
+        weather_var = self.file_dict[self.model][self.dimension][
             'variable'
         ][self.wx_variable]
         self.geomet_layers = weather_var['geomet_layers']
@@ -114,7 +113,7 @@ class RiopsLayer(BaseLayer):
         )
 
         if self.dimension == '3D':
-            self.bands = self.file_dict[self.model_base][self.dimension]['variable'][self.wx_variable]['bands']  # noqa
+            self.bands = self.file_dict[self.model][self.dimension]['variable'][self.wx_variable]['bands']  # noqa
             for band in self.bands.keys():
                 elevation = self.bands[band]['elevation']
                 str_mr = re.sub(
@@ -124,7 +123,7 @@ class RiopsLayer(BaseLayer):
                     '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
                 )
 
-                expected_count = self.file_dict[self.model_base][
+                expected_count = self.file_dict[self.model][
                     self.dimension
                 ]['variable'][self.wx_variable]['model_run'][self.model_run][
                     'files_expected'
@@ -212,7 +211,7 @@ class RiopsLayer(BaseLayer):
                 '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
             )
 
-            expected_count = self.file_dict[self.model_base][self.dimension][
+            expected_count = self.file_dict[self.model][self.dimension][
                 'variable'
             ][self.wx_variable]['model_run'][self.model_run]['files_expected']
 

@@ -49,7 +49,6 @@ class GiopsLayer(BaseLayer):
         """
 
         provider_def = {'name': 'giops'}
-        self.model_base = 'model_giops'
         self.dimension = None  # identifies if the layer is 2D or 3D GIOPS data
         self.bands = None
 
@@ -65,13 +64,13 @@ class GiopsLayer(BaseLayer):
         :returns: `list` of file properties
         """
 
-        super().identify(filepath)
+        super().identify(filepath, url)
 
         self.model = 'model_giops'
 
         LOGGER.debug('Loading model information from store')
-        self.file_dict = json.loads(self.store.get_key(self.model_base))
-        filename_pattern = self.file_dict[self.model_base]['filename_pattern']
+        self.file_dict = json.loads(self.store.get_key(self.model))
+        filename_pattern = self.file_dict[self.model]['filename_pattern']
 
         if self.filepath.split('/')[-4] == '2d':
             self.dimension = '2D'
@@ -91,7 +90,7 @@ class GiopsLayer(BaseLayer):
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        var_path = self.file_dict[self.model_base][self.dimension]['variable']
+        var_path = self.file_dict[self.model][self.dimension]['variable']
         if self.wx_variable not in var_path:
             msg = 'Variable "{}" not in ' \
                   'configuration file'.format(self.wx_variable)
@@ -100,11 +99,11 @@ class GiopsLayer(BaseLayer):
 
         self.dimensions = self.file_dict[self.model]['dimensions']
 
-        runs = self.file_dict[self.model_base][self.dimension]['variable'][
+        runs = self.file_dict[self.model][self.dimension]['variable'][
             self.wx_variable]['model_run']
         self.model_run_list = list(runs.keys())
 
-        weather_var = self.file_dict[self.model_base][self.dimension][
+        weather_var = self.file_dict[self.model][self.dimension][
             'variable'][self.wx_variable]
         self.geomet_layers = weather_var['geomet_layers']
 
@@ -116,7 +115,7 @@ class GiopsLayer(BaseLayer):
             hours=int(file_pattern_info['fh']))
 
         if self.dimension == '3D':
-            self.bands = self.file_dict[self.model_base][self.dimension][
+            self.bands = self.file_dict[self.model][self.dimension][
                 'variable'][self.wx_variable]['bands']
             for band in self.bands.keys():
                 elevation = self.bands[band]['elevation']
@@ -127,7 +126,7 @@ class GiopsLayer(BaseLayer):
                                 '',
                                 forecast_hour_datetime.strftime(DATE_FORMAT))
 
-                expected_count = self.file_dict[self.model_base][
+                expected_count = self.file_dict[self.model][
                     self.dimension]['variable'][self.wx_variable][
                     'model_run'][self.model_run]['files_expected']
 
@@ -210,7 +209,7 @@ class GiopsLayer(BaseLayer):
                             '',
                             forecast_hour_datetime.strftime(DATE_FORMAT))
 
-            expected_count = (self.file_dict[self.model_base][self.dimension]
+            expected_count = (self.file_dict[self.model][self.dimension]
                               ['variable'][self.wx_variable]['model_run']
                               [self.model_run]['files_expected'])
 
