@@ -36,7 +36,8 @@ TILEINDEX_NAME = os.environ.get('GDR_TILEINDEX_NAME', None)
 STORE_TYPE = os.environ.get('GDR_STORE_TYPE', None)
 STORE_URL = os.environ.get('GDR_STORE_URL', None)
 METPX_DISCARD = os.environ.get('GDR_METPX_DISCARD', 'on')
-METPX_EVENT_PY = os.environ.get('GDR_METPX_EVENT_PY', None)
+METPX_EVENT_FILE_PY = os.environ.get('GDR_METPX_EVENT_FILE_PY', None)
+METPX_EVENT_MESSAGE_PY = os.environ.get('GDR_METPX_EVENT_FILE_PY', None)
 NOTIFICATIONS = str2bool(os.environ.get('GDR_NOTIFICATIONS', False))
 NOTIFICATIONS_TYPE = os.environ.get('GDR_NOTIFICATIONS_TYPE', None)
 NOTIFICATIONS_URL = os.environ.get('GDR_NOTIFICATIONS_URL', None)
@@ -61,7 +62,8 @@ if None in [
     TILEINDEX_NAME,
     STORE_TYPE,
     STORE_URL,
-    METPX_EVENT_PY,
+    METPX_EVENT_FILE_PY,
+    METPX_EVENT_MESSAGE_PY,
 ]:
     msg = 'Environment variables not set!'
     LOGGER.error(msg)

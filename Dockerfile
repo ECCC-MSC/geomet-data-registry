@@ -30,7 +30,8 @@ ENV GDR_TILEINDEX_NAME geomet-data-registry-nightly
 ENV GDR_STORE_TYPE Redis
 ENV GDR_STORE_URL redis://redis:6379
 ENV GDR_METPX_DISCARD on
-ENV GDR_METPX_EVENT_PY /home/geoadm/geomet-data-registry/geomet_data_registry/event.py
+ENV GDR_METPX_EVENT_FILE_PY /home/geoadm/geomet-data-registry/geomet_data_registry/event/file_.py
+ENV GDR_METPX_EVENT_MESSAGE_PY /home/geoadm/geomet-data-registry/geomet_data_registry/event/message.py
 ENV GDR_METPX_NOTIFY True
 ENV GDR_GEOMET_ONLY_USER username
 ENV GDR_GEOMET_ONLY_PASS password

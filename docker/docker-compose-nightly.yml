@@ -34,7 +34,8 @@ services:
       - GDR_STORE_TYPE=Redis
       - GDR_STORE_URL=redis://localhost:6379?db=15
       - GDR_METPX_DISCARD=on
-      - GDR_METPX_EVENT_PY=/home/geoadm/geomet-data-registry/geomet_data_registry/event.py
+      - GDR_METPX_EVENT_FILE_PY=/home/geoadm/geomet-data-registry/geomet_data_registry/event/file_.py
+      - GDR_METPX_EVENT_MESSAGE_PY=/home/geoadm/geomet-data-registry/geomet_data_registry/event/message.py
       - GDR_METPX_NOTIFY=True
       - GDR_GEOMET_ONLY_USER=username
       - GDR_GEOMET_ONLY_PASS=password

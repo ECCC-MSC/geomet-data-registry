@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Tom Kralidis
+# Copyright (C) 2021 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,14 +18,14 @@
 ###############################################################################
 
 
-class Event:
+class MessageEvent:
     """core event"""
 
     def __init__(self, parent):
         """initialize"""
         pass
 
-    def dispatch(self, parent):
+    def on_message(self, parent):
         """
         sarracenia dispatcher
 
@@ -59,6 +59,4 @@ class Event:
         return '<Event>'
 
 
-event = Event(self)  # noqa
-self.on_file = event.dispatch  # noqa
-self.on_message = event.dispatch  # noqa
+self.plugin = 'MessageEvent'  # noqa
