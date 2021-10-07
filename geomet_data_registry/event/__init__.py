@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Louis-Philippe Rousseau-Lambert
+# Copyright (C) 2021 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,27 +16,3 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-
-broker amqps://anonymous:anonymous@fluxi.cmc.ec.gc.ca/
-exchange xpublic
-queue_name q_${BROKER_USER}.${PROGRAM}.${CONFIG}.${HOSTNAME}
-subtopic *.MSC-RADAR.unique.GEOTIFF.COMPOSITE.#
-
-#notify_only
-#mirror True
-report_back False
-
-directory ${GDR_DATADIR}/../local/RADAR/1KM/DBZ
-accept .*DBZ.tif.*
-
-directory ${GDR_DATADIR}/../local/RADAR/1KM/MMHR
-accept .*MMHR.tif.*
-
-directory ${GDR_DATADIR}/../local/RADAR/1KM/CMHR
-accept .*CMHR.tif.*
-
-# always download radar data locally
-discard off
-
-plugin ${GDR_METPX_EVENT_FILE_PY}
-chmod_log 0644
