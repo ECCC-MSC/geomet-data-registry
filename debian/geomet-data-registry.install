@@ -1,3 +1,4 @@
 deploy/default/*.yml opt/geomet-data-registry/etc
 deploy/default/sarracenia/*.conf opt/geomet-data-registry/etc/sarracenia
-geomet_data_registry/event.py opt/geomet-data-registry
+geomet_data_registry/event/file_.py opt/geomet-data-registry/event
+geomet_data_registry/event/message.py opt/geomet-data-registry/event
