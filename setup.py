@@ -22,7 +22,6 @@ import os
 import re
 from setuptools import Command, find_packages, setup
 import shutil
-import sys
 
 
 class PyCleanBuild(Command):
@@ -75,8 +74,7 @@ class PyTest(Command):
 
     def run(self):
         import subprocess
-        errno = subprocess.call([sys.executable,
-                                 'geomet_data_registry/tests/run_tests.py'])
+        errno = subprocess.call(['pytest'])
         raise SystemExit(errno)
 
 

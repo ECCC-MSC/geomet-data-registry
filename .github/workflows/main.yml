@@ -1,0 +1,67 @@
+name: build ⚙️
+
+on: [ push, pull_request ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7]
+
+    env:
+      GDR_LOGGING_LOGLEVEL: "DEBUG"
+      GDR_LOGGING_LOGFILE: "stdout"
+      GDR_BASEDIR: "/opt/geomet-data-registry"
+      GDR_DATADIR: "/data/geomet"
+      GDR_TILEINDEX_TYPE: "Elasticsearch"
+      GDR_TILEINDEX_BASEURL: "http://localhost:9200"
+      GDR_TILEINDEX_NAME: "geomet-data-registry"
+      GDR_STORE_TYPE: "Redis"
+      GDR_STORE_URL: "redis://localhost:6379"
+      GDR_METPX_DISCARD: "on"
+      GDR_METPX_EVENT_FILE_PY: "/usr/lib/python3/dist-packages/geomet_data_registry/event/file_.py"
+      GDR_METPX_EVENT_MESSAGE_PY: "/usr/lib/python3/dist-packages/geomet_data_registry/event/message.py"
+      GDR_METPX_NOTIFY: "True"
+      GDR_GEOMET_ONLY_USER: "username"
+      GDR_GEOMET_ONLY_PASS: "password"
+      GDR_GEOMET_ONLY_HOST: "example.host.com"
+      GDR_NOTIFICATIONS: "False"
+      GDR_NOTIFICATIONS_TYPE: "Celery"
+      GDR_NOTIFICATIONS_URL: "redis://localhost:6379"
+
+    steps:
+    - name: Configure sysctl limits
+      run: |
+        sudo swapoff -a
+        sudo sysctl -w vm.swappiness=1
+        sudo sysctl -w fs.file-max=262144
+        sudo sysctl -w vm.max_map_count=262144
+    - name: Start Redis
+      uses: supercharge/redis-github-action@1.2.0
+      with:
+        redis-version: 4.0.9
+    - name: Runs Elasticsearch
+      uses: elastic/elastic-github-actions/elasticsearch@master
+      with:
+        stack-version: 7.5.2
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      name: Setup Python ${{ matrix.python-version }}
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install system dependencies 📦
+      run: sudo apt-get install -y dh-python devscripts fakeroot debhelper python3-all python3-setuptools python3-dateutil
+    - name: Install requirements 📦
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements-dev.txt
+    - name: Install package 📦
+      run: python3 setup.py install
+    - name: run tests ⚙️
+      run: python3 setup.py test
+    - name: build Python package 🏗️
+      run: python3 setup.py sdist bdist_wheel --universal
+    - name: build Debian package 🏗️
+      run: sudo -E debuild --preserve-env -b -uc -us
+
