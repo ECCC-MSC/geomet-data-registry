@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Copyright (C) 2019 Tom Kralidis
+# Copyright (C) 2021 Tom Kralidis
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ from geomet_data_registry.log import setup_logger
 from geomet_data_registry.store import store
 from geomet_data_registry.tileindex import tileindex
 
-__version__ = '2.99.dev0'
+__version__ = '0.1.0'
 
 setup_logger(env.LOGGING_LOGLEVEL, env.LOGGING_LOGFILE)
 
