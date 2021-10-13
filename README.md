@@ -76,10 +76,10 @@ geomet-data-registry metadata setup
 sr_subscribe path/to/amqp.conf foreground
 
 # dev workflows
+
 # process a test file
 geomet-data-registry data add --file=/path/to/file
 
-# dev workflows
 # process a test directory of files (recursive)
 geomet-data-registry data add --directory=/path/to/directory
 ```
