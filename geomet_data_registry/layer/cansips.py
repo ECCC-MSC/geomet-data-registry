@@ -173,7 +173,10 @@ class CansipsLayer(BaseLayer):
                 months=int(item['forecast_hours']['begin']))
             end_time = self.date_ + relativedelta(
                 months=int(item['forecast_hours']['end']))
+
+            start_time = start_time.strftime(DATE_FORMAT)
             end_time = end_time.strftime(DATE_FORMAT)
+
             time_extent_value = '{}/{}/{}'.format(start_time,
                                                   end_time,
                                                   item['forecast_hours']
