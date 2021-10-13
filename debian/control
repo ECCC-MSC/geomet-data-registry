@@ -9,7 +9,7 @@ Vcs-Git: https://github.com/ECCC-MSC/geomet-data-registry.git
 
 Package: geomet-data-registry
 Architecture: all
-Depends: elasticsearch (>=7), elasticsearch (<8), python3, python3-click, python3-elasticsearch (>=7), python3-elasticsearch (<8), python3-dateutil, python3-metpx-sarracenia, python3-parse, python3-redis, python3-yaml
+Depends: elasticsearch (>=7), elasticsearch (<8), python3, python3-click, python3-elasticsearch (>=7), python3-elasticsearch (<8), python3-dateutil, python3-metpx-sarracenia, python3-parse, python3-redis, python3-yaml, redis-server
 Homepage: https://github.com/ECCC-MSC/geomet-data-registry
 Description: geomet-data-registry provides a searchable real-time inventory
  of MSC weather, climate and water data.
