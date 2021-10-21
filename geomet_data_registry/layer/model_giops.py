@@ -83,7 +83,6 @@ class GiopsLayer(BaseLayer):
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
             'time_': tmp.named['YYYYMMDD_model_run'],
-            'forecast_hour_prefix': tmp.named['forecast_hour_prefix'],
             'fh': tmp.named['forecast_hour']
         }
 
