@@ -34,12 +34,6 @@ def data():
     pass
 
 
-@click.group()
-def metadata():
-    """Manage geomet-data-registry metadata"""
-    pass
-
-
 @click.command('add')
 @click.pass_context
 @click.option('--file', '-f', 'file_',
@@ -87,4 +81,3 @@ def setup_metadata(ctx):
 
 
 data.add_command(add_data)
-metadata.add_command(setup_metadata)

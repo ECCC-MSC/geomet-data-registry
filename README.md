@@ -69,9 +69,6 @@ geomet-data-registry store teardown
 # set key/value in store
 geomet-data-registry store set --key=somekey --config=/path/to/file
 
-# setup metadata
-geomet-data-registry metadata setup
-
 # start up
 sr_subscribe path/to/amqp.conf foreground
 
