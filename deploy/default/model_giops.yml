@@ -5,7 +5,7 @@ model_giops:
     dimensions:
         x: 1800
         y: 850
-    filename_pattern: CMC_giops_{wx_variable}_{fileinfo:parse_fileinfo}_{YYYYMMDD_model_run}_{forecast_hour_prefix:l}{forecast_hour:n}.nc
+    filename_pattern: CMC_giops_{wx_variable}_{fileinfo:parse_fileinfo}_{YYYYMMDD_model_run}_P{forecast_hour:n}.nc
     2D:
         variable:
             iiceconc:
