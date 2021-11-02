@@ -91,7 +91,7 @@ class BaseLayer:
             r = self.tileindex.bulk_add(item_bulk)
             status = r[items[0]['identifier']]
             item_dict = item_bulk[0]
-            self.update_count(items[0], status, item_dict)
+            self.update_count(items[0], status)
         elif len(items) == 1:
             item = items[0]
             LOGGER.debug('Adding item {}'.format(item['identifier']))
@@ -99,7 +99,7 @@ class BaseLayer:
             LOGGER.debug('Adding to tileindex')
             r = self.tileindex.add(item_dict['properties']['identifier'],
                                    item_dict)
-            self.update_count(items[0], r, item_dict)
+            self.update_count(items[0], r)
         else:
             LOGGER.error('Empty item list for {}'.format(self.filepath))
             return False
@@ -150,7 +150,7 @@ class BaseLayer:
 
         return feature_dict
 
-    def update_count(self, item, r, item_dict):
+    def update_count(self, item, r):
         """
         update count in store for expected files/layers
 
