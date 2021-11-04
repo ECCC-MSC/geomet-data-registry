@@ -43,7 +43,6 @@ class RedisStore(BaseStore):
 
         try:
             self.redis = redis.Redis.from_url(self.url,
-                                              charset='utf-8',
                                               decode_responses=True)
         except redis.exceptions.ConnectionError as err:
             msg = 'Cannot connect to Redis {}: {}'.format(self.url, err)
