@@ -2,4 +2,4 @@ geomet-data-registry (0.1.0) bionic; urgency=medium
 
   * initial Debian packaging
 
- -- Tom Kralidis <tom.kralidis@ec.gc.ca>  Wed, 13 Oct 11:08:50 +0000
+ -- Tom Kralidis <tom.kralidis@ec.gc.ca>  Wed, 13 Oct 2021 11:08:50 +0000
