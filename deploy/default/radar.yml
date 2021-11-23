@@ -1,6 +1,6 @@
 radar:
     model: radar_1km
-    filename_pattern: "{YYYYMMDDhhmm}_RADAR_COMPOSITE_1KM_{precipitation_type}.tif"
+    filename_pattern: '{YYYYMMDDThhmm}Z_MSC_Radar-Composite_{precipitation_type}_1km.tif'
     variable:
         MMHR:
             geomet_layers: RADAR_1KM_RRAI
@@ -12,9 +12,3 @@ radar:
             forecast_hours: -180/000/PT10M
             elevation: null
             members: null
-        DBZ:
-            geomet_layers: RADAR_1KM_RDBR
-            forecast_hours: -180/000/PT10M
-            elevation: null
-            members: null
-

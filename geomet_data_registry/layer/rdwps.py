@@ -25,7 +25,7 @@ import re
 
 from parse import parse
 from geomet_data_registry.layer.base import BaseLayer
-from geomet_data_registry.util import DATE_FORMAT
+from geomet_data_registry.util import DATE_FORMAT, parse_nonwhitespace
 
 LOGGER = logging.getLogger(__name__)
 
@@ -43,8 +43,10 @@ class RdwpsLayer(BaseLayer):
         """
 
         provider_def = {'name': 'rdwps'}
-        # self.category identifies if the RDWPS layer is a lake or gulf layer
-        self.category = None
+        # self.region identifies the RDWPS region
+        # (Atlantic-North-West, Erie, Superior, etc.)
+        self.region = None
+        self.spatial_resolution = None
 
         super().__init__(provider_def)
 
@@ -65,83 +67,78 @@ class RdwpsLayer(BaseLayer):
         LOGGER.debug('Loading model information from store')
         self.file_dict = json.loads(self.store.get_key(self.model))
 
-        self.category = 'lake' if 'lake' in self.filepath else 'gulf'
+        filename_pattern = self.file_dict[self.model]['filename_pattern']
 
-        filename_pattern = (self.file_dict[self.model][self.category]
-                            ['filename_pattern'])
+        tmp = parse(
+            filename_pattern,
+            os.path.basename(filepath),
+            dict(NonWhitespaceChars=parse_nonwhitespace)
+        )
 
-        tmp = parse(filename_pattern, os.path.basename(filepath))
-
-        if self.category == 'lake':
-            file_pattern_info = {
-                'lake': tmp.named['lake'],
-                'wx_variable': tmp.named['wx_variable'],
-                'time_': tmp.named['YYYYMMDD_model_run'],
-                'fh': tmp.named['forecast_hour']
-            }
-        elif self.category == 'gulf':
-            file_pattern_info = {
-                'wx_variable': tmp.named['wx_variable'],
-                'time_': tmp.named['YYYYMMDD_model_run'],
-                'fh': tmp.named['forecast_hour']
-            }
+        file_pattern_info = {
+            'region': tmp.named['region'],
+            'wx_variable': tmp.named['wx_variable'],
+            'date': tmp.named['YYYYMMDD'],
+            'model_run': tmp.named['model_run'],
+            'fh': tmp.named['forecast_hour']
+        }
 
         LOGGER.debug('Defining the different file properties')
         self.wx_variable = file_pattern_info['wx_variable']
 
-        var_path = self.file_dict[self.model][self.category]['variable']
+        var_path = self.file_dict[self.model]['variable']
         if self.wx_variable not in var_path:
-            msg = 'Variable "{}" not in ' \
-                  'configuration file'.format(self.wx_variable)
+            msg = 'Variable "{}" not in configuration file'.format(
+                self.wx_variable
+            )
             LOGGER.warning(msg)
             return False
 
-        if self.category == 'lake':
-            self.dimensions = self.file_dict[self.model]['dimensions'][
-                file_pattern_info['lake']]
-        elif self.category == 'gulf':
-            self.dimensions = self.file_dict[self.model]['dimensions']['gulf']
+        self.region = (
+            file_pattern_info['region'].replace('Lake-', '')
+            if file_pattern_info['region'].startswith('Lake-')
+            else file_pattern_info['region']
+        )
 
-        runs = self.file_dict[self.model][self.category]['variable'][
-            self.wx_variable]['model_run']
+        self.dimensions = self.file_dict[self.model]['dimensions'][self.region]
+
+        self.spatial_resolution = (
+            '5km' if self.region == 'Atlantic-North-West' else '1km'
+        )
+
+        runs = self.file_dict[self.model]['variable'][self.wx_variable]['model_run']  # noqa
         self.model_run_list = list(runs.keys())
 
-        time_format = '%Y%m%d%H'
-        self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
+        self.date_ = datetime.strptime(
+            '{}{}'.format(
+                file_pattern_info['date'], file_pattern_info['model_run'],
+            ),
+            '%Y%m%d%H',
+        )
+
         reference_datetime = self.date_
-        self.model_run = '{}Z'.format(self.date_.strftime('%H'))
-        forecast_hour_datetime = self.date_ + \
-            timedelta(hours=int(file_pattern_info['fh']))
+        self.model_run = '{}Z'.format(file_pattern_info['model_run'])
+        forecast_hour_datetime = self.date_ + timedelta(
+            hours=int(file_pattern_info['fh'])
+        )
 
-        member = self.file_dict[self.model][self.category]['variable'][
-            self.wx_variable]['members']
-        elevation = self.file_dict[self.model][self.category]['variable'][
-            self.wx_variable]['elevation']
-        str_mr = re.sub('[^0-9]',
-                        '',
-                        reference_datetime.strftime(DATE_FORMAT))
-        str_fh = re.sub('[^0-9]',
-                        '',
-                        forecast_hour_datetime.strftime(DATE_FORMAT))
-        expected_count = self.file_dict[self.model][self.category][
-            'variable'][self.wx_variable]['model_run'][
-            self.model_run]['files_expected']
+        member = self.file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
+        elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
+        str_mr = re.sub('[^0-9]', '', reference_datetime.strftime(DATE_FORMAT))
+        str_fh = re.sub(
+            '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
+        )
+        expected_count = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
 
-        self.geomet_layers = self.file_dict[self.model][self.category][
-            'variable'][self.wx_variable]['geomet_layers']
+        self.geomet_layers = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers']  # noqa
         for layer, layer_config in self.geomet_layers.items():
-            layer_name = layer \
-                if self.category == 'gulf' \
-                else layer.format(file_pattern_info['lake'].upper())
+            layer_name = layer.format(self.region, self.spatial_resolution)
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
-
-            if self.category == 'lake':
-                forecast_hours = layer_config['forecast_hours']
-            elif self.category == 'gulf':
-                forecast_hours = layer_config['forecast_hours'][
-                    self.model_run]
-            begin, end, interval = [int(re.sub('[^0-9]', '', value))
-                                    for value in forecast_hours.split('/')]
+            forecast_hours = layer_config['forecast_hours']
+            begin, end, interval = [
+                int(re.sub('[^0-9]', '', value))
+                for value in forecast_hours.split('/')
+            ]
 
             fh = int(file_pattern_info['fh'])
 
@@ -149,10 +146,10 @@ class RdwpsLayer(BaseLayer):
                 'layer_name': layer_name,
                 'filepath': self.filepath,
                 'identifier': identifier,
-                'reference_datetime': reference_datetime.strftime(
-                    DATE_FORMAT),
+                'reference_datetime': reference_datetime.strftime(DATE_FORMAT),
                 'forecast_hour_datetime': forecast_hour_datetime.strftime(
-                    DATE_FORMAT),
+                    DATE_FORMAT
+                ),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,
@@ -164,29 +161,26 @@ class RdwpsLayer(BaseLayer):
                 },
                 'layer_config': layer_config,
                 'register_status': True,
-                'refresh_config': True,
+                'refresh_config': True
             }
 
             if 'dependencies' in layer_config:
-                if self.category == 'lake':
-                    layer_config['dependencies'] = \
-                        [layer.format(file_pattern_info['lake'].upper())
-                         for layer in layer_config['dependencies']]
+                layer_config['dependencies'] = [
+                    layer.format(self.region, self.spatial_resolution)
+                    for layer in layer_config['dependencies']
+                ]
                 dependencies_found = self.check_layer_dependencies(
-                    layer_config['dependencies'],
-                    str_mr,
-                    str_fh)
+                    layer_config['dependencies'], str_mr, str_fh
+                )
                 if dependencies_found:
-                    bands_order = (self.file_dict[self.model]
-                                   [self.category]['variable']
-                                   [self.wx_variable].get('bands_order'))
-                    (feature_dict['filepath'],
-                     feature_dict['url'],
-                     feature_dict['weather_variable']) = (
-                        self.configure_layer_with_dependencies(
-                            dependencies_found,
-                            self.dimensions,
-                            bands_order))
+                    bands_order = self.file_dict[self.model]['variable'][self.wx_variable].get('bands_order')  # noqa
+                    (
+                        feature_dict['filepath'],
+                        feature_dict['url'],
+                        feature_dict['weather_variable'],
+                    ) = self.configure_layer_with_dependencies(
+                        dependencies_found, self.dimensions, bands_order
+                    )
                 else:
                     feature_dict['register_status'] = False
                     self.items.append(feature_dict)
@@ -194,10 +188,13 @@ class RdwpsLayer(BaseLayer):
 
             if not self.is_valid_interval(fh, begin, end, interval):
                 feature_dict['register_status'] = False
-                LOGGER.debug('Forecast hour {} not included in {} as '
-                             'defined for layer {}. File will not be '
-                             'added to registry for this layer'
-                             .format(fh, forecast_hours, layer_name))
+                LOGGER.debug(
+                    'Forecast hour {} not included in {} as '
+                    'defined for layer {}. File will not be '
+                    'added to registry for this layer'.format(
+                        fh, forecast_hours, layer_name
+                    )
+                )
 
             self.items.append(feature_dict)
 

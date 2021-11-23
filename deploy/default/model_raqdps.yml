@@ -1,13 +1,13 @@
 model_raqdps:
     model: RAQDPS
-    filename_pattern: '{YYYYMMDD_model_run}_MSC_RAQDPS_{wx_variable}_RLatLon0.09x0.09_P{forecast_hour}.grib2'
+    filename_pattern: '{YYYYMMDD}T{model_run}Z_MSC_RAQDPS_{wx_variable}_RLatLon0.09_PT{forecast_hour}H.grib2'
     dimensions:
         x: 729
         y: 599
     model_run_retention_hours: 48
     model_run_interval_hours: 12
     variable:
-        PM2.5_EATM:
+        PM2.5_EAtm:
             members: null
             elevation: null
             model_run:
@@ -18,7 +18,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.EATM_PM2.5:
                     forecast_hours: 000/072/PT1H
-        PM10_EATM:
+        PM10_EAtm:
             members: null
             elevation: null
             model_run:
@@ -29,7 +29,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.EATM_PM10:
                     forecast_hours: 000/072/PT1H
-        PM2.5_SFC:
+        PM2.5_Sfc:
             members: null
             elevation: null
             model_run:
@@ -40,7 +40,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.SFC_PM2.5:
                     forecast_hours: 000/072/PT1H
-        PM10_SFC:
+        PM10_Sfc:
             members: null
             elevation: null
             model_run:
@@ -51,7 +51,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.SFC_PM10:
                     forecast_hours: 000/072/PT1H
-        NO2_SFC:
+        NO2_Sfc:
             members: null
             elevation: null
             model_run:
@@ -62,7 +62,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.SFC_NO2:
                     forecast_hours: 000/072/PT1H
-        NO_SFC:
+        NO_Sfc:
             members: null
             elevation: null
             model_run:
@@ -73,7 +73,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.SFC_NO:
                     forecast_hours: 000/072/PT1H
-        O3_SFC:
+        O3_Sfc:
             members: null
             elevation: null
             model_run:
@@ -84,7 +84,7 @@ model_raqdps:
             geomet_layers:
                 RAQDPS.SFC_O3:
                     forecast_hours: 000/072/PT1H
-        SO2_SFC:
+        SO2_Sfc:
             members: null
             elevation: null
             model_run:

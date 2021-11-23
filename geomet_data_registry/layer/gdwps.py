@@ -69,7 +69,8 @@ class GdwpsLayer(BaseLayer):
 
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
-            'time_': tmp.named['YYYYMMDD_model_run'],
+            'date': tmp.named['YYYYMMDD'],
+            'model_run': tmp.named['model_run'],
             'fh': tmp.named['forecast_hour']
         }
 
@@ -77,47 +78,51 @@ class GdwpsLayer(BaseLayer):
         self.wx_variable = file_pattern_info['wx_variable']
 
         if self.wx_variable not in self.file_dict[self.model]['variable']:
-            msg = 'Variable "{}" not in ' \
-                  'configuration file'.format(self.wx_variable)
+            msg = 'Variable "{}" not in configuration file'.format(
+                self.wx_variable
+            )
             LOGGER.warning(msg)
             return False
 
         self.dimensions = self.file_dict[self.model]['dimensions']
 
-        runs = self.file_dict[self.model]['variable'][self.wx_variable][
-            'model_run']
+        runs = self.file_dict[self.model]['variable'][self.wx_variable]['model_run']  # noqa
         self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%d%H'
-        self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
+        self.date_ = datetime.strptime(
+            '{}{}'.format(
+                file_pattern_info['date'], file_pattern_info['model_run']
+            ),
+            time_format
+        )
 
         reference_datetime = self.date_
-        self.model_run = '{}Z'.format(self.date_.strftime('%H'))
+        self.model_run = '{}Z'.format(file_pattern_info['model_run'])
 
-        forecast_hour_datetime = self.date_ + \
-            timedelta(hours=int(file_pattern_info['fh']))
+        forecast_hour_datetime = self.date_ + timedelta(
+            hours=int(file_pattern_info['fh'])
+        )
 
-        member = self.file_dict[self.model]['variable'][self.wx_variable][
-            'members']
-        elevation = self.file_dict[self.model]['variable'][self.wx_variable][
-            'elevation']
-        str_mr = re.sub('[^0-9]',
-                        '',
-                        reference_datetime.strftime(DATE_FORMAT))
-        str_fh = re.sub('[^0-9]',
-                        '',
-                        forecast_hour_datetime.strftime(DATE_FORMAT))
-        expected_count = self.file_dict[self.model]['variable'][
-            self.wx_variable]['model_run'][self.model_run]['files_expected']
+        member = self.file_dict[self.model]['variable'][self.wx_variable]['members']  # noqa
+        elevation = self.file_dict[self.model]['variable'][self.wx_variable]['elevation']  # noqa
 
-        self.geomet_layers = self.file_dict[self.model]['variable'][
-            self.wx_variable]['geomet_layers']
+        str_mr = re.sub('[^0-9]', '', reference_datetime.strftime(DATE_FORMAT))
+        str_fh = re.sub(
+            '[^0-9]', '', forecast_hour_datetime.strftime(DATE_FORMAT)
+        )
+
+        expected_count = self.file_dict[self.model]['variable'][self.wx_variable]['model_run'][self.model_run]['files_expected']  # noqa
+
+        self.geomet_layers = self.file_dict[self.model]['variable'][self.wx_variable]['geomet_layers']  # noqa
         for layer_name, layer_config in self.geomet_layers.items():
             identifier = '{}-{}-{}'.format(layer_name, str_mr, str_fh)
 
             forecast_hours = layer_config['forecast_hours']
-            begin, end, interval = [int(re.sub('[^0-9]', '', value))
-                                    for value in forecast_hours.split('/')]
+            begin, end, interval = [
+                int(re.sub('[^0-9]', '', value))
+                for value in forecast_hours.split('/')
+            ]
             fh = int(file_pattern_info['fh'])
 
             feature_dict = {
@@ -126,7 +131,8 @@ class GdwpsLayer(BaseLayer):
                 'identifier': identifier,
                 'reference_datetime': reference_datetime.strftime(DATE_FORMAT),
                 'forecast_hour_datetime': forecast_hour_datetime.strftime(
-                    DATE_FORMAT),
+                    DATE_FORMAT
+                ),
                 'member': member,
                 'model': self.model,
                 'elevation': elevation,
@@ -138,25 +144,25 @@ class GdwpsLayer(BaseLayer):
                 },
                 'layer_config': layer_config,
                 'register_status': True,
-                'refresh_config': True,
+                'refresh_config': True
             }
 
             if 'dependencies' in layer_config:
                 dependencies_found = self.check_layer_dependencies(
-                    layer_config['dependencies'],
-                    str_mr,
-                    str_fh)
+                    layer_config['dependencies'], str_mr, str_fh
+                )
                 if dependencies_found:
-                    bands_order = (self.file_dict[self.model]
-                                   ['variable']
-                                   [self.wx_variable].get('bands_order'))
-                    (feature_dict['filepath'],
-                     feature_dict['url'],
-                     feature_dict['weather_variable']) = (
-                        self.configure_layer_with_dependencies(
-                            dependencies_found,
-                            self.dimensions,
-                            bands_order))
+
+                    bands_order = self.file_dict[self.model]['variable'][self.wx_variable].get('bands_order')  # noqa
+
+                    (
+                        feature_dict['filepath'],
+                        feature_dict['url'],
+                        feature_dict['weather_variable'],
+                    ) = self.configure_layer_with_dependencies(
+                        dependencies_found, self.dimensions, bands_order
+                    )
+
                 else:
                     feature_dict['register_status'] = False
                     self.items.append(feature_dict)
@@ -164,10 +170,13 @@ class GdwpsLayer(BaseLayer):
 
             if not self.is_valid_interval(fh, begin, end, interval):
                 feature_dict['register_status'] = False
-                LOGGER.debug('Forecast hour {} not included in {} as '
-                             'defined for layer {}. File will not be '
-                             'added to registry for this layer'
-                             .format(fh, forecast_hours, layer_name))
+                LOGGER.debug(
+                    'Forecast hour {} not included in {} as '
+                    'defined for layer {}. File will not be '
+                    'added to registry for this layer'.format(
+                        fh, forecast_hours, layer_name
+                    )
+                )
 
             self.items.append(feature_dict)
 

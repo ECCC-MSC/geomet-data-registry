@@ -22,18 +22,13 @@ from datetime import datetime, timedelta
 import json
 import logging
 import os
-from parse import parse, with_pattern
+from parse import parse
 import re
 
 from geomet_data_registry.layer.base import BaseLayer
-from geomet_data_registry.util import DATE_FORMAT
+from geomet_data_registry.util import DATE_FORMAT, parse_nonwhitespace
 
 LOGGER = logging.getLogger(__name__)
-
-
-@with_pattern(r'\S+')
-def parse_fileinfo(text):
-    return text
 
 
 class GiopsLayer(BaseLayer):
@@ -77,8 +72,11 @@ class GiopsLayer(BaseLayer):
         elif self.filepath.split('/')[-4] == '3d':
             self.dimension = '3D'
 
-        tmp = parse(filename_pattern, os.path.basename(filepath),
-                    dict(parse_fileinfo=parse_fileinfo))
+        tmp = parse(
+            filename_pattern,
+            os.path.basename(filepath),
+            dict(NonWhitespaceChars=parse_nonwhitespace)
+        )
 
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],

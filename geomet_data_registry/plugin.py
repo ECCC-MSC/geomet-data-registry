@@ -52,7 +52,7 @@ PLUGINS = {
             'path': 'geomet_data_registry.layer.model_hrdps_continental.ModelHrdpsContinentalLayer',  # noqa
         },
         'Radar1km': {
-            'pattern': '*RADAR_COMPOSITE_1KM*',
+            'pattern': '*Radar-Composite*',
             'path': 'geomet_data_registry.layer.radar_1km.Radar1kmLayer',
         },
         'CanSIPS': {
@@ -80,11 +80,11 @@ PLUGINS = {
             'path': 'geomet_data_registry.layer.cgsl.CgslLayer',
         },
         'RDWPS': {
-            'pattern': 'CMC_rdwps*',
+            'pattern': '*MSC_RDWPS*',
             'path': 'geomet_data_registry.layer.rdwps.RdwpsLayer',
         },
         'GDWPS': {
-            'pattern': 'CMC_gdwps_global*',
+            'pattern': '*MSC_GDWPS*',
             'path': 'geomet_data_registry.layer.gdwps.GdwpsLayer',
         },
         'WCPS': {

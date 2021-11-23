@@ -69,7 +69,7 @@ class Radar1kmLayer(BaseLayer):
 
         file_pattern_info = {
             'wx_variable': tmp.named['precipitation_type'],
-            'time_': tmp.named['YYYYMMDDhhmm'],
+            'datetime': tmp.named['YYYYMMDDThhmm'],
         }
 
         LOGGER.debug('Defining the different file properties')
@@ -82,8 +82,10 @@ class Radar1kmLayer(BaseLayer):
             LOGGER.warning(msg)
             return False
 
-        time_format = '%Y%m%d%H%M'
-        self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
+        time_format = '%Y%m%dT%H%M'
+        self.date_ = datetime.strptime(
+            file_pattern_info['datetime'], time_format
+        )
 
         layer_config = self.file_dict[self.model]['variable'][self.wx_variable]
         layer_name = layer_config['geomet_layers']
