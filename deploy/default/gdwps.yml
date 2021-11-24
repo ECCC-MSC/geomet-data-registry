@@ -1,13 +1,13 @@
 gdwps:
     model: GDWPS
-    filename_pattern: CMC_gdwps_global_{wx_variable}_latlon0.25x0.25_{YYYYMMDD_model_run}_P{forecast_hour}.grib2
+    filename_pattern: '{YYYYMMDD}T{model_run}Z_MSC_GDWPS_{wx_variable}_LatLon0.25_PT{forecast_hour}H.grib2'
     dimensions:
         x: 1440
         y: 721
     model_run_retention_hours: 48
     model_run_interval_hours: 12
     variable:
-        HTSGW_SFC_0:
+        HTSGW_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -16,11 +16,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.SZ_WZ.1h:
+                GDWPS_25km_HTSGW_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.SZ_WZ.3h:
+                GDWPS_25km_HTSGW_PT3H:
                     forecast_hours: 000/120/PT3H
-        ICEC_SFC_0:
+        ICEC_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -29,11 +29,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.ICEC.1h:
+                GDWPS_25km_ICEC_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.ICEC.3h:
+                GDWPS_25km_ICEC_PT3H:
                     forecast_hours: 000/120/PT3H
-        MZWPER_SFC_0:
+        MWDFSWEL_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -42,11 +42,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.MZW.1h:
+                GDWPS_25km_MWDFSWEL_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.MZW.3h:
+                GDWPS_25km_MWDFSWEL_PT3H:
                     forecast_hours: 000/120/PT3H
-        PWPER_SFC_0:
+        MWDSSWEL_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -55,11 +55,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.PPEAK.1h:
+                GDWPS_25km_MWDSSWEL_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.PPEAK.3h:
+                GDWPS_25km_MWDSSWEL_PT3H:
                     forecast_hours: 000/120/PT3H
-        SWDIR_SFC_0:
+        MZWPER_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -68,11 +68,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.DS.1h:
+                GDWPS_25km_MZWPER_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.DS.3h:
+                GDWPS_25km_MZWPER_PT3H:
                     forecast_hours: 000/120/PT3H
-        SWELL_SFC_0:
+        PPERWW_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -81,11 +81,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.SZ.1h:
+                GDWPS_25km_PPERWW_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.SZ.3h:
+                GDWPS_25km_PPERWW_PT3H:
                     forecast_hours: 000/120/PT3H
-        SWPER_SFC_0:
+        PWAVEDIR_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -94,11 +94,76 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.SPEAK.1h:
+                GDWPS_25km_PWAVEDIR_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.SPEAK.3h:
+                GDWPS_25km_PWAVEDIR_PT3H:
                     forecast_hours: 000/120/PT3H
-        UGRD_TGL_10:
+        PWPER_Sfc:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                GDWPS_25km_PWPER_PT1H:
+                    forecast_hours: 000/048/PT1H
+                GDWPS_25km_PWPER_PT3H:
+                    forecast_hours: 000/120/PT3H
+        PWPFSWEL_Sfc:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                GDWPS_25km_PWPFSWEL_PT1H:
+                    forecast_hours: 000/048/PT1H
+                GDWPS_25km_PWPFSWEL_PT3H:
+                    forecast_hours: 000/120/PT3H
+        PWPSSWEL_Sfc:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                GDWPS_25km_PWPSSWEL_PT1H:
+                    forecast_hours: 000/048/PT1H
+                GDWPS_25km_PWPSSWEL_PT3H:
+                    forecast_hours: 000/120/PT3H
+        SWHFSWEL_Sfc:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                GDWPS_25km_SWHFSWEL_PT1H:
+                    forecast_hours: 000/048/PT1H
+                GDWPS_25km_SWHFSWEL_PT3H:
+                    forecast_hours: 000/120/PT3H
+        SWHSSWEL_Sfc:
+            members: null
+            elevation: surface
+            model_run:
+                00Z:
+                    files_expected: 73
+                12Z:
+                    files_expected: 73
+            geomet_layers:
+                GDWPS_25km_SWHSSWEL_PT1H:
+                    forecast_hours: 000/048/PT1H
+                GDWPS_25km_SWHSSWEL_PT3H:
+                    forecast_hours: 000/120/PT3H
+        UGRD_AGL-10m:
             members: null
             elevation: 10m
             model_run:
@@ -107,24 +172,24 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.UGRD.1h:
+                GDWPS_25km_UGRD_10m_PT1H:
                     published: False
                     forecast_hours: 000/048/PT1H
-                GDWPS.UGRD.3h:
+                GDWPS_25km_UGRD_10m_PT3H:
                     published: False
                     forecast_hours: 000/120/PT3H
-                GDWPS.UU.1h:
+                GDWPS_25km_Winds_10m_PT1H:
                     dependencies:
-                        - GDWPS.VGRD.1h
+                        - GDWPS_25km_VGRD_10m_PT1H
                     forecast_hours: 000/048/PT1H
-                GDWPS.UU.3h:
+                GDWPS_25km_Winds_10m_PT3H:
                     dependencies:
-                        - GDWPS.VGRD.3h
+                        - GDWPS_25km_VGRD_10m_PT3H
                     forecast_hours: 000/120/PT3H
             bands_order:
-                - UGRD_TGL_10
-                - VGRD_TGL_10
-        VGRD_TGL_10:
+                - UGRD_AGL-10m
+                - VGRD_AGL-10m
+        VGRD_AGL-10m:
             members: null
             elevation: 10m
             model_run:
@@ -133,24 +198,24 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.VGRD.1h:
+                GDWPS_25km_VGRD_10m_PT1H:
                     published: False
                     forecast_hours: 000/048/PT1H
-                GDWPS.VGRD.3h:
+                GDWPS_25km_VGRD_10m_PT3H:
                     published: False
                     forecast_hours: 000/120/PT3H
-                GDWPS.UU.1h:
+                GDWPS_25km_Winds_10m_PT1H:
                     dependencies:
-                        - GDWPS.UGRD.1h
+                        - GDWPS_25km_UGRD_10m_PT1H
                     forecast_hours: 000/048/PT1H
-                GDWPS.UU.3h:
+                GDWPS_25km_Winds_10m_PT3H:
                     dependencies:
-                        - GDWPS.UGRD.3h
+                        - GDWPS_25km_UGRD_10m_PT3H
                     forecast_hours: 000/120/PT3H
             bands_order:
-                - UGRD_TGL_10
-                - VGRD_TGL_10
-        WVDIR_SFC_0:
+                - UGRD_AGL-10m
+                - VGRD_AGL-10m
+        WVDIR_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -159,11 +224,11 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.DE.1h:
+                GDWPS_25km_WVDIR_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.DE.3h:
+                GDWPS_25km_WVDIR_PT3H:
                     forecast_hours: 000/120/PT3H
-        WVHGT_SFC_0:
+        WVHGT_Sfc:
             members: null
             elevation: surface
             model_run:
@@ -172,20 +237,7 @@ gdwps:
                 12Z:
                     files_expected: 73
             geomet_layers:
-                GDWPS.WZ.1h:
+                GDWPS_25km_WVHGT_PT1H:
                     forecast_hours: 000/048/PT1H
-                GDWPS.WZ.3h:
-                    forecast_hours: 000/120/PT3H
-        WVPER_SFC_0:
-            members: null
-            elevation: surface
-            model_run:
-                00Z:
-                    files_expected: 73
-                12Z:
-                    files_expected: 73
-            geomet_layers:
-                GDWPS.MWP.1h:
-                    forecast_hours: 000/048/PT1H
-                GDWPS.MWP.3h:
+                GDWPS_25km_WVHGT_PT3H:
                     forecast_hours: 000/120/PT3H

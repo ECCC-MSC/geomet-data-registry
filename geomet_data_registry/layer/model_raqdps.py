@@ -69,7 +69,8 @@ class ModelRaqdpsLayer(BaseLayer):
 
         file_pattern_info = {
             'wx_variable': tmp.named['wx_variable'],
-            'time_': tmp.named['YYYYMMDD_model_run'],
+            'date': tmp.named['YYYYMMDD'],
+            'model_run': tmp.named['model_run'],
             'fh': tmp.named['forecast_hour'],
         }
 
@@ -91,10 +92,15 @@ class ModelRaqdpsLayer(BaseLayer):
         self.model_run_list = list(runs.keys())
 
         time_format = '%Y%m%dT%HZ'
-        self.date_ = datetime.strptime(file_pattern_info['time_'], time_format)
+        self.date_ = datetime.strptime(
+            '{}T{}Z'.format(
+                file_pattern_info['date'], file_pattern_info['model_run']
+            ),
+            time_format
+        )
 
         reference_datetime = self.date_
-        self.model_run = '{}Z'.format(self.date_.strftime('%H'))
+        self.model_run = '{}Z'.format(file_pattern_info['model_run'])
 
         forecast_hour_datetime = self.date_ + timedelta(
             hours=int(file_pattern_info['fh'])

@@ -23,6 +23,7 @@ import logging
 import re
 from textwrap import dedent
 
+from parse import with_pattern
 from dateutil.relativedelta import relativedelta
 
 LOGGER = logging.getLogger(__name__)
@@ -209,3 +210,15 @@ def str2bool(value):
         value2 = value.lower() in ('yes', 'true', 't', '1', 'on')
 
     return value2
+
+
+@with_pattern(r'\S+')
+def parse_nonwhitespace(text):
+    """
+    Custom parse function to match any non-whitespace characters.
+    Used to identify certain filename elements where
+    parse interprets the underscore as a dividing character
+    :param text: text to be parsed
+    :returns: `str` of parsed text
+    """
+    return text
