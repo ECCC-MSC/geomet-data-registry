@@ -1506,20 +1506,6 @@ reps:
                 geomet_layers:
                     REPS.MEM.ETA_HR.{}:
                         forecast_hours: 00/72/PT3H
-            HGT_ISBL_0010:
-                elevation: 10mb
-                model_run:
-                    00Z:
-                        files_expected: 25
-                    06Z:
-                        files_expected: 25
-                    12Z:
-                        files_expected: 25
-                    18Z:
-                        files_expected: 25
-                geomet_layers:
-                    REPS.MEM.PRES_GZ.10.{}:
-                        forecast_hours: 00/72/PT3H
             HGT_ISBL_0050:
                 elevation: 50mb
                 model_run:
@@ -1646,20 +1632,6 @@ reps:
                 geomet_layers:
                     REPS.MEM.PRES_GZ.1000.{}:
                         forecast_hours: 00/72/PT3H
-            RH_ISBL_0010:
-                elevation: 10mb
-                model_run:
-                    00Z:
-                        files_expected: 25
-                    06Z:
-                        files_expected: 25
-                    12Z:
-                        files_expected: 25
-                    18Z:
-                        files_expected: 25
-                geomet_layers:
-                    REPS.MEM.PRES_HR.10.{}:
-                        forecast_hours: 00/72/PT3H
             RH_ISBL_0050:
                 elevation: 50mb
                 model_run:
@@ -1785,20 +1757,6 @@ reps:
                         files_expected: 25
                 geomet_layers:
                     REPS.MEM.PRES_HR.1000.{}:
-                        forecast_hours: 00/72/PT3H
-            TMP_ISBL_0010:
-                elevation: 10mb
-                model_run:
-                    00Z:
-                        files_expected: 25
-                    06Z:
-                        files_expected: 25
-                    12Z:
-                        files_expected: 25
-                    18Z:
-                        files_expected: 25
-                geomet_layers:
-                    REPS.MEM.PRES_TT.10.{}:
                         forecast_hours: 00/72/PT3H
             TMP_ISBL_0050:
                 elevation: 50mb
