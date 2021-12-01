@@ -155,26 +155,6 @@ class ModelRaqdpsLayer(BaseLayer):
                 'refresh_config': True,
             }
 
-            if 'dependencies' in layer_config:
-                dependencies_found = self.check_layer_dependencies(
-                    layer_config['dependencies'], str_mr, str_fh
-                )
-                if dependencies_found:
-                    bands_order = self.file_dict[self.model]['variable'][
-                        self.wx_variable
-                    ].get('bands_order')
-                    (
-                        feature_dict['filepath'],
-                        feature_dict['url'],
-                        feature_dict['weather_variable'],
-                    ) = self.configure_layer_with_dependencies(
-                        dependencies_found, self.dimensions, bands_order
-                    )
-                else:
-                    feature_dict['register_status'] = False
-                    self.items.append(feature_dict)
-                    continue
-
             if not self.is_valid_interval(fh, begin, end, interval):
                 feature_dict['register_status'] = False
                 LOGGER.debug(
