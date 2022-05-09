@@ -75,6 +75,12 @@ class TestModelGemRegionalLayer(unittest.TestCase, Setup):
             {'name': 'model_gem_regional'}
         )
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['model_gem_regional']),
+            '<ModelGemRegionalLayer> model_gem_regional'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -253,13 +259,20 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace(
             'ABSV_ISBL_250', 'Not_wx_variable'
         )
-        self.assertFalse(
-            self.layer_handler['model_gem_regional'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_gem_regional', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_gem_regional']
+                .identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 if __name__ == '__main__':

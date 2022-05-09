@@ -77,6 +77,12 @@ class TestModelHrdpsContinentalLayer(unittest.TestCase, Setup):
             {'name': 'model_hrdps_continental'}
         )
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['model_hrdps_continental']),
+            '<ModelHrdpsContinentalLayer> model_hrdps_continental'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -265,14 +271,21 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace(
             'ABSV_ISBL_0250', 'Not_wx_variable'
         )
-        self.assertFalse(
-            self.layer_handler['model_hrdps_continental']
-            .identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_hrdps_continental',
+            level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_hrdps_continental']
+                .identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 if __name__ == '__main__':

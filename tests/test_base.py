@@ -175,6 +175,12 @@ class TestSingleAssert(unittest.TestCase, Setup):
 
         self.assertListEqual(return_list, [True, True, False])
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.base_layer),
+            '<BaseLayer> model_gem_global'
+        )
+
 
 class TestRegister(unittest.TestCase, Setup):
     def setUp(self):
@@ -191,10 +197,15 @@ class TestRegister(unittest.TestCase, Setup):
     def test_register_no_items(self):
         """
         Test that when no items are identified
-        geomet_data_registry.layer.base.register() returns False.
+        geomet_data_registry.layer.base.register()
+        returns False and an error is logged.
         """
-
-        self.assertFalse(self.base_layer.register())
+        with self.assertLogs(
+            'geomet_data_registry.layer.base', level='ERROR'
+        ) as err:
+            self.assertFalse(self.base_layer.register())
+            # assert a single LOGGER.error was called
+            self.assertEqual(len(err.records), 1)
 
     def test_register_one_item(self):
         """
@@ -354,7 +365,7 @@ class TestUpdateCount(unittest.TestCase, Setup):
     def test_update_count_incomplete_mr(self):
         """
         Test that the appropriate model run count is reset when an imcomplete
-        model run is identified.
+        model run is identified and an error is logged.
         """
 
         # store.get_key() will return these values in sequence like a generator
@@ -372,7 +383,12 @@ class TestUpdateCount(unittest.TestCase, Setup):
             call('model_gem_global_TMP_TGL_2_12Z_count', 0),
         ]
 
-        self.base_layer.update_count(self.item, 201)
+        with self.assertLogs(
+            'geomet_data_registry.layer.base', level='ERROR'
+        ) as err:
+            self.base_layer.update_count(self.item, 201)
+            # assert a single LOGGER.error was called
+            self.assertEqual(len(err.records), 1)
 
         self.mocked_load_plugin.return_value.set_key.assert_has_calls(calls)
 
