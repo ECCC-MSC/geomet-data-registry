@@ -8,7 +8,7 @@ amqp:
         subtopic: model_gem_global.25km.#
         mirror: True
         report_back: False
-        accpet: .*
+        accept: .*
         on_file:
 
 local:
