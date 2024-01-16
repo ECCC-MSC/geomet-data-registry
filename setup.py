@@ -127,7 +127,7 @@ setup(
     description='Geospatial Web Services for Canadian Weather data',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    license='MIT',
+    license='GPLv3',
     platforms='all',
     keywords=' '.join([
         'geomet',
