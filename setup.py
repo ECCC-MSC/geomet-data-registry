@@ -20,8 +20,10 @@
 import io
 import os
 import re
-from setuptools import Command, find_packages, setup
 import shutil
+import sys
+
+from setuptools import Command, find_packages, setup
 
 
 class PyCleanBuild(Command):
@@ -63,7 +65,7 @@ class PyCleanBuild(Command):
                 os.remove('../{}'.format(file_))
 
 
-class PyTest(Command):
+class Unittest(Command):
     user_options = []
 
     def initialize_options(self):
@@ -74,7 +76,8 @@ class PyTest(Command):
 
     def run(self):
         import subprocess
-        errno = subprocess.call(['pytest'])
+        errno = subprocess.call([sys.executable,
+                                 '-m', 'unittest', 'discover'])
         raise SystemExit(errno)
 
 
@@ -91,10 +94,9 @@ class PyCoverage(Command):
         import subprocess
 
         errno = subprocess.call(['coverage', 'run',
-                                 '--source=geomet_data_registry',
-                                 '-m', 'unittest',
-                                 'geomet_data_registry.tests.run_tests'])
-        errno = subprocess.call(['coverage', 'report', '-m'])
+                                 '-m', 'unittest', 'discover'])
+        errno = subprocess.call(['coverage', 'report', '-m',
+                                 '--include=geomet_data_registry/layer/*.py'])
         raise SystemExit(errno)
 
 
@@ -156,7 +158,7 @@ setup(
         'Programming Language :: Python'
     ],
     cmdclass={
-        'test': PyTest,
+        'test': Unittest,
         'coverage': PyCoverage,
         'cleanbuild': PyCleanBuild
     }

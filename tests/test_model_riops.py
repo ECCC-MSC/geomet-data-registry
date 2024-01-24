@@ -71,6 +71,12 @@ class TestRiopsLayer(unittest.TestCase, Setup):
         # assert super().__init__() was called with the correct provider def
         self.mocked_base_init.assert_called_with({'name': 'riops'})
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['model_riops']),
+            '<ModelRiopsLayer> model_riops'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -305,9 +311,14 @@ class TestIdentify(unittest.TestCase, Setup):
     def test_unsuccessful_identify2d(self):
         # assert identify returns False when the wx_variable isn't correct
         self.filepath = self.filepath.replace('IICECONC', 'Not_wx_variable')
-        self.assertFalse(
-            self.layer_handler['model_riops'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_riops', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_riops'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
     def test_successful_identify3d(self):
 
@@ -399,9 +410,14 @@ class TestIdentify(unittest.TestCase, Setup):
     def test_unsuccessful_identify3d(self):
         # assert identify returns False when the wx_variable isn't correct
         self.filepath = self.filepath.replace('VOMECRTY', 'Not_wx_variable')
-        self.assertFalse(
-            self.layer_handler['model_riops'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_riops', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_riops'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 if __name__ == '__main__':

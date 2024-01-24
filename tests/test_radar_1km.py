@@ -73,6 +73,12 @@ class TestRadar1kmLayer(unittest.TestCase, Setup):
         # assert super().__init__() was called with the correct provider def
         self.mocked_base_init.assert_called_with({'name': 'Radar_1km'})
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['radar_1km']),
+            '<Radar1KM> Radar_1km'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -155,12 +161,17 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace('MMHR', 'Not_wx_variable')
-        self.assertFalse(
-            self.layer_handler['radar_1km'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.radar_1km', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['radar_1km'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 class TestAddTimeKey(unittest.TestCase, Setup):
@@ -230,8 +241,13 @@ class TestAddTimeKey(unittest.TestCase, Setup):
         # make last_key equal to None
         self.mocked_load_plugin.return_value.get_key.return_value = None
 
-        # assert time key was successfully added
-        self.assertTrue(self.layer_handler['radar_1km'].add_time_key())
+        with self.assertLogs(
+            'geomet_data_registry.layer.radar_1km', level='WARNING'
+        ) as warn:
+            # assert time key was successfully added
+            self.assertTrue(self.layer_handler['radar_1km'].add_time_key())
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
         # assert these 2 calls were made with store.set_key
         calls = [
@@ -251,8 +267,13 @@ class TestAddTimeKey(unittest.TestCase, Setup):
             '2021-11-30T13:40:00Z'
         )
 
-        # assert time key was successfully added
-        self.assertTrue(self.layer_handler['radar_1km'].add_time_key())
+        with self.assertLogs(
+            'geomet_data_registry.layer.radar_1km', level='ERROR'
+        ) as err:
+            # assert time key was successfully added
+            self.assertTrue(self.layer_handler['radar_1km'].add_time_key())
+            # assert a single LOGGER.error was called
+            self.assertEqual(len(err.records), 1)
 
         # assert these 2 calls were made with store.set_key
         calls = [

@@ -73,6 +73,12 @@ class TestCansips(unittest.TestCase, Setup):
         # assert super().__init__() was called with the correct provider def
         self.mocked_base_init.assert_called_with({'name': 'cansips'})
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['cansips']),
+            '<ModelCanSIPSLayer> cansips'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -161,9 +167,17 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace('PRATE_SFC_0', 'Not_wx_variable')
-        self.assertFalse(self.layer_handler['cansips'].identify(self.filepath))
+        with self.assertLogs(
+            'geomet_data_registry.layer.cansips', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['cansips'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 class TestAddTimeKey(unittest.TestCase, Setup):

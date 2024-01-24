@@ -79,6 +79,12 @@ class TestModelRdaqaCeLayer(unittest.TestCase, Setup):
         # assert super().__init__() was called with the correct provider def
         self.mocked_base_init.assert_called_with({'name': 'model_rdaqa-ce'})
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['model_rdaqa_ce']),
+            '<ModelRdaqaCeLayer> model_rdaqa-ce'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -160,12 +166,17 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace('O3-MAvg_SFC', 'Not_wx_variable')
-        self.assertFalse(
-            self.layer_handler['model_rdaqa_ce'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_rdaqa_ce', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_rdaqa_ce'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 class TestAddTimeKey(unittest.TestCase, Setup):
@@ -227,7 +238,16 @@ class TestAddTimeKey(unittest.TestCase, Setup):
                 '{}/{}/P1M'.format(self.date_formatted, self.date_formatted),
             ),
         ]
-        self.assertTrue(self.layer_handler['model_rdaqa_ce'].add_time_key())
+
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_rdaqa_ce', level='WARNING'
+        ) as warn:
+            self.assertTrue(
+                self.layer_handler['model_rdaqa_ce'].add_time_key()
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
+
         self.mocked_load_plugin.return_value.set_key.assert_has_calls(
             calls, any_order=True
         )
@@ -250,8 +270,16 @@ class TestAddTimeKey(unittest.TestCase, Setup):
             '{}/{}/P1M'.format(self.date_formatted, prev_int_end_formatted),
         )
 
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_rdaqa_ce', level='WARNING'
+        ) as warn:
+            self.assertTrue(
+                self.layer_handler['model_rdaqa_ce'].add_time_key()
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
+
         # assert store.set_key called only once with the args above
-        self.assertTrue(self.layer_handler['model_rdaqa_ce'].add_time_key())
         self.mocked_load_plugin.return_value.set_key.assert_called_once_with(
             *call_args
         )
@@ -281,7 +309,15 @@ class TestAddTimeKey(unittest.TestCase, Setup):
             call('RDAQA.CE_O3-MAvg_default_time', self.date_formatted),
         ]
 
-        self.assertTrue(self.layer_handler['model_rdaqa_ce'].add_time_key())
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_rdaqa_ce', level='WARNING'
+        ) as warn:
+            self.assertTrue(
+                self.layer_handler['model_rdaqa_ce'].add_time_key()
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
+
         self.mocked_load_plugin.return_value.set_key.assert_has_calls(
             calls, any_order=True  # noqa
         )

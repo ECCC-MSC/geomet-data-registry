@@ -71,6 +71,12 @@ class TestRepsLayer(unittest.TestCase, Setup):
         # assert super().__init__() was called with the correct provider def
         self.mocked_base_init.assert_called_with({'name': 'reps'})
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['reps']),
+            '<ModelREPSLayer> reps'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -229,11 +235,19 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace(
             'TPRATE-Accum-3h_SFC_0', 'Not_wx_variable'
         )
-        self.assertFalse(self.layer_handler['reps'].identify(self.filepath))
+        with self.assertLogs(
+            'geomet_data_registry.layer.reps', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['reps'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 if __name__ == '__main__':

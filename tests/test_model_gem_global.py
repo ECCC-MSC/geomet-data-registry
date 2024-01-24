@@ -73,6 +73,12 @@ class TestModelGemGlobalLayer(unittest.TestCase, Setup):
         # assert super().__init__() was called with the correct provider def
         self.mocked_base_init.assert_called_with({'name': 'model_gem_global'})
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['model_gem_global']),
+            '<ModelGemGlobalLayer> model_gem_global'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -253,11 +259,17 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace('UGRD_ISBL_1015', 'Not wx_var')
-        self.assertFalse(
-            self.layer_handler['model_gem_global'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_gem_global', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_gem_global'].identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 if __name__ == '__main__':

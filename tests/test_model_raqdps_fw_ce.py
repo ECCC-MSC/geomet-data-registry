@@ -84,6 +84,12 @@ class TestModelRaqdpsFwCeLayer(unittest.TestCase, Setup):
             {'name': 'model_raqdps-fw-ce'}
         )
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.layer_handler['model_raqdps_fw_ce']),
+            '<ModelRaqdpsFwCeLayer> model_raqdps-fw-ce'
+        )
+
 
 class TestIdentify(unittest.TestCase, Setup):
     def setUp(self):
@@ -171,14 +177,20 @@ class TestIdentify(unittest.TestCase, Setup):
         )
 
     def test_unsuccessful_identify(self):
-
-        # assert identify returns False when the wx_variable isn't correct
+        # assert identify returns False when the wx_variable
+        # isn't correct and a warning is logged.
         self.filepath = self.filepath.replace(
             'PM2.5-DIFF-MAvg-DMax_SFC', 'Not_wx_variable'
         )
-        self.assertFalse(
-            self.layer_handler['model_raqdps_fw_ce'].identify(self.filepath)
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_raqdps_fw_ce', level='WARNING'
+        ) as warn:
+            self.assertFalse(
+                self.layer_handler['model_raqdps_fw_ce']
+                .identify(self.filepath)
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
 
 
 class TestAddTimeKey(unittest.TestCase, Setup):
@@ -248,9 +260,15 @@ class TestAddTimeKey(unittest.TestCase, Setup):
                 '{}/{}/P1M'.format(self.date_formatted, self.date_formatted),
             ),
         ]
-        self.assertTrue(
-            self.layer_handler['model_raqdps_fw_ce'].add_time_key()
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_raqdps_fw_ce', level='WARNING'
+        ) as warn:
+            self.assertTrue(
+                self.layer_handler['model_raqdps_fw_ce'].add_time_key()
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
+
         self.mocked_load_plugin.return_value.set_key.assert_has_calls(
             calls, any_order=True
         )
@@ -273,10 +291,16 @@ class TestAddTimeKey(unittest.TestCase, Setup):
             '{}/{}/P1M'.format(self.date_formatted, prev_int_end_formatted),
         )
 
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_raqdps_fw_ce', level='WARNING'
+        ) as warn:
+            self.assertTrue(
+                self.layer_handler['model_raqdps_fw_ce'].add_time_key()
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
+
         # assert store.set_key called only once with the args above
-        self.assertTrue(
-            self.layer_handler['model_raqdps_fw_ce'].add_time_key()
-        )
         self.mocked_load_plugin.return_value.set_key.assert_called_once_with(
             *call_args
         )
@@ -307,11 +331,17 @@ class TestAddTimeKey(unittest.TestCase, Setup):
             ),
         ]
 
-        self.assertTrue(
-            self.layer_handler['model_raqdps_fw_ce'].add_time_key()
-        )
+        with self.assertLogs(
+            'geomet_data_registry.layer.model_raqdps_fw_ce', level='WARNING'
+        ) as warn:
+            self.assertTrue(
+                self.layer_handler['model_raqdps_fw_ce'].add_time_key()
+            )
+            # assert a single LOGGER.warning was called
+            self.assertEqual(len(warn.records), 1)
+
         self.mocked_load_plugin.return_value.set_key.assert_has_calls(
-            calls, any_order=True  # noqa
+            calls, any_order=True
         )
 
 
